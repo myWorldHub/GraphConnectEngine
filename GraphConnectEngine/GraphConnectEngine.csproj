@@ -51,6 +51,7 @@
         <Compile Include="Graph\AddGraph.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\GetVariableGraph.cs" />
+        <Compile Include="Graph\InstanceMethodGraph.cs" />
         <Compile Include="Graph\IntGraph.cs" />
         <Compile Include="Graph\SetVariableGraph.cs" />
         <Compile Include="Graph\UpdaterGraph.cs" />
