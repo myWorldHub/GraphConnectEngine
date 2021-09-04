@@ -7,10 +7,10 @@ namespace GraphConnectEngine.Core
         
         private Type _itemType;
 
-        private Func<object> _action;
+        private TryGetProcessResult _action;
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType,Func<object> getValueFunc) : base(parentGraph,connector)
+        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType,TryGetProcessResult getValueFunc) : base(parentGraph,connector)
         {
             _action = getValueFunc;
             _itemType = itemType;
@@ -83,19 +83,16 @@ namespace GraphConnectEngine.Core
             return false;
         }
 
-        public bool TryGetValue<T>(out T result)
+        public bool TryGetValue<T>(out T tResult)
         {
-            Object r = _action();
-            if (r is T t)
+            if (_action(out object result) && result is T t)
             {
-                result = t;
+                tResult = t;
                 return true;
             }
-            else
-            {
-                result = default(T);
-                return false;
-            }
+
+            tResult = default(T);
+            return false;
         }
         
     }
