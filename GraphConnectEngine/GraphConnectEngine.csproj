@@ -49,6 +49,7 @@
         <Compile Include="Core\OutProcessNode.cs" />
         <Compile Include="Core\VariableHolder.cs" />
         <Compile Include="Graph\AddGraph.cs" />
+        <Compile Include="Graph\CreateInstanceGraph.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\GenerativeGraph.cs" />
         <Compile Include="Graph\StaticMethodGraph.cs" />
