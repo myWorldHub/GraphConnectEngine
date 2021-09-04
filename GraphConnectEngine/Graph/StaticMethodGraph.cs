@@ -16,7 +16,7 @@ namespace GraphConnectEngine.Graph
 
         public StaticMethodGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false)
         {
-            if (methodInfo == null || !methodInfo.IsStatic || !methodInfo.IsPublic)
+            if (methodInfo == null || !methodInfo.IsStatic || !methodInfo.IsPublic || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;
 
             _methodInfo = methodInfo;
