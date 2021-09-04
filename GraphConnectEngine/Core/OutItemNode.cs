@@ -8,6 +8,7 @@ namespace GraphConnectEngine.Core
         private Type _itemType;
 
         private Func<object> _action;
+        public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
         public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType,Func<object> getValueFunc) : base(parentGraph,connector)
         {
@@ -29,13 +30,22 @@ namespace GraphConnectEngine.Core
             //接続確認
             if (Connector.TryGetOtherNodes(this, out var otherNodes))
             {
+                //接続切る
                 foreach (var onode in otherNodes)
                 {
                     Connector.DisconnectNode(this, onode);
                 }
-                
-                _itemType = type;
 
+                //event
+                var from = _itemType;
+                _itemType = type;
+                OnTypeChanged?.Invoke(this, new TypeChangeEventArgs()
+                {
+                    From = from,
+                    To = _itemType
+                });
+
+                //再接続
                 foreach (var onode in otherNodes)
                 {
                     Connector.ConnectNode(this, onode);

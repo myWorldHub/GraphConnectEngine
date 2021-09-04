@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GraphConnectEngine.Core
 {
     /// <summary>
-    /// TODO 値が追加、削除された時にGetVariableGraphとかでタイプとかを更新する
+    /// 値保持用のクラス
     /// </summary>
     public class VariableHolder
     {
@@ -12,6 +12,10 @@ namespace GraphConnectEngine.Core
         
         private readonly Dictionary<string, object> _items = new Dictionary<string, object>();
         private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
+
+        public event EventHandler<VariableCreatedEvent> OnVariableCreated;
+        public event EventHandler<VariableUpdatedEvent> OnVariableUpdated;
+        public event EventHandler<VariableRemovedEvent> OnVariableRemoved;
 
         public void SetParent(VariableHolder parent)
         {
@@ -71,10 +75,9 @@ namespace GraphConnectEngine.Core
 
         public bool TryCreateItem(string name, object obj)
         {
-            if (!HasItem(name))
+            if (TryCreateItem(name,obj.GetType()))
             {
-                _items.Add(name,obj);
-                _types.Add(name,obj.GetType());
+                _items[name] = obj;
                 return true;
             }
             return false;
@@ -86,6 +89,11 @@ namespace GraphConnectEngine.Core
             {
                 _items.Add(name,null);
                 _types.Add(name,type);
+                OnVariableCreated?.Invoke(this,new VariableCreatedEvent()
+                {
+                    Name = name,
+                    Type = type
+                });
                 return true;
             }
             return false;
@@ -98,17 +106,78 @@ namespace GraphConnectEngine.Core
                 if (_types[name] == obj.GetType() || obj.GetType().IsSubclassOf(_types[name]))
                 {
                     _items[name] = obj;
+                    
+                    OnVariableUpdated?.Invoke(this,new VariableUpdatedEvent()
+                    {
+                        Name = name,
+                        Type = obj.GetType(),
+                        Value = obj
+                    });
+                    
                     return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
             else
             {
-                return _parent?.UpdateItem(name, obj) ?? false;
+                if (_parent != null && !_parent.UpdateItem(name, obj))
+                {
+                    OnVariableUpdated?.Invoke(this, new VariableUpdatedEvent()
+                    {
+                        Name = name,
+                        Type = obj.GetType(),
+                        Value = obj
+                    });
+                    return true;
+                }
             }
+
+            return false;
         }
+
+        public bool RemoveItem(string name)
+        {
+            if (_items.ContainsKey(name))
+            {
+                _items.Remove(name);
+                _types.Remove(name);
+
+                OnVariableRemoved?.Invoke(this,new VariableRemovedEvent()
+                {
+                    Name = name
+                });
+                
+                return true;
+            }
+            else
+            {
+                if (_parent != null && _parent.RemoveItem(name))
+                {
+                    OnVariableRemoved?.Invoke(this, new VariableRemovedEvent()
+                    {
+                        Name = name
+                    });
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public class VariableCreatedEvent : EventArgs
+    {
+        public string Name;
+        public Type Type;
+    }
+
+    public class VariableUpdatedEvent : EventArgs
+    {
+        public string Name;
+        public Type Type;
+        public Object Value;
+    }
+
+    public class VariableRemovedEvent : EventArgs
+    {
+        public string Name;
     }
 }
