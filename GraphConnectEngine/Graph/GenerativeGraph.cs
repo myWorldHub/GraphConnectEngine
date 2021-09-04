@@ -8,8 +8,8 @@ namespace GraphConnectEngine.Graph
     public abstract class GenerativeGraph : GraphBase
     {
 
-        protected MethodInfo MethodInfo;
-        
+        public MethodInfo MethodInfo { get; }
+
         protected ParameterInfo[] Parameters;
 
         protected readonly List<InItemNode> InItemNodes = new List<InItemNode>();
