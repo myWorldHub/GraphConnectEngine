@@ -4,7 +4,7 @@ using GraphConnectEngine.Core;
 namespace GraphConnectEngine.Graph
 {
     /// <summary>
-    /// TODO Holder変えにリスナをつける
+    /// TODO リスナをつける
     /// </summary>
     public class SetVariableGraph : GraphBase
     {

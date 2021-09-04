@@ -5,7 +5,7 @@ namespace GraphConnectEngine.Graph
 {
     
     /// <summary>
-    /// TODO Holder変えにリスナをつける
+    /// TODO リスナをつける
     /// </summary>
     public class GetVariableGraph : GraphBase
     {
