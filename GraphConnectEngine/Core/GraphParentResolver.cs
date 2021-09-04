@@ -29,18 +29,12 @@ namespace GraphConnectEngine.Core
         
         public void InvokeConnectEvent(NodeConnectEventArgs args)
         {
-            if (OnConnect != null)
-            {
-                OnConnect(this, args);
-            }
+            OnConnect?.Invoke(this, args);
         }
 
         public void InvokeDisconnectEvent(NodeConnectEventArgs args)
         {
-            if (OnDisconnect != null)
-            {
-                OnDisconnect(this, args);
-            }
+            OnDisconnect?.Invoke(this,args);
         }
 
         /// <summary>
