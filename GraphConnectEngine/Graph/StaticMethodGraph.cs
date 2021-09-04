@@ -26,7 +26,6 @@ namespace GraphConnectEngine.Graph
             {
                 InItemNode iNode = new InItemNode(this, connector, parameterInfo.ParameterType);
                 _inItemNodes.Add(iNode);
-                //TODO parameterInfo.HasDefaultValue
             }
 
             Type ret = _methodInfo.ReturnType;
