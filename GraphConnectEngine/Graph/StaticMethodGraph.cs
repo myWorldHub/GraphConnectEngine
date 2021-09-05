@@ -33,5 +33,11 @@ namespace GraphConnectEngine.Graph
             }
             return "Generative Static Method Graph";
         }
+
+
+        public override bool IsProcessNodeConnected()
+        {
+            return false;
+        }
     }
 }

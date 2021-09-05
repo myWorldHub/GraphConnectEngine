@@ -70,5 +70,11 @@ namespace GraphConnectEngine.Graph
         {
             return "Updater Graph";
         }
+
+
+        public override bool IsProcessNodeConnected()
+        {
+            return false;
+        }
     }
 }

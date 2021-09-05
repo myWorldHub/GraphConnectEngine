@@ -45,5 +45,10 @@ namespace GraphConnectEngine.Graph
 
             return "Generative Instance Method Graph";
         }
+
+        public override bool IsProcessNodeConnected()
+        {
+            return false;
+        }
     }
 }
