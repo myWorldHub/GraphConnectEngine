@@ -5,14 +5,12 @@ namespace GraphConnectEngine.Graph
 {
     public class DebugTextGraph : GraphBase
     {
-        public readonly InProcessNode InProcessNode;
         public readonly InItemNode InItemNode;
 
         private Action<string> _updateText;
 
-        public DebugTextGraph(NodeConnector connector,Action<string> updateText)
+        public DebugTextGraph(NodeConnector connector,Action<string> updateText) : base(connector)
         {
-            InProcessNode = new InProcessNode(this,connector, OnCalled);
             InItemNode = new InItemNode(this, connector,typeof(object));
             _updateText = updateText;
         }
@@ -32,14 +30,14 @@ namespace GraphConnectEngine.Graph
             return false;
         }
 
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string GetGraphName()
         {
             return "Debug Text Graph";
-        }
-
-        public override bool IsConnectedInProcessNode()
-        {
-            return true;
         }
     }
 }

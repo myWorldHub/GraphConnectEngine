@@ -36,6 +36,11 @@ namespace GraphConnectEngine.Graph
         }
 
 
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override string GetGraphName()
         {
             if (MethodInfo != null)
@@ -44,11 +49,6 @@ namespace GraphConnectEngine.Graph
             }
 
             return "Generative Instance Method Graph";
-        }
-
-        public override bool IsConnectedInProcessNode()
-        {
-            return false;
         }
     }
 }

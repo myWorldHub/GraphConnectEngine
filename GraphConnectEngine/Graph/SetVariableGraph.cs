@@ -34,7 +34,7 @@ namespace GraphConnectEngine.Graph
             }
         }
 
-        public SetVariableGraph(NodeConnector connector,VariableHolder holder)
+        public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
         {
             Holder = holder;
             InItemNode = new InItemNode(this, connector, typeof(void));
@@ -58,16 +58,17 @@ namespace GraphConnectEngine.Graph
 
             return false;
         }
-        
-        
+
+
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string GetGraphName()
         {
             return "Set Variable Graph";
         }
         
-        public override bool IsConnectedInProcessNode()
-        {
-            return true;
-        }
     }
 }

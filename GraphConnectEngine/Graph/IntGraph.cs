@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Graph
 
         public readonly OutItemNode OutItemNode;
 
-        public IntGraph(NodeConnector connector)
+        public IntGraph(NodeConnector connector) : base(connector)
         {
             OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
@@ -19,15 +19,15 @@ namespace GraphConnectEngine.Graph
             return true;
         }
 
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override string GetGraphName()
         {
             return "Int Graph";
         }
 
-
-        public override bool IsConnectedInProcessNode()
-        {
-            return false;
-        }
     }
 }

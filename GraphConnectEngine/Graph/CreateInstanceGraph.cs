@@ -16,6 +16,11 @@ namespace GraphConnectEngine.Graph
                 return;//TODO エラー
         }
 
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string GetGraphName()
         {
             return "Create Instance Graph";
@@ -31,11 +36,6 @@ namespace GraphConnectEngine.Graph
 
             result = null;
             return false;//TODO 失敗
-        }
-
-        public override bool IsConnectedInProcessNode()
-        {
-            return false;
         }
     }
 }

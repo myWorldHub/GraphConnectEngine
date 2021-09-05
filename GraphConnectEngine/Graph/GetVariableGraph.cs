@@ -34,7 +34,7 @@ namespace GraphConnectEngine.Graph
 
         public int Depth = -1;
 
-        public GetVariableGraph(NodeConnector connector,VariableHolder holder)
+        public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
         {
             Holder = holder;
             OutItemNode = new OutItemNode(this, connector, typeof(void), Get);
@@ -44,15 +44,15 @@ namespace GraphConnectEngine.Graph
         {
             return Holder.TryGetItem(VariableName, out result,Depth);
         }
-        
+
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string GetGraphName()
         {
             return "Get Variable Graph";
-        }
-
-        public override bool IsConnectedInProcessNode()
-        {
-            return false;
         }
     }
 }

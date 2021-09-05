@@ -17,7 +17,7 @@ namespace GraphConnectEngine.Graph
         protected readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
         
 
-        public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) 
+        public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) : base(connector)
         {
             if (methodInfo == null || !methodInfo.IsPublic)
                 return;//TODO Exception

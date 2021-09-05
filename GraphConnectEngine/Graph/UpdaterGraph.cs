@@ -33,7 +33,7 @@ namespace GraphConnectEngine.Graph
 
         private float _time = 0;
 
-        public UpdaterGraph(NodeConnector connector)
+        public UpdaterGraph(NodeConnector connector) : base(connector)
         {
             OutProcessNode = new OutProcessNode(this,connector);
         }
@@ -64,6 +64,11 @@ namespace GraphConnectEngine.Graph
                     OutProcessNode.CallProcess(new ProcessCallArgs(GetHashCode().ToString()));
                 }
             }
+        }
+
+        public override bool OnProcessCall(ProcessCallArgs args)
+        {
+            throw new System.NotImplementedException();
         }
 
         public override string GetGraphName()
