@@ -17,7 +17,7 @@ namespace GraphConnectEngine.Graph
             if (!TryGetParameterValues(out var param))
             {
                 result = null;
-                return false;//TODO 失敗
+                return false;
             }
 
             result = MethodInfo.Invoke(null, param); //TODO null check? try-catch

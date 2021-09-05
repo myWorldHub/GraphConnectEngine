@@ -16,9 +16,12 @@ namespace GraphConnectEngine.Core
             
             if (Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
             {
-                foreach (var inProcessNode in resolvers)
+                
+                for(int i=0;i<resolvers.Length;i++)
                 {
-                    inProcessNode.OnCalled(args);
+                    var inProcessNode = resolvers[i];
+                    var nargs = args.Add(GetHashCode()+ "_" + i);
+                    inProcessNode.OnCalled(nargs);
                 }
             }
         }
