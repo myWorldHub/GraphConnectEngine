@@ -47,6 +47,7 @@
         <Compile Include="Core\NodeConnector.cs" />
         <Compile Include="Core\OutItemNode.cs" />
         <Compile Include="Core\OutProcessNode.cs" />
+        <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
         <Compile Include="Graph\AddGraph.cs" />
         <Compile Include="Graph\CreateInstanceGraph.cs" />

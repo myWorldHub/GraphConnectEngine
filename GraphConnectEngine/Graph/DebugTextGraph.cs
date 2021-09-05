@@ -17,14 +17,19 @@ namespace GraphConnectEngine.Graph
             _updateText = updateText;
         }
 
-        private void OnCalled()
+        private bool OnCalled(ProcessCallArgs args)
         {
             OutItemNode node;
             if (InItemNode.Connector.TryGetAnotherNode(InItemNode,out node))
             {
-                if(node.TryGetValue<object>(out var obj))
+                if (node.TryGetValue<object>(out var obj))
+                {
                     _updateText(obj.ToString());
+                    return true;
+                }
             }
+
+            return false;
         }
 
         public override string GetGraphName()

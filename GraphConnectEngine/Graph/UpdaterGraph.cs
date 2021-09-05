@@ -50,7 +50,7 @@ namespace GraphConnectEngine.Graph
             
             if (IntervalType == Type.EveryFixedUpdate)
             {
-                OutProcessNode.CallProcess();
+                OutProcessNode.CallProcess(new ProcessCallArgs());
             }
             else
             {
@@ -61,7 +61,7 @@ namespace GraphConnectEngine.Graph
                 
                 if (isZeroTime)
                 {
-                    OutProcessNode.CallProcess();
+                    OutProcessNode.CallProcess(new ProcessCallArgs());
                 }
             }
         }

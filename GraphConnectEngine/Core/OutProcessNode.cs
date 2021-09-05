@@ -9,7 +9,7 @@ namespace GraphConnectEngine.Core
         {
         }
 
-        public void CallProcess()
+        public void CallProcess(ProcessCallArgs args)
         {
 
             var a = Connector.GetOtherNodes(this);
@@ -18,7 +18,7 @@ namespace GraphConnectEngine.Core
             {
                 foreach (var inProcessNode in resolvers)
                 {
-                    inProcessNode.OnProcessCall();
+                    inProcessNode.OnCalled(args);
                 }
             }
         }

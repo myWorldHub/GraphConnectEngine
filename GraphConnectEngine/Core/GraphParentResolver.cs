@@ -15,8 +15,6 @@ namespace GraphConnectEngine.Core
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
 
-        public delegate bool TryGetProcessResult(out object result);
-
         public GraphParentResolver(GraphBase parentGraph,NodeConnector connector)
         {
             _graph = parentGraph;

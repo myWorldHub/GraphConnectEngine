@@ -42,7 +42,7 @@ namespace GraphConnectEngine.Graph
             InProcessNode = new InProcessNode(this, connector, OnCall);
         }
 
-        private void OnCall()
+        private bool OnCall(ProcessCallArgs args)
         {
             if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out OutItemNode node))
             {
@@ -50,12 +50,13 @@ namespace GraphConnectEngine.Graph
                 {
                     if (Holder.UpdateItem(_variableName, result))
                     {
-
+                        OutProcessNode.CallProcess(args);
+                        return true;
                     }
                 }
             }
-                    
-            OutProcessNode.CallProcess();
+
+            return false;
         }
         
         

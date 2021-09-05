@@ -7,10 +7,16 @@ namespace GraphConnectEngine.Core
         
         private Type _itemType;
 
-        private TryGetProcessResult _action;
+        /// <summary>
+        /// bool : 成功したかどうか
+        /// result : 結果のオブジェクト
+        /// </summary>
+        public delegate bool TryGetItemResult(out object result);
+        
+        private TryGetItemResult _action;
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType,TryGetProcessResult getValueFunc) : base(parentGraph,connector)
+        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, TryGetItemResult getValueFunc) : base(parentGraph,connector)
         {
             _action = getValueFunc;
             _itemType = itemType;
