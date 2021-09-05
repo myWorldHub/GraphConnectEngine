@@ -13,32 +13,28 @@ namespace GraphConnectEngine.Graph
         {
             InItemNode1 = new InItemNode(this, connector,typeof(int));
             InItemNode2 = new InItemNode(this, connector,typeof(int));
-            OutItemNode = new OutItemNode(this,connector,typeof(int),()=>Get());
+            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        public int Get()
+        public bool Get(out object result)
         {
             int a = 0;
             int b = 0;
+            result = null;
 
             OutItemNode outItem;
-            if (InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem))
+            if (!(InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem) && outItem.TryGetValue(out a)))
             {
-                if (!outItem.TryGetValue(out a))
-                {
-                    a = 0;
-                }
+                return false;
             }
             
-            if (InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem))
+            if (!(InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem) && outItem.TryGetValue(out b)))
             {
-                if (!outItem.TryGetValue(out b))
-                {
-                    b = 0;
-                }
+                return false;
             }
-            
-            return a + b;
+
+            result =  a + b;
+            return true;
         }
 
         public override string GetGraphName()

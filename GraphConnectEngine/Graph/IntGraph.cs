@@ -4,28 +4,19 @@ namespace GraphConnectEngine.Graph
 {
     public class IntGraph : GraphBase
     {
-        private int _number = 0;
+        public int Number = 0;
 
         public readonly OutItemNode OutItemNode;
 
         public IntGraph(NodeConnector connector)
         {
-            OutItemNode = new OutItemNode(this,connector,typeof(int),()=>Get());
+            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        public void Increment()
+        public bool Get(out object result)
         {
-            _number++;
-        }
-
-        public void Decrement()
-        {
-            _number--;
-        }
-
-        public int Get()
-        {
-            return _number;
+            result =  Number;
+            return true;
         }
 
         public override string GetGraphName()

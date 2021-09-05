@@ -37,14 +37,12 @@ namespace GraphConnectEngine.Graph
         public GetVariableGraph(NodeConnector connector,VariableHolder holder)
         {
             Holder = holder;
-            OutItemNode = new OutItemNode(this, connector, typeof(void), () =>
-            {
-                if (Holder.TryGetItem(VariableName, out var obj))
-                {
-                    return obj;
-                }
-                return null;
-            });
+            OutItemNode = new OutItemNode(this, connector, typeof(void), Get);
+        }
+
+        private bool Get(out object result)
+        {
+            return Holder.TryGetItem(VariableName, out result,Depth);
         }
         
         public override string GetGraphName()

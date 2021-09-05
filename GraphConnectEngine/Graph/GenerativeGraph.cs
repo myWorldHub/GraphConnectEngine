@@ -19,7 +19,7 @@ namespace GraphConnectEngine.Graph
 
         public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) 
         {
-            if (!methodInfo.IsPublic)
+            if (methodInfo == null || !methodInfo.IsPublic)
                 return;//TODO Exception
             
             MethodInfo = methodInfo;
@@ -88,7 +88,7 @@ namespace GraphConnectEngine.Graph
         /// 実行する
         /// </summary>
         /// <returns></returns>
-        protected abstract object InvokeMethod();
+        protected abstract bool InvokeMethod(out object result);
 
         /// <summary>
         /// 生成されたInItemNodeのリストを取得する
