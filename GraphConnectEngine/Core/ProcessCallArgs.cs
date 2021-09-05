@@ -1,3 +1,5 @@
+using System;
+
 namespace GraphConnectEngine.Core
 {
     public class ProcessCallArgs
@@ -6,10 +8,20 @@ namespace GraphConnectEngine.Core
         private string _value;
 
         public const string NoProcessCall = "NoProcessCall";
-        
-        public ProcessCallArgs(string senderHash)
+
+        /// <summary>
+        /// 発火用
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <returns></returns>
+        public static ProcessCallArgs Fire(object sender)
         {
-            _value = senderHash;
+            return new ProcessCallArgs(sender.ToString()+"_"+DateTime.Now.Millisecond);
+        }
+        
+        public ProcessCallArgs(object hash)
+        {
+            _value = hash.ToString();
         }
 
         /// <summary>

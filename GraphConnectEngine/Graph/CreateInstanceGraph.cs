@@ -35,7 +35,7 @@ namespace GraphConnectEngine.Graph
             }
 
             result = null;
-            return false;//TODO 失敗
+            return false;
         }
     }
 }
