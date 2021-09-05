@@ -25,7 +25,7 @@ namespace GraphConnectEngine.Core
                 return false;
             }
 
-            GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{args}");
+            GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
             
             bool result = OnProcessCall(nargs);
 

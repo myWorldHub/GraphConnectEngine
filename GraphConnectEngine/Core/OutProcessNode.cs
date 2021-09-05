@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Core
         {
             string myHash = ParentGraph.GetHashCode().ToString();
             string myName =  $"{ParentGraph.GetGraphName()}[{myHash}]";
-            string preset = $"{myName} Called Process > ";
+            string preset = $"{myName} Calls Process > ";
 
             GraphEngineLogger.Debug($"{myName} Started to Calling Process with\n{args}");
 
