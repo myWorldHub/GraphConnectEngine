@@ -40,14 +40,14 @@ namespace GraphConnectEngine.Graph
             OutItemNode = new OutItemNode(this, connector, typeof(void), Get);
         }
 
-        private bool Get(out object result)
+        private bool Get(ProcessCallArgs args,out object result)
         {
             return Holder.TryGetItem(VariableName, out result,Depth);
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args)
         {
-            throw new NotImplementedException();
+            return OutItemNode.TryGetValue(args, out object result);
         }
 
         public override string GetGraphName()

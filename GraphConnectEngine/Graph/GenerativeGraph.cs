@@ -15,6 +15,8 @@ namespace GraphConnectEngine.Graph
         protected readonly List<InItemNode> InItemNodes = new List<InItemNode>();
         
         protected readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
+
+        protected readonly OutItemNode OutResultNode;
         
 
         public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) : base(connector)
@@ -24,12 +26,8 @@ namespace GraphConnectEngine.Graph
             
             MethodInfo = methodInfo;
 
-            //Return Type
-            Type ret = MethodInfo.ReturnType;
-            if (ret != typeof(Void))
-            {
-                OutItemNodes.Add(new OutItemNode(this, connector, ret, InvokeMethod));
-            }
+            //Return Node
+            OutResultNode = new OutItemNode(this, connector, MethodInfo.ReturnType, InvokeMethod);
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
@@ -53,7 +51,7 @@ namespace GraphConnectEngine.Graph
         /// </summary>
         /// <param name="result">結果</param>
         /// <returns>成功したかどうか</returns>
-        protected bool TryGetParameterValues(out object[] result)
+        protected bool TryGetParameterValues(ProcessCallArgs args,out object[] result)
         {
             object[] param = new object[Parameters.Length];
             
@@ -62,7 +60,7 @@ namespace GraphConnectEngine.Graph
                 ParameterInfo parameterInfo = Parameters[i];
                 if (InItemNodes[i].Connector.TryGetAnotherNode(InItemNodes[i], out OutItemNode resolver))
                 {
-                    if (resolver.TryGetValue(out object oitem))
+                    if (resolver.TryGetValue(args,out object oitem))
                     {
                         param[i] = oitem;
                         continue;
@@ -84,11 +82,16 @@ namespace GraphConnectEngine.Graph
             return true;
         }
 
+        protected override bool OnProcessCall(ProcessCallArgs args)
+        {
+            return OutResultNode.TryGetValue(args, out object t);
+        }
+
         /// <summary>
         /// 実行する
         /// </summary>
         /// <returns></returns>
-        protected abstract bool InvokeMethod(out object result);
+        protected abstract bool InvokeMethod(ProcessCallArgs args,out object result);
 
         /// <summary>
         /// 生成されたInItemNodeのリストを取得する

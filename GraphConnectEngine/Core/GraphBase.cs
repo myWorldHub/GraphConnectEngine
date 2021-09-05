@@ -8,16 +8,40 @@ namespace GraphConnectEngine.Core
 
         public GraphBase(NodeConnector connector)
         {
-            InProcessNode = new InProcessNode(this, connector, OnProcessCall);
+            InProcessNode = new InProcessNode(this, connector, _OnProcessCall);
             OutProcessNode = new OutProcessNode(this, connector);
         }
 
+        private bool _OnProcessCall(ProcessCallArgs args)
+        {
+            ProcessCallArgs nargs = args.Add(GetHashCode().ToString());
+            
+            bool result = OnProcessCall(nargs);
+            if (result)
+            {
+                GetNextNode(args).CallProcess(args);
+            }
+            
+            return result;
+        }
+
         /// <summary>
-        /// プロセスコールで呼ばれる
+        /// ProcessCallで呼ばれる
+        /// 実装では必ずOutItemをキャッシュさせる
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public abstract bool OnProcessCall(ProcessCallArgs args);
+        protected abstract bool OnProcessCall(ProcessCallArgs args);
+
+        /// <summary>
+        /// ProcessCallが成功した時に、次に呼ぶOutProcessNodeを取得する
+        /// TODO ifGraphで使う
+        /// </summary>
+        /// <returns></returns>
+        public virtual OutProcessNode GetNextNode(ProcessCallArgs args)
+        {
+            return OutProcessNode;
+        }
 
         /// <summary>
         /// グラフ名を取得する

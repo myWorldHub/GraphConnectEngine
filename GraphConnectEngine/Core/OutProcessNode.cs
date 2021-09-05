@@ -11,7 +11,6 @@ namespace GraphConnectEngine.Core
 
         public void CallProcess(ProcessCallArgs args)
         {
-
             var a = Connector.GetOtherNodes(this);
             
             if (Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))

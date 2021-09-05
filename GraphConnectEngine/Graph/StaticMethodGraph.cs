@@ -12,9 +12,9 @@ namespace GraphConnectEngine.Graph
                 return;//TODO Exception
         }
 
-        protected override bool InvokeMethod(out object result)
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
-            if (!TryGetParameterValues(out var param))
+            if (!TryGetParameterValues(args,out var param))
             {
                 result = null;
                 return false;
@@ -22,12 +22,6 @@ namespace GraphConnectEngine.Graph
 
             result = MethodInfo.Invoke(null, param); //TODO null check? try-catch
             return true; 
-        }
-
-
-        public override bool OnProcessCall(ProcessCallArgs args)
-        {
-            throw new System.NotImplementedException();
         }
 
         public override string GetGraphName()

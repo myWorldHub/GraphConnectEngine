@@ -11,10 +11,16 @@ namespace GraphConnectEngine.Core
         /// bool : 成功したかどうか
         /// result : 結果のオブジェクト
         /// </summary>
-        public delegate bool TryGetItemResult(out object result);
+        public delegate bool TryGetItemResult(ProcessCallArgs args,out object result);
         
         private TryGetItemResult _action;
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
+
+        /// <summary>
+        /// 結果のキャッシュ
+        /// Sender,成功の可否,result
+        /// </summary>
+        private Tuple<string, bool, object> _cache;
 
         public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, TryGetItemResult getValueFunc) : base(parentGraph,connector)
         {
@@ -89,9 +95,15 @@ namespace GraphConnectEngine.Core
             return false;
         }
 
-        public bool TryGetValue<T>(out T tResult)
+        public bool TryGetValue<T>(ProcessCallArgs args,out T tResult)
         {
-            if (_action(out object result) && result is T t)
+            if (_cache != null && _cache.Item1 == args.GetSender())
+            {
+                tResult = _cache.Item3 is T ? (T)_cache.Item3 : default(T);
+                return _cache.Item2;
+            }
+            
+            if (_action(args,out object result) && result is T t)
             {
                 tResult = t;
                 return true;

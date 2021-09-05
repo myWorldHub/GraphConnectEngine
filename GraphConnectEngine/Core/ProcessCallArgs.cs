@@ -48,8 +48,13 @@ namespace GraphConnectEngine.Core
             var my = GetValue().Split(':');
             var pa = GetValue().Split(':');
 
-            //TODO
+            //TODO 実装と制限
             return false;
+        }
+
+        public string GetSender()
+        {
+            return _value.Split(':')[0];
         }
         
         

@@ -16,19 +16,14 @@ namespace GraphConnectEngine.Graph
                 return;//TODO エラー
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args)
-        {
-            throw new NotImplementedException();
-        }
-
         public override string GetGraphName()
         {
             return "Create Instance Graph";
         }
 
-        protected override bool InvokeMethod(out object result)
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
-            if (TryGetParameterValues(out var param))
+            if (TryGetParameterValues(args,out var param))
             {
                 result =  Activator.CreateInstance(MethodInfo.DeclaringType, param);
                 return true;

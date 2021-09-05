@@ -15,12 +15,12 @@ namespace GraphConnectEngine.Graph
             _updateText = updateText;
         }
 
-        private bool OnCalled(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args)
         {
             OutItemNode node;
-            if (InItemNode.Connector.TryGetAnotherNode(InItemNode,out node))
+            if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out node))
             {
-                if (node.TryGetValue<object>(out var obj))
+                if (node.TryGetValue<object>(args, out var obj))
                 {
                     _updateText(obj.ToString());
                     return true;
@@ -28,11 +28,6 @@ namespace GraphConnectEngine.Graph
             }
 
             return false;
-        }
-
-        public override bool OnProcessCall(ProcessCallArgs args)
-        {
-            throw new NotImplementedException();
         }
 
         public override string GetGraphName()

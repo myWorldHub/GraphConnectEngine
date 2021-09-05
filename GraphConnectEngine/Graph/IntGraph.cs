@@ -13,15 +13,15 @@ namespace GraphConnectEngine.Graph
             OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        public bool Get(out object result)
+        public bool Get(ProcessCallArgs args,out object result)
         {
             result =  Number;
             return true;
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args)
         {
-            throw new System.NotImplementedException();
+            return OutItemNode.TryGetValue(args, out object result);
         }
 
         public override string GetGraphName()

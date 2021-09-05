@@ -15,17 +15,17 @@ namespace GraphConnectEngine.Graph
             _objInItemNode = new InItemNode(this,connector,methodInfo.DeclaringType);
         }
 
-        protected override bool InvokeMethod(out object result)
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
             object instance = null;
             if (!(_objInItemNode.Connector.TryGetAnotherNode(_objInItemNode, out OutItemNode orsv) &&
-                  orsv.TryGetValue(out instance)))
+                  orsv.TryGetValue(args,out instance)))
             {
                 result = null;
                 return false; 
             }
 
-            if (!TryGetParameterValues(out var param))
+            if (!TryGetParameterValues(args,out var param))
             {
                 result = null;
                 return false; 
@@ -34,13 +34,7 @@ namespace GraphConnectEngine.Graph
             result = MethodInfo.Invoke(instance, param);//TODO null check? try-catch
             return true;
         }
-
-
-        public override bool OnProcessCall(ProcessCallArgs args)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         public override string GetGraphName()
         {
             if (MethodInfo != null)

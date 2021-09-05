@@ -11,10 +11,7 @@ namespace GraphConnectEngine.Graph
 
         public readonly VariableHolder Holder;
         
-        public readonly InProcessNode InProcessNode;
-        public readonly OutProcessNode OutProcessNode;
         public readonly InItemNode InItemNode;
-        //TODO OutItemNode ノードループ対策してから
 
         private string _variableName = "";
         public string VariableName
@@ -38,15 +35,14 @@ namespace GraphConnectEngine.Graph
         {
             Holder = holder;
             InItemNode = new InItemNode(this, connector, typeof(void));
-            OutProcessNode = new OutProcessNode(this, connector);
-            InProcessNode = new InProcessNode(this, connector, OnCall);
         }
 
-        private bool OnCall(ProcessCallArgs args)
+
+        protected override bool OnProcessCall(ProcessCallArgs args)
         {
             if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out OutItemNode node))
             {
-                if (node.TryGetValue<object>(out object result))
+                if (node.TryGetValue<object>(args, out object result))
                 {
                     if (Holder.UpdateItem(_variableName, result))
                     {
@@ -56,13 +52,7 @@ namespace GraphConnectEngine.Graph
                 }
             }
 
-            return false;
-        }
-
-
-        public override bool OnProcessCall(ProcessCallArgs args)
-        {
-            throw new NotImplementedException();
+            return false;   
         }
 
         public override string GetGraphName()
