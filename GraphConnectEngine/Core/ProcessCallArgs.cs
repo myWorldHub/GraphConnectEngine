@@ -16,7 +16,7 @@ namespace GraphConnectEngine.Core
         /// <returns></returns>
         public static ProcessCallArgs Fire(object sender)
         {
-            return new ProcessCallArgs(  sender.ToString()+"_"+DateTime.Now.Millisecond);
+            return new ProcessCallArgs(  $"{sender}_{Guid.NewGuid()}");
         }
 
         public ProcessCallArgs(object hash)
