@@ -39,6 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core\GraphBase.cs" />
+        <Compile Include="Core\GraphEngineLogger.cs" />
         <Compile Include="Core\GraphParentResolver.cs" />
         <Compile Include="Core\IItemTypeResolver.cs" />
         <Compile Include="Core\InItemNode.cs" />
