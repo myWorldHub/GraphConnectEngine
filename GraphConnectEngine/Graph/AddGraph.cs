@@ -42,7 +42,7 @@ namespace GraphConnectEngine.Graph
             return "Int Graph";
         }
 
-        public override bool IsProcessNodeConnected()
+        public override bool IsConnectedInProcessNode()
         {
             return false;
         }

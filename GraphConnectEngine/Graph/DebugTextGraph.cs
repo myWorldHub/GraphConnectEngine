@@ -37,7 +37,7 @@ namespace GraphConnectEngine.Graph
             return "Debug Text Graph";
         }
 
-        public override bool IsProcessNodeConnected()
+        public override bool IsConnectedInProcessNode()
         {
             return true;
         }

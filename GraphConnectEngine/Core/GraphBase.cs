@@ -6,8 +6,9 @@ namespace GraphConnectEngine.Core
 
         /// <summary>
         /// InProcessNodeが存在し、繋がれているかどうかを確認する
+        /// TODO 選択的にする
         /// </summary>
         /// <returns></returns>
-        public abstract bool IsProcessNodeConnected();
+        public abstract bool IsConnectedInProcessNode();
     }
 }

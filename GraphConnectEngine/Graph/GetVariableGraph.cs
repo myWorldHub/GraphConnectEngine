@@ -50,7 +50,7 @@ namespace GraphConnectEngine.Graph
             return "Get Variable Graph";
         }
 
-        public override bool IsProcessNodeConnected()
+        public override bool IsConnectedInProcessNode()
         {
             return false;
         }

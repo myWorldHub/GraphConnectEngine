@@ -33,7 +33,7 @@ namespace GraphConnectEngine.Graph
             return false;//TODO 失敗
         }
 
-        public override bool IsProcessNodeConnected()
+        public override bool IsConnectedInProcessNode()
         {
             return false;
         }
