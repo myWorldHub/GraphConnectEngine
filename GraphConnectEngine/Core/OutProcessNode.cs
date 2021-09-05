@@ -19,8 +19,10 @@ namespace GraphConnectEngine.Core
                 for(int i=0;i<resolvers.Length;i++)
                 {
                     var inProcessNode = resolvers[i];
-                    var nargs = args.Add(GetHashCode()+ "_" + i);
-                    inProcessNode.OnCalled(nargs);
+                    if (args.TryAdd(GetParentGraph().GetHashCode() + "_" + i, false, out var nargs))
+                    {
+                        inProcessNode.OnCalled(nargs);
+                    }
                 }
             }
         }

@@ -14,7 +14,10 @@ namespace GraphConnectEngine.Core
 
         private bool _OnProcessCall(ProcessCallArgs args)
         {
-            ProcessCallArgs nargs = args.Add(GetHashCode().ToString());
+            if(!args.TryAdd(GetHashCode().ToString(),false,out var nargs))
+            {
+                return false;
+            }
             
             bool result = OnProcessCall(nargs);
             if (result)

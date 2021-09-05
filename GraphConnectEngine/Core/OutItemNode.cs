@@ -11,7 +11,7 @@ namespace GraphConnectEngine.Core
         /// bool : 成功したかどうか
         /// result : 結果のオブジェクト
         /// </summary>
-        public delegate bool TryGetItemResult(ProcessCallArgs args,out object result);
+        public delegate bool TryGetItemResult(ProcessCallArgs args,out object result,bool goBack);
         
         private TryGetItemResult _action;
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
@@ -20,7 +20,7 @@ namespace GraphConnectEngine.Core
         /// 結果のキャッシュ
         /// Sender,成功の可否,result
         /// </summary>
-        private Tuple<string, bool, object> _cache;
+        private Tuple<ProcessCallArgs, bool, object> _cache;
 
         public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, TryGetItemResult getValueFunc) : base(parentGraph,connector)
         {
@@ -95,22 +95,58 @@ namespace GraphConnectEngine.Core
             return false;
         }
 
-        public bool TryGetValue<T>(ProcessCallArgs args,out T tResult)
+        public bool TryGetValue<T>(ProcessCallArgs args,out T tResult,bool goBack)
         {
-            if (_cache != null && _cache.Item1 == args.GetSender())
+            //キャッシュチェック
+            if (_cache != null && _cache.Item1.GetSender() == args.GetSender())
             {
                 tResult = _cache.Item3 is T ? (T)_cache.Item3 : default(T);
                 return _cache.Item2;
             }
+
+            ProcessCallArgs nargs;
             
-            if (_action(args,out object result) && result is T t)
+            if (goBack)
             {
-                tResult = t;
-                return true;
+                if (GetParentGraph().IsConnectedInProcessNode())
+                {
+                    //キャッシュがないとおかしい
+                    tResult = default(T);
+                    return false;
+                }
+                else
+                {
+                    if (!args.TryAdd(GetParentGraph().GetHashCode().ToString(), true, out nargs))
+                    {
+                        //ループ検知
+                        tResult = default(T);
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                if (!args.TryAdd(GetParentGraph().GetHashCode().ToString(), false, out nargs))
+                {
+                    //ループ検知
+                    tResult = default(T);
+                    return false;
+                }
             }
 
-            tResult = default(T);
-            return false;
+            if (_action(nargs,out object result,goBack) && result is T t)
+            {
+                tResult = t;
+                _cache = new Tuple<ProcessCallArgs, bool, object>(nargs, true, tResult);
+                return true;
+            }
+            else
+            {
+                tResult = default(T);
+                _cache = new Tuple<ProcessCallArgs, bool, object>(nargs, false, null);
+                return false;
+            }
+
         }
         
     }

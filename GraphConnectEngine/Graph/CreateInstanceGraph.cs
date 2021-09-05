@@ -21,9 +21,9 @@ namespace GraphConnectEngine.Graph
             return "Create Instance Graph";
         }
 
-        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result,bool goBack)
         {
-            if (TryGetParameterValues(args,out var param))
+            if (TryGetParameterValues(args,out var param, goBack))
             {
                 result =  Activator.CreateInstance(MethodInfo.DeclaringType, param);
                 return true;

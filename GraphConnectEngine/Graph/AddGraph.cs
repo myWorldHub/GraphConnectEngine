@@ -20,19 +20,19 @@ namespace GraphConnectEngine.Graph
             OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        private bool Get(ProcessCallArgs args,out object result)
+        private bool Get(ProcessCallArgs args,out object result,bool goBack)
         {
             int a = 0;
             int b = 0;
             result = null;
 
             OutItemNode outItem;
-            if (!(InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem) && outItem.TryGetValue(args,out a)))
+            if (!(InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem) && outItem.TryGetValue(args,out a,goBack)))
             {
                 return false;
             }
             
-            if (!(InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem) && outItem.TryGetValue(args,out b)))
+            if (!(InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem) && outItem.TryGetValue(args,out b,goBack)))
             {
                 return false;
             }
@@ -43,7 +43,7 @@ namespace GraphConnectEngine.Graph
 
         protected override bool OnProcessCall(ProcessCallArgs args)
         {
-            OutItemNode.TryGetValue<int>(args, out var result);
+            OutItemNode.TryGetValue<int>(args, out var result,false);
             return true;
         }
 

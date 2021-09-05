@@ -1,13 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GraphConnectEngine.Core
 {
     public class ProcessCallArgs
     {
-        
-        private string _value;
 
-        public const string NoProcessCall = "NoProcessCall";
+        private string _value;
 
         /// <summary>
         /// 発火用
@@ -16,9 +16,9 @@ namespace GraphConnectEngine.Core
         /// <returns></returns>
         public static ProcessCallArgs Fire(object sender)
         {
-            return new ProcessCallArgs(sender.ToString()+"_"+DateTime.Now.Millisecond);
+            return new ProcessCallArgs(  sender.ToString()+"_"+DateTime.Now.Millisecond);
         }
-        
+
         public ProcessCallArgs(object hash)
         {
             _value = hash.ToString();
@@ -29,9 +29,15 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="nextHash"></param>
         /// <returns></returns>
-        public ProcessCallArgs Add(string nextHash)
+        public bool TryAdd(string nextHash,bool goBack, out ProcessCallArgs result)
         {
-            return new ProcessCallArgs(_value + ":" + nextHash);
+            if (_value.Contains(nextHash))
+            {
+                result = null;
+                return false;
+            }
+            result = new ProcessCallArgs(_value + ":" + (goBack ? "Item_" : "Proc_") + nextHash);
+            return true;
         }
 
         /// <summary>
@@ -43,13 +49,54 @@ namespace GraphConnectEngine.Core
             return _value;
         }
 
-        public bool CanGetItemOf(ProcessCallArgs parent)
+        public bool Contains(string v)
         {
-            var my = GetValue().Split(':');
-            var pa = GetValue().Split(':');
+            return _value.Contains(v);
+        }
 
-            //TODO 実装と制限
-            return false;
+        public string GetProcList()
+        {
+            var ienu = GetValue().Split(':').Where(s => s.StartsWith("Proc_"));
+
+            string result = "";
+            foreach (string s in ienu)
+                result += s+":";
+
+            return result;
+        }
+
+        public string GetItemList()
+        {
+            var ienu = GetValue().Split(':').Where(s => s.StartsWith("Item_"));
+
+            string result = "";
+            foreach (string s in ienu)
+                result += s + ":";
+
+            return result;
+        }
+
+        public bool CanGetItemOf(ProcessCallArgs parent)
+        { //発火元が違う
+            if (GetSender() != parent.GetSender())
+            {
+                return false;
+            }
+
+            var my = GetProcList();
+            var you = parent.GetProcList();
+
+            if (my == you)
+            {
+                return true;
+            }
+
+            if (my.Length < you.Length)
+            {
+                return false;
+            }
+
+            return my.StartsWith(you);
         }
 
         public string GetSender()

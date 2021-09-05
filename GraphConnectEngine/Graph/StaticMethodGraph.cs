@@ -12,9 +12,9 @@ namespace GraphConnectEngine.Graph
                 return;//TODO Exception
         }
 
-        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result,bool goBack)
         {
-            if (!TryGetParameterValues(args,out var param))
+            if (!TryGetParameterValues(args,out var param, goBack))
             {
                 result = null;
                 return false;
