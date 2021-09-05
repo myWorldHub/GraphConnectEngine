@@ -108,7 +108,7 @@ namespace GraphConnectEngine.Core
             
             if (goBack)
             {
-                if (GetParentGraph().IsConnectedInProcessNode())
+                if (ParentGraph.IsConnectedInProcessNode())
                 {
                     //キャッシュがないとおかしい
                     tResult = default(T);
@@ -116,7 +116,7 @@ namespace GraphConnectEngine.Core
                 }
                 else
                 {
-                    if (!args.TryAdd(GetParentGraph().GetHashCode().ToString(), true, out nargs))
+                    if (!args.TryAdd(ParentGraph.GetHashCode().ToString(), true, out nargs))
                     {
                         //ループ検知
                         tResult = default(T);
@@ -126,7 +126,7 @@ namespace GraphConnectEngine.Core
             }
             else
             {
-                if (!args.TryAdd(GetParentGraph().GetHashCode().ToString(), false, out nargs))
+                if (!args.TryAdd(ParentGraph.GetHashCode().ToString(), false, out nargs))
                 {
                     //ループ検知
                     tResult = default(T);

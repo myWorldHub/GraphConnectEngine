@@ -5,15 +5,20 @@ namespace GraphConnectEngine.Core
     public class GraphEngineLogger
     {
         private static Action<string> _writeLine;
+        
+        private const int LevelDebug = 0;
+        private const int LevelError = 1;
 
-        public const int Debug = 0;
-        public const int Error = 1;
-
-        public static int LogLevel = Debug;
+        public static int LogLevel = -1;
 
         public static void SetLogMethod(Action<string> action)
         {
             _writeLine = action;
+        }
+
+        public static void Debug(string msg)
+        {
+            WriteLine(LevelDebug, msg);
         }
 
         public static void WriteLine(int level,string message)
@@ -28,11 +33,11 @@ namespace GraphConnectEngine.Core
         {
             var time = "[" + DateTime.Now.Millisecond.ToString() + "]";
             
-            if (level == Debug)
+            if (level == LevelDebug)
             {
                 return time + "[DEBUG]";
             }
-            else if (level == Error)
+            else if (level == LevelError)
             {
                 return time + "[Error]";
             }
