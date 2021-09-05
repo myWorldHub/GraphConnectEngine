@@ -117,7 +117,7 @@ namespace GraphConnectEngine.Graph
         /// <returns></returns>
         public bool HasReturnValue()
         {
-            return MethodInfo.ReturnType != typeof(Void);
+            return MethodInfo.ReturnType != typeof(void);
         }
         
         
