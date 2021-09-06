@@ -49,7 +49,7 @@ namespace GraphConnectEngine.Graph
 
         public override string GetGraphName()
         {
-            return "Int Graph";
+            return "Add Graph";
         }
     }
 }

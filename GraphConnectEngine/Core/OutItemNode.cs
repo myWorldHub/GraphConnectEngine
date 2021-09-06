@@ -97,9 +97,14 @@ namespace GraphConnectEngine.Core
 
         public bool TryGetValue<T>(ProcessCallArgs args,out T tResult,bool goBack)
         {
+            string myHash = ParentGraph.GetHashCode().ToString();
+            string myName = $"{ParentGraph.GetGraphName()}[{myHash}]";
+
+            GraphEngineLogger.Debug($"{myName} Started to Getting Item with {goBack}\n{args}");
             //キャッシュチェック
             if (_cache != null && _cache.Item1.GetSender() == args.GetSender())
             {
+                GraphEngineLogger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
                 tResult = _cache.Item3 is T ? (T)_cache.Item3 : default(T);
                 return _cache.Item2;
             }
@@ -110,6 +115,7 @@ namespace GraphConnectEngine.Core
             {
                 if (ParentGraph.IsConnectedInProcessNode())
                 {
+                    GraphEngineLogger.Debug($"{myName} is Returning NO Item : back with no cache");
                     //キャッシュがないとおかしい
                     tResult = default(T);
                     return false;
@@ -118,6 +124,7 @@ namespace GraphConnectEngine.Core
                 {
                     if (!args.TryAdd(ParentGraph.GetHashCode().ToString(), true, out nargs))
                     {
+                        GraphEngineLogger.Debug($"{myName} is Returning NO Item : back with loop");
                         //ループ検知
                         tResult = default(T);
                         return false;
@@ -128,6 +135,7 @@ namespace GraphConnectEngine.Core
             {
                 if (!args.TryAdd(ParentGraph.GetHashCode().ToString(), false, out nargs))
                 {
+                    GraphEngineLogger.Debug($"{myName} is Returning NO Item : go with loop");
                     //ループ検知
                     tResult = default(T);
                     return false;
@@ -136,12 +144,16 @@ namespace GraphConnectEngine.Core
 
             if (_action(nargs,out object result,goBack) && result is T t)
             {
+                GraphEngineLogger.Debug($"{myName} is Returning Item : Success\nResult : {t}\nArgs : ${nargs}");
+                
                 tResult = t;
                 _cache = new Tuple<ProcessCallArgs, bool, object>(nargs, true, tResult);
                 return true;
             }
             else
             {
+                GraphEngineLogger.Debug($"{myName} is Returning No Item : Success\nResult : Failed\nArgs : ${nargs}");
+                
                 tResult = default(T);
                 _cache = new Tuple<ProcessCallArgs, bool, object>(nargs, false, null);
                 return false;
