@@ -39,6 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core\GraphBase.cs" />
+        <Compile Include="Core\GraphEngineLogger.cs" />
         <Compile Include="Core\GraphParentResolver.cs" />
         <Compile Include="Core\IItemTypeResolver.cs" />
         <Compile Include="Core\InItemNode.cs" />
@@ -47,6 +48,7 @@
         <Compile Include="Core\NodeConnector.cs" />
         <Compile Include="Core\OutItemNode.cs" />
         <Compile Include="Core\OutProcessNode.cs" />
+        <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
         <Compile Include="Graph\AddGraph.cs" />
         <Compile Include="Graph\CreateInstanceGraph.cs" />

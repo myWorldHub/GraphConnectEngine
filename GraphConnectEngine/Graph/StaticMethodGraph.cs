@@ -8,22 +8,21 @@ namespace GraphConnectEngine.Graph
 
         public StaticMethodGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) : base(connector,methodInfo,streamItem)
         {
-            if (methodInfo == null || !methodInfo.IsStatic || 
-                !methodInfo.IsPublic || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
+            if (!methodInfo.IsStatic || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;//TODO Exception
         }
 
-        protected override object InvokeMethod()
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
-            if (!TryGetParameterValues(out var param))
+            if (!TryGetParameterValues(args,out var param))
             {
-                return null;//TODO 失敗
+                result = null;
+                return false;
             }
 
-            var result = MethodInfo.Invoke(null, param); //TODO null check? try-catch
-            return result; 
+            result = MethodInfo.Invoke(null, param); //TODO null check? try-catch
+            return true; 
         }
-
 
         public override string GetGraphName()
         {

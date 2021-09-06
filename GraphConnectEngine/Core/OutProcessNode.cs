@@ -9,16 +9,24 @@ namespace GraphConnectEngine.Core
         {
         }
 
-        public void CallProcess()
+        public void CallProcess(ProcessCallArgs args)
         {
+            string myHash = ParentGraph.GetHashCode().ToString();
+            string myName =  $"{ParentGraph.GetGraphName()}[{myHash}]";
+            string preset = $"{myName} Calls Process > ";
 
-            var a = Connector.GetOtherNodes(this);
+            GraphEngineLogger.Debug($"{myName} Started to Calling Process with\n{args}");
+
+            if (!Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
+                return;
             
-            if (Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
+            for (int i = 0; i < resolvers.Length; i++)
             {
-                foreach (var inProcessNode in resolvers)
+                var inProcessNode = resolvers[i];
+                if (args.TryAdd(myHash + "_" + i, true, out var nargs))
                 {
-                    inProcessNode.OnProcessCall();
+                    GraphEngineLogger.Debug(preset + $"{inProcessNode.ParentGraph.GetGraphName()}[{inProcessNode.ParentGraph.GetHashCode()}] with\n{nargs}");
+                    inProcessNode.OnCalled(nargs);
                 }
             }
         }

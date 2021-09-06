@@ -2,6 +2,10 @@ using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Graph
 {
+    /// <summary>
+    /// サンプルグラフ
+    /// Int32同士を足す
+    /// </summary>
     public class AddGraph : GraphBase
     {
 
@@ -9,41 +13,44 @@ namespace GraphConnectEngine.Graph
         public readonly InItemNode InItemNode2;
         public readonly OutItemNode OutItemNode;
 
-        public AddGraph(NodeConnector connector)
+        public AddGraph(NodeConnector connector) : base(connector)
         {
             InItemNode1 = new InItemNode(this, connector,typeof(int));
             InItemNode2 = new InItemNode(this, connector,typeof(int));
-            OutItemNode = new OutItemNode(this,connector,typeof(int),()=>Get());
+            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        public int Get()
+        private bool Get(ProcessCallArgs args,out object result)
         {
             int a = 0;
             int b = 0;
+            result = null;
 
             OutItemNode outItem;
-            if (InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem))
+            if (!(InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem) && outItem.TryGetValue(args,out a)))
             {
-                if (!outItem.TryGetValue(out a))
-                {
-                    a = 0;
-                }
+                return false;
             }
             
-            if (InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem))
+            if (!(InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem) && outItem.TryGetValue(args,out b)))
             {
-                if (!outItem.TryGetValue(out b))
-                {
-                    b = 0;
-                }
+                return false;
             }
-            
-            return a + b;
+
+            result =  a + b;
+            return true;
+        }
+
+        protected override bool OnProcessCall(ProcessCallArgs args,out OutProcessNode nextNode)
+        {
+            OutItemNode.TryGetValue<int>(args, out var result);
+            nextNode = OutProcessNode;
+            return true;
         }
 
         public override string GetGraphName()
         {
-            return "Int Graph";
+            return "Add Graph";
         }
     }
 }

@@ -34,19 +34,23 @@ namespace GraphConnectEngine.Graph
 
         public int Depth = -1;
 
-        public GetVariableGraph(NodeConnector connector,VariableHolder holder)
+        public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
         {
             Holder = holder;
-            OutItemNode = new OutItemNode(this, connector, typeof(void), () =>
-            {
-                if (Holder.TryGetItem(VariableName, out var obj))
-                {
-                    return obj;
-                }
-                return null;
-            });
+            OutItemNode = new OutItemNode(this, connector, typeof(void), Get);
         }
-        
+
+        private bool Get(ProcessCallArgs args,out object result)
+        {
+            return Holder.TryGetItem(VariableName, out result,Depth);
+        }
+
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
+        {
+            nextNode = OutProcessNode;
+            return OutItemNode.TryGetValue(args, out object result);
+        }
+
         public override string GetGraphName()
         {
             return "Get Variable Graph";

@@ -4,16 +4,14 @@ namespace GraphConnectEngine.Graph
 {
     public class UpdaterGraph : GraphBase
     {
-        
-        public readonly OutProcessNode OutProcessNode;
 
         public enum Type
         {
-            EveryFixedUpdate,
+            Update,
             Time
         }
 
-        private Type _intervalType = Type.EveryFixedUpdate;
+        private Type _intervalType = Type.Update;
         public Type IntervalType
         {
             get => _intervalType;
@@ -31,11 +29,11 @@ namespace GraphConnectEngine.Graph
             }
         }
 
-        private float _time = 0;
+        private float _time;
 
-        public UpdaterGraph(NodeConnector connector)
+        public UpdaterGraph(NodeConnector connector) : base(connector)
         {
-            OutProcessNode = new OutProcessNode(this,connector);
+            _time = 0;
         }
 
         public void ResetTime()
@@ -43,14 +41,14 @@ namespace GraphConnectEngine.Graph
             _time = _intervalTime;
         }
 
-        public void OnFiexedUpdate(float deltaTime)
+        public void Update(float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
             
-            if (IntervalType == Type.EveryFixedUpdate)
+            if (IntervalType == Type.Update)
             {
-                OutProcessNode.CallProcess();
+                OutProcessNode.CallProcess(ProcessCallArgs.Fire(GetHashCode()));
             }
             else
             {
@@ -61,14 +59,25 @@ namespace GraphConnectEngine.Graph
                 
                 if (isZeroTime)
                 {
-                    OutProcessNode.CallProcess();
+                    OutProcessNode.CallProcess(ProcessCallArgs.Fire(GetHashCode()));
                 }
             }
+        }
+
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
+        {
+            nextNode = null;
+            return false;
         }
 
         public override string GetGraphName()
         {
             return "Updater Graph";
+        }
+        
+        public override bool IsConnectedInProcessNode()
+        {
+            return false;
         }
     }
 }

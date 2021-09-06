@@ -10,21 +10,15 @@ namespace GraphConnectEngine.Core
             get;
         }
 
-        private GraphBase _graph;
+        public readonly GraphBase ParentGraph;
         
-
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
 
         public GraphParentResolver(GraphBase parentGraph,NodeConnector connector)
         {
-            _graph = parentGraph;
+            ParentGraph = parentGraph;
             Connector = connector;
-        }
-        
-        public GraphBase GetParentGraph()
-        {
-            return _graph;
         }
         
         public void InvokeConnectEvent(NodeConnectEventArgs args)

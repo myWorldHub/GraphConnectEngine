@@ -5,6 +5,7 @@ namespace GraphConnectEngine.Core
 {
     /// <summary>
     /// 値保持用のクラス
+    /// TODO 仕様が固まってない??
     /// </summary>
     public class VariableHolder
     {

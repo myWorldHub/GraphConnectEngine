@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Graph
     {
         public CreateInstanceGraph(NodeConnector connector, MethodInfo methodInfo, bool streamItem = false) : base(connector, methodInfo, streamItem)
         {
-            if (!methodInfo.IsConstructor || MethodInfo.DeclaringType == null)
+            if (!methodInfo.IsConstructor || MethodInfo.DeclaringType == null || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;//TODO エラー
         }
 
@@ -21,14 +21,16 @@ namespace GraphConnectEngine.Graph
             return "Create Instance Graph";
         }
 
-        protected override object InvokeMethod()
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
-            if (TryGetParameterValues(out var param))
+            if (TryGetParameterValues(args,out var param))
             {
-                return Activator.CreateInstance(MethodInfo.DeclaringType, param);
+                result =  Activator.CreateInstance(MethodInfo.DeclaringType, param);
+                return true;
             }
 
-            return null;//TODO 失敗
+            result = null;
+            return false;
         }
     }
 }

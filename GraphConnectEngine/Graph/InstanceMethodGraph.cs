@@ -9,33 +9,32 @@ namespace GraphConnectEngine.Graph
         private InItemNode _objInItemNode;
         public InstanceMethodGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) : base(connector, methodInfo, streamItem)
         {
-            if (methodInfo == null || methodInfo.IsStatic || 
-                !methodInfo.IsPublic || methodInfo.DeclaringType == null || methodInfo.IsGenericMethod || 
-                methodInfo.IsGenericMethodDefinition)
+            if (methodInfo.IsStatic || methodInfo.DeclaringType == null || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;
 
             _objInItemNode = new InItemNode(this,connector,methodInfo.DeclaringType);
         }
 
-        protected override object InvokeMethod()
+        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
             object instance = null;
             if (!(_objInItemNode.Connector.TryGetAnotherNode(_objInItemNode, out OutItemNode orsv) &&
-                  orsv.TryGetValue(out instance)))
+                  orsv.TryGetValue(args,out instance)))
             {
-                return null; //TODO 失敗
+                result = null;
+                return false; 
             }
 
-            if (!TryGetParameterValues(out var param))
+            if (!TryGetParameterValues(args,out var param))
             {
-                return null; //TODO 失敗
+                result = null;
+                return false; 
             }
 
-            var result = MethodInfo.Invoke(instance, param);//TODO null check? try-catch
-            return result;
+            result = MethodInfo.Invoke(instance, param);//TODO null check? try-catch
+            return true;
         }
-
-
+        
         public override string GetGraphName()
         {
             if (MethodInfo != null)

@@ -4,33 +4,31 @@ namespace GraphConnectEngine.Graph
 {
     public class IntGraph : GraphBase
     {
-        private int _number = 0;
+        public int Number = 0;
 
         public readonly OutItemNode OutItemNode;
 
-        public IntGraph(NodeConnector connector)
+        public IntGraph(NodeConnector connector) : base(connector)
         {
-            OutItemNode = new OutItemNode(this,connector,typeof(int),()=>Get());
+            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        public void Increment()
+        public bool Get(ProcessCallArgs args,out object result)
         {
-            _number++;
+            result =  Number;
+            return true;
         }
 
-        public void Decrement()
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
-            _number--;
-        }
-
-        public int Get()
-        {
-            return _number;
+            nextNode = OutProcessNode;
+            return OutItemNode.TryGetValue(args, out object result);
         }
 
         public override string GetGraphName()
         {
             return "Int Graph";
         }
+
     }
 }
