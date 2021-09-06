@@ -20,7 +20,7 @@ namespace GraphConnectEngine.Graph
             OutItemNode node;
             if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out node))
             {
-                if (node.TryGetValue<object>(args, out var obj,false))
+                if (node.TryGetValue<object>(args, out var obj))
                 {
                     _updateText(obj.ToString());
                     return true;

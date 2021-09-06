@@ -20,7 +20,7 @@ namespace GraphConnectEngine.Core
             
             GraphEngineLogger.Debug($"{myName} is Called with\n{args}");
             
-            if(!args.TryAdd(myHash,false,out var nargs))
+            if(!args.TryAdd(myHash,true,out var nargs))
             {
                 return false;
             }

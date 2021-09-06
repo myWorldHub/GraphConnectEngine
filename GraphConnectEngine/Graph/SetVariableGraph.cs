@@ -42,7 +42,7 @@ namespace GraphConnectEngine.Graph
         {
             if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out OutItemNode node))
             {
-                if (node.TryGetValue<object>(args, out object result,false))
+                if (node.TryGetValue<object>(args, out object result))
                 {
                     if (Holder.UpdateItem(_variableName, result))
                     {

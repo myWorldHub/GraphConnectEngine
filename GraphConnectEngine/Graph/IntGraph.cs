@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graph
             OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
         }
 
-        public bool Get(ProcessCallArgs args,out object result,bool goBack)
+        public bool Get(ProcessCallArgs args,out object result)
         {
             result =  Number;
             return true;
@@ -21,7 +21,7 @@ namespace GraphConnectEngine.Graph
 
         protected override bool OnProcessCall(ProcessCallArgs args)
         {
-            return OutItemNode.TryGetValue(args, out object result,false);
+            return OutItemNode.TryGetValue(args, out object result);
         }
 
         public override string GetGraphName()
