@@ -14,12 +14,23 @@ namespace GraphConnectEngine.Core
 
         private bool _OnProcessCall(ProcessCallArgs args)
         {
-            if(!args.TryAdd(GetHashCode().ToString(),false,out var nargs))
+
+            string myHash = GetHashCode().ToString();
+            string myName = $"{GetGraphName()}[{myHash}]";
+            
+            GraphEngineLogger.Debug($"{myName} is Called with\n{args}");
+            
+            if(!args.TryAdd(myHash,true,out var nargs))
             {
                 return false;
             }
+
+            GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
             
             bool result = OnProcessCall(nargs);
+
+            GraphEngineLogger.Debug($"{myName} Invoked OnProcessCall with result {result}");
+            
             if (result)
             {
                 GetNextNode(args).CallProcess(args);

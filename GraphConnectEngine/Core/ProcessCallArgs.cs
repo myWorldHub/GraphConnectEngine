@@ -16,7 +16,7 @@ namespace GraphConnectEngine.Core
         /// <returns></returns>
         public static ProcessCallArgs Fire(object sender)
         {
-            return new ProcessCallArgs(  sender.ToString()+"_"+DateTime.Now.Millisecond);
+            return new ProcessCallArgs(  $"{sender}_{Guid.NewGuid()}");
         }
 
         public ProcessCallArgs(object hash)
@@ -28,15 +28,17 @@ namespace GraphConnectEngine.Core
         /// 追加する
         /// </summary>
         /// <param name="nextHash"></param>
+        /// <param name="isProcess"></param>
+        /// <param name="result"></param>
         /// <returns></returns>
-        public bool TryAdd(string nextHash,bool goBack, out ProcessCallArgs result)
+        public bool TryAdd(string nextHash,bool isProcess, out ProcessCallArgs result)
         {
             if (_value.Contains(nextHash))
             {
                 result = null;
                 return false;
             }
-            result = new ProcessCallArgs(_value + ":" + (goBack ? "Item_" : "Proc_") + nextHash);
+            result = new ProcessCallArgs(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash);
             return true;
         }
 
@@ -103,7 +105,10 @@ namespace GraphConnectEngine.Core
         {
             return _value.Split(':')[0];
         }
-        
-        
+
+        public override string ToString()
+        {
+            return GetValue();
+        }
     }
 }

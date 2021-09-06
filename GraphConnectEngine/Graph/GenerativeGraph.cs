@@ -51,7 +51,7 @@ namespace GraphConnectEngine.Graph
         /// </summary>
         /// <param name="result">結果</param>
         /// <returns>成功したかどうか</returns>
-        protected bool TryGetParameterValues(ProcessCallArgs args,out object[] result,bool goBack)
+        protected bool TryGetParameterValues(ProcessCallArgs args,out object[] result)
         {
             object[] param = new object[Parameters.Length];
             
@@ -60,7 +60,7 @@ namespace GraphConnectEngine.Graph
                 ParameterInfo parameterInfo = Parameters[i];
                 if (InItemNodes[i].Connector.TryGetAnotherNode(InItemNodes[i], out OutItemNode resolver))
                 {
-                    if (resolver.TryGetValue(args,out object oitem, goBack))
+                    if (resolver.TryGetValue(args,out object oitem))
                     {
                         param[i] = oitem;
                         continue;
@@ -84,14 +84,14 @@ namespace GraphConnectEngine.Graph
 
         protected override bool OnProcessCall(ProcessCallArgs args)
         {
-            return OutResultNode.TryGetValue(args, out object t,false);
+            return OutResultNode.TryGetValue(args, out object t);
         }
 
         /// <summary>
         /// 実行する
         /// </summary>
         /// <returns></returns>
-        protected abstract bool InvokeMethod(ProcessCallArgs args,out object result,bool goBack);
+        protected abstract bool InvokeMethod(ProcessCallArgs args,out object result);
 
         /// <summary>
         /// 生成されたInItemNodeのリストを取得する
