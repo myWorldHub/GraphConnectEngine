@@ -27,13 +27,13 @@ namespace GraphConnectEngine.Core
 
             GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
             
-            bool result = OnProcessCall(nargs);
+            bool result = OnProcessCall(nargs,out var nextNode);
 
             GraphEngineLogger.Debug($"{myName} Invoked OnProcessCall with result {result}");
             
             if (result)
             {
-                GetNextNode(args).CallProcess(args);
+                nextNode?.CallProcess(args);
             }
             
             return result;
@@ -44,18 +44,9 @@ namespace GraphConnectEngine.Core
         /// 実装では必ずOutItemをキャッシュさせる
         /// </summary>
         /// <param name="args"></param>
+        /// <param name="nextNode"></param>
         /// <returns></returns>
-        protected abstract bool OnProcessCall(ProcessCallArgs args);
-
-        /// <summary>
-        /// ProcessCallが成功した時に、次に呼ぶOutProcessNodeを取得する
-        /// TODO ifGraphで使う
-        /// </summary>
-        /// <returns></returns>
-        public virtual OutProcessNode GetNextNode(ProcessCallArgs args)
-        {
-            return OutProcessNode;
-        }
+        protected abstract bool OnProcessCall(ProcessCallArgs args,out OutProcessNode nextNode);
 
         /// <summary>
         /// グラフ名を取得する

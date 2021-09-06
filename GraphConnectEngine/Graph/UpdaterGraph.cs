@@ -64,9 +64,10 @@ namespace GraphConnectEngine.Graph
             }
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
-            throw new System.NotImplementedException();//TODO エラーハンドリング
+            nextNode = null;
+            return false;
         }
 
         public override string GetGraphName()

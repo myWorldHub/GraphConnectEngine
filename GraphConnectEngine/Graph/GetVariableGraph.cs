@@ -45,8 +45,9 @@ namespace GraphConnectEngine.Graph
             return Holder.TryGetItem(VariableName, out result,Depth);
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
+            nextNode = OutProcessNode;
             return OutItemNode.TryGetValue(args, out object result);
         }
 

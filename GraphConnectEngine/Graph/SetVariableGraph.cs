@@ -38,7 +38,7 @@ namespace GraphConnectEngine.Graph
         }
 
 
-        protected override bool OnProcessCall(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
             if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out OutItemNode node))
             {
@@ -46,11 +46,13 @@ namespace GraphConnectEngine.Graph
                 {
                     if (Holder.UpdateItem(_variableName, result))
                     {
+                        nextNode = OutProcessNode;
                         return true;
                     }
                 }
             }
 
+            nextNode = null;
             return false;   
         }
 

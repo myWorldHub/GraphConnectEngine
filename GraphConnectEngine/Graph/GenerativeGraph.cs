@@ -82,8 +82,9 @@ namespace GraphConnectEngine.Graph
             return true;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args)
+        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
+            nextNode = OutProcessNode;
             return OutResultNode.TryGetValue(args, out object t);
         }
 
