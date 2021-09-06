@@ -46,7 +46,6 @@ namespace GraphConnectEngine.Graph
                 {
                     if (Holder.UpdateItem(_variableName, result))
                     {
-                        OutProcessNode.CallProcess(args);
                         return true;
                     }
                 }
