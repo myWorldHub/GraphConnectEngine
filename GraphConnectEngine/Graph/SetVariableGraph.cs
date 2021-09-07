@@ -40,15 +40,12 @@ namespace GraphConnectEngine.Graph
 
         protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
-            if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out OutItemNode node))
+            if (InItemNode.GetItemFromConnectedNode(args, out object result))
             {
-                if (node.TryGetValue<object>(args, out object result))
+                if (Holder.UpdateItem(_variableName, result))
                 {
-                    if (Holder.UpdateItem(_variableName, result))
-                    {
-                        nextNode = OutProcessNode;
-                        return true;
-                    }
+                    nextNode = OutProcessNode;
+                    return true;
                 }
             }
 

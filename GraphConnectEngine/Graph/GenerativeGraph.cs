@@ -58,15 +58,12 @@ namespace GraphConnectEngine.Graph
             for (int i = 0; i < Parameters.Length; i++)
             {
                 ParameterInfo parameterInfo = Parameters[i];
-                if (InItemNodes[i].Connector.TryGetAnotherNode(InItemNodes[i], out OutItemNode resolver))
+                if (InItemNodes[i].GetItemFromConnectedNode(args, out object oitem))
                 {
-                    if (resolver.TryGetValue(args,out object oitem))
-                    {
-                        param[i] = oitem;
-                        continue;
-                    }
+                    param[i] = oitem;
+                    continue;
                 }
-
+                
                 if (parameterInfo.HasDefaultValue)
                 {
                     param[i] = parameterInfo.DefaultValue;
@@ -112,15 +109,5 @@ namespace GraphConnectEngine.Graph
             return OutItemNodes.ToArray();
         }
 
-        /// <summary>
-        /// 返り値があるかどうかを取得する
-        /// </summary>
-        /// <returns></returns>
-        public bool HasReturnValue()
-        {
-            return MethodInfo.ReturnType != typeof(void);
-        }
-        
-        
     }
 }

@@ -17,19 +17,17 @@ namespace GraphConnectEngine.Graph
 
         protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
         {
-            OutItemNode node;
-            if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out node))
+            if (InItemNode.GetItemFromConnectedNode(args, out object obj))
             {
-                if (node.TryGetValue<object>(args, out var obj))
-                {
-                    _updateText(obj.ToString());
-                    nextNode = OutProcessNode;
-                    return true;
-                }
+                _updateText(obj.ToString());
+                nextNode = OutProcessNode;
+                return true;    
             }
-
-            nextNode = null;
-            return false;
+            else
+            {
+                nextNode = null;
+                return false;
+            }
         }
 
         public override string GetGraphName()

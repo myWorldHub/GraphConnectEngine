@@ -22,18 +22,15 @@ namespace GraphConnectEngine.Graph
 
         private bool Get(ProcessCallArgs args,out object result)
         {
-            int a = 0;
-            int b = 0;
-            result = null;
-
-            OutItemNode outItem;
-            if (!(InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem) && outItem.TryGetValue(args,out a)))
+            if (!InItemNode1.GetItemFromConnectedNode(args,out int a))
             {
+                result = null;
                 return false;
             }
-            
-            if (!(InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem) && outItem.TryGetValue(args,out b)))
+
+            if (!InItemNode1.GetItemFromConnectedNode(args, out int b))
             {
+                result = null;
                 return false;
             }
 

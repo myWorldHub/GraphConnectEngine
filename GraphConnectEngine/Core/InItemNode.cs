@@ -10,6 +10,8 @@ namespace GraphConnectEngine.Core
 
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
+        public event EventHandler<ItemObtainedEventArgs> OnItemObtained;
+
         public InItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType) : base(parentGraph,connector)
         {
             _itemType = itemType;
@@ -86,5 +88,26 @@ namespace GraphConnectEngine.Core
 
             return false;
         }
+
+        public bool GetItemFromConnectedNode<T>(ProcessCallArgs args,out T result)
+        {
+            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            {
+                if (node.TryGetValue<T>(args, out result))
+                {
+                    return true;
+                }
+            }
+
+            result = default(T);
+            return false;
+        }
+    }
+
+    public class ItemObtainedEventArgs : EventArgs
+    {
+        public bool Result;
+        public object Item;
+        public Type Type;
     }
 }
