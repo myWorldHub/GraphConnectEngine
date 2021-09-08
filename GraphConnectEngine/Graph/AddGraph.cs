@@ -30,7 +30,7 @@ namespace GraphConnectEngine.Graph
                 return false;
             }
 
-            if (!InItemNode1.GetItemFromConnectedNode(args, out int b))
+            if (!InItemNode2.GetItemFromConnectedNode(args, out int b))
             {
                 results = null;
                 nextNode = null;
