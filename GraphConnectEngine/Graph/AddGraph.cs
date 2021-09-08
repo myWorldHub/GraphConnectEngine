@@ -17,33 +17,33 @@ namespace GraphConnectEngine.Graph
         {
             InItemNode1 = new InItemNode(this, connector,typeof(int));
             InItemNode2 = new InItemNode(this, connector,typeof(int));
-            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
-        }
-
-        private bool Get(ProcessCallArgs args,out object result)
-        {
-            int a = 0;
-            int b = 0;
-            result = null;
-
-            OutItemNode outItem;
-            if (!(InItemNode1.Connector.TryGetAnotherNode(InItemNode1,out outItem) && outItem.TryGetValue(args,out a)))
-            {
-                return false;
-            }
             
-            if (!(InItemNode2.Connector.TryGetAnotherNode(InItemNode2,out outItem) && outItem.TryGetValue(args,out b)))
+            OutItemNode = new OutItemNode(this,connector,typeof(int),0);
+        }
+
+        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        {
+            if (!InItemNode1.GetItemFromConnectedNode(args, out int a))
             {
+                results = null;
+                nextNode = null;
                 return false;
             }
 
-            result =  a + b;
-            return true;
-        }
+            if (!InItemNode2.GetItemFromConnectedNode(args, out int b))
+            {
+                results = null;
+                nextNode = null;
+                return false;
+            }
 
-        protected override bool OnProcessCall(ProcessCallArgs args,out OutProcessNode nextNode)
-        {
-            OutItemNode.TryGetValue<int>(args, out var result);
+            results = new object[]
+            {
+                a+b,
+                a,
+                b
+            };
+            
             nextNode = OutProcessNode;
             return true;
         }

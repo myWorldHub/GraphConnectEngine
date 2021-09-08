@@ -15,21 +15,23 @@ namespace GraphConnectEngine.Graph
             _updateText = updateText;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            OutItemNode node;
-            if (InItemNode.Connector.TryGetAnotherNode(InItemNode, out node))
+            if (!InItemNode.GetItemFromConnectedNode(args, out object obj))
             {
-                if (node.TryGetValue<object>(args, out var obj))
-                {
-                    _updateText(obj.ToString());
-                    nextNode = OutProcessNode;
-                    return true;
-                }
+                nextNode = null;
+                results = null;
+                return false;
             }
-
-            nextNode = null;
-            return false;
+            
+            _updateText(obj.ToString());
+            
+            results = new object[]
+            {
+                obj
+            };
+            nextNode = OutProcessNode;
+            return true;    
         }
 
         public override string GetGraphName()

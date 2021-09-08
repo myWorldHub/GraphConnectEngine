@@ -17,14 +17,12 @@ namespace GraphConnectEngine.Graph
 
         protected override bool InvokeMethod(ProcessCallArgs args,out object result)
         {
-            object instance = null;
-            if (!(_objInItemNode.Connector.TryGetAnotherNode(_objInItemNode, out OutItemNode orsv) &&
-                  orsv.TryGetValue(args,out instance)))
+            if (!_objInItemNode.GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
             {
                 result = null;
                 return false; 
             }
-
+            
             if (!TryGetParameterValues(args,out var param))
             {
                 result = null;

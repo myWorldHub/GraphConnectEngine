@@ -86,5 +86,19 @@ namespace GraphConnectEngine.Core
 
             return false;
         }
+
+        public bool GetItemFromConnectedNode<T>(ProcessCallArgs args,out T result)
+        {
+            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            {
+                if (node.TryGetValue<T>(args, out result))
+                {
+                    return true;
+                }
+            }
+
+            result = default(T);
+            return false;
+        }
     }
 }
