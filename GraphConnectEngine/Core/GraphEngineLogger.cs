@@ -21,6 +21,11 @@ namespace GraphConnectEngine.Core
             WriteLine(LevelDebug, msg);
         }
 
+        public static void Error(string msg)
+        {
+            WriteLine(LevelError,msg);
+        }
+
         public static void WriteLine(int level,string message)
         {
             if (level >= LogLevel && _writeLine != null)

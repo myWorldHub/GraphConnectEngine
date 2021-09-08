@@ -10,19 +10,15 @@ namespace GraphConnectEngine.Graph
 
         public IntGraph(NodeConnector connector) : base(connector)
         {
-            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
+            OutItemNode = new OutItemNode(this,connector,typeof(int),0);
         }
 
-        public bool Get(ProcessCallArgs args,out object result)
-        {
-            result =  Number;
-            return true;
-        }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
+            results = new object[] {Number};
             nextNode = OutProcessNode;
-            return OutItemNode.TryGetValue(args, out object result);
+            return true;
         }
 
         public override string GetGraphName()

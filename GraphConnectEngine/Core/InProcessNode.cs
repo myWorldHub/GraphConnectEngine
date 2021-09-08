@@ -5,13 +5,14 @@ namespace GraphConnectEngine.Core
     public class InProcessNode : GraphParentResolver
     {
 
-        public delegate bool ProcessCall(ProcessCallArgs args);
-        
-        public readonly ProcessCall OnCalled;
 
-        public InProcessNode(GraphBase parentGraph, NodeConnector connector, ProcessCall actionOnCall) : base(parentGraph,connector) 
+        public InProcessNode(GraphBase parentGraph, NodeConnector connector) : base(parentGraph,connector) 
         {
-            OnCalled = actionOnCall;
+        }
+
+        public void OnCalled(object sender, ProcessCallArgs args)
+        {
+            ParentGraph.Invoke(sender, args, out var results);
         }
 
         public override bool IsAttachableGraphType(Type type)

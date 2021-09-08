@@ -6,25 +6,14 @@ namespace GraphConnectEngine.Core
     {
         
         private Type _itemType;
-
-        /// <summary>
-        /// bool : 成功したかどうか
-        /// result : 結果のオブジェクト
-        /// </summary>
-        public delegate bool TryGetItemResult(ProcessCallArgs args,out object result);
         
-        private TryGetItemResult _action;
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        /// <summary>
-        /// 結果のキャッシュ
-        /// Sender,成功の可否,result
-        /// </summary>
-        private Tuple<ProcessCallArgs, bool, object> _cache;
+        private int _resultIndex;
 
-        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, TryGetItemResult getValueFunc) : base(parentGraph,connector)
+        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, int resultIndex) : base(parentGraph,connector)
         {
-            _action = getValueFunc;
+            _resultIndex = resultIndex;
             _itemType = itemType;
         }
 
@@ -97,55 +86,26 @@ namespace GraphConnectEngine.Core
 
         public bool TryGetValue<T>(ProcessCallArgs args,out T tResult)
         {
-            string myHash = ParentGraph.GetHashCode().ToString();
-            string myName = $"{ParentGraph.GetGraphName()}[{myHash}]";
+            var procResult = ParentGraph.Invoke(this, args, out var results);
 
-            GraphEngineLogger.Debug($"{myName} Started to Getting Item\n{args}");
-            //キャッシュチェック
-            if (_cache != null && _cache.Item1.GetSender() == args.GetSender())
+            if (procResult)
             {
-                GraphEngineLogger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
-                tResult = _cache.Item3 is T ? (T)_cache.Item3 : default(T);
-                return _cache.Item2;
-            }
-
-            ProcessCallArgs nargs;
-
-            if (ParentGraph.IsConnectedInProcessNode())
-            {
-                GraphEngineLogger.Debug($"{myName} is Returning NO Item : back with no cache");
-                //キャッシュがないとおかしい
-                tResult = default(T);
-                return false;
-            }
-            else
-            {
-                if (!args.TryAdd(ParentGraph.GetHashCode().ToString(), false, out nargs))
+                if (results.Length >= _resultIndex + 1)
                 {
-                    GraphEngineLogger.Debug($"{myName} is Returning NO Item : back with loop");
-                    //ループ検知
-                    tResult = default(T);
-                    return false;
+                    if (results[_resultIndex] is T t)
+                    {
+                        tResult = t;
+                        return true;
+                    }
+                }
+                else
+                {
+                    GraphEngineLogger.Error($"TryGetValue Unexpected Index");
                 }
             }
 
-            if (_action(nargs,out object result) && result is T t)
-            {
-                GraphEngineLogger.Debug($"{myName} is Returning Item : Success\nResult : {t}\nArgs : ${nargs}");
-                
-                tResult = t;
-                _cache = new Tuple<ProcessCallArgs, bool, object>(nargs, true, tResult);
-                return true;
-            }
-            else
-            {
-                GraphEngineLogger.Debug($"{myName} is Returning No Item : Success\nResult : Failed\nArgs : ${nargs}");
-                
-                tResult = default(T);
-                _cache = new Tuple<ProcessCallArgs, bool, object>(nargs, false, null);
-                return false;
-            }
-
+            tResult = default(T);
+            return false;
         }
         
     }

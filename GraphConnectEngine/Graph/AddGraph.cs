@@ -17,30 +17,33 @@ namespace GraphConnectEngine.Graph
         {
             InItemNode1 = new InItemNode(this, connector,typeof(int));
             InItemNode2 = new InItemNode(this, connector,typeof(int));
-            OutItemNode = new OutItemNode(this,connector,typeof(int),Get);
+            
+            OutItemNode = new OutItemNode(this,connector,typeof(int),0);
         }
 
-        private bool Get(ProcessCallArgs args,out object result)
+        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (!InItemNode1.GetItemFromConnectedNode(args,out int a))
+            if (!InItemNode1.GetItemFromConnectedNode(args, out int a))
             {
-                result = null;
+                results = null;
+                nextNode = null;
                 return false;
             }
 
             if (!InItemNode1.GetItemFromConnectedNode(args, out int b))
             {
-                result = null;
+                results = null;
+                nextNode = null;
                 return false;
             }
 
-            result =  a + b;
-            return true;
-        }
-
-        protected override bool OnProcessCall(ProcessCallArgs args,out OutProcessNode nextNode)
-        {
-            OutItemNode.TryGetValue<int>(args, out var result);
+            results = new object[]
+            {
+                a+b,
+                a,
+                b
+            };
+            
             nextNode = OutProcessNode;
             return true;
         }

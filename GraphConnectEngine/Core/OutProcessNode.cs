@@ -26,7 +26,7 @@ namespace GraphConnectEngine.Core
                 if (args.TryAdd(myHash + "_" + i, true, out var nargs))
                 {
                     GraphEngineLogger.Debug(preset + $"{inProcessNode.ParentGraph.GetGraphName()}[{inProcessNode.ParentGraph.GetHashCode()}] with\n{nargs}");
-                    inProcessNode.OnCalled(nargs);
+                    inProcessNode.OnCalled(this,nargs);
                 }
             }
         }

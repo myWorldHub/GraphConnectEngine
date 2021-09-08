@@ -27,7 +27,7 @@ namespace GraphConnectEngine.Graph
             MethodInfo = methodInfo;
 
             //Return Node
-            OutResultNode = new OutItemNode(this, connector, MethodInfo.ReturnType, InvokeMethod);
+            OutResultNode = new OutItemNode(this, connector, MethodInfo.ReturnType, 0);
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
@@ -79,10 +79,14 @@ namespace GraphConnectEngine.Graph
             return true;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
+            var procResult = InvokeMethod(args,out var result);
+           
+            results = new object[] {result};
             nextNode = OutProcessNode;
-            return OutResultNode.TryGetValue(args, out object t);
+            
+            return procResult;
         }
 
         /// <summary>

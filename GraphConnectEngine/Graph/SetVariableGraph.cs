@@ -36,19 +36,23 @@ namespace GraphConnectEngine.Graph
             Holder = holder;
             InItemNode = new InItemNode(this, connector, typeof(void));
         }
-
-
-        protected override bool OnProcessCall(ProcessCallArgs args, out OutProcessNode nextNode)
+        
+        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
             if (InItemNode.GetItemFromConnectedNode(args, out object result))
             {
                 if (Holder.UpdateItem(_variableName, result))
                 {
+                    results = new object[]
+                    {
+                        result
+                    };
                     nextNode = OutProcessNode;
                     return true;
                 }
             }
 
+            results = null;
             nextNode = null;
             return false;   
         }
