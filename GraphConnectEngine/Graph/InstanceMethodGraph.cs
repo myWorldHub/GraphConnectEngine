@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Graph
     {
 
         private InItemNode _objInItemNode;
-        public InstanceMethodGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) : base(connector, methodInfo, streamItem)
+        public InstanceMethodGraph(NodeConnector connector, MethodInfo methodInfo) : base(connector, methodInfo)
         {
             if (methodInfo.IsStatic || methodInfo.DeclaringType == null || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;
@@ -15,15 +15,9 @@ namespace GraphConnectEngine.Graph
             _objInItemNode = new InItemNode(this,connector,methodInfo.DeclaringType);
         }
 
-        protected override bool InvokeMethod(ProcessCallArgs args,out object result)
+        protected override bool InvokeMethod(ProcessCallArgs args,object[] param,out object result)
         {
             if (!_objInItemNode.GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
-            {
-                result = null;
-                return false; 
-            }
-            
-            if (!TryGetParameterValues(args,out var param))
             {
                 result = null;
                 return false; 

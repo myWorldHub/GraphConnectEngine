@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using GraphConnectEngine.Core;
@@ -15,11 +14,8 @@ namespace GraphConnectEngine.Graph
         protected readonly List<InItemNode> InItemNodes = new List<InItemNode>();
         
         protected readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
-
-        protected readonly OutItemNode OutResultNode;
         
-
-        public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo,bool streamItem = false) : base(connector)
+        public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo) : base(connector)
         {
             if (methodInfo == null || !methodInfo.IsPublic)
                 return;//TODO Exception
@@ -27,7 +23,7 @@ namespace GraphConnectEngine.Graph
             MethodInfo = methodInfo;
 
             //Return Node
-            OutResultNode = new OutItemNode(this, connector, MethodInfo.ReturnType, 0);
+            OutItemNodes.Add(new OutItemNode(this, connector, MethodInfo.ReturnType, 0));
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
@@ -36,14 +32,10 @@ namespace GraphConnectEngine.Graph
                 ParameterInfo parameterInfo = Parameters[i];
                 InItemNode iNode = new InItemNode(this, connector, parameterInfo.ParameterType);
                 InItemNodes.Add(iNode);
-
-                if (streamItem)
-                {
-                    //TODO
-                    //OutItemNode oNode = new OutItemNode(this, connector, parameterInfo.ParameterType,()=>GetValue(i));
-                }
+                
+                OutItemNode oNode = new OutItemNode(this, connector, parameterInfo.ParameterType, i+1);
+                OutItemNodes.Add(oNode);
             }
-
         }
         
         /// <summary>
@@ -51,7 +43,7 @@ namespace GraphConnectEngine.Graph
         /// </summary>
         /// <param name="result">結果</param>
         /// <returns>成功したかどうか</returns>
-        protected bool TryGetParameterValues(ProcessCallArgs args,out object[] result)
+        private bool TryGetParameterValues(ProcessCallArgs args,out object[] results)
         {
             object[] param = new object[Parameters.Length];
             
@@ -70,20 +62,32 @@ namespace GraphConnectEngine.Graph
                 }
                 else
                 {
-                    result = null;
+                    results = null;
                     return false;
                 }
             }
 
-            result = param;
+            results = param;
             return true;
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            var procResult = InvokeMethod(args,out var result);
+            if (!TryGetParameterValues(args, out var param))
+            {
+                results = null;
+                nextNode = null;
+                return false;
+            }
+            
+            var procResult = InvokeMethod(args,param,out var invokeResult);
            
-            results = new object[] {result};
+            results = new object[param.Length + 1];
+            results[0] = invokeResult;
+            for (int i = 0; i < param.Length; i++)
+            {
+                results[i + 1] = param[i];
+            }
             nextNode = OutProcessNode;
             
             return procResult;
@@ -93,7 +97,7 @@ namespace GraphConnectEngine.Graph
         /// 実行する
         /// </summary>
         /// <returns></returns>
-        protected abstract bool InvokeMethod(ProcessCallArgs args,out object result);
+        protected abstract bool InvokeMethod(ProcessCallArgs args,object[] param,out object result);
 
         /// <summary>
         /// 生成されたInItemNodeのリストを取得する

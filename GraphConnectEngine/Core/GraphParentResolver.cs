@@ -5,10 +5,7 @@ namespace GraphConnectEngine.Core
     public abstract class GraphParentResolver : INodeStatusListener
     {
 
-        public NodeConnector Connector
-        {
-            get;
-        }
+        public NodeConnector Connector { get; }
 
         public readonly GraphBase ParentGraph;
         
