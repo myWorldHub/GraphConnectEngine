@@ -10,8 +10,6 @@ namespace GraphConnectEngine.Core
 
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        public event EventHandler<ItemObtainedEventArgs> OnItemObtained;
-
         public InItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType) : base(parentGraph,connector)
         {
             _itemType = itemType;
@@ -102,12 +100,5 @@ namespace GraphConnectEngine.Core
             result = default(T);
             return false;
         }
-    }
-
-    public class ItemObtainedEventArgs : EventArgs
-    {
-        public bool Result;
-        public object Item;
-        public Type Type;
     }
 }
