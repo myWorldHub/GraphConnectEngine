@@ -10,9 +10,6 @@ namespace GraphConnectEngine.Graph
     {
 
         public readonly VariableHolder Holder;
-        
-        public readonly InItemNode InItemNode;
-        public readonly OutItemNode OutItemNode;
 
         private string _variableName = "";
         public string VariableName
@@ -23,11 +20,13 @@ namespace GraphConnectEngine.Graph
                 _variableName = value;
                 if (Holder.TryGetItemType(_variableName, out Type type))
                 {
-                    InItemNode.SetItemType(type);
+                    GetInItemNode(0).SetItemType(type);
+                    GetOutItemNode(0).SetItemType(type);
                 }
                 else
                 {
-                    InItemNode.SetItemType(typeof(void));
+                    GetInItemNode(0).SetItemType(typeof(void));
+                    GetOutItemNode(0).SetItemType(typeof(void));
                 }
             }
         }
@@ -35,12 +34,13 @@ namespace GraphConnectEngine.Graph
         public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
         {
             Holder = holder;
-            InItemNode = new InItemNode(this, connector, typeof(void));
+            AddItemNode(new InItemNode(this, connector, typeof(void)));
+            AddItemNode(new OutItemNode(this,connector,typeof(void),0));
         }
         
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (InItemNode.GetItemFromConnectedNode(args, out object result))
+            if (GetInItemNode(0).GetItemFromConnectedNode(args, out object result))
             {
                 if (Holder.UpdateItem(_variableName, result))
                 {

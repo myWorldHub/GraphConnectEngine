@@ -11,8 +11,6 @@ namespace GraphConnectEngine.Graph
     {
 
         public readonly VariableHolder Holder;
-        
-        public readonly OutItemNode OutItemNode;
 
         private string _variableName = "";
         public string VariableName
@@ -21,13 +19,14 @@ namespace GraphConnectEngine.Graph
             set
             {
                 _variableName = value;
+                var node = GetOutItemNode(0);
                 if (Holder.TryGetItemType(_variableName, out Type type))
                 {
-                    OutItemNode.SetItemType(type);
+                    node.SetItemType(type);
                 }
                 else
                 {
-                    OutItemNode.SetItemType(typeof(void));
+                    node.SetItemType(typeof(void));
                 }
             }
         }

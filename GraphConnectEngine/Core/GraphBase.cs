@@ -121,14 +121,14 @@ namespace GraphConnectEngine.Core
             _outItemNodes.Add(itemNode);
         }
 
-        public OutItemNode GetOutItemNode(int index)
-        {
-            return _outItemNodes[index];
-        }
-
         public InItemNode GetInItemNode(int index)
         {
             return _inItemNodes[index];
+        }
+
+        public OutItemNode GetOutItemNode(int index)
+        {
+            return _outItemNodes[index];
         }
 
         public InItemNode[] GetInItemNodes()
@@ -136,7 +136,7 @@ namespace GraphConnectEngine.Core
             return _inItemNodes.ToArray();
         }
 
-        public OutItemNode[] GetOuttemNodes()
+        public OutItemNode[] GetOutItemNodes()
         {
             return _outItemNodes.ToArray();
         }

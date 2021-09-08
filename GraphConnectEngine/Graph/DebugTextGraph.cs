@@ -5,6 +5,7 @@ namespace GraphConnectEngine.Graph
 {
     public class DebugTextGraph : GraphBase
     {
+        
         private Func<string,bool> _updateText;
 
         public DebugTextGraph(NodeConnector connector,Func<string,bool> updateText) : base(connector)
@@ -22,8 +23,14 @@ namespace GraphConnectEngine.Graph
                 results = null;
                 return false;
             }
-            
-            _updateText(obj.ToString());
+
+            //実行
+            if (!_updateText(obj.ToString()))
+            {
+                nextNode = null;
+                results = null;
+                return false;
+            }
             
             results = new object[]
             {
