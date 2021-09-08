@@ -12,6 +12,7 @@ namespace GraphConnectEngine.Graph
         public readonly VariableHolder Holder;
         
         public readonly InItemNode InItemNode;
+        public readonly OutItemNode OutItemNode;
 
         private string _variableName = "";
         public string VariableName

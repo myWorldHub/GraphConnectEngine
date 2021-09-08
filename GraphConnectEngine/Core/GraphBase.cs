@@ -11,10 +11,16 @@ namespace GraphConnectEngine.Core
 
         private Tuple<ProcessCallArgs, bool, object[]> _cache;
 
+        private List<InItemNode> _inItemNodes;
+        private List<OutItemNode> _outItemNodes;
+
         public GraphBase(NodeConnector connector)
         {
             InProcessNode = new InProcessNode(this, connector);
             OutProcessNode = new OutProcessNode(this, connector);
+
+            _inItemNodes = new List<InItemNode>();
+            _outItemNodes = new List<OutItemNode>();
         }
 
         public bool Invoke(object sender,ProcessCallArgs args,out object[] results)
@@ -104,6 +110,36 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <returns></returns>
         public abstract string GetGraphName();
+
+        protected void AddItemNode(InItemNode itemNode)
+        {
+            _inItemNodes.Add(itemNode);
+        }
+
+        protected void AddItemNode(OutItemNode itemNode)
+        {
+            _outItemNodes.Add(itemNode);
+        }
+
+        public OutItemNode GetOutItemNode(int index)
+        {
+            return _outItemNodes[index];
+        }
+
+        public InItemNode GetInItemNode(int index)
+        {
+            return _inItemNodes[index];
+        }
+
+        public InItemNode[] GetInItemNodes()
+        {
+            return _inItemNodes.ToArray();
+        }
+
+        public OutItemNode[] GetOuttemNodes()
+        {
+            return _outItemNodes.ToArray();
+        }
 
         /// <summary>
         /// InProcessNodeが繋がれているかどうかを確認する

@@ -37,7 +37,7 @@ namespace GraphConnectEngine.Graph
         public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
         {
             Holder = holder;
-            OutItemNode = new OutItemNode(this, connector, typeof(void), 0);
+            AddItemNode(new OutItemNode(this, connector, typeof(void), 0));
         }
 
 

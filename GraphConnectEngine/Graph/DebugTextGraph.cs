@@ -5,19 +5,18 @@ namespace GraphConnectEngine.Graph
 {
     public class DebugTextGraph : GraphBase
     {
-        public readonly InItemNode InItemNode;
+        private Func<string,bool> _updateText;
 
-        private Action<string> _updateText;
-
-        public DebugTextGraph(NodeConnector connector,Action<string> updateText) : base(connector)
+        public DebugTextGraph(NodeConnector connector,Func<string,bool> updateText) : base(connector)
         {
-            InItemNode = new InItemNode(this, connector,typeof(object));
+            AddItemNode(new InItemNode(this, connector, typeof(object)));
+            AddItemNode(new OutItemNode(this, connector, typeof(string),1));
             _updateText = updateText;
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (!InItemNode.GetItemFromConnectedNode(args, out object obj))
+            if (!GetInItemNode(0).GetItemFromConnectedNode(args, out object obj))
             {
                 nextNode = null;
                 results = null;
@@ -28,7 +27,8 @@ namespace GraphConnectEngine.Graph
             
             results = new object[]
             {
-                obj
+                obj,
+                obj.ToString()
             };
             nextNode = OutProcessNode;
             return true;    

@@ -5,19 +5,20 @@ namespace GraphConnectEngine.Graph
 {
     public class InstanceMethodGraph : GenerativeGraph
     {
-
-        private InItemNode _objInItemNode;
         public InstanceMethodGraph(NodeConnector connector, MethodInfo methodInfo) : base(connector, methodInfo)
         {
             if (methodInfo.IsStatic || methodInfo.DeclaringType == null || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;
 
-            _objInItemNode = new InItemNode(this,connector,methodInfo.DeclaringType);
+            AddItemNode(new InItemNode(this,connector,methodInfo.DeclaringType));
         }
 
         protected override bool InvokeMethod(ProcessCallArgs args,object[] param,out object result)
         {
-            if (!_objInItemNode.GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
+
+            var inodes = GetInItemNodes();
+            
+            if (!inodes[inodes.Length-1].GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
             {
                 result = null;
                 return false; 

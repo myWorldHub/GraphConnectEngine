@@ -11,10 +11,6 @@ namespace GraphConnectEngine.Graph
 
         protected ParameterInfo[] Parameters;
 
-        protected readonly List<InItemNode> InItemNodes = new List<InItemNode>();
-        
-        protected readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
-        
         public GenerativeGraph(NodeConnector connector, MethodInfo methodInfo) : base(connector)
         {
             if (methodInfo == null || !methodInfo.IsPublic)
@@ -23,7 +19,7 @@ namespace GraphConnectEngine.Graph
             MethodInfo = methodInfo;
 
             //Return Node
-            OutItemNodes.Add(new OutItemNode(this, connector, MethodInfo.ReturnType, 0));
+            AddItemNode(new OutItemNode(this, connector, MethodInfo.ReturnType, 0));
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
@@ -31,10 +27,10 @@ namespace GraphConnectEngine.Graph
             {
                 ParameterInfo parameterInfo = Parameters[i];
                 InItemNode iNode = new InItemNode(this, connector, parameterInfo.ParameterType);
-                InItemNodes.Add(iNode);
+                AddItemNode(iNode);
                 
                 OutItemNode oNode = new OutItemNode(this, connector, parameterInfo.ParameterType, i+1);
-                OutItemNodes.Add(oNode);
+                AddItemNode(oNode);
             }
         }
         
@@ -50,7 +46,7 @@ namespace GraphConnectEngine.Graph
             for (int i = 0; i < Parameters.Length; i++)
             {
                 ParameterInfo parameterInfo = Parameters[i];
-                if (InItemNodes[i].GetItemFromConnectedNode(args, out object oitem))
+                if (GetInItemNode(i).GetItemFromConnectedNode(args, out object oitem))
                 {
                     param[i] = oitem;
                     continue;
@@ -98,24 +94,6 @@ namespace GraphConnectEngine.Graph
         /// </summary>
         /// <returns></returns>
         protected abstract bool InvokeMethod(ProcessCallArgs args,object[] param,out object result);
-
-        /// <summary>
-        /// 生成されたInItemNodeのリストを取得する
-        /// </summary>
-        /// <returns></returns>
-        public InItemNode[] GetInItemNodes()
-        {
-            return InItemNodes.ToArray();
-        }
-
-        /// <summary>
-        /// 生成されたOutItemNodeのリストを取得する
-        /// </summary>
-        /// <returns></returns>
-        public OutItemNode[] GetOutItemNodes()
-        {
-            return OutItemNodes.ToArray();
-        }
 
     }
 }

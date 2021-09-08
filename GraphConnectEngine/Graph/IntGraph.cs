@@ -6,11 +6,9 @@ namespace GraphConnectEngine.Graph
     {
         public int Number = 0;
 
-        public readonly OutItemNode OutItemNode;
-
         public IntGraph(NodeConnector connector) : base(connector)
         {
-            OutItemNode = new OutItemNode(this,connector,typeof(int),0);
+            AddItemNode(new OutItemNode(this,connector,typeof(int),0));
         }
 
 

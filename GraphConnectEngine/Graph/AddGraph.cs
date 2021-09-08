@@ -9,28 +9,26 @@ namespace GraphConnectEngine.Graph
     public class AddGraph : GraphBase
     {
 
-        public readonly InItemNode InItemNode1;
-        public readonly InItemNode InItemNode2;
-        public readonly OutItemNode OutItemNode;
-
         public AddGraph(NodeConnector connector) : base(connector)
         {
-            InItemNode1 = new InItemNode(this, connector,typeof(int));
-            InItemNode2 = new InItemNode(this, connector,typeof(int));
-            
-            OutItemNode = new OutItemNode(this,connector,typeof(int),0);
+            AddItemNode(new InItemNode(this, connector, typeof(int)));
+            AddItemNode(new InItemNode(this, connector, typeof(int)));
+
+            AddItemNode(new OutItemNode(this, connector, typeof(int), 0));
+            AddItemNode(new OutItemNode(this, connector, typeof(int), 1));
+            AddItemNode(new OutItemNode(this, connector, typeof(int), 2));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (!InItemNode1.GetItemFromConnectedNode(args, out int a))
+            if (!GetInItemNode(0).GetItemFromConnectedNode(args, out int a))
             {
                 results = null;
                 nextNode = null;
                 return false;
             }
 
-            if (!InItemNode2.GetItemFromConnectedNode(args, out int b))
+            if (!GetInItemNode(1).GetItemFromConnectedNode(args, out int b))
             {
                 results = null;
                 nextNode = null;
