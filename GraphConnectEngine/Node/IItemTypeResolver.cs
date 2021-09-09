@@ -1,6 +1,7 @@
 using System;
+using GraphConnectEngine.Core;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine.Node
 {
     /// <summary>
     /// 型が変わる時は再接続される

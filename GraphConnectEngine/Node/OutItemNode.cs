@@ -1,17 +1,20 @@
 using System;
+using GraphConnectEngine.Core;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine.Node
 {
-    /// <summary>
-    /// </summary>
-    public class InItemNode : GraphParentResolver,IItemTypeResolver
+    public class OutItemNode : GraphParentResolver,IItemTypeResolver
     {
+        
         private Type _itemType;
-
+        
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        public InItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType) : base(parentGraph,connector)
+        private int _resultIndex;
+
+        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, int resultIndex) : base(parentGraph,connector)
         {
+            _resultIndex = resultIndex;
             _itemType = itemType;
         }
 
@@ -19,17 +22,17 @@ namespace GraphConnectEngine.Core
         {
             return _itemType;
         }
-        
+
         public void SetItemType(Type type,bool tryReconnect = true)
         {
-
+            
             if (_itemType == type)
                 return;
             
             //接続確認
             if (Connector.TryGetOtherNodes(this, out var otherNodes))
             {
-                //接続を切る
+                //接続切る
                 foreach (var onode in otherNodes)
                 {
                     Connector.DisconnectNode(this, onode);
@@ -38,7 +41,7 @@ namespace GraphConnectEngine.Core
                 //event
                 var from = _itemType;
                 _itemType = type;
-                OnTypeChanged?.Invoke(this,new TypeChangeEventArgs()
+                OnTypeChanged?.Invoke(this, new TypeChangeEventArgs()
                 {
                     From = from,
                     To = _itemType
@@ -58,47 +61,53 @@ namespace GraphConnectEngine.Core
 
         public override bool IsAttachableGraphType(Type type)
         {
-            var dt = typeof(OutItemNode);
+            var dt = typeof(InItemNode);
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
         public override bool CanAttach(GraphParentResolver resolver)
         {
-            if (resolver is OutItemNode outItemNode)
+            if (resolver is InItemNode inItemNode)
             {
                 //ItemType Check
-                Type otherItemType = outItemNode.GetItemType();
+                Type otherItemType = inItemNode.GetItemType();
                 Type myItemType = GetItemType();
-
+                
                 //void制限
                 if (myItemType == typeof(void))
                 {
                     return false;
                 }
 
-                if (otherItemType != myItemType && !otherItemType.IsSubclassOf(myItemType))
-                {
-                    return false;
-                }
-
-                return Connector.GetOtherNodes(this).Length == 0;
+                return !(otherItemType != myItemType && !myItemType.IsSubclassOf(otherItemType));
             }
 
             return false;
         }
 
-        public bool GetItemFromConnectedNode<T>(ProcessCallArgs args,out T result)
+        public bool TryGetValue<T>(ProcessCallArgs args,out T tResult)
         {
-            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            var procResult = ParentGraph.Invoke(this, args, out var results);
+
+            if (procResult)
             {
-                if (node.TryGetValue<T>(args, out result))
+                if (results.Length >= _resultIndex + 1)
                 {
-                    return true;
+                    if (results[_resultIndex] is T t)
+                    {
+                        tResult = t;
+                        return true;
+                    }
+                }
+                else
+                {
+                    GraphEngineLogger.Error($"TryGetValue Unexpected Index");
                 }
             }
 
-            result = default(T);
+            tResult = default(T);
             return false;
         }
+        
     }
 }

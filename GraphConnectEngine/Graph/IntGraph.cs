@@ -1,4 +1,5 @@
 using GraphConnectEngine.Core;
+using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph
 {

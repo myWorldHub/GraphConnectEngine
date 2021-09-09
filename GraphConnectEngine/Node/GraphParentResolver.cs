@@ -1,6 +1,7 @@
 using System;
+using GraphConnectEngine.Core;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine.Node
 {
     public abstract class GraphParentResolver : INodeStatusListener
     {

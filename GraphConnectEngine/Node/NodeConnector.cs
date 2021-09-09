@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GraphConnectEngine.Core;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine.Node
 {
     /// <summary>
     /// GraphParentResolver同時がどのように繋がっているか管理するためのもの
