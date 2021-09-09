@@ -59,12 +59,7 @@ namespace GraphConnectEngine.Core
         public string GetProcList()
         {
             var ienu = GetValue().Split(':').Where(s => s.StartsWith("Proc_"));
-
-            string result = "";
-            foreach (string s in ienu)
-                result += s+":";
-
-            return result;
+            return string.Join(":", ienu);
         }
 
         public string GetItemList()
@@ -79,9 +74,14 @@ namespace GraphConnectEngine.Core
         }
 
         public bool CanGetItemOf(ProcessCallArgs parent)
-        { //発火元が違う
+        {
+
+            GraphEngineLogger.Debug($"[CanGetItem]Start\nFrom  : {GetValue()}\nTarget: {parent.GetValue()}");
+            
+            //発火元が違う
             if (GetSender() != parent.GetSender())
             {
+                GraphEngineLogger.Debug("[CanGetItem] Fail : Sender is not match.");
                 return false;
             }
 
@@ -90,15 +90,26 @@ namespace GraphConnectEngine.Core
 
             if (my == you)
             {
+                GraphEngineLogger.Debug("[CanGetItem] Fail : Same Args.");
                 return true;
             }
 
             if (my.Length < you.Length)
             {
+                GraphEngineLogger.Debug("[CanGetItem] Fail : Target is longer than FromArgs.");
                 return false;
             }
 
-            return my.StartsWith(you);
+            if (my.StartsWith(you))
+            {
+                GraphEngineLogger.Debug("[CanGetItem] Success");
+                return true;
+            }
+            else
+            {
+                GraphEngineLogger.Debug($"[CanGetItem] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
+                return false;
+            }
         }
 
         public string GetSender()
