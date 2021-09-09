@@ -2,7 +2,7 @@ using System.Reflection;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph
+namespace GraphConnectEngine.Graph.Generative
 {
     public class InstanceMethodGraph : GenerativeGraph
     {

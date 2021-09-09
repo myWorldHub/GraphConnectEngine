@@ -2,7 +2,7 @@ using System;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph
+namespace GraphConnectEngine.Graph.Variable
 {
     
     /// <summary>
