@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graph.Operator
             AddItemNode(new InItemNode(this, connector, typeof(int)));
             AddItemNode(new InItemNode(this, connector, typeof(int)));
             
-            AddItemNode(new OutItemNode(this, connector, typeof(int), 0));
+            AddItemNode(new OutItemNode(this, connector, typeof(bool), 0));
             AddItemNode(new OutItemNode(this, connector, typeof(int), 1));
             AddItemNode(new OutItemNode(this, connector, typeof(int), 2));
         }

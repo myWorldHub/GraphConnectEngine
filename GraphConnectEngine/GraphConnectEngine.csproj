@@ -50,7 +50,7 @@
         <Compile Include="Graph\Generative\GenerativeGraph.cs" />
         <Compile Include="Graph\Generative\InstanceMethodGraph.cs" />
         <Compile Include="Graph\Generative\StaticMethodGraph.cs" />
-        <Compile Include="Graph\Operator\AddGraph.cs" />
+        <Compile Include="Graph\Operator\AddOperatorGraph.cs" />
         <Compile Include="Graph\Operator\EqualOperatorGraph.cs" />
         <Compile Include="Graph\Operator\GreaterThanOperatorGraph.cs" />
         <Compile Include="Graph\Operator\ModulusOperatorGraph.cs" />

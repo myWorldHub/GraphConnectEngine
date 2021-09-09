@@ -43,7 +43,7 @@ namespace GraphConnectEngine.Graph.Operator
 
         public override string GetGraphName()
         {
-            return "Greater Than Graph";
+            return "Modulus Graph";
         }
     }
 }
