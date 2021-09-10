@@ -15,6 +15,11 @@ namespace GraphConnectEngine.Core
         private List<InItemNode> _inItemNodes;
         private List<OutItemNode> _outItemNodes;
 
+        /// <summary>
+        /// 実行ステータスのリス名
+        /// </summary>
+        public event EventHandler<GraphStatusEventArgs> OnStatusChanged;
+
         public GraphBase(NodeConnector connector)
         {
             InProcessNode = new InProcessNode(this, connector);
@@ -29,13 +34,25 @@ namespace GraphConnectEngine.Core
             string myHash = GetHashCode().ToString();
             string myName = $"{GetGraphName()}[{myHash}]";
 
+            //イベント
             GraphEngineLogger.Debug($"{myName} is Invoked with\n{args}");
+            OnStatusChanged?.Invoke(this,new GraphStatusEventArgs()
+            {
+                Type = GraphStatusEventArgs.EventType.InvokeCalled,
+                Args = args
+            });
             
             //キャッシュチェック
             if (_cache != null && args.CanGetItemOf(_cache.Item1))
             {
-                GraphEngineLogger.Debug(
-                    $"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
+                //イベント
+                GraphEngineLogger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
+                OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+                {
+                    Type = GraphStatusEventArgs.EventType.CacheUsed,
+                    Args = args
+                });
+                
                 results = _cache.Item3;
                 return _cache.Item2;
             }
@@ -44,10 +61,17 @@ namespace GraphConnectEngine.Core
 
             if (IsConnectedInProcessNode())
             {
-                if (sender is OutItemNode itemNode)
+                if (sender is OutItemNode)
                 {
                     //キャッシュがないとおかしい
+                    //イベント
                     GraphEngineLogger.Debug($"{myName} is Returning NO Item : back with no cache");
+                    OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+                    {
+                        Type = GraphStatusEventArgs.EventType.CacheError,
+                        Args = args
+                    });
+                    
                     results = Array.Empty<object>();
                     return false;
                 }
@@ -55,7 +79,14 @@ namespace GraphConnectEngine.Core
                 //ループ検知
                 if (!args.TryAdd(myHash, true, out nargs))
                 {
+                    //イベント
                     GraphEngineLogger.Debug($"{myName} invoke Failed : Loop detected");
+                    OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+                    {
+                        Type = GraphStatusEventArgs.EventType.LoopDetected,
+                        Args = args
+                    });
+                    
                     results = Array.Empty<object>();
                     return false;
                 }
@@ -64,28 +95,56 @@ namespace GraphConnectEngine.Core
             {
                 if (sender is OutProcessNode)
                 {
+                    //イベント
                     //繋がってないのに呼ばれるってどういうこと？
-                    results = Array.Empty<object>();
                     GraphEngineLogger.Debug($"{myName} Unknown Error");
+                    OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+                    {
+                        Type = GraphStatusEventArgs.EventType.UnknownError,
+                        Args = args
+                    });
+                    
+                    results = Array.Empty<object>();
                     return false;
                 }
                 
                 //ループ検知
                 if (!args.TryAdd(GetHashCode().ToString(), false, out nargs))
                 {
+                    //イベント
                     GraphEngineLogger.Debug($"{myName} is Returning NO Item : Loop detected");
+                    OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+                    {
+                        Type = GraphStatusEventArgs.EventType.LoopDetected,
+                        Args = args
+                    });
+                    
                     results = Array.Empty<object>();
                     return false;
                 }
             }
             
-            //Invoke
+            //イベント
             GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
+            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+            {
+                Type = GraphStatusEventArgs.EventType.ProcessStart,
+                Args = nargs
+            });
+
+            //Invoke
             bool procResult = OnProcessCall(nargs, out results, out var nextNode);
-            GraphEngineLogger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
 
             //キャッシュする
             _cache = new Tuple<ProcessCallArgs, bool, object[]>(nargs, procResult, results ?? Array.Empty<object>());
+
+            //イベント
+            GraphEngineLogger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
+            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+            {
+                Type = procResult ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,
+                Args = nargs
+            });
             
             //OutProcessなら実行する
             if (procResult && sender is OutProcessNode)
@@ -148,7 +207,25 @@ namespace GraphConnectEngine.Core
         /// <returns></returns>
         public virtual bool IsConnectedInProcessNode()
         {
-            return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out GraphParentResolver resolver);
+            return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out var _);
         }
+    }
+
+    public class GraphStatusEventArgs : EventArgs
+    {
+        public enum EventType
+        {
+            InvokeCalled,
+            ProcessStart,
+            ProcessSuccess,
+            ProcessFail,
+            CacheUsed,
+            CacheError,
+            LoopDetected,
+            UnknownError
+        }
+
+        public EventType Type;
+        public ProcessCallArgs Args;
     }
 }
