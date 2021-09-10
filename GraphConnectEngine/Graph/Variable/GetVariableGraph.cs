@@ -41,7 +41,8 @@ namespace GraphConnectEngine.Graph.Variable
         }
 
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, object[] param, out object[] results,
+            out OutProcessNode nextNode)
         {
             if(!Holder.TryGetItem(VariableName, out var obj, Depth))
             {

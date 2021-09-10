@@ -16,10 +16,10 @@ namespace GraphConnectEngine.Graph.Generative
 
         protected override bool InvokeMethod(ProcessCallArgs args,object[] param,out object result)
         {
-
             var inodes = GetInItemNodes();
             
-            if (!inodes[inodes.Length-1].GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
+            //TODO テスト
+            if (!inodes[inodes.Length-1].GetItemFromConnectedNode(args, out object instance))
             {
                 result = null;
                 return false; 

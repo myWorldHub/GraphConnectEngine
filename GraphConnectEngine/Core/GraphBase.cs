@@ -123,6 +123,21 @@ namespace GraphConnectEngine.Core
                     return false;
                 }
             }
+
+            //inItemNodeから取得する
+            if (!TryGetParameterValues(nargs, out object[] param))
+            {
+                //イベント
+                OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+                {
+                    Type = GraphStatusEventArgs.EventType.CantGetParam,
+                    Args = nargs,
+                    Param = param
+                });
+
+                results = Array.Empty<object>();
+                return false;
+            }
             
             //イベント
             GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
@@ -133,7 +148,7 @@ namespace GraphConnectEngine.Core
             });
 
             //Invoke
-            bool procResult = OnProcessCall(nargs, out results, out var nextNode);
+            bool procResult = OnProcessCall(nargs, param,out results, out var nextNode);
 
             //キャッシュする
             _cache = new Tuple<ProcessCallArgs, bool, object[]>(nargs, procResult, results ?? Array.Empty<object>());
@@ -160,10 +175,42 @@ namespace GraphConnectEngine.Core
         /// 実装では必ずOutItemをキャッシュさせる
         /// </summary>
         /// <param name="args"></param>
+        /// <param name="param"></param>
         /// <param name="results"></param>
         /// <param name="nextNode"></param>
         /// <returns></returns>
-        protected abstract bool OnProcessCall(ProcessCallArgs args,out object[] results,out OutProcessNode nextNode);
+        protected abstract bool OnProcessCall(ProcessCallArgs args,object[] param,out object[] results,out OutProcessNode nextNode);
+
+
+
+        /// <summary>
+        /// パラメーターにあたるノードから値をとってくる
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="results">結果</param>
+        /// <returns>成功したかどうか</returns>
+        protected virtual bool TryGetParameterValues(ProcessCallArgs args, out object[] results)
+        {
+            object[] param = new object[_inItemNodes.Count];
+            int cantGet = 0;
+            
+            for (int i = 0; i < _inItemNodes.Count; i++)
+            {
+                //取得
+                if (GetInItemNode(i).GetItemFromConnectedNode(args, out object oitem))
+                {
+                    //OK
+                    param[i] = oitem;
+                    continue;
+                }
+                
+                //TODO デフォルト値
+                cantGet++;
+            }
+
+            results = param;
+            return cantGet != 0;
+        }
 
         /// <summary>
         /// グラフ名を取得する
@@ -222,10 +269,12 @@ namespace GraphConnectEngine.Core
             CacheUsed,
             CacheError,
             LoopDetected,
+            CantGetParam,
             UnknownError
         }
 
         public EventType Type;
         public ProcessCallArgs Args;
+        public object[] Param;
     }
 }

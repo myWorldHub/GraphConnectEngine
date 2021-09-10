@@ -65,7 +65,8 @@ namespace GraphConnectEngine.Graph.Event
             }
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, object[] param, out object[] results,
+            out OutProcessNode nextNode)
         {
             results = null;
             nextNode = null;

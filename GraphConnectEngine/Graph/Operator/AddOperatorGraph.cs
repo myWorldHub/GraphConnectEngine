@@ -20,29 +20,19 @@ namespace GraphConnectEngine.Graph.Operator
             AddItemNode(new OutItemNode(this, connector, typeof(int), 2));
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, object[] param, out object[] results,
+            out OutProcessNode nextNode)
         {
-            if (!GetInItemNode(0).GetItemFromConnectedNode(args, out int a))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
-            if (!GetInItemNode(1).GetItemFromConnectedNode(args, out int b))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            int a = (int) param[0];
+            int b = (int) param[1];
 
             results = new object[]
             {
-                a+b,
+                a + b,
                 a,
                 b
             };
-            
+
             nextNode = OutProcessNode;
             return true;
         }

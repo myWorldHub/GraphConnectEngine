@@ -94,7 +94,10 @@ namespace GraphConnectEngine.Node
             {
                 if (node.TryGetValue<T>(args, out result))
                 {
-                    return true;
+                    if (result.GetType() == GetItemType())
+                    {
+                        return true;
+                    }
                 }
             }
 

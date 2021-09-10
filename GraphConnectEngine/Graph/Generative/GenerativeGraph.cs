@@ -35,11 +35,11 @@ namespace GraphConnectEngine.Graph.Generative
         }
         
         /// <summary>
-        /// パラメーターにあたるノードからあたいをとってくる
         /// </summary>
-        /// <param name="result">結果</param>
+        /// <param name="args"></param>
+        /// <param name="results">結果</param>
         /// <returns>成功したかどうか</returns>
-        private bool TryGetParameterValues(ProcessCallArgs args,out object[] results)
+        protected override bool TryGetParameterValues(ProcessCallArgs args,out object[] results)
         {
             object[] param = new object[Parameters.Length];
             
@@ -67,25 +67,20 @@ namespace GraphConnectEngine.Graph.Generative
             return true;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, object[] param, out object[] results,
+            out OutProcessNode nextNode)
         {
-            if (!TryGetParameterValues(args, out var param))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-            
-            var procResult = InvokeMethod(args,param,out var invokeResult);
-           
+            var procResult = InvokeMethod(args, param, out var invokeResult);
+
             results = new object[param.Length + 1];
             results[0] = invokeResult;
             for (int i = 0; i < param.Length; i++)
             {
                 results[i + 1] = param[i];
             }
+
             nextNode = OutProcessNode;
-            
+
             return procResult;
         }
 

@@ -16,14 +16,10 @@ namespace GraphConnectEngine.Graph.Statement
             FalseOutProcessNode = new OutProcessNode(this, connector);
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        protected override bool OnProcessCall(ProcessCallArgs args, object[] param, out object[] results,
+            out OutProcessNode nextNode)
         {
-            if (!GetOutItemNode(0).TryGetValue(args, out bool result))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            var result = (bool) param[0];
 
             results = new object[] {result};
             nextNode = result ? OutProcessNode : FalseOutProcessNode;

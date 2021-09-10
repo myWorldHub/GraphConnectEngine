@@ -38,20 +38,20 @@ namespace GraphConnectEngine.Graph.Variable
             AddItemNode(new InItemNode(this, connector, typeof(void)));
             AddItemNode(new OutItemNode(this,connector,typeof(void),0));
         }
-        
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+
+        protected override bool OnProcessCall(ProcessCallArgs args, object[] param, out object[] results,
+            out OutProcessNode nextNode)
         {
-            if (GetInItemNode(0).GetItemFromConnectedNode(args, out object result))
+            var result = param[0];
+            
+            if (Holder.UpdateItem(_variableName, result))
             {
-                if (Holder.UpdateItem(_variableName, result))
+                results = new object[]
                 {
-                    results = new object[]
-                    {
-                        result
-                    };
-                    nextNode = OutProcessNode;
-                    return true;
-                }
+                    result
+                };
+                nextNode = OutProcessNode;
+                return true;
             }
 
             results = null;
