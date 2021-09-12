@@ -32,7 +32,7 @@ namespace GraphConnectEngine.Graph.Variable
 
         public VariableGraph(NodeConnector connector, VariableHolder holder) : base(connector)
         {
-            Holder = holder;
+            _holder = holder;
         }
 
         protected abstract void OnVariableChanged();
