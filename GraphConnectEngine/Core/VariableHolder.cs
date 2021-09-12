@@ -14,9 +14,9 @@ namespace GraphConnectEngine.Core
         private readonly Dictionary<string, object> _items = new Dictionary<string, object>();
         private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
-        public event EventHandler<VariableCreatedEvent> OnVariableCreated;
-        public event EventHandler<VariableUpdatedEvent> OnVariableUpdated;
-        public event EventHandler<VariableRemovedEvent> OnVariableRemoved;
+        public event EventHandler<VariableCreatedEventArgs> OnVariableCreated;
+        public event EventHandler<VariableUpdatedEventArgs> OnVariableUpdated;
+        public event EventHandler<VariableRemovedEventArgs> OnVariableRemoved;
 
         public event EventHandler OnDisposed;
 
@@ -94,7 +94,7 @@ namespace GraphConnectEngine.Core
             {
                 _items.Add(name,null);
                 _types.Add(name,type);
-                OnVariableCreated?.Invoke(this,new VariableCreatedEvent()
+                OnVariableCreated?.Invoke(this,new VariableCreatedEventArgs()
                 {
                     Name = name,
                     Type = type
@@ -112,7 +112,7 @@ namespace GraphConnectEngine.Core
                 {
                     _items[name] = obj;
                     
-                    OnVariableUpdated?.Invoke(this,new VariableUpdatedEvent()
+                    OnVariableUpdated?.Invoke(this,new VariableUpdatedEventArgs()
                     {
                         Name = name,
                         Type = obj.GetType(),
@@ -126,7 +126,7 @@ namespace GraphConnectEngine.Core
             {
                 if (_parent != null && !_parent.UpdateItem(name, obj))
                 {
-                    OnVariableUpdated?.Invoke(this, new VariableUpdatedEvent()
+                    OnVariableUpdated?.Invoke(this, new VariableUpdatedEventArgs()
                     {
                         Name = name,
                         Type = obj.GetType(),
@@ -146,7 +146,7 @@ namespace GraphConnectEngine.Core
                 _items.Remove(name);
                 _types.Remove(name);
 
-                OnVariableRemoved?.Invoke(this,new VariableRemovedEvent()
+                OnVariableRemoved?.Invoke(this,new VariableRemovedEventArgs()
                 {
                     Name = name
                 });
@@ -157,7 +157,7 @@ namespace GraphConnectEngine.Core
             {
                 if (_parent != null && _parent.RemoveItem(name))
                 {
-                    OnVariableRemoved?.Invoke(this, new VariableRemovedEvent()
+                    OnVariableRemoved?.Invoke(this, new VariableRemovedEventArgs()
                     {
                         Name = name
                     });
@@ -187,20 +187,20 @@ namespace GraphConnectEngine.Core
         }
     }
 
-    public class VariableCreatedEvent : EventArgs
+    public class VariableCreatedEventArgs : EventArgs
     {
         public string Name;
         public Type Type;
     }
 
-    public class VariableUpdatedEvent : EventArgs
+    public class VariableUpdatedEventArgs : EventArgs
     {
         public string Name;
         public Type Type;
         public Object Value;
     }
 
-    public class VariableRemovedEvent : EventArgs
+    public class VariableRemovedEventArgs : EventArgs
     {
         public string Name;
     }

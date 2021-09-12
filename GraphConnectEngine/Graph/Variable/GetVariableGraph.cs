@@ -70,5 +70,10 @@ namespace GraphConnectEngine.Graph.Variable
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }
+
+        protected override void OnVariableRemoved()
+        {
+            OnVariableNotFound?.Invoke(this,new EventArgs());
+        }
     }
 }
