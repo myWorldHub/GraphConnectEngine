@@ -15,6 +15,8 @@ namespace GraphConnectEngine.Core
         private List<InItemNode> _inItemNodes;
         private List<OutItemNode> _outItemNodes;
 
+        public readonly NodeConnector Connector;
+
         /// <summary>
         /// 実行ステータスのリス名
         /// </summary>
@@ -22,8 +24,10 @@ namespace GraphConnectEngine.Core
 
         public GraphBase(NodeConnector connector)
         {
-            InProcessNode = new InProcessNode(this, connector);
-            OutProcessNode = new OutProcessNode(this, connector);
+            Connector = connector;
+            
+            InProcessNode = new InProcessNode(this);
+            OutProcessNode = new OutProcessNode(this);
 
             _inItemNodes = new List<InItemNode>();
             _outItemNodes = new List<OutItemNode>();
@@ -209,6 +213,7 @@ namespace GraphConnectEngine.Core
         {
             return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out var _);
         }
+        
     }
 
     public class GraphStatusEventArgs : EventArgs

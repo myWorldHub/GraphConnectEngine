@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Node
     {
 
 
-        public InProcessNode(GraphBase parentGraph, NodeConnector connector) : base(parentGraph,connector) 
+        public InProcessNode(GraphBase parentGraph) : base(parentGraph) 
         {
         }
 

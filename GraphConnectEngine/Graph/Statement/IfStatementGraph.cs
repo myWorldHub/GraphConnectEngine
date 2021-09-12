@@ -10,10 +10,10 @@ namespace GraphConnectEngine.Graph.Statement
         
         public IfStatementGraph(NodeConnector connector) : base(connector)
         {
-            AddItemNode(new InItemNode(this,connector,typeof(bool)));
-            AddItemNode(new OutItemNode(this,connector,typeof(bool),0));
+            AddItemNode(new InItemNode(this,typeof(bool)));
+            AddItemNode(new OutItemNode(this,typeof(bool),0));
 
-            FalseOutProcessNode = new OutProcessNode(this, connector);
+            FalseOutProcessNode = new OutProcessNode(this);
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)

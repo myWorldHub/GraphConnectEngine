@@ -7,12 +7,12 @@ namespace GraphConnectEngine.Graph.Operator
     {
         public EqualOperatorGraph(NodeConnector connector) : base(connector)
         {
-            AddItemNode(new InItemNode(this, connector, typeof(int)));
-            AddItemNode(new InItemNode(this, connector, typeof(int)));
+            AddItemNode(new InItemNode(this, typeof(int)));
+            AddItemNode(new InItemNode(this, typeof(int)));
             
-            AddItemNode(new OutItemNode(this, connector, typeof(bool), 0));
-            AddItemNode(new OutItemNode(this, connector, typeof(int), 1));
-            AddItemNode(new OutItemNode(this, connector, typeof(int), 2));
+            AddItemNode(new OutItemNode(this, typeof(bool), 0));
+            AddItemNode(new OutItemNode(this, typeof(int), 1));
+            AddItemNode(new OutItemNode(this, typeof(int), 2));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)

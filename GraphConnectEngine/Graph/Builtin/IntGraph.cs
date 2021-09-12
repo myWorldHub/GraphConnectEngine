@@ -9,7 +9,7 @@ namespace GraphConnectEngine.Graph.Builtin
 
         public IntGraph(NodeConnector connector) : base(connector)
         {
-            AddItemNode(new OutItemNode(this,connector,typeof(int),0));
+            AddItemNode(new OutItemNode(this,typeof(int),0));
         }
 
 

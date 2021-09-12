@@ -4,46 +4,29 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Variable
 {
-    
-    /// <summary>
-    /// TODO リスナをつける
-    /// </summary>
-    public class GetVariableGraph : GraphBase
+    public class GetVariableGraph : VariableGraph
     {
 
-        public readonly VariableHolder Holder;
+        public event EventHandler OnVariableFound;
 
-        private string _variableName = "";
-        public string VariableName
+        public event EventHandler OnVariableNotFound;
+
+        public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            get => _variableName;
-            set
-            {
-                _variableName = value;
-                var node = GetOutItemNode(0);
-                if (Holder.TryGetItemType(_variableName, out Type type))
-                {
-                    node.SetItemType(type);
-                }
-                else
-                {
-                    node.SetItemType(typeof(void));
-                }
-            }
-        }
-
-        public int Depth = -1;
-
-        public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
-        {
-            Holder = holder;
-            AddItemNode(new OutItemNode(this, connector, typeof(void), 0));
+            AddItemNode(new OutItemNode(this, typeof(void), 0));
         }
 
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if(!Holder.TryGetItem(VariableName, out var obj, Depth))
+            if (Holder == null)
+            {
+                results = null;
+                nextNode = null;
+                return false;
+            }
+
+            if(!Holder.TryGetItem(VariableName, out var obj, -1))
             {
                 results = null;
                 nextNode = null;
@@ -58,6 +41,39 @@ namespace GraphConnectEngine.Graph.Variable
         public override string GetGraphName()
         {
             return "Get Variable Graph";
+        }
+
+        protected override void OnVariableChanged()
+        {
+            if (Holder?.HasItem(VariableName) ?? false)
+            {
+                GetOutItemNode(0).SetItemType(Holder.GetItemType(VariableName));
+                OnVariableFound?.Invoke(this,new EventArgs());
+            }
+            else
+            {
+                GetOutItemNode(0).SetItemType(typeof(void));
+                OnVariableNotFound?.Invoke(this, new EventArgs());
+            }
+        }
+
+        protected override void OnHolderChanged()
+        {
+            if (Holder?.HasItem(VariableName) ?? false)
+            {
+                GetOutItemNode(0).SetItemType(Holder.GetItemType(VariableName));
+                OnVariableFound?.Invoke(this, new EventArgs());
+            }
+            else
+            {
+                GetOutItemNode(0).SetItemType(typeof(void));
+                OnVariableNotFound?.Invoke(this, new EventArgs());
+            }
+        }
+
+        protected override void OnVariableRemoved()
+        {
+            OnVariableNotFound?.Invoke(this,new EventArgs());
         }
     }
 }

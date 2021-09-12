@@ -3,20 +3,27 @@ using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
-    public abstract class GraphParentResolver : INodeStatusListener
+    public abstract class GraphParentResolver : INodeStatusListener,IDisposable
     {
 
-        public NodeConnector Connector { get; }
+        public NodeConnector Connector
+        {
+            get
+            {
+                return ParentGraph.Connector;
+            }
+        }
 
         public readonly GraphBase ParentGraph;
         
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
 
-        public GraphParentResolver(GraphBase parentGraph,NodeConnector connector)
+        private bool _isDisposed = false;
+
+        public GraphParentResolver(GraphBase parentGraph)
         {
             ParentGraph = parentGraph;
-            Connector = connector;
         }
         
         public void InvokeConnectEvent(NodeConnectEventArgs args)
@@ -43,5 +50,28 @@ namespace GraphConnectEngine.Node
         /// <param name="resolver"></param>
         /// <returns></returns>
         public abstract bool CanAttach(GraphParentResolver resolver);
+
+        ~GraphParentResolver()
+        {
+            Dispose(false);
+        }
+        
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="isDisposing"></param>
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+                Connector.DisconnectAllNode(this);
+            }
+        }
     }
 }

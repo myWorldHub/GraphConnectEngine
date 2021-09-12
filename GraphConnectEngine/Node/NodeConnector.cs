@@ -243,6 +243,22 @@ namespace GraphConnectEngine.Node
             
             return true;
         }
+
+        public bool DisconnectAllNode(GraphParentResolver node)
+        {
+            if (node.Connector != this)
+            {
+                return false;
+            }
+
+            var onodes = GetOtherNodes(node);
+            foreach (var other in onodes)
+            {
+                DisconnectNode(other, node);
+            }
+
+            return true;
+        }
         
     }
 }
