@@ -19,6 +19,13 @@ namespace GraphConnectEngine.Graph.Variable
         
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
+            if (Holder == null)
+            {
+                results = null;
+                nextNode = null;
+                return false;
+            }
+            
             if (GetInItemNode(0).GetItemFromConnectedNode(args, out object result))
             {
                 if (Holder.UpdateItem(VariableName, result))
