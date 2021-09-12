@@ -6,7 +6,7 @@ namespace GraphConnectEngine.Node
     public class OutProcessNode : GraphParentResolver
     {
 
-        public OutProcessNode(GraphBase parentGraph, NodeConnector connector) : base(parentGraph, connector)
+        public OutProcessNode(GraphBase parentGraph) : base(parentGraph)
         {
         }
 

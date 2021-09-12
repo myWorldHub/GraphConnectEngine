@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Node
 
         private int _resultIndex;
 
-        public OutItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType, int resultIndex) : base(parentGraph,connector)
+        public OutItemNode(GraphBase parentGraph, Type itemType, int resultIndex) : base(parentGraph)
         {
             _resultIndex = resultIndex;
             _itemType = itemType;

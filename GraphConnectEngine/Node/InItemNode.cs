@@ -11,7 +11,7 @@ namespace GraphConnectEngine.Node
 
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        public InItemNode(GraphBase parentGraph, NodeConnector connector, Type itemType) : base(parentGraph,connector)
+        public InItemNode(GraphBase parentGraph, Type itemType) : base(parentGraph)
         {
             _itemType = itemType;
         }

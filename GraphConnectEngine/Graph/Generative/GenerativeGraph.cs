@@ -19,17 +19,17 @@ namespace GraphConnectEngine.Graph.Generative
             MethodInfo = methodInfo;
 
             //Return Node
-            AddItemNode(new OutItemNode(this, connector, MethodInfo.ReturnType, 0));
+            AddItemNode(new OutItemNode(this, MethodInfo.ReturnType, 0));
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
             for(int i=0;i<Parameters.Length;i++)
             {
                 ParameterInfo parameterInfo = Parameters[i];
-                InItemNode iNode = new InItemNode(this, connector, parameterInfo.ParameterType);
+                InItemNode iNode = new InItemNode(this, parameterInfo.ParameterType);
                 AddItemNode(iNode);
                 
-                OutItemNode oNode = new OutItemNode(this, connector, parameterInfo.ParameterType, i+1);
+                OutItemNode oNode = new OutItemNode(this, parameterInfo.ParameterType, i+1);
                 AddItemNode(oNode);
             }
         }
