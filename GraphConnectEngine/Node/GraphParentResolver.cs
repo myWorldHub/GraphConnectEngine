@@ -67,10 +67,10 @@ namespace GraphConnectEngine.Node
         /// <param name="isDisposing"></param>
         protected virtual void Dispose(bool isDisposing)
         {
-            if (_isDisposed)
+            if (!_isDisposed)
             {
-                Connector.DisconnectAllNode(this);
                 _isDisposed = true;
+                Connector.DisconnectAllNode(this);
             }
         }
     }

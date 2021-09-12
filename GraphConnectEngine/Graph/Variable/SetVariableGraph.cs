@@ -7,34 +7,11 @@ namespace GraphConnectEngine.Graph.Variable
     /// <summary>
     /// TODO リスナをつける
     /// </summary>
-    public class SetVariableGraph : GraphBase
+    public class SetVariableGraph : VariableGraph
     {
 
-        public readonly VariableHolder Holder;
-
-        private string _variableName = "";
-        public string VariableName
+        public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            get => _variableName;
-            set
-            {
-                _variableName = value;
-                if (Holder.TryGetItemType(_variableName, out Type type))
-                {
-                    GetInItemNode(0).SetItemType(type);
-                    GetOutItemNode(0).SetItemType(type);
-                }
-                else
-                {
-                    GetInItemNode(0).SetItemType(typeof(void));
-                    GetOutItemNode(0).SetItemType(typeof(void));
-                }
-            }
-        }
-
-        public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector)
-        {
-            Holder = holder;
             AddItemNode(new InItemNode(this, typeof(void)));
             AddItemNode(new OutItemNode(this,typeof(void),0));
         }
@@ -43,7 +20,7 @@ namespace GraphConnectEngine.Graph.Variable
         {
             if (GetInItemNode(0).GetItemFromConnectedNode(args, out object result))
             {
-                if (Holder.UpdateItem(_variableName, result))
+                if (Holder.UpdateItem(VariableName, result))
                 {
                     results = new object[]
                     {
@@ -62,6 +39,16 @@ namespace GraphConnectEngine.Graph.Variable
         public override string GetGraphName()
         {
             return "Set Variable Graph";
+        }
+
+        protected override void OnVariableChanged()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void OnHolderChanged()
+        {
+            throw new NotImplementedException();
         }
         
     }

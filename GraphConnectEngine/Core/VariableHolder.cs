@@ -20,6 +20,8 @@ namespace GraphConnectEngine.Core
 
         public event EventHandler OnDisposed;
 
+        private bool _isDisposed = false;
+
         public void SetParent(VariableHolder parent)
         {
             _parent = parent;
@@ -177,7 +179,11 @@ namespace GraphConnectEngine.Core
 
         protected virtual void Dispose(bool isDisposing)
         {
-            OnDisposed?.Invoke(this,new EventArgs());
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+                OnDisposed?.Invoke(this, new EventArgs());
+            }
         }
     }
 
