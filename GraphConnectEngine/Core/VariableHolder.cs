@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Core
     /// 値保持用のクラス
     /// TODO 仕様が固まってない??
     /// </summary>
-    public class VariableHolder
+    public class VariableHolder : IDisposable
     {
         private VariableHolder _parent;
         
@@ -17,6 +17,8 @@ namespace GraphConnectEngine.Core
         public event EventHandler<VariableCreatedEvent> OnVariableCreated;
         public event EventHandler<VariableUpdatedEvent> OnVariableUpdated;
         public event EventHandler<VariableRemovedEvent> OnVariableRemoved;
+
+        public event EventHandler OnDisposed;
 
         public void SetParent(VariableHolder parent)
         {
@@ -161,6 +163,21 @@ namespace GraphConnectEngine.Core
                 }
             }
             return false;
+        }
+
+        ~VariableHolder()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            OnDisposed?.Invoke(this,new EventArgs());
         }
     }
 
