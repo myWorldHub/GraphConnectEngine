@@ -18,7 +18,7 @@ namespace GraphConnectEngine.Graph.Statement
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (!GetOutItemNode(0).TryGetValue(args, out bool result))
+            if (!GetInItemNode(0).GetItemFromConnectedNode(args, out bool result))
             {
                 results = null;
                 nextNode = null;

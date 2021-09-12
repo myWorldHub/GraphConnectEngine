@@ -90,7 +90,7 @@ namespace GraphConnectEngine.Core
 
             if (my == you)
             {
-                GraphEngineLogger.Debug("[CanGetItem] Fail : Same Args.");
+                GraphEngineLogger.Debug("[CanGetItem] Success : Same Args.");
                 return true;
             }
 
