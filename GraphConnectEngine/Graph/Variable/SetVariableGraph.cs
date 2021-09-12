@@ -4,11 +4,12 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Variable
 {
-    /// <summary>
-    /// TODO リスナをつける
-    /// </summary>
     public class SetVariableGraph : VariableGraph
     {
+
+        public event EventHandler OnVariableFound;
+
+        public event EventHandler OnVariableNotFound;
 
         public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
@@ -43,12 +44,38 @@ namespace GraphConnectEngine.Graph.Variable
 
         protected override void OnVariableChanged()
         {
-            throw new NotImplementedException();
+            if (Holder?.HasItem(VariableName) ?? false)
+            {
+                var type = Holder.GetItemType(VariableName);
+                GetInItemNode(0).SetItemType(type);
+                GetOutItemNode(0).SetItemType(type);
+                
+                OnVariableFound?.Invoke(this, new EventArgs());
+            }
+            else
+            {
+                GetOutItemNode(0).SetItemType(typeof(void));
+                
+                OnVariableNotFound?.Invoke(this, new EventArgs());
+            }
         }
 
         protected override void OnHolderChanged()
         {
-            throw new NotImplementedException();
+            if (Holder?.HasItem(VariableName) ?? false)
+            {
+                var type = Holder.GetItemType(VariableName);
+                GetInItemNode(0).SetItemType(type);
+                GetOutItemNode(0).SetItemType(type);
+                
+                OnVariableFound?.Invoke(this, new EventArgs());
+            }
+            else
+            {
+                GetOutItemNode(0).SetItemType(typeof(void));
+                
+                OnVariableNotFound?.Invoke(this, new EventArgs());
+            }
         }
         
     }
