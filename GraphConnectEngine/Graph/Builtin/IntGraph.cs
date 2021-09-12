@@ -1,7 +1,7 @@
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.BuildIn
+namespace GraphConnectEngine.Graph.Builtin
 {
     public class IntGraph : GraphBase
     {
