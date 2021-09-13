@@ -43,7 +43,13 @@
         <Compile Include="Core\INodeStatusListener.cs" />
         <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
-        <Compile Include="Graph\Builtin\IntGraph.cs" />
+        <Compile Include="Graph\Builtin\BooleanGraph.cs" />
+        <Compile Include="Graph\Builtin\DecimalGraph.cs" />
+        <Compile Include="Graph\Builtin\DoubleGraph.cs" />
+        <Compile Include="Graph\Builtin\Int32Graph.cs" />
+        <Compile Include="Graph\Builtin\SingleGraph.cs" />
+        <Compile Include="Graph\Builtin\StringGraph.cs" />
+        <Compile Include="Graph\Builtin\ValueGraph.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\Event\UpdaterGraph.cs" />
         <Compile Include="Graph\Generative\CreateInstanceGraph.cs" />

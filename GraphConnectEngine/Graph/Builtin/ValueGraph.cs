@@ -3,27 +3,26 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Builtin
 {
-    public class IntGraph : GraphBase
+    public abstract class ValueGraph<T> : GraphBase
     {
-        public int Number = 0;
+        public T Value;
 
-        public IntGraph(NodeConnector connector) : base(connector)
+        public ValueGraph(NodeConnector connector,T defaultValue) : base(connector)
         {
-            AddItemNode(new OutItemNode(this,typeof(int),0));
+            Value = defaultValue;
+            AddItemNode(new OutItemNode(this, typeof(T), 0));
         }
-
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            results = new object[] {Number};
+            results = new object[] {Value};
             nextNode = OutProcessNode;
             return true;
         }
 
         public override string GetGraphName()
         {
-            return "Int Graph";
+            return typeof(T).Name + " Graph";
         }
-
     }
 }
