@@ -51,6 +51,7 @@
         <Compile Include="Graph\Builtin\StringGraph.cs" />
         <Compile Include="Graph\Builtin\ValueGraph.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
+        <Compile Include="Graph\Event\ProcessSenderGraph.cs" />
         <Compile Include="Graph\Event\UpdaterGraph.cs" />
         <Compile Include="Graph\Generative\CreateInstanceGraph.cs" />
         <Compile Include="Graph\Generative\GenerativeGraph.cs" />

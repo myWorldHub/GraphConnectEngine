@@ -3,7 +3,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Event
 {
-    public class UpdaterGraph : GraphBase
+    public class UpdaterGraph : ProcessSenderGraph
     {
 
         public enum Type
@@ -49,7 +49,7 @@ namespace GraphConnectEngine.Graph.Event
             
             if (IntervalType == Type.Update)
             {
-                OutProcessNode.CallProcess(ProcessCallArgs.Fire(GetHashCode()));
+                Fire();
             }
             else
             {
@@ -60,7 +60,7 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    OutProcessNode.CallProcess(ProcessCallArgs.Fire(GetHashCode()));
+                    Fire();
                 }
             }
         }
@@ -75,11 +75,6 @@ namespace GraphConnectEngine.Graph.Event
         public override string GetGraphName()
         {
             return "Updater Graph";
-        }
-        
-        public override bool IsConnectedInProcessNode()
-        {
-            return false;
         }
     }
 }
