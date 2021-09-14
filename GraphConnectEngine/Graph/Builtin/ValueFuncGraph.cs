@@ -3,19 +3,28 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Builtin
 {
-    public class ValueGraph<T> : GraphBase
+    public class ValueFuncGraph<T> : GraphBase
     {
-        public T Value;
+        public delegate bool ValueFunc(out T result);
+        
+        private ValueFunc _valueFunc;
 
-        public ValueGraph(NodeConnector connector,T defaultValue) : base(connector)
+        public ValueFuncGraph(NodeConnector connector, ValueFunc valueFunc) : base(connector)
         {
-            Value = defaultValue;
+            _valueFunc = valueFunc;
             AddItemNode(new OutItemNode(this, typeof(T), 0));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            results = new object[] {Value};
+            if (!_valueFunc(out T result))
+            {
+                results = null;
+                nextNode = null;
+                return false;
+            }
+
+            results = new object[] {result};
             nextNode = OutProcessNode;
             return true;
         }
