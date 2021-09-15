@@ -41,15 +41,6 @@ namespace GraphConnectEngine.Graph.Operator
                     GetOutItemNode(0).SetItemType(_resultType);
                 }
             };
-
-            i1.OnDisconnect += (_, __) =>
-            {
-                GetOutItemNode(1).SetItemType(typeof(void));
-            };
-            i2.OnDisconnect += (_, __) =>
-            {
-                GetOutItemNode(2).SetItemType(typeof(void));
-            };
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
