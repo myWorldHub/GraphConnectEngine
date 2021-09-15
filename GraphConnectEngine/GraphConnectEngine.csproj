@@ -41,6 +41,7 @@
         <Compile Include="Core\GraphBase.cs" />
         <Compile Include="Core\GraphEngineLogger.cs" />
         <Compile Include="Core\INodeStatusListener.cs" />
+        <Compile Include="Core\OperatorChecker.cs" />
         <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
         <Compile Include="Graph\Builtin\ValueFuncGraph.cs" />
