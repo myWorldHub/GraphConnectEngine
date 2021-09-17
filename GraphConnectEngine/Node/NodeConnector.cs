@@ -5,15 +5,18 @@ using GraphConnectEngine.Core;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
-    /// GraphParentResolver同時がどのように繋がっているか管理するためのもの
-    /// GraphParentResolverから触るもので、普通触らない
-    ///
-    /// ConnectNode => IsAttachableGraphType => CanAttach => Register => OnConnect
+    /// GraphParentResolver同士がどのように繋がっているか管理するためのもの
     /// 
+    /// ConnectNode => IsAttachableGraphType => CanAttach => Register => OnConnect
     /// </summary>
     public class NodeConnector
     {
 
+        public EventHandler<NodeConnectEventArgs> OnConnect;
+        
+        public EventHandler<NodeConnectEventArgs> OnDisonnect;
+
+        ///
         private readonly Dictionary<GraphParentResolver, List<GraphParentResolver>> _dict = new Dictionary<GraphParentResolver, List<GraphParentResolver>>();
 
         /// <summary>
@@ -192,14 +195,23 @@ namespace GraphConnectEngine.Node
             Register(node1,node2);
             Register(node2,node1);
             
+            //TODO 下のイベントたちもsenderをつける
+            OnConnect.Invoke(node1,new NodeConnectEventArgs()
+            {
+                SenderNode = node1,
+                OtherNode = node2
+            });
+            
             //イベント発火
             node1.InvokeConnectEvent(new NodeConnectEventArgs()
             {
+                SenderNode = node1,
                 OtherNode = node2
             });
             
             node2.InvokeConnectEvent(new NodeConnectEventArgs()
             {
+                SenderNode = node2,
                 OtherNode = node1
             });
 
@@ -230,14 +242,22 @@ namespace GraphConnectEngine.Node
             Remove(node1,node2);
             Remove(node2,node1);
             
+            OnDisonnect.Invoke(node1, new NodeConnectEventArgs()
+            {
+                SenderNode = node1,
+                OtherNode = node2
+            });
+            
             //イベント発火
             node1.InvokeDisconnectEvent(new NodeConnectEventArgs()
             {
+                SenderNode = node1,
                 OtherNode = node2
             });
             
             node2.InvokeDisconnectEvent(new NodeConnectEventArgs()
             {
+                SenderNode = node2,
                 OtherNode = node1
             });
             
