@@ -11,8 +11,8 @@ namespace GraphConnectEngine.Graph
 
         public DebugTextGraph(NodeConnector connector,Func<string,bool> updateText) : base(connector)
         {
-            AddItemNode(new InItemNode(this, typeof(object)));
-            AddItemNode(new OutItemNode(this, typeof(string),1));
+            AddNode(new InItemNode(this, typeof(object)));
+            AddNode(new OutItemNode(this, typeof(string),1));
             _updateText = updateText;
         }
 

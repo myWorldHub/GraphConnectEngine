@@ -18,6 +18,8 @@ namespace GraphConnectEngine.Node
         
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
+        public event EventHandler<EventArgs> OnDispose; 
+        
 
         private bool _isDisposed = false;
 
@@ -71,6 +73,8 @@ namespace GraphConnectEngine.Node
             {
                 _isDisposed = true;
                 Connector.DisconnectAllNode(this);
+
+                OnDispose?.Invoke(this,new EventArgs());
             }
         }
     }

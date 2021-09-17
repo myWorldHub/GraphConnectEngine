@@ -4,16 +4,25 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Core
 {
-    public abstract class GraphBase
+    public abstract class GraphBase : IDisposable
     {
 
-        public readonly InProcessNode InProcessNode;
-        public readonly OutProcessNode OutProcessNode;
+        public InProcessNode InProcessNode
+        {
+            get => _inProcessNodes[0];
+        }
+
+        public OutProcessNode OutProcessNode
+        {
+            get => _outProcessNodes[0];
+        }
 
         private Tuple<ProcessCallArgs, bool, object[]> _cache;
 
         private List<InItemNode> _inItemNodes;
         private List<OutItemNode> _outItemNodes;
+        private List<InProcessNode> _inProcessNodes;
+        private List<OutProcessNode> _outProcessNodes;
 
         public readonly NodeConnector Connector;
 
@@ -26,11 +35,13 @@ namespace GraphConnectEngine.Core
         {
             Connector = connector;
             
-            InProcessNode = new InProcessNode(this);
-            OutProcessNode = new OutProcessNode(this);
-
             _inItemNodes = new List<InItemNode>();
             _outItemNodes = new List<OutItemNode>();
+            _inProcessNodes = new List<InProcessNode>();
+            _outProcessNodes = new List<OutProcessNode>();
+            
+            AddNode(new InProcessNode(this));
+            AddNode(new OutProcessNode(this));
         }
 
         public bool Invoke(object sender,ProcessCallArgs args,out object[] results)
@@ -175,14 +186,24 @@ namespace GraphConnectEngine.Core
         /// <returns></returns>
         public abstract string GetGraphName();
 
-        protected void AddItemNode(InItemNode itemNode)
+        protected void AddNode(InItemNode node)
         {
-            _inItemNodes.Add(itemNode);
+            _inItemNodes.Add(node);
         }
 
-        protected void AddItemNode(OutItemNode itemNode)
+        protected void AddNode(OutItemNode node)
         {
-            _outItemNodes.Add(itemNode);
+            _outItemNodes.Add(node);
+        }
+
+        protected void AddNode(InProcessNode node)
+        {
+            _inProcessNodes.Add(node);
+        }
+
+        protected void AddNode(OutProcessNode node)
+        {
+            _outProcessNodes.Add(node);
         }
 
         public InItemNode GetInItemNode(int index)
@@ -193,6 +214,16 @@ namespace GraphConnectEngine.Core
         public OutItemNode GetOutItemNode(int index)
         {
             return _outItemNodes[index];
+        }
+        
+        public InProcessNode GetInProcessNode(int index)
+        {
+            return _inProcessNodes[index];
+        }
+
+        public OutProcessNode GetOutProcessNode(int index)
+        {
+            return _outProcessNodes[index];
         }
 
         public InItemNode[] GetInItemNodes()
@@ -205,6 +236,16 @@ namespace GraphConnectEngine.Core
             return _outItemNodes.ToArray();
         }
 
+        public InProcessNode[] GetInProcessNodes()
+        {
+            return _inProcessNodes.ToArray();
+        }
+
+        public OutProcessNode[] GetOutProcessNodes()
+        {
+            return _outProcessNodes.ToArray();
+        }
+
         /// <summary>
         /// InProcessNodeが繋がれているかどうかを確認する
         /// </summary>
@@ -213,7 +254,18 @@ namespace GraphConnectEngine.Core
         {
             return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out var _);
         }
-        
+
+        public void Dispose()
+        {
+            foreach (var n in GetInItemNodes())
+                n.Dispose();
+            foreach (var n in GetOutItemNodes())
+                n.Dispose();
+            foreach (var n in GetInProcessNodes())
+                n.Dispose();
+            foreach (var n in GetOutProcessNodes())
+                n.Dispose();
+        }
     }
 
     public class GraphStatusEventArgs : EventArgs

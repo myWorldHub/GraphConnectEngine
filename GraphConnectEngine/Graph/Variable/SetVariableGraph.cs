@@ -13,8 +13,8 @@ namespace GraphConnectEngine.Graph.Variable
 
         public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            AddItemNode(new InItemNode(this, typeof(void)));
-            AddItemNode(new OutItemNode(this,typeof(void),0));
+            AddNode(new InItemNode(this, typeof(void)));
+            AddNode(new OutItemNode(this,typeof(void),0));
         }
         
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)

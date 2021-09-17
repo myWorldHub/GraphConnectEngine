@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graph.Variable
 
         public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            AddItemNode(new OutItemNode(this, typeof(void), 0));
+            AddNode(new OutItemNode(this, typeof(void), 0));
         }
 
 

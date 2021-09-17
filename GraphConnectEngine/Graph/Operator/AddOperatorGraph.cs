@@ -15,12 +15,12 @@ namespace GraphConnectEngine.Graph.Operator
 
         public AddGraph(NodeConnector connector) : base(connector)
         {
-            AddItemNode(new InItemNode(this, typeof(object),(t1,t2) => TypeChecker(0,t1,t2)));
-            AddItemNode(new InItemNode(this, typeof(object), (t1, t2) => TypeChecker(1, t1, t2)));
+            AddNode(new InItemNode(this, typeof(object),(t1,t2) => TypeChecker(0,t1,t2)));
+            AddNode(new InItemNode(this, typeof(object), (t1, t2) => TypeChecker(1, t1, t2)));
 
-            AddItemNode(new OutItemNode(this, typeof(void), 0));
-            AddItemNode(new OutItemNode(this, typeof(void), 1));
-            AddItemNode(new OutItemNode(this, typeof(void), 2));
+            AddNode(new OutItemNode(this, typeof(void), 0));
+            AddNode(new OutItemNode(this, typeof(void), 1));
+            AddNode(new OutItemNode(this, typeof(void), 2));
 
             var i1 = GetInItemNode(0);
             var i2 = GetInItemNode(1);

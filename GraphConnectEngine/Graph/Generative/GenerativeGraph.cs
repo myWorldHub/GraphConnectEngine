@@ -19,7 +19,7 @@ namespace GraphConnectEngine.Graph.Generative
             MethodInfo = methodInfo;
 
             //Return Node
-            AddItemNode(new OutItemNode(this, MethodInfo.ReturnType, 0));
+            AddNode(new OutItemNode(this, MethodInfo.ReturnType, 0));
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
@@ -27,10 +27,10 @@ namespace GraphConnectEngine.Graph.Generative
             {
                 ParameterInfo parameterInfo = Parameters[i];
                 InItemNode iNode = new InItemNode(this, parameterInfo.ParameterType);
-                AddItemNode(iNode);
+                AddNode(iNode);
                 
                 OutItemNode oNode = new OutItemNode(this, parameterInfo.ParameterType, i+1);
-                AddItemNode(oNode);
+                AddNode(oNode);
             }
         }
         
