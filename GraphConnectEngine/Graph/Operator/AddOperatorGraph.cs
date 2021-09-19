@@ -25,17 +25,17 @@ namespace GraphConnectEngine.Graph.Operator
             var i1 = GetInItemNode(0);
             var i2 = GetInItemNode(1);
 
-            i1.OnConnect += (_, __) =>
+            i1.OnConnect += (_, args) =>
             {
-                GetOutItemNode(1).SetItemType(i1.GetItemType());
+                GetOutItemNode(1).SetItemType(((OutItemNode)args.OtherNode).GetItemType());
                 if (Connector.TryGetAnotherNode(i2, out OutItemNode oi))
                 {
                     GetOutItemNode(0).SetItemType(_resultType);
                 }
             };
-            i2.OnConnect += (_, __) =>
+            i2.OnConnect += (_, args) =>
             {
-                GetOutItemNode(2).SetItemType(i2.GetItemType());
+                GetOutItemNode(2).SetItemType(((OutItemNode)args.OtherNode).GetItemType());
                 if (Connector.TryGetAnotherNode(i1, out OutItemNode oi))
                 {
                     GetOutItemNode(0).SetItemType(_resultType);
@@ -59,7 +59,7 @@ namespace GraphConnectEngine.Graph.Operator
                 return false;
             }
 
-            if (!OperatorChecker.TryAddition(a, b, out object r))
+            if (!PrimitiveOperatorChecker.TryAddition(a, b, out object r))
             {
                 results = null;
                 nextNode = null;
@@ -90,12 +90,9 @@ namespace GraphConnectEngine.Graph.Operator
             var n1 = sender == 1 ? onode1 : onode2;
             
             //TODO プリミティブ型のみ
-            var d1 = Activator.CreateInstance(n1.GetItemType());
-            var d2 = Activator.CreateInstance(anotherType);
-
-            var b = OperatorChecker.TryAddition(d1, d2, out object result);
-
-            _resultType = result != null ? result.GetType() : typeof(void);
+            var b = PrimitiveOperatorChecker.CheckAddition(n1.GetItemType(), anotherType, out Type result);
+            
+            _resultType = result ?? typeof(void);
             
             return b;
         }

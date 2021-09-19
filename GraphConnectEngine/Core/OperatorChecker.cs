@@ -1,6 +1,7 @@
 using System;
-public class OperatorChecker
+public class PrimitiveOperatorChecker
 {
+    
     public static bool TryEquality(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -801,6 +802,811 @@ public class OperatorChecker
         if(obj1 is String && obj2 is String)
         {
             result = (String)obj1 == (String)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckEquality(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Boolean) && type2 == typeof(Boolean))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(String))
+        {
+            result = typeof(System.Boolean);
             return true;
         }
     
@@ -1621,6 +2427,817 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckInequality(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Boolean) && type2 == typeof(Boolean))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(String))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryGreaterThan(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -2415,6 +4032,805 @@ public class OperatorChecker
         if(obj1 is Decimal && obj2 is Decimal)
         {
             result = (Decimal)obj1 > (Decimal)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckGreaterThan(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
             return true;
         }
     
@@ -3223,6 +5639,805 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckLessThan(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryGreaterThanOrEqual(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -4017,6 +7232,805 @@ public class OperatorChecker
         if(obj1 is Decimal && obj2 is Decimal)
         {
             result = (Decimal)obj1 >= (Decimal)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckGreaterThanOrEqual(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
             return true;
         }
     
@@ -4825,6 +8839,805 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckLessThanOrEqual(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryBitwiseAnd(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -5278,6 +10091,457 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckBitwiseAnd(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Boolean) && type2 == typeof(Boolean))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryBitwiseOr(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -5586,6 +10850,319 @@ public class OperatorChecker
         if(obj1 is Char && obj2 is Char)
         {
             result = (Char)obj1 | (Char)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckBitwiseOr(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Boolean) && type2 == typeof(Boolean))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
             return true;
         }
     
@@ -6550,6 +12127,961 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckAddition(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Boolean) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Boolean))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Byte))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(SByte))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Int16))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Int32))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Int64))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Char))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Double))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Single))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        if(type1 == typeof(String) && type2 == typeof(String))
+        {
+            result = typeof(System.String);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TrySubtraction(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -7338,6 +13870,799 @@ public class OperatorChecker
         if(obj1 is Decimal && obj2 is Decimal)
         {
             result = (Decimal)obj1 - (Decimal)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckSubtraction(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
             return true;
         }
     
@@ -8140,6 +15465,799 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckDivision(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryModulus(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -8928,6 +17046,799 @@ public class OperatorChecker
         if(obj1 is Decimal && obj2 is Decimal)
         {
             result = (Decimal)obj1 % (Decimal)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckModulus(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
             return true;
         }
     
@@ -9724,6 +18635,793 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckMultiply(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Char))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Double) && type2 == typeof(Single))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Char))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type1 == typeof(Single) && type2 == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Char))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        if(type1 == typeof(Decimal) && type2 == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryLeftShift(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -10057,6 +19755,337 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckLeftShift(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryRightShift(object obj1, object obj2, out object result)
     {
         Type type1 = obj1.GetType();
@@ -10383,6 +20412,337 @@ public class OperatorChecker
         if(obj1 is Char && obj2 is Char)
         {
             result = (Char)obj1 >> (Char)obj2;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckRightShift(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
             return true;
         }
     
@@ -10843,6 +21203,457 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckExclusiveOr(Type type1, Type type2, out Type result)
+    {
+    
+        if(type1 == typeof(Boolean) && type2 == typeof(Boolean))
+        {
+            result = typeof(System.Boolean);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Byte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(SByte) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt16) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int32) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt32) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Int64) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Byte))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(UInt64) && type2 == typeof(Char))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type1 == typeof(Char) && type2 == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryUnaryNegation(object obj1, out object result)
     {
         Type type1 = obj1.GetType();
@@ -10910,6 +21721,79 @@ public class OperatorChecker
         if(obj1 is Decimal dec)
         {
             result = -dec;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckUnaryNegation(Type type, out Type result)
+    {
+    
+        if(type == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt32))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
             return true;
         }
     
@@ -10997,6 +21881,85 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckUnaryPlus(Type type, out Type result)
+    {
+    
+        if(type == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type == typeof(Char))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryOnesComplement(object obj1, out object result)
     {
         Type type1 = obj1.GetType();
@@ -11052,6 +22015,67 @@ public class OperatorChecker
         if(obj1 is Char chr)
         {
             result = ~chr;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckOnesComplement(Type type, out Type result)
+    {
+    
+        if(type == typeof(Byte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(SByte))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Int16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt16))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type == typeof(Char))
+        {
+            result = typeof(System.Int32);
             return true;
         }
     
@@ -11139,6 +22163,85 @@ public class OperatorChecker
         return false;
     }
     
+    public static bool CheckIncrement(Type type, out Type result)
+    {
+    
+        if(type == typeof(Byte))
+        {
+            result = typeof(System.Byte);
+            return true;
+        }
+    
+        if(type == typeof(SByte))
+        {
+            result = typeof(System.SByte);
+            return true;
+        }
+    
+        if(type == typeof(Int16))
+        {
+            result = typeof(System.Int16);
+            return true;
+        }
+    
+        if(type == typeof(UInt16))
+        {
+            result = typeof(System.UInt16);
+            return true;
+        }
+    
+        if(type == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type == typeof(Char))
+        {
+            result = typeof(System.Char);
+            return true;
+        }
+    
+        if(type == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
     public static bool TryDecrement(object obj1, out object result)
     {
         Type type1 = obj1.GetType();
@@ -11212,6 +22315,85 @@ public class OperatorChecker
         if(obj1 is Decimal dec)
         {
             result = --dec;
+            return true;
+        }
+    
+        result = null;
+        return false;
+    }
+    
+    public static bool CheckDecrement(Type type, out Type result)
+    {
+    
+        if(type == typeof(Byte))
+        {
+            result = typeof(System.Byte);
+            return true;
+        }
+    
+        if(type == typeof(SByte))
+        {
+            result = typeof(System.SByte);
+            return true;
+        }
+    
+        if(type == typeof(Int16))
+        {
+            result = typeof(System.Int16);
+            return true;
+        }
+    
+        if(type == typeof(UInt16))
+        {
+            result = typeof(System.UInt16);
+            return true;
+        }
+    
+        if(type == typeof(Int32))
+        {
+            result = typeof(System.Int32);
+            return true;
+        }
+    
+        if(type == typeof(UInt32))
+        {
+            result = typeof(System.UInt32);
+            return true;
+        }
+    
+        if(type == typeof(Int64))
+        {
+            result = typeof(System.Int64);
+            return true;
+        }
+    
+        if(type == typeof(UInt64))
+        {
+            result = typeof(System.UInt64);
+            return true;
+        }
+    
+        if(type == typeof(Char))
+        {
+            result = typeof(System.Char);
+            return true;
+        }
+    
+        if(type == typeof(Double))
+        {
+            result = typeof(System.Double);
+            return true;
+        }
+    
+        if(type == typeof(Single))
+        {
+            result = typeof(System.Single);
+            return true;
+        }
+    
+        if(type == typeof(Decimal))
+        {
+            result = typeof(System.Decimal);
             return true;
         }
     
