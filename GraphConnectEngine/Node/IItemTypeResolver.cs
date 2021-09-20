@@ -12,8 +12,9 @@ namespace GraphConnectEngine.Node
         Type GetItemType();
 
         void SetItemType(Type type,bool tryReconnect = true);
-
     }
+    
+    public delegate bool DefaultItemGetter(out object result);
 
     public class TypeChangeEventArgs : EventArgs
     {

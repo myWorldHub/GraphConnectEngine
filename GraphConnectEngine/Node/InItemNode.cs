@@ -13,6 +13,8 @@ namespace GraphConnectEngine.Node
 
         private Func<Type, Type,bool> _typeCheckOnAtatch;
 
+        public DefaultItemGetter DefaultItemGetter;
+
         public InItemNode(GraphBase parentGraph, Type itemType, Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
         {
             _itemType = itemType;
@@ -112,8 +114,16 @@ namespace GraphConnectEngine.Node
         {
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
-                if (node.TryGetValue<T>(args, out result))
+                if (node.TryGetValue(args, out result))
                 {
+                    return true;
+                }
+            }
+            else
+            {
+                if (DefaultItemGetter(out var r) && r is T rt)
+                {
+                    result = rt;
                     return true;
                 }
             }

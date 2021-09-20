@@ -15,8 +15,8 @@ namespace GraphConnectEngine.Graph.Operator
         {
             _operator = midOperator;
             
-            AddNode(new InItemNode(this, typeof(object), (t1, t2) => TypeChecker(0, t1, t2)));
-            AddNode(new InItemNode(this, typeof(object), (t1, t2) => TypeChecker(1, t1, t2)));
+            AddNode(new InItemNode(this, typeof(object), typeCheckOnAtatchFunc:(t1, t2) => TypeChecker(0, t1, t2)));
+            AddNode(new InItemNode(this, typeof(object), typeCheckOnAtatchFunc: (t1, t2) => TypeChecker(1, t1, t2)));
 
             AddNode(new OutItemNode(this, typeof(void), 0));
             AddNode(new OutItemNode(this, typeof(void), 1));
