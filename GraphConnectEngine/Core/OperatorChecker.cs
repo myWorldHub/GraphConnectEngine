@@ -79,6 +79,18 @@ namespace GraphConnectEngine.Core
                     if (isPrimitive)
                         return PrimitiveOperatorChecker.CheckAddition(type1, type2, out resultType,out func);
                     break;
+                case MidOperator.op_Equality:
+                    if (isPrimitive)
+                        return PrimitiveOperatorChecker.CheckEquality(type1, type2, out resultType, out func);
+                    break;
+                case MidOperator.op_GreaterThan:
+                    if (isPrimitive)
+                        return PrimitiveOperatorChecker.CheckGreaterThan(type1, type2, out resultType, out func);
+                    break;
+                case MidOperator.op_Modulus:
+                    if (isPrimitive)
+                        return PrimitiveOperatorChecker.CheckModulus(type1, type2, out resultType, out func);
+                    break;
             }
 
             foreach (var ex in MidExtention.Values)
