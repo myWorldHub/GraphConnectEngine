@@ -47,7 +47,7 @@ namespace GraphConnectEngine.Graph.Operator
             (senderNode == i1 ? o1 : o2).SetItemType(connectedNode.GetItemType());
             if (Connector.TryGetAnotherNode(otherInNode, out OutItemNode oi))
             {
-                if (OperatorChecker.CheckOperator(_operator, i1.GetItemType(), i2.GetItemType(),
+                if (OperatorChecker.CheckOperator(_operator, o1.GetItemType(), o2.GetItemType(),
                     out Type resultType, out _computeFunc))
                 {
                     resultNode.SetItemType(resultType);
@@ -55,7 +55,7 @@ namespace GraphConnectEngine.Graph.Operator
                 else
                 {
                     _computeFunc = null;
-                    resultNode.SetItemType(resultType);
+                    resultNode.SetItemType(typeof(void));
                 }
             }
         }
@@ -107,7 +107,7 @@ namespace GraphConnectEngine.Graph.Operator
                 return true;
 
             //片方繋がってる
-            var b = OperatorChecker.CheckOperator(OperatorChecker.MidOperator.op_Addition,
+            var b = OperatorChecker.CheckOperator(_operator,
                 onode2.GetItemType(), anotherType, out Type _, out var __);
 
             return b;
