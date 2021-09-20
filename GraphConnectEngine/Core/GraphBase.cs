@@ -7,24 +7,20 @@ namespace GraphConnectEngine.Core
     public abstract class GraphBase : IDisposable
     {
 
-        public InProcessNode InProcessNode
-        {
-            get => _inProcessNodes[0];
-        }
+        public readonly NodeConnector Connector;
 
-        public OutProcessNode OutProcessNode
-        {
-            get => _outProcessNodes[0];
-        }
+        /// <summary>
+        /// Nodes
+        /// </summary>
+        public InProcessNode InProcessNode => InProcessNodes[0];
+        public OutProcessNode OutProcessNode => OutProcessNodes[0];
+
+        public readonly List<InProcessNode> InProcessNodes;
+        public readonly List<OutProcessNode> OutProcessNodes;
+        public readonly List<InItemNode> InItemNodes;
+        public readonly List<OutItemNode> OutItemNodes;
 
         private Tuple<ProcessCallArgs, bool, object[]> _cache;
-
-        private List<InItemNode> _inItemNodes;
-        private List<OutItemNode> _outItemNodes;
-        private List<InProcessNode> _inProcessNodes;
-        private List<OutProcessNode> _outProcessNodes;
-
-        public readonly NodeConnector Connector;
 
         /// <summary>
         /// 実行ステータスのリス名
@@ -34,11 +30,11 @@ namespace GraphConnectEngine.Core
         public GraphBase(NodeConnector connector)
         {
             Connector = connector;
-            
-            _inItemNodes = new List<InItemNode>();
-            _outItemNodes = new List<OutItemNode>();
-            _inProcessNodes = new List<InProcessNode>();
-            _outProcessNodes = new List<OutProcessNode>();
+
+            InProcessNodes = new List<InProcessNode>();
+            OutProcessNodes = new List<OutProcessNode>();
+            InItemNodes = new List<InItemNode>();
+            OutItemNodes = new List<OutItemNode>();
             
             AddNode(new InProcessNode(this));
             AddNode(new OutProcessNode(this));
@@ -188,62 +184,22 @@ namespace GraphConnectEngine.Core
 
         protected void AddNode(InItemNode node)
         {
-            _inItemNodes.Add(node);
+            InItemNodes.Add(node);
         }
 
         protected void AddNode(OutItemNode node)
         {
-            _outItemNodes.Add(node);
+            OutItemNodes.Add(node);
         }
 
         protected void AddNode(InProcessNode node)
         {
-            _inProcessNodes.Add(node);
+            InProcessNodes.Add(node);
         }
 
         protected void AddNode(OutProcessNode node)
         {
-            _outProcessNodes.Add(node);
-        }
-
-        public InItemNode GetInItemNode(int index)
-        {
-            return _inItemNodes[index];
-        }
-
-        public OutItemNode GetOutItemNode(int index)
-        {
-            return _outItemNodes[index];
-        }
-        
-        public InProcessNode GetInProcessNode(int index)
-        {
-            return _inProcessNodes[index];
-        }
-
-        public OutProcessNode GetOutProcessNode(int index)
-        {
-            return _outProcessNodes[index];
-        }
-
-        public InItemNode[] GetInItemNodes()
-        {
-            return _inItemNodes.ToArray();
-        }
-
-        public OutItemNode[] GetOutItemNodes()
-        {
-            return _outItemNodes.ToArray();
-        }
-
-        public InProcessNode[] GetInProcessNodes()
-        {
-            return _inProcessNodes.ToArray();
-        }
-
-        public OutProcessNode[] GetOutProcessNodes()
-        {
-            return _outProcessNodes.ToArray();
+            OutProcessNodes.Add(node);
         }
 
         /// <summary>
@@ -257,13 +213,13 @@ namespace GraphConnectEngine.Core
 
         public void Dispose()
         {
-            foreach (var n in GetInItemNodes())
+            foreach (var n in InProcessNodes)
                 n.Dispose();
-            foreach (var n in GetOutItemNodes())
+            foreach (var n in OutProcessNodes)
                 n.Dispose();
-            foreach (var n in GetInProcessNodes())
+            foreach (var n in InItemNodes)
                 n.Dispose();
-            foreach (var n in GetOutProcessNodes())
+            foreach (var n in OutItemNodes)
                 n.Dispose();
         }
     }

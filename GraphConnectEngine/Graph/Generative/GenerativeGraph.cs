@@ -46,7 +46,7 @@ namespace GraphConnectEngine.Graph.Generative
             for (int i = 0; i < Parameters.Length; i++)
             {
                 ParameterInfo parameterInfo = Parameters[i];
-                if (GetInItemNode(i).GetItemFromConnectedNode(args, out object oitem))
+                if (InItemNodes[i].GetItemFromConnectedNode(args, out object oitem))
                 {
                     param[i] = oitem;
                     continue;

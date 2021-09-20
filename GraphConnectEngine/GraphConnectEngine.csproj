@@ -42,6 +42,7 @@
         <Compile Include="Core\GraphEngineLogger.cs" />
         <Compile Include="Core\INodeStatusListener.cs" />
         <Compile Include="Core\OperatorChecker.cs" />
+        <Compile Include="Core\PrimitiveOperatorChecker.cs" />
         <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
         <Compile Include="Graph\Builtin\ValueFuncGraph.cs" />
@@ -53,10 +54,11 @@
         <Compile Include="Graph\Generative\GenerativeGraph.cs" />
         <Compile Include="Graph\Generative\InstanceMethodGraph.cs" />
         <Compile Include="Graph\Generative\StaticMethodGraph.cs" />
-        <Compile Include="Graph\Operator\AddOperatorGraph.cs" />
+        <Compile Include="Graph\Operator\AdditionOperatorGraph.cs" />
         <Compile Include="Graph\Operator\EqualOperatorGraph.cs" />
         <Compile Include="Graph\Operator\GreaterThanOperatorGraph.cs" />
         <Compile Include="Graph\Operator\ModulusOperatorGraph.cs" />
+        <Compile Include="Graph\Operator\MidOperatorGraph.cs" />
         <Compile Include="Graph\Statement\IfStatementGraph.cs" />
         <Compile Include="Graph\Variable\GetVariableGraph.cs" />
         <Compile Include="Graph\Variable\SetVariableGraph.cs" />
