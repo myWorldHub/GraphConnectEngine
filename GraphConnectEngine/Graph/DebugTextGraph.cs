@@ -11,14 +11,14 @@ namespace GraphConnectEngine.Graph
 
         public DebugTextGraph(NodeConnector connector,Func<string,bool> updateText) : base(connector)
         {
-            AddItemNode(new InItemNode(this, typeof(object)));
-            AddItemNode(new OutItemNode(this, typeof(string),1));
+            AddNode(new InItemNode(this, typeof(object)));
+            AddNode(new OutItemNode(this, typeof(string),1));
             _updateText = updateText;
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (!GetInItemNode(0).GetItemFromConnectedNode(args, out object obj))
+            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object obj))
             {
                 nextNode = null;
                 results = null;

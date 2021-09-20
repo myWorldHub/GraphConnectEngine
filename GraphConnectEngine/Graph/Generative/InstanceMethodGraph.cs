@@ -11,15 +11,13 @@ namespace GraphConnectEngine.Graph.Generative
             if (methodInfo.IsStatic || methodInfo.DeclaringType == null || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;
 
-            AddItemNode(new InItemNode(this,methodInfo.DeclaringType));
+            AddNode(new InItemNode(this,methodInfo.DeclaringType));
         }
 
         protected override bool InvokeMethod(ProcessCallArgs args,object[] param,out object result)
         {
-
-            var inodes = GetInItemNodes();
             
-            if (!inodes[inodes.Length-1].GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
+            if (!InItemNodes[InItemNodes.Count-1].GetItemFromConnectedNode(args, out object instance) || instance.GetType() != MethodInfo.DeclaringType)
             {
                 result = null;
                 return false; 

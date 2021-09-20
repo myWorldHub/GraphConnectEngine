@@ -13,8 +13,8 @@ namespace GraphConnectEngine.Graph.Variable
 
         public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            AddItemNode(new InItemNode(this, typeof(void)));
-            AddItemNode(new OutItemNode(this,typeof(void),0));
+            AddNode(new InItemNode(this, typeof(void)));
+            AddNode(new OutItemNode(this,typeof(void),0));
         }
         
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
@@ -26,7 +26,7 @@ namespace GraphConnectEngine.Graph.Variable
                 return false;
             }
             
-            if (GetInItemNode(0).GetItemFromConnectedNode(args, out object result))
+            if (InItemNodes[0].GetItemFromConnectedNode(args, out object result))
             {
                 if (Holder.UpdateItem(VariableName, result))
                 {
@@ -54,15 +54,15 @@ namespace GraphConnectEngine.Graph.Variable
             if (Holder?.HasItem(VariableName) ?? false)
             {
                 var type = Holder.GetItemType(VariableName);
-                GetInItemNode(0).SetItemType(type);
-                GetOutItemNode(0).SetItemType(type);
+                InItemNodes[0].SetItemType(type);
+                OutItemNodes[0].SetItemType(type);
                 
                 OnVariableFound?.Invoke(this, new EventArgs());
             }
             else
             {
-                GetInItemNode(0).SetItemType(typeof(void));
-                GetOutItemNode(0).SetItemType(typeof(void));
+                InItemNodes[0].SetItemType(typeof(void));
+                OutItemNodes[0].SetItemType(typeof(void));
                 
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
@@ -73,15 +73,15 @@ namespace GraphConnectEngine.Graph.Variable
             if (Holder?.HasItem(VariableName) ?? false)
             {
                 var type = Holder.GetItemType(VariableName);
-                GetInItemNode(0).SetItemType(type);
-                GetOutItemNode(0).SetItemType(type);
+                InItemNodes[0].SetItemType(type);
+                OutItemNodes[0].SetItemType(type);
                 
                 OnVariableFound?.Invoke(this, new EventArgs());
             }
             else
             {
-                GetInItemNode(0).SetItemType(typeof(void));
-                GetOutItemNode(0).SetItemType(typeof(void));
+                InItemNodes[0].SetItemType(typeof(void));
+                OutItemNodes[0].SetItemType(typeof(void));
                 
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }

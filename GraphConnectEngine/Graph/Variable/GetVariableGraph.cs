@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graph.Variable
 
         public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            AddItemNode(new OutItemNode(this, typeof(void), 0));
+            AddNode(new OutItemNode(this, typeof(void), 0));
         }
 
 
@@ -47,12 +47,12 @@ namespace GraphConnectEngine.Graph.Variable
         {
             if (Holder?.HasItem(VariableName) ?? false)
             {
-                GetOutItemNode(0).SetItemType(Holder.GetItemType(VariableName));
+                OutItemNodes[0].SetItemType(Holder.GetItemType(VariableName));
                 OnVariableFound?.Invoke(this,new EventArgs());
             }
             else
             {
-                GetOutItemNode(0).SetItemType(typeof(void));
+                OutItemNodes[0].SetItemType(typeof(void));
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }
@@ -61,12 +61,12 @@ namespace GraphConnectEngine.Graph.Variable
         {
             if (Holder?.HasItem(VariableName) ?? false)
             {
-                GetOutItemNode(0).SetItemType(Holder.GetItemType(VariableName));
+                OutItemNodes[0].SetItemType(Holder.GetItemType(VariableName));
                 OnVariableFound?.Invoke(this, new EventArgs());
             }
             else
             {
-                GetOutItemNode(0).SetItemType(typeof(void));
+                OutItemNodes[0].SetItemType(typeof(void));
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }

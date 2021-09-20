@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -18,8 +19,14 @@ namespace GraphConnectEngine.Node
         
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
+        public event EventHandler<EventArgs> OnDispose;
 
         private bool _isDisposed = false;
+
+        /// <summary>
+        /// なんでも良いデータ
+        /// </summary>
+        public readonly Dictionary<string, object> Args = new Dictionary<string, object>();
 
         public GraphParentResolver(GraphBase parentGraph)
         {
@@ -65,12 +72,14 @@ namespace GraphConnectEngine.Node
         /// 
         /// </summary>
         /// <param name="isDisposing"></param>
-        protected virtual void Dispose(bool isDisposing)
+        protected void Dispose(bool isDisposing)
         {
             if (!_isDisposed)
             {
                 _isDisposed = true;
                 Connector.DisconnectAllNode(this);
+
+                OnDispose?.Invoke(this,new EventArgs());
             }
         }
     }

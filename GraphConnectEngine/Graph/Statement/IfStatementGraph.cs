@@ -5,20 +5,18 @@ namespace GraphConnectEngine.Graph.Statement
 {
     public class IfStatementGraph : GraphBase
     {
-
-        public readonly OutProcessNode FalseOutProcessNode;
         
         public IfStatementGraph(NodeConnector connector) : base(connector)
         {
-            AddItemNode(new InItemNode(this,typeof(bool)));
-            AddItemNode(new OutItemNode(this,typeof(bool),0));
+            AddNode(new InItemNode(this,typeof(bool)));
+            AddNode(new OutItemNode(this,typeof(bool),0));
 
-            FalseOutProcessNode = new OutProcessNode(this);
+            AddNode(new OutProcessNode(this));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
         {
-            if (!GetInItemNode(0).GetItemFromConnectedNode(args, out bool result))
+            if (!InItemNodes[0].GetItemFromConnectedNode(args, out bool result))
             {
                 results = null;
                 nextNode = null;
@@ -26,7 +24,7 @@ namespace GraphConnectEngine.Graph.Statement
             }
 
             results = new object[] {result};
-            nextNode = result ? OutProcessNode : FalseOutProcessNode;
+            nextNode = result ? OutProcessNode : OutProcessNodes[1];
             return true;
         }
 

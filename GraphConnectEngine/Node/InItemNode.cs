@@ -11,9 +11,12 @@ namespace GraphConnectEngine.Node
 
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
-        public InItemNode(GraphBase parentGraph, Type itemType) : base(parentGraph)
+        private Func<Type, Type,bool> _typeCheckOnAtatch;
+
+        public InItemNode(GraphBase parentGraph, Type itemType, Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
         {
             _itemType = itemType;
+            _typeCheckOnAtatch = typeCheckOnAtatchFunc;
         }
 
         public Type GetItemType()
@@ -77,12 +80,29 @@ namespace GraphConnectEngine.Node
                     return false;
                 }
 
-                if (otherItemType != myItemType && !otherItemType.IsSubclassOf(myItemType))
+                //1対1関係
+                if (Connector.GetOtherNodes(this).Length != 0)
                 {
                     return false;
                 }
 
-                return Connector.GetOtherNodes(this).Length == 0;
+                //型チェック
+                if (_typeCheckOnAtatch != null)
+                {
+                    if (!_typeCheckOnAtatch(myItemType, otherItemType))
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (otherItemType != myItemType && !otherItemType.IsSubclassOf(myItemType))
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
             }
 
             return false;
