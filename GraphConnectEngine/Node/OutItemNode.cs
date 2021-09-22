@@ -12,8 +12,11 @@ namespace GraphConnectEngine.Node
 
         private int _resultIndex;
 
-        public OutItemNode(GraphBase parentGraph, Type itemType, int resultIndex) : base(parentGraph)
+        public string Name => (string) Args["Name"];
+
+        public OutItemNode(GraphBase parentGraph, Type itemType, int resultIndex,string name) : base(parentGraph)
         {
+            Args["Name"] = name;
             _resultIndex = resultIndex;
             _itemType = itemType;
         }

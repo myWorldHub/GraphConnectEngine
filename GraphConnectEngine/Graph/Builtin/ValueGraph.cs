@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graph.Builtin
         public ValueGraph(NodeConnector connector,T defaultValue) : base(connector)
         {
             Value = defaultValue;
-            AddNode(new OutItemNode(this, typeof(T), 0));
+            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)

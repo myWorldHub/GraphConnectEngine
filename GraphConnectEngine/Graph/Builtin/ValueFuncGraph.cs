@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Graph.Builtin
         public ValueFuncGraph(NodeConnector connector, ValueFunc valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
-            AddNode(new OutItemNode(this, typeof(T), 0));
+            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)

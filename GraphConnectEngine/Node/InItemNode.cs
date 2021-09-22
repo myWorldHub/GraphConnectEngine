@@ -15,8 +15,11 @@ namespace GraphConnectEngine.Node
 
         public DefaultItemGetter DefaultItemGetter;
 
-        public InItemNode(GraphBase parentGraph, Type itemType, Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
+        public string Name => (string)Args["Name"];
+
+        public InItemNode(GraphBase parentGraph, Type itemType,string name, Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
         {
+            Args["Name"] = name;
             _itemType = itemType;
             _typeCheckOnAtatch = typeCheckOnAtatchFunc;
         }

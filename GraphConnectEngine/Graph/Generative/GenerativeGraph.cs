@@ -19,17 +19,17 @@ namespace GraphConnectEngine.Graph.Generative
             MethodInfo = methodInfo;
 
             //Return Node
-            AddNode(new OutItemNode(this, MethodInfo.ReturnType, 0));
+            AddNode(new OutItemNode(this, MethodInfo.ReturnType, 0,"Result"));
             
             //Parameter
             Parameters = MethodInfo.GetParameters();
             for(int i=0;i<Parameters.Length;i++)
             {
                 ParameterInfo parameterInfo = Parameters[i];
-                InItemNode iNode = new InItemNode(this, parameterInfo.ParameterType);
+                InItemNode iNode = new InItemNode(this, parameterInfo.ParameterType,parameterInfo.Name);
                 AddNode(iNode);
                 
-                OutItemNode oNode = new OutItemNode(this, parameterInfo.ParameterType, i+1);
+                OutItemNode oNode = new OutItemNode(this, parameterInfo.ParameterType, i+1,parameterInfo.Name);
                 AddNode(oNode);
             }
         }
@@ -37,7 +37,8 @@ namespace GraphConnectEngine.Graph.Generative
         /// <summary>
         /// パラメーターにあたるノードからあたいをとってくる
         /// </summary>
-        /// <param name="result">結果</param>
+        /// <param name="args"></param>
+        /// <param name="results">結果</param>
         /// <returns>成功したかどうか</returns>
         private bool TryGetParameterValues(ProcessCallArgs args,out object[] results)
         {
