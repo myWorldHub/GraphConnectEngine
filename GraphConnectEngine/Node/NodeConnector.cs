@@ -313,6 +313,11 @@ namespace GraphConnectEngine.Node
             {
                 Logger.Debug($"Connector : Null");
             }
+
+            if (node is InItemNode || node is OutItemNode)
+            {
+                Logger.Debug($"ItemType : ${((IItemTypeResolver)node).GetItemType().FullName}");
+            }
         }
     }
 }

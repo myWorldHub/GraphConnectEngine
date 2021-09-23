@@ -34,9 +34,9 @@ namespace GraphConnectEngine.Graph.Operator
             //getしておく
             var i1 = InItemNodes[0];
             var i2 = InItemNodes[1];
-            var o1 = OutItemNodes[1];
-            var o2 = OutItemNodes[2];
-            var resultNode = OutItemNodes[0];
+            var o1 = OutItemNodes[0];
+            var o2 = OutItemNodes[1];
+            var resultNode = OutItemNodes[2];
 
             //取得
             var senderNode = (InItemNode) args.SenderNode;
