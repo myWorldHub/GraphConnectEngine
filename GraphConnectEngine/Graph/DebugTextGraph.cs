@@ -42,9 +42,6 @@ namespace GraphConnectEngine.Graph
             return true;    
         }
 
-        public override string GetGraphName()
-        {
-            return "Debug Text Graph";
-        }
+        public override string GetGraphName() => "Debug Text Graph";
     }
 }

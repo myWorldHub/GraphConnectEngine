@@ -1,7 +1,7 @@
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Builtin
+namespace GraphConnectEngine.Graph.Value
 {
     public class ValueFuncGraph<T> : GraphBase
     {
@@ -29,9 +29,6 @@ namespace GraphConnectEngine.Graph.Builtin
             return true;
         }
 
-        public override string GetGraphName()
-        {
-            return typeof(T).Name + " Graph";
-        }
+        public override string GetGraphName() => "ValueFunc<" + typeof(T).Name + "> Graph";
     }
 }

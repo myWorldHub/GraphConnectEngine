@@ -28,9 +28,6 @@ namespace GraphConnectEngine.Graph.Statement
             return true;
         }
 
-        public override string GetGraphName()
-        {
-            return "If Statement Graph";
-        }
+        public override string GetGraphName() => "If Statement Graph";
     }
 }

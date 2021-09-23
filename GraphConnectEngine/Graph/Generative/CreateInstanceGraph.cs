@@ -17,15 +17,12 @@ namespace GraphConnectEngine.Graph.Generative
                 return;//TODO エラー
         }
 
-        public override string GetGraphName()
-        {
-            return "Create Instance Graph";
-        }
-
         protected override bool InvokeMethod(ProcessCallArgs args,object[] param,out object result)
         {
             result = Activator.CreateInstance(MethodInfo.DeclaringType, param);
             return true;
         }
+
+        public override string GetGraphName() => "Create Instance Graph";
     }
 }

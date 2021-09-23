@@ -38,11 +38,6 @@ namespace GraphConnectEngine.Graph.Variable
             return true;
         }
 
-        public override string GetGraphName()
-        {
-            return "Get Variable Graph";
-        }
-
         protected override void OnVariableChanged()
         {
             if (Holder?.HasItem(VariableName) ?? false)
@@ -75,5 +70,7 @@ namespace GraphConnectEngine.Graph.Variable
         {
             OnVariableNotFound?.Invoke(this,new EventArgs());
         }
+
+        public override string GetGraphName() => "Get Variable Graph";
     }
 }

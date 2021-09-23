@@ -9,9 +9,6 @@ namespace GraphConnectEngine.Graph.Operator
         {
         }
 
-        public override string GetGraphName()
-        {
-            return "Addition Operator Graph";
-        }
+        public override string GetGraphName() => "Addition Operator Graph";
     }
 }
