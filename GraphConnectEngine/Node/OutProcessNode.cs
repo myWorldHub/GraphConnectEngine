@@ -16,7 +16,7 @@ namespace GraphConnectEngine.Node
             string myName =  $"{ParentGraph.GetGraphName()}[{myHash}]";
             string preset = $"{myName} Calls Process > ";
 
-            GraphEngineLogger.Debug($"{myName} Started to Calling Process with\n{args}");
+            Logger.Debug($"{myName} Started to Calling Process with\n{args}");
 
             if (!Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
                 return;
@@ -26,7 +26,7 @@ namespace GraphConnectEngine.Node
                 var inProcessNode = resolvers[i];
                 if (args.TryAdd(myHash + "_" + i, true, out var nargs))
                 {
-                    GraphEngineLogger.Debug(preset + $"{inProcessNode.ParentGraph.GetGraphName()}[{inProcessNode.ParentGraph.GetHashCode()}] with\n{nargs}");
+                    Logger.Debug(preset + $"{inProcessNode.ParentGraph.GetGraphName()}[{inProcessNode.ParentGraph.GetHashCode()}] with\n{nargs}");
                     inProcessNode.OnCalled(this,nargs);
                 }
             }

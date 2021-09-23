@@ -22,19 +22,32 @@ namespace GraphConnectEngine.Graph.Operator
             }
 
             // cast
+            T a;
+            bool is_success = false;
+            
             try
             {
-                T a = (T) value;
+                a = (T) value;
+                is_success = true;
+            }
+            catch (InvalidCastException ex)
+            {
+                a = default;
+            }
+
+            if (is_success)
+            {
                 results = new object[] {a};
                 nextNode = OutProcessNode;
                 return true;
             }
-            catch (InvalidCastException ex)
+            else
             {
                 results = null;
                 nextNode = null;
                 return false;
             }
+
         }
 
         public override string GetGraphName() => "CastGraph<"+typeof(T).Name+">";

@@ -167,27 +167,34 @@ namespace GraphConnectEngine.Node
         /// <returns></returns>
         public bool ConnectNode(GraphParentResolver node1, GraphParentResolver node2)
         {
+            Logger.Debug("[NodeConnector] Connect Node");
+            DumpNode(node1);
+            DumpNode(node2);
 
             if (node1.Connector != this || node2.Connector != this)
             {
+                Logger.Debug("[NodeConnector] Connector is not current Connector.");
                 return false;
             }
             
             //接続チェック
             if (IsConnected(node1, node2) || IsConnected(node2,node1))
             {
+                Logger.Debug("[NodeConnector] Already connected.");
                 return false;
             }
 
             //つなげるResolverか確認する
             if (!node1.IsAttachableGraphType(node2.GetType()) || !node2.IsAttachableGraphType(node1.GetType()))
             {
+                Logger.Debug("[NodeConnector] Node is not attachable Graph type.");
                 return false;
             }
 
             //つながるかどうか確認
             if (!node1.CanAttach(node2) || !node2.CanAttach(node1))
             {
+                Logger.Debug("[NodeConnector] Node is not attachable.");
                 return false;
             }
             
@@ -195,8 +202,10 @@ namespace GraphConnectEngine.Node
             Register(node1,node2);
             Register(node2,node1);
             
+            Logger.Debug("[NodeConnector] Registered.");
+            
             //TODO 下のイベントたちもsenderをつける
-            OnConnect.Invoke(node1,new NodeConnectEventArgs()
+            OnConnect?.Invoke(node1,new NodeConnectEventArgs()
             {
                 SenderNode = node1,
                 OtherNode = node2
@@ -215,6 +224,7 @@ namespace GraphConnectEngine.Node
                 OtherNode = node1
             });
 
+            Logger.Debug("[NodeConnector] Called Connected Events.");
             return true;
         }
 
@@ -242,7 +252,7 @@ namespace GraphConnectEngine.Node
             Remove(node1,node2);
             Remove(node2,node1);
             
-            OnDisonnect.Invoke(node1, new NodeConnectEventArgs()
+            OnDisonnect?.Invoke(node1, new NodeConnectEventArgs()
             {
                 SenderNode = node1,
                 OtherNode = node2
@@ -266,6 +276,11 @@ namespace GraphConnectEngine.Node
 
         public bool DisconnectAllNode(GraphParentResolver node)
         {
+            if (node == null)
+            {
+                return false;
+            }
+            
             if (node.Connector != this)
             {
                 return false;
@@ -274,11 +289,30 @@ namespace GraphConnectEngine.Node
             var onodes = GetOtherNodes(node);
             foreach (var other in onodes)
             {
+                if (other == null)
+                    continue;
                 DisconnectNode(other, node);
             }
 
+            _dict.Remove(node);
+
             return true;
         }
-        
+
+        public void DumpNode(GraphParentResolver node)
+        {
+            Logger.Debug($"[NodeConnector] Dump of {node}");
+            Logger.Debug($"Type : {node.GetType().FullName}");
+            Logger.Debug($"Graph : {node.ParentGraph}");
+
+            if (node.ParentGraph != null)
+            {
+                Logger.Debug($"Connector : {node.Connector}");
+            }
+            else
+            {
+                Logger.Debug($"Connector : Null");
+            }
+        }
     }
 }

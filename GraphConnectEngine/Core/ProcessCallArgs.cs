@@ -75,12 +75,12 @@ namespace GraphConnectEngine.Core
         public bool CanGetItemOf(ProcessCallArgs parent)
         {
 
-            GraphEngineLogger.Debug($"[CanGetItem]Start\nFrom  : {GetValue()}\nTarget: {parent.GetValue()}");
+            Logger.Debug($"[CanGetItem]Start\nFrom  : {GetValue()}\nTarget: {parent.GetValue()}");
             
             //発火元が違う
             if (GetSender() != parent.GetSender())
             {
-                GraphEngineLogger.Debug("[CanGetItem] Fail : Sender is not match.");
+                Logger.Debug("[CanGetItem] Fail : Sender is not match.");
                 return false;
             }
 
@@ -89,24 +89,24 @@ namespace GraphConnectEngine.Core
 
             if (my == you)
             {
-                GraphEngineLogger.Debug("[CanGetItem] Success : Same Args.");
+                Logger.Debug("[CanGetItem] Success : Same Args.");
                 return true;
             }
 
             if (my.Length < you.Length)
             {
-                GraphEngineLogger.Debug("[CanGetItem] Fail : Target is longer than FromArgs.");
+                Logger.Debug("[CanGetItem] Fail : Target is longer than FromArgs.");
                 return false;
             }
 
             if (my.StartsWith(you))
             {
-                GraphEngineLogger.Debug("[CanGetItem] Success");
+                Logger.Debug("[CanGetItem] Success");
                 return true;
             }
             else
             {
-                GraphEngineLogger.Debug($"[CanGetItem] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
+                Logger.Debug($"[CanGetItem] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
                 return false;
             }
         }

@@ -2,7 +2,7 @@ using System;
 
 namespace GraphConnectEngine.Core
 {
-    public class GraphEngineLogger
+    public class Logger
     {
         private static Action<string> _writeLine;
         

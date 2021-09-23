@@ -46,7 +46,7 @@ namespace GraphConnectEngine.Core
             string myName = $"{GetGraphName()}[{myHash}]";
 
             //イベント
-            GraphEngineLogger.Debug($"{myName} is Invoked with\n{args}");
+            Logger.Debug($"{myName} is Invoked with\n{args}");
             OnStatusChanged?.Invoke(this,new GraphStatusEventArgs()
             {
                 Type = GraphStatusEventArgs.EventType.InvokeCalled,
@@ -57,7 +57,7 @@ namespace GraphConnectEngine.Core
             if (_cache != null && args.CanGetItemOf(_cache.Item1))
             {
                 //イベント
-                GraphEngineLogger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
+                Logger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
                 OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                 {
                     Type = GraphStatusEventArgs.EventType.CacheUsed,
@@ -76,7 +76,7 @@ namespace GraphConnectEngine.Core
                 {
                     //キャッシュがないとおかしい
                     //イベント
-                    GraphEngineLogger.Debug($"{myName} is Returning NO Item : back with no cache");
+                    Logger.Debug($"{myName} is Returning NO Item : back with no cache");
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.CacheError,
@@ -91,7 +91,7 @@ namespace GraphConnectEngine.Core
                 if (!args.TryAdd(myHash, true, out nargs))
                 {
                     //イベント
-                    GraphEngineLogger.Debug($"{myName} invoke Failed : Loop detected");
+                    Logger.Debug($"{myName} invoke Failed : Loop detected");
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.LoopDetected,
@@ -108,7 +108,7 @@ namespace GraphConnectEngine.Core
                 {
                     //イベント
                     //繋がってないのに呼ばれるってどういうこと？
-                    GraphEngineLogger.Debug($"{myName} Unknown Error");
+                    Logger.Debug($"{myName} Unknown Error");
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.UnknownError,
@@ -123,7 +123,7 @@ namespace GraphConnectEngine.Core
                 if (!args.TryAdd(GetHashCode().ToString(), false, out nargs))
                 {
                     //イベント
-                    GraphEngineLogger.Debug($"{myName} is Returning NO Item : Loop detected");
+                    Logger.Debug($"{myName} is Returning NO Item : Loop detected");
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.LoopDetected,
@@ -136,7 +136,7 @@ namespace GraphConnectEngine.Core
             }
             
             //イベント
-            GraphEngineLogger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
+            Logger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
                 Type = GraphStatusEventArgs.EventType.ProcessStart,
@@ -150,7 +150,7 @@ namespace GraphConnectEngine.Core
             _cache = new Tuple<ProcessCallArgs, bool, object[]>(nargs, procResult, results ?? Array.Empty<object>());
 
             //イベント
-            GraphEngineLogger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
+            Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
                 Type = procResult ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,

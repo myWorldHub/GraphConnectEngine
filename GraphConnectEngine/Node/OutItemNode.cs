@@ -104,7 +104,7 @@ namespace GraphConnectEngine.Node
                 }
                 else
                 {
-                    GraphEngineLogger.Error($"TryGetValue Unexpected Index");
+                    Logger.Error($"TryGetValue Unexpected Index");
                 }
             }
 
