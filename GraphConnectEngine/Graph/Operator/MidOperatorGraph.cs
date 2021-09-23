@@ -15,12 +15,12 @@ namespace GraphConnectEngine.Graph.Operator
         {
             _operator = midOperator;
             
-            AddNode(new InItemNode(this, typeof(object), (t1, t2) => TypeChecker(0, t1, t2)));
-            AddNode(new InItemNode(this, typeof(object), (t1, t2) => TypeChecker(1, t1, t2)));
+            AddNode(new InItemNode(this, typeof(object), "A",typeCheckOnAtatchFunc:(t1, t2) => TypeChecker(0, t1, t2)));
+            AddNode(new InItemNode(this, typeof(object), "B",typeCheckOnAtatchFunc: (t1, t2) => TypeChecker(1, t1, t2)));
 
-            AddNode(new OutItemNode(this, typeof(void), 0));
-            AddNode(new OutItemNode(this, typeof(void), 1));
-            AddNode(new OutItemNode(this, typeof(void), 2));
+            AddNode(new OutItemNode(this, typeof(void), 0,"A"));
+            AddNode(new OutItemNode(this, typeof(void), 1,"B"));
+            AddNode(new OutItemNode(this, typeof(void), 2,"Result"));
 
             InItemNodes[0].OnConnect += OnConnected;
             InItemNodes[1].OnConnect += OnConnected;
@@ -87,9 +87,9 @@ namespace GraphConnectEngine.Graph.Operator
 
             results = new object[]
             {
-                r,
                 a,
-                b
+                b,
+                r
             };
 
             nextNode = OutProcessNode;

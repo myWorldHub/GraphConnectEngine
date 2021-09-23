@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graph.Variable
 
         public GetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
         {
-            AddNode(new OutItemNode(this, typeof(void), 0));
+            AddNode(new OutItemNode(this, typeof(void), 0,"Value"));
         }
 
 
@@ -36,11 +36,6 @@ namespace GraphConnectEngine.Graph.Variable
             results = new[] {obj};
             nextNode = OutProcessNode;
             return true;
-        }
-
-        public override string GetGraphName()
-        {
-            return "Get Variable Graph";
         }
 
         protected override void OnVariableChanged()
@@ -75,5 +70,7 @@ namespace GraphConnectEngine.Graph.Variable
         {
             OnVariableNotFound?.Invoke(this,new EventArgs());
         }
+
+        public override string GetGraphName() => "Get Variable Graph";
     }
 }

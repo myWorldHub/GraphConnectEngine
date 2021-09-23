@@ -9,9 +9,6 @@ namespace GraphConnectEngine.Graph.Operator
         {
         }
         
-        public override string GetGraphName()
-        {
-            return "Greater Than Graph";
-        }
+        public override string GetGraphName() => "Greater Than Graph";
     }
 }

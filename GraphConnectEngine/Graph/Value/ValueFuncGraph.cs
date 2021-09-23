@@ -1,7 +1,7 @@
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Builtin
+namespace GraphConnectEngine.Graph.Value
 {
     public class ValueFuncGraph<T> : GraphBase
     {
@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Graph.Builtin
         public ValueFuncGraph(NodeConnector connector, ValueFunc valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
-            AddNode(new OutItemNode(this, typeof(T), 0));
+            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
         protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
@@ -29,9 +29,6 @@ namespace GraphConnectEngine.Graph.Builtin
             return true;
         }
 
-        public override string GetGraphName()
-        {
-            return typeof(T).Name + " Graph";
-        }
+        public override string GetGraphName() => "ValueFunc<" + typeof(T).Name + "> Graph";
     }
 }

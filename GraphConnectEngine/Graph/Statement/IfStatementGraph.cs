@@ -8,8 +8,8 @@ namespace GraphConnectEngine.Graph.Statement
         
         public IfStatementGraph(NodeConnector connector) : base(connector)
         {
-            AddNode(new InItemNode(this,typeof(bool)));
-            AddNode(new OutItemNode(this,typeof(bool),0));
+            AddNode(new InItemNode(this,typeof(bool),"expression"));
+            AddNode(new OutItemNode(this,typeof(bool),0,"expression"));
 
             AddNode(new OutProcessNode(this));
         }
@@ -28,9 +28,6 @@ namespace GraphConnectEngine.Graph.Statement
             return true;
         }
 
-        public override string GetGraphName()
-        {
-            return "If Statement Graph";
-        }
+        public override string GetGraphName() => "If Statement Graph";
     }
 }

@@ -11,7 +11,7 @@ namespace GraphConnectEngine.Graph.Generative
             if (methodInfo.IsStatic || methodInfo.DeclaringType == null || methodInfo.IsGenericMethod || methodInfo.IsGenericMethodDefinition)
                 return;
 
-            AddNode(new InItemNode(this,methodInfo.DeclaringType));
+            AddNode(new InItemNode(this,methodInfo.DeclaringType,"Object"));
         }
 
         protected override bool InvokeMethod(ProcessCallArgs args,object[] param,out object result)

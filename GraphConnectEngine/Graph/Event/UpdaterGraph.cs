@@ -72,9 +72,6 @@ namespace GraphConnectEngine.Graph.Event
             return false;
         }
 
-        public override string GetGraphName()
-        {
-            return "Updater Graph";
-        }
+        public override string GetGraphName() =>  "Updater Graph";
     }
 }

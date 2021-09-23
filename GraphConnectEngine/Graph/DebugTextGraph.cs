@@ -11,8 +11,8 @@ namespace GraphConnectEngine.Graph
 
         public DebugTextGraph(NodeConnector connector,Func<string,bool> updateText) : base(connector)
         {
-            AddNode(new InItemNode(this, typeof(object)));
-            AddNode(new OutItemNode(this, typeof(string),1));
+            AddNode(new InItemNode(this, typeof(object),"Object"));
+            AddNode(new OutItemNode(this, typeof(string),1,"Text"));
             _updateText = updateText;
         }
 
@@ -42,9 +42,6 @@ namespace GraphConnectEngine.Graph
             return true;    
         }
 
-        public override string GetGraphName()
-        {
-            return "Debug Text Graph";
-        }
+        public override string GetGraphName() => "Debug Text Graph";
     }
 }

@@ -9,9 +9,6 @@ namespace GraphConnectEngine.Graph.Operator
         {
         }
         
-        public override string GetGraphName()
-        {
-            return "Equal Operator Graph";
-        }
+        public override string GetGraphName()=> "Equal Operator Graph";
     }
 }

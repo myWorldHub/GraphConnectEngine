@@ -9,9 +9,6 @@ namespace GraphConnectEngine.Graph.Operator
         {
         }
 
-        public override string GetGraphName()
-        {
-            return "Modulus Graph";
-        }
+        public override string GetGraphName() => "Modulus Operator Graph";
     }
 }
