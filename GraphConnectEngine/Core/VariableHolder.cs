@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GraphConnectEngine.Core
 {
@@ -165,6 +166,11 @@ namespace GraphConnectEngine.Core
                 }
             }
             return false;
+        }
+
+        public string[] GetItemNames()
+        {
+            return _items.Keys.ToArray();
         }
 
         ~VariableHolder()
