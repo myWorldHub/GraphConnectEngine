@@ -12,6 +12,7 @@ namespace GraphConnectEngine.Graph.Event
 
         protected virtual void Fire()
         {
+            Logger.Debug("---------------------------------------------------------------------");
             OutProcessNode.CallProcess(ProcessCallArgs.Fire(GetHashCode()));
         }
 

@@ -167,7 +167,7 @@ namespace GraphConnectEngine.Node
         /// <returns></returns>
         public bool ConnectNode(GraphParentResolver node1, GraphParentResolver node2)
         {
-            Logger.Debug("[NodeConnector] Connect Node");
+            Logger.Debug("[NodeConnector] Connect Node-------------------------");
             DumpNode(node1);
             DumpNode(node2);
 
