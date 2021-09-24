@@ -15,10 +15,10 @@ namespace GraphConnectEngine.Core
         public InProcessNode InProcessNode => InProcessNodes[0];
         public OutProcessNode OutProcessNode => OutProcessNodes[0];
 
-        public readonly List<InProcessNode> InProcessNodes;
-        public readonly List<OutProcessNode> OutProcessNodes;
-        public readonly List<InItemNode> InItemNodes;
-        public readonly List<OutItemNode> OutItemNodes;
+        public readonly List<InProcessNode> InProcessNodes = new List<InProcessNode>();
+        public readonly List<OutProcessNode> OutProcessNodes = new List<OutProcessNode>();
+        public readonly List<InItemNode> InItemNodes = new List<InItemNode>();
+        public readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
 
         private Tuple<ProcessCallArgs, bool, object[]> _cache;
 
@@ -31,11 +31,6 @@ namespace GraphConnectEngine.Core
         {
             Connector = connector;
 
-            InProcessNodes = new List<InProcessNode>();
-            OutProcessNodes = new List<OutProcessNode>();
-            InItemNodes = new List<InItemNode>();
-            OutItemNodes = new List<OutItemNode>();
-            
             AddNode(new InProcessNode(this));
             AddNode(new OutProcessNode(this));
         }
