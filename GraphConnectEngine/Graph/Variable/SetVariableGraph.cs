@@ -56,8 +56,8 @@ namespace GraphConnectEngine.Graph.Variable
             }
             else
             {
-                InItemNodes[0].SetItemType(typeof(void));
-                OutItemNodes[0].SetItemType(typeof(void));
+                //InItemNodes[0].SetItemType(typeof(void));
+                //OutItemNodes[0].SetItemType(typeof(void));
                 
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
@@ -71,20 +71,20 @@ namespace GraphConnectEngine.Graph.Variable
                 InItemNodes[0].SetItemType(type);
                 OutItemNodes[0].SetItemType(type);
                 
-                OnVariableFound?.Invoke(this, new EventArgs());
+                OnVariableFound?.Invoke(this, EventArgs.Empty);
             }
             else
             {
-                InItemNodes[0].SetItemType(typeof(void));
-                OutItemNodes[0].SetItemType(typeof(void));
+                //InItemNodes[0].SetItemType(typeof(void));
+                //OutItemNodes[0].SetItemType(typeof(void));
                 
-                OnVariableNotFound?.Invoke(this, new EventArgs());
+                OnVariableNotFound?.Invoke(this, EventArgs.Empty);
             }
         }
 
         protected override void OnVariableRemoved()
         {
-            OnVariableNotFound?.Invoke(this, new EventArgs());
+            OnVariableNotFound?.Invoke(this, EventArgs.Empty);
         }
 
         public override string GetGraphName() => "Set Variable Graph";

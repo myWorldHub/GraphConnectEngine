@@ -47,7 +47,7 @@ namespace GraphConnectEngine.Graph.Variable
             }
             else
             {
-                OutItemNodes[0].SetItemType(typeof(void));
+                //OutItemNodes[0].SetItemType(typeof(void));
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }
@@ -61,7 +61,7 @@ namespace GraphConnectEngine.Graph.Variable
             }
             else
             {
-                OutItemNodes[0].SetItemType(typeof(void));
+                //OutItemNodes[0].SetItemType(typeof(void));
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }
