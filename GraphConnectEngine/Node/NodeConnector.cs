@@ -5,7 +5,7 @@ using GraphConnectEngine.Core;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
-    /// GraphParentResolver同士がどのように繋がっているか管理するためのもの
+    /// NodeBase同士がどのように繋がっているか管理するためのもの
     /// 
     /// ConnectNode => IsAttachableGraphType => CanAttach => Register => OnConnect
     /// </summary>
@@ -17,7 +17,7 @@ namespace GraphConnectEngine.Node
         public EventHandler<NodeConnectEventArgs> OnDisonnect;
 
         ///
-        private readonly Dictionary<GraphParentResolver, List<GraphParentResolver>> _dict = new Dictionary<GraphParentResolver, List<GraphParentResolver>>();
+        private readonly Dictionary<NodeBase, List<NodeBase>> _dict = new Dictionary<NodeBase, List<NodeBase>>();
 
         /// <summary>
         /// 繋がれているノードをキャストして取得する
@@ -25,7 +25,7 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T[] GetOtherNodes<T>(GraphParentResolver key)
+        public T[] GetOtherNodes<T>(NodeBase key)
         {
             if (!_dict.ContainsKey(key))
                 return Array.Empty<T>();
@@ -42,9 +42,9 @@ namespace GraphConnectEngine.Node
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public GraphParentResolver[] GetOtherNodes(GraphParentResolver key)
+        public NodeBase[] GetOtherNodes(NodeBase key)
         {
-            return _dict.ContainsKey(key) ? _dict[key].ToArray() : new GraphParentResolver[0];
+            return _dict.ContainsKey(key) ? _dict[key].ToArray() : new NodeBase[0];
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace GraphConnectEngine.Node
         /// <param name="result"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public bool TryGetOtherNodes<T>(GraphParentResolver key, out T[] result)
+        public bool TryGetOtherNodes<T>(NodeBase key, out T[] result)
         {
             result = null;
             
@@ -78,7 +78,7 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public bool TryGetOtherNodes(GraphParentResolver key, out GraphParentResolver[] result)
+        public bool TryGetOtherNodes(NodeBase key, out NodeBase[] result)
         {
             result = _dict.ContainsKey(key) ? _dict[key].ToArray() : null;
             return result != null;
@@ -92,7 +92,7 @@ namespace GraphConnectEngine.Node
         /// <param name="result"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public bool TryGetAnotherNode<T>(GraphParentResolver key, out T result) where T : GraphParentResolver
+        public bool TryGetAnotherNode<T>(NodeBase key, out T result) where T : NodeBase
         {
             result = _dict.ContainsKey(key) ? _dict[key][0] as T: null;
             return result != null;
@@ -105,7 +105,7 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public bool TryGetAnotherNode(GraphParentResolver key, out GraphParentResolver result)
+        public bool TryGetAnotherNode(NodeBase key, out NodeBase result)
         {
             result = _dict.ContainsKey(key) ? _dict[key][0] : null;
             return result != null;
@@ -116,11 +116,11 @@ namespace GraphConnectEngine.Node
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
-        private void Register(GraphParentResolver node1, GraphParentResolver node2)
+        private void Register(NodeBase node1, NodeBase node2)
         {
             if (!_dict.ContainsKey(node1))
             {
-                _dict[node1] = new List<GraphParentResolver>();
+                _dict[node1] = new List<NodeBase>();
             }
 
             _dict[node1].Add(node2);
@@ -131,7 +131,7 @@ namespace GraphConnectEngine.Node
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
-        private void Remove(GraphParentResolver node1, GraphParentResolver node2)
+        private void Remove(NodeBase node1, NodeBase node2)
         {
             if (_dict.ContainsKey(node1))
             {
@@ -149,7 +149,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        public bool IsConnected(GraphParentResolver node1, GraphParentResolver node2)
+        public bool IsConnected(NodeBase node1, NodeBase node2)
         {
             if (_dict.ContainsKey(node1))
             {
@@ -165,7 +165,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        public bool ConnectNode(GraphParentResolver node1, GraphParentResolver node2)
+        public bool ConnectNode(NodeBase node1, NodeBase node2)
         {
             Logger.Debug("[NodeConnector] Connect Node-------------------------");
             DumpNode(node1);
@@ -234,7 +234,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        public bool DisconnectNode(GraphParentResolver node1, GraphParentResolver node2)
+        public bool DisconnectNode(NodeBase node1, NodeBase node2)
         {
 
             if (node1.Connector != this || node2.Connector != this)
@@ -274,7 +274,7 @@ namespace GraphConnectEngine.Node
             return true;
         }
 
-        public bool DisconnectAllNode(GraphParentResolver node)
+        public bool DisconnectAllNode(NodeBase node)
         {
             if (node == null)
             {
@@ -299,7 +299,7 @@ namespace GraphConnectEngine.Node
             return true;
         }
 
-        public void DumpNode(GraphParentResolver node)
+        public void DumpNode(NodeBase node)
         {
             Logger.Debug($"[NodeConnector] Dump of {node}");
             Logger.Debug($"Type : {node.GetType().FullName}");

@@ -3,7 +3,7 @@ using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
-    public class InProcessNode : GraphParentResolver
+    public class InProcessNode : NodeBase
     {
 
 
@@ -22,7 +22,7 @@ namespace GraphConnectEngine.Node
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(GraphParentResolver resolver)
+        public override bool CanAttach(NodeBase resolver)
         {
             if (resolver is OutProcessNode outNode)
             {

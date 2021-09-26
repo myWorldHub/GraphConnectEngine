@@ -5,7 +5,7 @@ namespace GraphConnectEngine.Node
 {
     /// <summary>
     /// </summary>
-    public class InItemNode : GraphParentResolver,IItemTypeResolver
+    public class InItemNode : NodeBase,IItemTypeResolver
     {
         private Type _itemType;
 
@@ -72,7 +72,7 @@ namespace GraphConnectEngine.Node
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(GraphParentResolver resolver)
+        public override bool CanAttach(NodeBase resolver)
         {
             if (resolver is OutItemNode outItemNode)
             {
