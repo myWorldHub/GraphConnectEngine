@@ -6,11 +6,9 @@ namespace GraphConnectEngine.Core
 {
     /// <summary>
     /// 値保持用のクラス
-    /// TODO 仕様が固まってない??
     /// </summary>
     public class VariableHolder : IDisposable
     {
-        private VariableHolder _parent;
         
         private readonly Dictionary<string, object> _items = new Dictionary<string, object>();
         private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
@@ -23,16 +21,11 @@ namespace GraphConnectEngine.Core
 
         private bool _isDisposed = false;
 
-        public void SetParent(VariableHolder parent)
-        {
-            _parent = parent;
-        }
-
         public bool HasItem(string name,int depth = -1)
         {
             if (depth == 0)
                 return false;
-            return _items.ContainsKey(name) || (_parent != null && _parent.HasItem(name,depth-1));
+            return _items.ContainsKey(name);
         }
 
         public object GetItem(string name,int depth = -1,bool searched = false)
@@ -48,7 +41,7 @@ namespace GraphConnectEngine.Core
                     return null;
                 }
             }
-            return _items.ContainsKey(name) ? _items[name] : _parent?.GetItem(name,depth-1,true);
+            return _items.ContainsKey(name) ? _items[name] : null;
         }
 
         public bool TryGetItem<T>(string name, out T result, int depth = -1)
@@ -85,7 +78,7 @@ namespace GraphConnectEngine.Core
                     return null;
                 }
             }
-            return _types.ContainsKey(name) ? _types[name] : _parent?.GetItemType(name,depth-1,true);
+            return _types.ContainsKey(name) ? _types[name] : null;
         }
 
         public bool TryGetItemType(string name, out Type type,int depth = -1)
@@ -138,20 +131,6 @@ namespace GraphConnectEngine.Core
                     return true;
                 }
             }
-            else
-            {
-                if (_parent != null && !_parent.UpdateItem(name, obj))
-                {
-                    OnVariableUpdated?.Invoke(this, new VariableUpdatedEventArgs()
-                    {
-                        Name = name,
-                        Type = obj.GetType(),
-                        Value = obj
-                    });
-                    return true;
-                }
-            }
-
             return false;
         }
 
@@ -168,17 +147,6 @@ namespace GraphConnectEngine.Core
                 });
                 
                 return true;
-            }
-            else
-            {
-                if (_parent != null && _parent.RemoveItem(name))
-                {
-                    OnVariableRemoved?.Invoke(this, new VariableRemovedEventArgs()
-                    {
-                        Name = name
-                    });
-                    return true;
-                }
             }
             return false;
         }
