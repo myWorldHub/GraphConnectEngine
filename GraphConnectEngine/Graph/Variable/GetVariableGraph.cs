@@ -26,42 +26,43 @@ namespace GraphConnectEngine.Graph.Variable
                 return false;
             }
 
-            if(!Holder.TryGetItem(VariableName, out var obj, -1))
+            if(!Holder?.ContainsKey(VariableName) ?? true)
             {
                 results = null;
                 nextNode = null;
                 return false;
             }
 
-            results = new[] {obj};
+            results = new[]
+            {
+                Holder[VariableName]
+            };
             nextNode = OutProcessNode;
             return true;
         }
 
         protected override void OnVariableChanged()
         {
-            if (Holder?.HasItem(VariableName) ?? false)
+            if (Holder?.ContainsKey(VariableName) ?? false)
             {
-                OutItemNodes[0].SetItemType(Holder.GetItemType(VariableName));
+                OutItemNodes[0].SetItemType(Holder.GetVariableType(VariableName));
                 OnVariableFound?.Invoke(this,new EventArgs());
             }
             else
             {
-                //OutItemNodes[0].SetItemType(typeof(void));
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }
 
         protected override void OnHolderChanged()
         {
-            if (Holder?.HasItem(VariableName) ?? false)
+            if (Holder?.ContainsKey(VariableName) ?? false)
             {
-                OutItemNodes[0].SetItemType(Holder.GetItemType(VariableName));
+                OutItemNodes[0].SetItemType(Holder.GetVariableType(VariableName));
                 OnVariableFound?.Invoke(this, new EventArgs());
             }
             else
             {
-                //OutItemNodes[0].SetItemType(typeof(void));
                 OnVariableNotFound?.Invoke(this, new EventArgs());
             }
         }
