@@ -16,96 +16,111 @@ namespace GraphConnectEngine.Core
         public event EventHandler<VariableCreatedEventArgs> OnVariableCreated;
         public event EventHandler<VariableUpdatedEventArgs> OnVariableUpdated;
         public event EventHandler<VariableRemovedEventArgs> OnVariableRemoved;
-
-        public event EventHandler OnDisposed;
+        public event EventHandler<EventArgs> OnDisposed;
 
         private bool _isDisposed = false;
 
-        public bool HasItem(string name,int depth = -1)
+        /// <summary>
+        /// Get専用のIndexer
+        /// </summary>
+        /// <param name="key"></param>
+        public object this[string key]
         {
-            if (depth == 0)
-                return false;
-            return _items.ContainsKey(name);
+            get => ContainsKey(key) ? _items[key] : null;
         }
 
-        public object GetItem(string name,int depth = -1,bool searched = false)
+        /// <summary>
+        /// 存在確認
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool ContainsKey(string key)
         {
-            if (!searched)
-            {
-                if (HasItem(name, depth))
-                {
-                    searched = true;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            return _items.ContainsKey(name) ? _items[name] : null;
+            return _items.ContainsKey(key);
         }
-
-        public bool TryGetItem<T>(string name, out T result, int depth = -1)
+        
+        /// <summary>
+        /// 値をキャスとして取得
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="result"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public bool TryGet<T>(string key, out T result)
         {
-            if (TryGetItem(name, out object obj, depth))
+            if (ContainsKey(key))
             {
-                if (obj is T t)
+                if (_items[key] == null)
+                {
+                    result = default;
+                    return true;
+                }
+                
+                if (_items[key] is T t)
                 {
                     result = t;
                     return true;
                 }
             }
 
-            result = default(T);
+            result = default;
             return false;
         }
 
-        public bool TryGetItem(string name,out object obj,int depth = -1)
+        /// <summary>
+        /// 型を取得
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public Type GetVariableType(string key)
         {
-            obj = GetItem(name,depth);
-            return obj != null;
+            return _types.ContainsKey(key) ? _types[key] : null;
         }
 
-        public Type GetItemType(string name,int depth = -1,bool searched = false)
+        /// <summary>
+        /// 型を取得
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public bool TryGetVariableType(string key, out Type type)
         {
-            if (!searched)
-            {
-                if (HasItem(name, depth))
-                {
-                    searched = true;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            return _types.ContainsKey(name) ? _types[name] : null;
-        }
-
-        public bool TryGetItemType(string name, out Type type,int depth = -1)
-        {
-            type = GetItemType(name,depth);
+            type = GetVariableType(key);
             return type != null;
         }
 
-        public bool TryCreateItem(string name, object obj)
+        /// <summary>
+        /// 変数を作成
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool TryCreate(string key, object obj)
         {
-            if (TryCreateItem(name,obj.GetType()))
+            if (TryCreate(key,obj.GetType()))
             {
-                UpdateItem(name, obj);
+                _items[key] = obj;
                 return true;
             }
             return false;
         }
 
-        public bool TryCreateItem(string name, Type type)
+        /// <summary>
+        /// 変数を作成
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public bool TryCreate(string key, Type type)
         {
-            if (!HasItem(name))
+            if (!ContainsKey(key))
             {
-                _items.Add(name,null);
-                _types.Add(name,type);
+                _items.Add(key,null);
+                _types.Add(key,type);
+                
                 OnVariableCreated?.Invoke(this,new VariableCreatedEventArgs()
                 {
-                    Name = name,
+                    Name = key,
                     Type = type
                 });
                 return true;
@@ -113,28 +128,37 @@ namespace GraphConnectEngine.Core
             return false;
         }
 
-        public bool UpdateItem(string name, object obj)
+        /// <summary>
+        /// 変数を更新
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool Update(string key, object obj)
         {
-            if (_items.ContainsKey(name))
+            if (ContainsKey(key))
             {
-                if (_types[name] == obj.GetType() || obj.GetType().IsSubclassOf(_types[name]))
+                if (obj.GetType() != _types[key])
+                    return false;
+
+                _items[key] = obj;
+                
+                OnVariableUpdated?.Invoke(this,new VariableUpdatedEventArgs()
                 {
-                    _items[name] = obj;
-                    
-                    OnVariableUpdated?.Invoke(this,new VariableUpdatedEventArgs()
-                    {
-                        Name = name,
-                        Type = obj.GetType(),
-                        Value = obj
-                    });
-                    
-                    return true;
-                }
+                    Name = key,
+                    Type = _types[key],
+                    Value = obj
+                });
             }
             return false;
         }
 
-        public bool RemoveItem(string name)
+        /// <summary>
+        /// 変数を削除
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool Remove(string name)
         {
             if (_items.ContainsKey(name))
             {
@@ -151,6 +175,10 @@ namespace GraphConnectEngine.Core
             return false;
         }
 
+        /// <summary>
+        /// 変数名たちを取得
+        /// </summary>
+        /// <returns></returns>
         public string[] GetItemNames()
         {
             return _items.Keys.ToArray();
