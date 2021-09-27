@@ -3,6 +3,9 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Value
 {
+    /// <summary>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ValueFuncGraph<T> : GraphBase
     {
         public delegate bool ValueFunc(out T result);

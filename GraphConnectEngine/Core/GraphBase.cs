@@ -22,6 +22,8 @@ namespace GraphConnectEngine.Core
 
         private Tuple<ProcessCallArgs, bool, object[]> _cache;
 
+        public string UniqueId => GetHashCode().ToString();
+
         /// <summary>
         /// 実行ステータスのリス名
         /// </summary>

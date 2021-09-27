@@ -51,6 +51,21 @@ namespace GraphConnectEngine.Core
             return _items.ContainsKey(name) ? _items[name] : _parent?.GetItem(name,depth-1,true);
         }
 
+        public bool TryGetItem<T>(string name, out T result, int depth = -1)
+        {
+            if (TryGetItem(name, out object obj, depth))
+            {
+                if (obj is T t)
+                {
+                    result = t;
+                    return true;
+                }
+            }
+
+            result = default(T);
+            return false;
+        }
+
         public bool TryGetItem(string name,out object obj,int depth = -1)
         {
             obj = GetItem(name,depth);
@@ -83,7 +98,7 @@ namespace GraphConnectEngine.Core
         {
             if (TryCreateItem(name,obj.GetType()))
             {
-                _items[name] = obj;
+                UpdateItem(name, obj);
                 return true;
             }
             return false;
