@@ -58,15 +58,9 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object value))
-            {
-                Logger.Debug("AAA");
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            object value = parameters[0];
 
             // cast
             T a;

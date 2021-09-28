@@ -14,15 +14,10 @@ namespace GraphConnectEngine.Graph.Statement
             AddNode(new OutProcessNode(this));
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out bool result))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
+            bool result = (bool)parameters[0];
+            
             results = new object[] {result};
             nextNode = result ? OutProcessNode : OutProcessNodes[1];
             return true;

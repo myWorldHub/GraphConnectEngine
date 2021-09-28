@@ -16,8 +16,8 @@ namespace GraphConnectEngine.Graph.Variable
             AddNode(new InItemNode(this, typeof(void),"Value"));
             AddNode(new OutItemNode(this,typeof(void),0,"Value"));
         }
-        
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+
+        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (Holder == null)
             {
@@ -25,20 +25,18 @@ namespace GraphConnectEngine.Graph.Variable
                 nextNode = null;
                 return false;
             }
-            
-            if (InItemNodes[0].GetItemFromConnectedNode(args, out object obj))
-            {
-                if (Holder.Update(VariableName, obj))
-                {
-                    results = new object[]
-                    {
-                        obj
-                    };
-                    nextNode = OutProcessNode;
-                    return true;
-                }
-            }
 
+            var obj = parameters[0];
+            
+            if (Holder.Update(VariableName, obj))
+            {
+                results = new object[]
+                {
+                    obj
+                };
+                nextNode = OutProcessNode;
+                return true;
+            }
             results = null;
             nextNode = null;
             return false;   

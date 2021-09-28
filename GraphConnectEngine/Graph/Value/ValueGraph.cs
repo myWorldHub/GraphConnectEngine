@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graph.Value
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             results = new object[] {Value};
             nextNode = OutProcessNode;

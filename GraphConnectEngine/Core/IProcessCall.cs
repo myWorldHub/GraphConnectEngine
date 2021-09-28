@@ -5,7 +5,7 @@ namespace GraphConnectEngine.Core
 {
     public interface IProcessCall
     {
-        Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args);
+        Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
     }
 
     public class ProcessCallResult
