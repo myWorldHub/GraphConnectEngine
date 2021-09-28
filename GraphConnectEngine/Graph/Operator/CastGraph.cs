@@ -85,19 +85,11 @@ namespace GraphConnectEngine.Graph.Operator
                 a = default;
             }
 
-            if (isSuccess)
-            {
-                results = new object[] {a};
-                nextNode = OutProcessNode;
-                return true;
-            }
-            else
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            //失敗
+            if (!isSuccess)
+                return Task.FromResult(ProcessCallResult.Fail());
 
+            return Task.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNode));
         }
 
         public override string GetGraphName() => "CastGraph<"+typeof(T).Name+">";

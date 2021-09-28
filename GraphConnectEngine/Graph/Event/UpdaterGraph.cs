@@ -68,9 +68,7 @@ namespace GraphConnectEngine.Graph.Event
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            results = null;
-            nextNode = null;
-            return false;
+            return Task.FromResult(ProcessCallResult.Fail());
         }
 
         public override string GetGraphName() =>  "Updater Graph";

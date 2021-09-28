@@ -64,25 +64,18 @@ namespace GraphConnectEngine.Graph.Operator
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (_computeFunc == null)
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+                return Task.FromResult(ProcessCallResult.Fail());
 
             object a = parameters[0];
             object b = parameters[1];
             object r = _computeFunc(a, b);
 
-            results = new object[]
+            return Task.FromResult(ProcessCallResult.Success(new[]
             {
                 a,
                 b,
                 r
-            };
-
-            nextNode = OutProcessNode;
-            return true;
+            },OutProcessNode));
         }
 
         private bool TypeChecker(int sender, Type myType, Type anotherType)

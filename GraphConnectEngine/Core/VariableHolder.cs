@@ -32,7 +32,7 @@ namespace GraphConnectEngine.Core
         }
         
         /// <summary>
-        /// 値をキャスとして取得
+        /// 値をキャストして取得
         /// </summary>
         /// <param name="key"></param>
         /// <typeparam name="T"></typeparam>
@@ -48,6 +48,25 @@ namespace GraphConnectEngine.Core
                     return ValueResult<T>.Success(t);
             }
             return ValueResult<T>.Fail();
+        }
+
+        /// <summary>
+        /// 値を取得
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public virtual async Task<ValueResult<object>> TryGet(string key)
+        {
+            if (await ContainsKey(key))
+            {
+                if (_items[key] == null)
+                    return ValueResult<object>.Success(default);
+
+                if (_items[key] is object t)
+                    return ValueResult<object>.Success(t);
+            }
+
+            return ValueResult<object>.Fail();
         }
 
         /// <summary>

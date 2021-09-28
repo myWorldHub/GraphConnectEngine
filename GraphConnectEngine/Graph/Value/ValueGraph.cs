@@ -16,9 +16,7 @@ namespace GraphConnectEngine.Graph.Value
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            results = new object[] {Value};
-            nextNode = OutProcessNode;
-            return true;
+            return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNode));
         }
 
         public override string GetGraphName() => "Value<" + typeof(T).Name + "> Graph";

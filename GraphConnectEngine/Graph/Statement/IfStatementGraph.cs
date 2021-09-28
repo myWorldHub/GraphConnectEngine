@@ -18,10 +18,12 @@ namespace GraphConnectEngine.Graph.Statement
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             bool result = (bool)parameters[0];
-            
-            results = new object[] {result};
-            nextNode = result ? OutProcessNode : OutProcessNodes[1];
-            return true;
+            return Task.FromResult(ProcessCallResult.Success(
+                new object[]
+                {
+                    result
+                },
+                result ? OutProcessNode : OutProcessNodes[1]));
         }
 
         public override string GetGraphName() => "If Statement Graph";
