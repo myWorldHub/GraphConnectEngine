@@ -180,9 +180,9 @@ namespace GraphConnectEngine.Core
         /// 変数名たちを取得
         /// </summary>
         /// <returns></returns>
-        public virtual string[] GetItemNames()
+        public virtual Task<string[]> Keys()
         {
-            return _items.Keys.ToArray();
+            return Task.FromResult(_items.Keys.ToArray());
         }
 
         ~VariableHolder()

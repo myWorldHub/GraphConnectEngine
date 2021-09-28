@@ -23,7 +23,14 @@ namespace GraphConnectEngine.Core
 
         private Tuple<ProcessCallArgs, ProcessCallResult> _cache;
 
-        public string UniqueId => GetHashCode().ToString();
+        //ID
+        private string _id;
+        public string Id { get => _id; }
+
+        public void SetId(string id)
+        {
+            _id = id;
+        }
 
         /// <summary>
         /// 実行ステータスのリス名
@@ -32,6 +39,7 @@ namespace GraphConnectEngine.Core
 
         public GraphBase(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
         {
+            _id = GetHashCode().ToString();
             Connector = connector;
 
             if(enableInProcess)
