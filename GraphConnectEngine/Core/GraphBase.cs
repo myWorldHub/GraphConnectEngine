@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Core
 {
-    public abstract class GraphBase : IDisposable
+    public abstract class GraphBase : IProcessCall,IDisposable
     {
 
         public readonly NodeConnector Connector;
@@ -20,7 +21,7 @@ namespace GraphConnectEngine.Core
         public readonly List<InItemNode> InItemNodes = new List<InItemNode>();
         public readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
 
-        private Tuple<ProcessCallArgs, bool, object[]> _cache;
+        private Tuple<ProcessCallArgs, ProcessCallResult> _cache;
 
         public string UniqueId => GetHashCode().ToString();
 
@@ -37,7 +38,7 @@ namespace GraphConnectEngine.Core
             AddNode(new OutProcessNode(this));
         }
 
-        public bool Invoke(object sender,ProcessCallArgs args,out object[] results)
+        public async Task<InvokeResult> Invoke(object sender,ProcessCallArgs args)
         {
             string myHash = GetHashCode().ToString();
             string myName = $"{GetGraphName()}[{myHash}]";
@@ -54,15 +55,14 @@ namespace GraphConnectEngine.Core
             if (_cache != null && args.CanGetItemOf(_cache.Item1))
             {
                 //イベント
-                Logger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
+                Logger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2}");
                 OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                 {
                     Type = GraphStatusEventArgs.EventType.CacheUsed,
                     Args = args
                 });
-                
-                results = _cache.Item3;
-                return _cache.Item2;
+
+                return _cache.Item2.ToInvokeResult();
             }
 
             ProcessCallArgs nargs;
@@ -79,9 +79,8 @@ namespace GraphConnectEngine.Core
                         Type = GraphStatusEventArgs.EventType.CacheError,
                         Args = args
                     });
-                    
-                    results = Array.Empty<object>();
-                    return false;
+
+                    return InvokeResult.Fail();
                 }
 
                 //ループ検知
@@ -95,8 +94,7 @@ namespace GraphConnectEngine.Core
                         Args = args
                     });
                     
-                    results = Array.Empty<object>();
-                    return false;
+                    return InvokeResult.Fail();
                 }
             }
             else
@@ -111,9 +109,8 @@ namespace GraphConnectEngine.Core
                         Type = GraphStatusEventArgs.EventType.UnknownError,
                         Args = args
                     });
-                    
-                    results = Array.Empty<object>();
-                    return false;
+
+                    return InvokeResult.Fail();
                 }
                 
                 //ループ検知
@@ -127,8 +124,7 @@ namespace GraphConnectEngine.Core
                         Args = args
                     });
                     
-                    results = Array.Empty<object>();
-                    return false;
+                    return InvokeResult.Fail();
                 }
             }
             
@@ -141,38 +137,30 @@ namespace GraphConnectEngine.Core
             });
 
             //Invoke
-            bool procResult = OnProcessCall(nargs, out results, out var nextNode);
+            ProcessCallResult procResult = await OnProcessCall(nargs);
 
             //キャッシュする
-            _cache = new Tuple<ProcessCallArgs, bool, object[]>(nargs, procResult, results ?? Array.Empty<object>());
+            _cache = new Tuple<ProcessCallArgs, ProcessCallResult>(nargs, procResult);
 
             //イベント
             Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
-                Type = procResult ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,
+                Type = procResult.IsSucceeded ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,
                 Args = nargs
             });
             
             //OutProcessなら実行する
-            if (procResult && sender is OutProcessNode)
+            if (procResult.IsSucceeded && sender is OutProcessNode)
             {
-                nextNode?.CallProcess(args);
+                await procResult.NextNode.CallProcess(args);
             }
 
-            return procResult;
+            return procResult.ToInvokeResult();
         }
 
-        /// <summary>
-        /// ProcessCallで呼ばれる
-        /// 実装では必ずOutItemをキャッシュさせる
-        /// </summary>
-        /// <param name="args"></param>
-        /// <param name="results"></param>
-        /// <param name="nextNode"></param>
-        /// <returns></returns>
-        protected abstract bool OnProcessCall(ProcessCallArgs args,out object[] results,out OutProcessNode nextNode);
-
+        public abstract Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args);
+        
         /// <summary>
         /// グラフ名を取得する
         /// </summary>
@@ -218,6 +206,30 @@ namespace GraphConnectEngine.Core
                 n.Dispose();
             foreach (var n in OutItemNodes)
                 n.Dispose();
+        }
+
+        public class InvokeResult
+        {
+            public bool IsSucceeded;
+            public object[] Results;
+
+            private InvokeResult()
+            {
+                
+            }
+            
+            public static InvokeResult Create(bool isSucceeded,object[] results)
+            {
+                return new InvokeResult()
+                {
+                    IsSucceeded = isSucceeded,
+                    Results = results
+                };
+            }
+
+            public static InvokeResult Fail() => Create(false,null);
+
+            public static InvokeResult Success(object[] results) => Create(true, results);
         }
     }
 

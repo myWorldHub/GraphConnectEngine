@@ -39,12 +39,14 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core\GraphBase.cs" />
+        <Compile Include="Core\IProcessCall.cs" />
         <Compile Include="Core\Logger.cs" />
         <Compile Include="Core\INodeStatusListener.cs" />
         <Compile Include="Core\OperatorChecker.cs" />
         <Compile Include="Core\PrimitiveOperatorChecker.cs" />
         <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
+        <Compile Include="Core\VaueResult.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\Event\ProcessSenderGraph.cs" />
         <Compile Include="Graph\Event\UpdaterGraph.cs" />

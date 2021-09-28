@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -114,26 +115,21 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
-        public bool GetItemFromConnectedNode<T>(ProcessCallArgs args,out T result)
+        public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
         {
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
-                if (node.TryGetValue(args, out result))
-                {
-                    return true;
-                }
+                return await node.TryGetValue<T>(args);
             }
             else
             {
                 if (_defaultItemGetter != null && _defaultItemGetter(out var r) && r is T rt)
                 {
-                    result = rt;
-                    return true;
+                    return ValueResult<T>.Success(rt);
                 }
             }
 
-            result = default(T);
-            return false;
+            return ValueResult<T>.Fail();
         }
     }
 }

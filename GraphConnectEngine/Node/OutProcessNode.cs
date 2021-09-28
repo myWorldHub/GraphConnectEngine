@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -10,7 +11,7 @@ namespace GraphConnectEngine.Node
         {
         }
 
-        public void CallProcess(ProcessCallArgs args)
+        public async Task<bool> CallProcess(ProcessCallArgs args)
         {
             string myHash = ParentGraph.GetHashCode().ToString();
             string myName =  $"{ParentGraph.GetGraphName()}[{myHash}]";
@@ -19,7 +20,7 @@ namespace GraphConnectEngine.Node
             Logger.Debug($"{myName} Started to Calling Process with\n{args}");
 
             if (!Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
-                return;
+                return true;
             
             for (int i = 0; i < resolvers.Length; i++)
             {
@@ -27,9 +28,11 @@ namespace GraphConnectEngine.Node
                 if (args.TryAdd(myHash + "_" + i, true, out var nargs))
                 {
                     Logger.Debug(preset + $"{inProcessNode.ParentGraph.GetGraphName()}[{inProcessNode.ParentGraph.GetHashCode()}] with\n{nargs}");
-                    inProcessNode.OnCalled(this,nargs);
+                    await inProcessNode.OnCalled(this,nargs);
                 }
             }
+
+            return true;
         }
         
         public override bool IsAttachableGraphType(Type type)

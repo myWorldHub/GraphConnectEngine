@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace GraphConnectEngine.Core
 {
@@ -143,5 +144,21 @@ namespace GraphConnectEngine.Core
                 SingleExtention[sender] = checker;
             }
         }
+
+        /*
+        public static MethodInfo[] GetOperatorMethods(this object obj,MidOperator op)
+        {
+            var opName = op.ToString();
+            List<MethodInfo> methods = new List<MethodInfo>();
+            
+            foreach (var info in obj.GetType().GetMethods())
+            {
+                if (opName == info.Name)
+                {
+                    
+                }
+            }
+        }
+        */
     }
 }
