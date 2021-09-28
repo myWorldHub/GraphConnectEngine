@@ -131,5 +131,30 @@ namespace GraphConnectEngine.Node
 
             return ValueResult<T>.Fail();
         }
+
+        public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
+        {
+            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            {
+                var value = await node.TryGetValue<object>(args);
+                if (value.IsSucceeded)
+                {
+                    return value.Value.GetType() != GetItemType() ? ValueResult<object>.Fail() : value;
+                }
+                else
+                {
+                    return ValueResult<object>.Fail();
+                }
+            }
+            else
+            {
+                if (_defaultItemGetter != null && _defaultItemGetter(out var r) && r is object rt)
+                {
+                    return ValueResult<object>.Success(rt);
+                }
+            }
+
+            return ValueResult<object>.Fail();
+        }
     }
 }

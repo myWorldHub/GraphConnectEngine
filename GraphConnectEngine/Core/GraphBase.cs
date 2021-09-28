@@ -139,7 +139,7 @@ namespace GraphConnectEngine.Core
                 Logger.Debug($"{myName} Getting Parameters [{i}]");
                 
                 //取得
-                var res = await InItemNodes[i].GetItemFromConnectedNode<object>(nargs);
+                var res = await InItemNodes[i].GetItemFromConnectedNode(nargs);
                 
                 //失敗
                 if (!res.IsSucceeded)
