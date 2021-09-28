@@ -1,5 +1,6 @@
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
+using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Statement
 {
@@ -14,7 +15,7 @@ namespace GraphConnectEngine.Graph.Statement
             AddNode(new OutProcessNode(this));
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             bool result = (bool)parameters[0];
             

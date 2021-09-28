@@ -1,5 +1,6 @@
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
+using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Value
 {
@@ -18,7 +19,8 @@ namespace GraphConnectEngine.Graph.Value
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
+        
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (!_valueFunc(out T result))
             {

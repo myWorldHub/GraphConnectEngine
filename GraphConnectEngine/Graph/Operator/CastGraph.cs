@@ -1,6 +1,7 @@
 using System;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
+using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Operator
 {
@@ -58,7 +59,7 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             object value = parameters[0];
 

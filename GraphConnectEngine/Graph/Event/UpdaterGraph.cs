@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -65,7 +66,7 @@ namespace GraphConnectEngine.Graph.Event
             }
         }
 
-        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             results = null;
             nextNode = null;
