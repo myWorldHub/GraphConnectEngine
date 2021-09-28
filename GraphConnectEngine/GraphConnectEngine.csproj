@@ -46,7 +46,7 @@
         <Compile Include="Core\PrimitiveOperatorChecker.cs" />
         <Compile Include="Core\ProcessCallArgs.cs" />
         <Compile Include="Core\VariableHolder.cs" />
-        <Compile Include="Core\VaueResult.cs" />
+        <Compile Include="Core\ValueResult.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\Event\ProcessSenderGraph.cs" />
         <Compile Include="Graph\Event\UpdaterGraph.cs" />
