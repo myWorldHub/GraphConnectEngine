@@ -60,22 +60,8 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object a))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
-            if (!InItemNodes[1].GetItemFromConnectedNode(args, out object b))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
             if (_computeFunc == null)
             {
                 results = null;
@@ -83,6 +69,8 @@ namespace GraphConnectEngine.Graph.Operator
                 return false;
             }
 
+            object a = parameters[0];
+            object b = parameters[1];
             object r = _computeFunc(a, b);
 
             results = new object[]

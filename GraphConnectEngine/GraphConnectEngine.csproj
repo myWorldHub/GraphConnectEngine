@@ -50,10 +50,6 @@
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\Event\ProcessSenderGraph.cs" />
         <Compile Include="Graph\Event\UpdaterGraph.cs" />
-        <Compile Include="Graph\Generative\CreateInstanceGraph.cs" />
-        <Compile Include="Graph\Generative\GenerativeGraph.cs" />
-        <Compile Include="Graph\Generative\InstanceMethodGraph.cs" />
-        <Compile Include="Graph\Generative\StaticMethodGraph.cs" />
         <Compile Include="Graph\Operator\AdditionOperatorGraph.cs" />
         <Compile Include="Graph\Operator\CastGraph.cs" />
         <Compile Include="Graph\Operator\EqualOperatorGraph.cs" />

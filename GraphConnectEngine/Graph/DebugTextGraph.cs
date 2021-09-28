@@ -16,17 +16,10 @@ namespace GraphConnectEngine.Graph
             _updateText = updateText;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override bool OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object obj))
-            {
-                nextNode = null;
-                results = null;
-                return false;
-            }
-
             //実行
-            if (!_updateText(obj.ToString()))
+            if (!_updateText(parameters[0].ToString()))
             {
                 nextNode = null;
                 results = null;
