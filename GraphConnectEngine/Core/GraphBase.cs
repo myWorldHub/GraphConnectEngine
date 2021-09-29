@@ -21,15 +21,11 @@ namespace GraphConnectEngine.Core
         public readonly List<InItemNode> InItemNodes = new List<InItemNode>();
         public readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
 
-        private Tuple<ProcessCallArgs, ProcessCallResult> _cache;
-
         //ID
-        private string _id;
-        public string Id { get => _id; }
-
-        public void SetId(string id)
+        public string Id
         {
-            _id = id;
+            get;
+            private set;
         }
 
         /// <summary>
@@ -37,9 +33,16 @@ namespace GraphConnectEngine.Core
         /// </summary>
         public event EventHandler<GraphStatusEventArgs> OnStatusChanged;
 
-        public GraphBase(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
+        /// <param name="enableInProcess"></param>
+        /// <param name="enableOutProcess"></param>
+        public GraphBase(NodeConnector connector,string id = null,bool enableInProcess = true,bool enableOutProcess = true)
         {
-            _id = GetHashCode().ToString();
+            Id = id ?? GetHashCode().ToString();
             Connector = connector;
 
             if(enableInProcess)
@@ -63,17 +66,18 @@ namespace GraphConnectEngine.Core
             });
             
             //キャッシュチェック
-            if (_cache != null && args.CanGetItemOf(_cache.Item1))
+            var cache = args.TryGetResultOf(this);
+            if (cache != null)
             {
                 //イベント
-                Logger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2}");
+                Logger.Debug($"{myName} is Returning Cache : {cache.Results} > Next[{cache.NextNode}]");
                 OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                 {
                     Type = GraphStatusEventArgs.EventType.CacheUsed,
                     Args = args
                 });
 
-                return _cache.Item2.ToInvokeResult();
+                return cache.ToInvokeResult();
             }
 
             ProcessCallArgs nargs;
@@ -158,7 +162,7 @@ namespace GraphConnectEngine.Core
                         Type = GraphStatusEventArgs.EventType.ParamError,
                         Args = nargs
                     });
-                    _cache = new Tuple<ProcessCallArgs, ProcessCallResult>(nargs, ProcessCallResult.Fail());
+                    nargs.SetResult(this,ProcessCallResult.Fail());
                     return InvokeResult.Fail();
                 }
                     
@@ -176,13 +180,13 @@ namespace GraphConnectEngine.Core
             });
 
             //Invoke
-            ProcessCallResult procResult = await OnProcessCall(nargs,parameters);
+            ProcessCallResult procResult = await OnProcessCall(nargs, parameters);
+            Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
 
             //キャッシュする
-            _cache = new Tuple<ProcessCallArgs, ProcessCallResult>(nargs, procResult);
+            nargs.SetResult(this, procResult);
 
             //イベント
-            Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
                 Type = procResult.IsSucceeded ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,
