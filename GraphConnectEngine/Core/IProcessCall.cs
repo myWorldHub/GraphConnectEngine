@@ -41,5 +41,11 @@ namespace GraphConnectEngine.Core
         {
             return GraphBase.InvokeResult.Create(result.IsSucceeded,result.Results);
         }
+        
+        public override string ToString()
+        {
+            var a = IsSucceeded ? "Success" : "Fail";
+            return $"ProcessCallResult<{a}> => Next[{NextNode}]";
+        }
     }
 }

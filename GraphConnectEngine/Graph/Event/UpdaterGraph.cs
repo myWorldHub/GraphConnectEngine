@@ -43,14 +43,15 @@ namespace GraphConnectEngine.Graph.Event
             _time = _intervalTime;
         }
 
-        public void Update(float deltaTime)
+        public async Task<bool> Update(float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
             
             if (IntervalType == Type.Update)
             {
-                Fire();
+                await Fire();
+                return true;
             }
             else
             {
@@ -61,9 +62,12 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    Fire();
+                    await Fire();
+                    return true;
                 }
             }
+
+            return false;
         }
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)

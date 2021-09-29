@@ -152,6 +152,7 @@ namespace GraphConnectEngine.Core
                 //失敗
                 if (!res.IsSucceeded)
                 {
+                    Logger.Debug($"{myName} Result Fail : on Getting Parameters [{i}] : {res}");
                     OnStatusChanged?.Invoke(this,new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.ParamError,
@@ -163,6 +164,8 @@ namespace GraphConnectEngine.Core
                     
                 parameters[i] = res.Value;
             }
+
+            Logger.Debug($"{myName} Got all Parameters from InItemNode");
             
             //イベント
             Logger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
@@ -266,6 +269,12 @@ namespace GraphConnectEngine.Core
             public static InvokeResult Fail() => Create(false,null);
 
             public static InvokeResult Success(object[] results) => Create(true, results);
+
+            public override string ToString()
+            {
+                var a = IsSucceeded ? "Success" : "Fail";
+                return $"InvokeResult<{a}>";
+            }
         }
     }
 

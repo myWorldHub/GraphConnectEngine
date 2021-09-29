@@ -139,10 +139,22 @@ namespace GraphConnectEngine.Node
                 var value = await node.TryGetValue<object>(args);
                 if (value.IsSucceeded)
                 {
-                    return value.Value.GetType() != GetItemType() ? ValueResult<object>.Fail() : value;
+                    var vtype = value.Value.GetType();
+                    var mytype = GetItemType();
+                    if (vtype == mytype || vtype.IsSubclassOf(mytype))
+                    {
+                        Logger.Debug("[InItemNode] Successful : Got item from OutItemNode.");
+                        return value;
+                    }
+                    else
+                    {
+                        Logger.Debug($"[InItemNode] Fail : item from OutItemNode[{value.Value}] is neither {GetItemType().Name} nor subclass of mine.");
+                        return ValueResult<object>.Fail();
+                    }
                 }
                 else
                 {
+                    Logger.Debug("[InItemNode] Fail : OutItemNode returned value with Fail flag.");
                     return ValueResult<object>.Fail();
                 }
             }
@@ -150,7 +162,12 @@ namespace GraphConnectEngine.Node
             {
                 if (_defaultItemGetter != null && _defaultItemGetter(out var r) && r is object rt)
                 {
+                    Logger.Debug("[InItemNode] Successful : used DefaultItemGetter.");
                     return ValueResult<object>.Success(rt);
+                }
+                else
+                {
+                    Logger.Debug("[InItemNode] Fail : No OutItemNode is connected.");
                 }
             }
 

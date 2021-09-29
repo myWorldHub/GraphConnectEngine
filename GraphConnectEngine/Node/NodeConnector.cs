@@ -167,7 +167,7 @@ namespace GraphConnectEngine.Node
         /// <returns></returns>
         public bool ConnectNode(NodeBase node1, NodeBase node2)
         {
-            Logger.Debug("[NodeConnector] Connect Node-------------------------");
+            Logger.Debug("[NodeConnector] Connected Node Info-------------------------");
             DumpNode(node1);
             DumpNode(node2);
 

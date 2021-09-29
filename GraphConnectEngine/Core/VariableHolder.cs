@@ -139,7 +139,7 @@ namespace GraphConnectEngine.Core
         {
             if (await ContainsKey(key))
             {
-                if (obj.GetType() != _types[key])
+                if (obj != null && obj.GetType() != _types[key])
                     return false;
 
                 _items[key] = obj;
@@ -150,6 +150,8 @@ namespace GraphConnectEngine.Core
                     Type = _types[key],
                     Value = obj
                 });
+
+                return true;
             }
             return false;
         }

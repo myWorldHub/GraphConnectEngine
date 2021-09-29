@@ -21,5 +21,11 @@ namespace GraphConnectEngine.Core
         public static ValueResult<T> Fail() => Create(false, default);
 
         public static ValueResult<T> Success(T value) => Create(true, value);
+
+        public override string ToString()
+        {
+            var a = IsSucceeded ? "Success" : "Fail";
+            return $"ValueResult<{a}>[{Value}]";
+        }
     }
 }

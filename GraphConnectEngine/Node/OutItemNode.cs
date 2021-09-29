@@ -99,13 +99,22 @@ namespace GraphConnectEngine.Node
                 {
                     if (procResult.Results[_resultIndex] is T t)
                     {
+                        Logger.Debug($"[OutItemNode] Returning Item => {t}.");
                         return ValueResult<T>.Success(t);
+                    }
+                    else
+                    {
+                        Logger.Debug($"[OutItemNode] Result is not {typeof(T).Name}");
                     }
                 }
                 else
                 {
-                    Logger.Error($"TryGetValue Unexpected Index");
+                    Logger.Error("[OutItemNode] TryGetValue Unexpected Index");
                 }
+            }
+            else
+            {
+                Logger.Debug("[OutItemNode] Process Failed.");
             }
 
             return ValueResult<T>.Fail();
