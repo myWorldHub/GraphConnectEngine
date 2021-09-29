@@ -4,7 +4,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Event
 {
-    public class UpdaterGraph : ProcessSenderGraph
+    public class UpdaterGraph : GraphBase
     {
 
         public enum Type
@@ -33,24 +33,27 @@ namespace GraphConnectEngine.Graph.Event
 
         private float _time;
 
-        public UpdaterGraph(NodeConnector connector) : base(connector)
+        private IProcessSender _processSender;
+
+        public UpdaterGraph(NodeConnector connector, IProcessSender processSender) : base(connector)
         {
             _time = 0;
+            _processSender = processSender;
         }
 
         public void ResetTime()
         {
-            _time = _intervalTime;
+            _time = IntervalTime;
         }
 
-        public async Task<bool> Update(float deltaTime)
+        public bool Update(float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
             
             if (IntervalType == Type.Update)
             {
-                await Fire();
+                _processSender.Fire();
                 return true;
             }
             else
@@ -62,7 +65,7 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    await Fire();
+                    _processSender.Fire();
                     return true;
                 }
             }
