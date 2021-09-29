@@ -53,7 +53,7 @@ namespace GraphConnectEngine.Graph.Event
             
             if (IntervalType == Type.Update)
             {
-                _processSender.Fire();
+                _processSender.Fire(OutProcessNode);
                 return true;
             }
             else
@@ -65,7 +65,7 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    _processSender.Fire();
+                    _processSender.Fire(OutProcessNode);
                     return true;
                 }
             }

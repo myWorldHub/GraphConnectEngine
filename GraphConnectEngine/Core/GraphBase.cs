@@ -25,7 +25,7 @@ namespace GraphConnectEngine.Core
         public string Id
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace GraphConnectEngine.Core
         /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
         /// <param name="enableInProcess"></param>
         /// <param name="enableOutProcess"></param>
-        public GraphBase(NodeConnector connector,string id = null,bool enableInProcess = true,bool enableOutProcess = true)
+        public GraphBase(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
         {
-            Id = id ?? GetHashCode().ToString();
+            Id = GetHashCode().ToString();
             Connector = connector;
 
             if(enableInProcess)
