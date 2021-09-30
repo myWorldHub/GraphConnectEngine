@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -14,18 +15,15 @@ namespace GraphConnectEngine.Graph.Statement
             AddNode(new OutProcessNode(this));
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out bool result))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
-            results = new object[] {result};
-            nextNode = result ? OutProcessNode : OutProcessNodes[1];
-            return true;
+            bool result = (bool)parameters[0];
+            return UniTask.FromResult(ProcessCallResult.Success(
+                new object[]
+                {
+                    result
+                },
+                result ? OutProcessNode : OutProcessNodes[1]));
         }
 
         public override string GetGraphName() => "If Statement Graph";

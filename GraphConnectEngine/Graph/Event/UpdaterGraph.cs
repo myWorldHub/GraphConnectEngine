@@ -1,9 +1,10 @@
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Event
 {
-    public class UpdaterGraph : ProcessSenderGraph
+    public class UpdaterGraph : GraphBase
     {
 
         public enum Type
@@ -32,24 +33,28 @@ namespace GraphConnectEngine.Graph.Event
 
         private float _time;
 
-        public UpdaterGraph(NodeConnector connector) : base(connector)
+        private IProcessSender _processSender;
+
+        public UpdaterGraph(NodeConnector connector, IProcessSender processSender) : base(connector)
         {
             _time = 0;
+            _processSender = processSender;
         }
 
         public void ResetTime()
         {
-            _time = _intervalTime;
+            _time = IntervalTime;
         }
 
-        public void Update(float deltaTime)
+        public async UniTask<bool> Update(float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
             
             if (IntervalType == Type.Update)
             {
-                Fire();
+                await _processSender.Fire(OutProcessNode);
+                return true;
             }
             else
             {
@@ -60,16 +65,17 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    Fire();
+                    await _processSender.Fire(OutProcessNode);
+                    return true;
                 }
             }
+
+            return false;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            results = null;
-            nextNode = null;
-            return false;
+            return UniTask.FromResult(ProcessCallResult.Fail());
         }
 
         public override string GetGraphName() =>  "Updater Graph";

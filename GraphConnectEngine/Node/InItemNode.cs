@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -114,26 +115,63 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
-        public bool GetItemFromConnectedNode<T>(ProcessCallArgs args,out T result)
+        public async UniTask<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
         {
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
-                if (node.TryGetValue(args, out result))
-                {
-                    return true;
-                }
+                return await node.TryGetValue<T>(args);
             }
             else
             {
                 if (_defaultItemGetter != null && _defaultItemGetter(out var r) && r is T rt)
                 {
-                    result = rt;
-                    return true;
+                    return ValueResult<T>.Success(rt);
                 }
             }
 
-            result = default(T);
-            return false;
+            return ValueResult<T>.Fail();
+        }
+
+        public async UniTask<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
+        {
+            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            {
+                var value = await node.TryGetValue<object>(args);
+                if (value.IsSucceeded)
+                {
+                    var vtype = value.Value.GetType();
+                    var mytype = GetItemType();
+                    if (vtype == mytype || vtype.IsSubclassOf(mytype))
+                    {
+                        Logger.Debug("[InItemNode] Successful : Got item from OutItemNode.");
+                        return value;
+                    }
+                    else
+                    {
+                        Logger.Debug($"[InItemNode] Fail : item from OutItemNode[{value.Value}] is neither {GetItemType().Name} nor subclass of mine.");
+                        return ValueResult<object>.Fail();
+                    }
+                }
+                else
+                {
+                    Logger.Debug("[InItemNode] Fail : OutItemNode returned value with Fail flag.");
+                    return ValueResult<object>.Fail();
+                }
+            }
+            else
+            {
+                if (_defaultItemGetter != null && _defaultItemGetter(out var r) && r is object rt)
+                {
+                    Logger.Debug("[InItemNode] Successful : used DefaultItemGetter.");
+                    return ValueResult<object>.Success(rt);
+                }
+                else
+                {
+                    Logger.Debug("[InItemNode] Fail : No OutItemNode is connected.");
+                }
+            }
+
+            return ValueResult<object>.Fail();
         }
     }
 }

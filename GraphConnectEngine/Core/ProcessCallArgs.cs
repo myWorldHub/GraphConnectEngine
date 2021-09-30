@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace GraphConnectEngine.Core
@@ -8,6 +9,9 @@ namespace GraphConnectEngine.Core
 
         private string _value;
 
+        private Dictionary<string, ProcessCallResult> _cache;
+        private Dictionary<string, ProcessCallArgs> _args;
+
         /// <summary>
         /// 発火用
         /// </summary>
@@ -15,12 +19,15 @@ namespace GraphConnectEngine.Core
         /// <returns></returns>
         public static ProcessCallArgs Fire(object sender)
         {
-            return new ProcessCallArgs(  $"{sender}_{Guid.NewGuid()}");
+            return new ProcessCallArgs($"{sender}_{Guid.NewGuid()}", new Dictionary<string, ProcessCallResult>(),
+                new Dictionary<string, ProcessCallArgs>());
         }
 
-        public ProcessCallArgs(object hash)
+        private ProcessCallArgs(object hash, Dictionary<string, ProcessCallResult> cache,Dictionary<string,ProcessCallArgs> args)
         {
             _value = hash.ToString();
+            _cache = cache;
+            _args = args;
         }
 
         /// <summary>
@@ -37,7 +44,7 @@ namespace GraphConnectEngine.Core
                 result = null;
                 return false;
             }
-            result = new ProcessCallArgs(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash);
+            result = new ProcessCallArgs(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash,_cache,_args);
             return true;
         }
 
@@ -72,43 +79,62 @@ namespace GraphConnectEngine.Core
             return result;
         }
 
-        public bool CanGetItemOf(ProcessCallArgs parent)
+        public ProcessCallResult TryGetResultOf(GraphBase graph)
         {
 
-            Logger.Debug($"[CanGetItem]Start\nFrom  : {GetValue()}\nTarget: {parent.GetValue()}");
+            Logger.Debug($"[ProcArgs]Trying to get cache \nFrom  : {GetValue()}");
+
+            if (!_args.ContainsKey(graph.Id))
+            {
+                Logger.Debug("[ProcArgs] Fail : No Cache is registered fot this graph.");
+                return null;
+            }
+
+            var targetArgs = _args[graph.Id];
             
             //発火元が違う
-            if (GetSender() != parent.GetSender())
+            if (GetSender() != targetArgs.GetSender())
             {
-                Logger.Debug("[CanGetItem] Fail : Sender is not match.");
-                return false;
+                Logger.Debug("[ProcArgs] Fail : Sender is not match.");
+                return null;
             }
 
             var my = GetProcList();
-            var you = parent.GetProcList();
+            var you = targetArgs.GetProcList();
 
             if (my == you)
             {
-                Logger.Debug("[CanGetItem] Success : Same Args.");
-                return true;
+                Logger.Debug("[ProcArgs] Success : Same Args.");
+                return _cache[graph.Id];
             }
 
+            //TODO callのid振りが2桁以上になったらおかしくなるかも？
             if (my.Length < you.Length)
             {
-                Logger.Debug("[CanGetItem] Fail : Target is longer than FromArgs.");
-                return false;
+                Logger.Debug("[ProcArgs] Fail : Target is longer than FromArgs.");
+                return null;
             }
 
             if (my.StartsWith(you))
             {
-                Logger.Debug("[CanGetItem] Success");
-                return true;
+                Logger.Debug("[ProcArgs] Success");
+                return _cache[graph.Id];
             }
             else
             {
-                Logger.Debug($"[CanGetItem] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
-                return false;
+                Logger.Debug($"[ProcArgs] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
+                return null;
             }
+        }
+
+        /// <summary>
+        /// キャッシュを設定
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="result"></param>
+        public void SetResult(GraphBase graph, ProcessCallResult result)
+        {
+            _cache[graph.Id] = result;
         }
 
         public string GetSender()
@@ -118,7 +144,7 @@ namespace GraphConnectEngine.Core
 
         public override string ToString()
         {
-            return GetValue();
+            return "Args : "+ GetValue();
         }
     }
 }

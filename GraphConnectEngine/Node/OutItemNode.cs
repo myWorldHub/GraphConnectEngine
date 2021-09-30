@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -88,29 +89,37 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
-        public bool TryGetValue<T>(ProcessCallArgs args,out T tResult)
+        public async UniTask<ValueResult<T>> TryGetValue<T>(ProcessCallArgs args)
         {
-            var procResult = ParentGraph.Invoke(this, args, out var results);
+            var procResult = await ParentGraph.Invoke(this, args);
 
-            if (procResult)
+            if (procResult.IsSucceeded)
             {
-                if (results.Length >= _resultIndex + 1)
+                if (procResult.Results.Length >= _resultIndex + 1)
                 {
-                    if (results[_resultIndex] is T t)
+                    if (procResult.Results[_resultIndex] is T t)
                     {
-                        tResult = t;
-                        return true;
+                        Logger.Debug($"[OutItemNode] Returning Item => {t}.");
+                        return ValueResult<T>.Success(t);
+                    }
+                    else
+                    {
+                        Logger.Debug($"[OutItemNode] Result is not {typeof(T).Name}");
                     }
                 }
                 else
                 {
-                    Logger.Error($"TryGetValue Unexpected Index");
+                    Logger.Error("[OutItemNode] TryGetValue Unexpected Index");
                 }
             }
+            else
+            {
+                Logger.Debug("[OutItemNode] Process Failed.");
+            }
 
-            tResult = default(T);
-            return false;
+            return ValueResult<T>.Fail();
         }
+
         
     }
 }

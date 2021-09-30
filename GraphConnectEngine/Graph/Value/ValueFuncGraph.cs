@@ -1,3 +1,5 @@
+using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -8,28 +10,25 @@ namespace GraphConnectEngine.Graph.Value
     /// <typeparam name="T"></typeparam>
     public class ValueFuncGraph<T> : GraphBase
     {
-        public delegate bool ValueFunc(out T result);
         
-        private ValueFunc _valueFunc;
+        private Func<UniTask<ValueResult<T>>> _valueFunc;
 
-        public ValueFuncGraph(NodeConnector connector, ValueFunc valueFunc) : base(connector)
+        public ValueFuncGraph(NodeConnector connector, Func<UniTask<ValueResult<T>>> valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        
+        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!_valueFunc(out T result))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            //実行
+            var result = await _valueFunc();
+            
+            if (!result.IsSucceeded)
+                return ProcessCallResult.Fail();
 
-            results = new object[] {result};
-            nextNode = OutProcessNode;
-            return true;
+            return ProcessCallResult.Success(new object[]{result.Value},OutProcessNode);
         }
 
         public override string GetGraphName() => "ValueFunc<" + typeof(T).Name + "> Graph";

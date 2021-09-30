@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -58,15 +59,9 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object value))
-            {
-                Logger.Debug("AAA");
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            object value = parameters[0];
 
             // cast
             T a;
@@ -90,19 +85,11 @@ namespace GraphConnectEngine.Graph.Operator
                 a = default;
             }
 
-            if (isSuccess)
-            {
-                results = new object[] {a};
-                nextNode = OutProcessNode;
-                return true;
-            }
-            else
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            //失敗
+            if (!isSuccess)
+                return UniTask.FromResult(ProcessCallResult.Fail());
 
+            return UniTask.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNode));
         }
 
         public override string GetGraphName() => "CastGraph<"+typeof(T).Name+">";

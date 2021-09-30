@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -11,9 +12,9 @@ namespace GraphConnectEngine.Node
         {
         }
 
-        public void OnCalled(object sender, ProcessCallArgs args)
+        public async UniTask<GraphBase.InvokeResult> OnCalled(object sender, ProcessCallArgs args)
         {
-            ParentGraph.Invoke(sender, args, out var results);
+            return await ParentGraph.Invoke(sender, args);
         }
 
         public override bool IsAttachableGraphType(Type type)

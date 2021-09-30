@@ -1,6 +1,7 @@
 using System;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
+using Cysharp.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Variable
 {
@@ -16,39 +17,29 @@ namespace GraphConnectEngine.Graph.Variable
             AddNode(new InItemNode(this, typeof(void),"Value"));
             AddNode(new OutItemNode(this,typeof(void),0,"Value"));
         }
-        
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+
+        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (Holder == null)
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-            
-            if (InItemNodes[0].GetItemFromConnectedNode(args, out object obj))
-            {
-                if (Holder.Update(VariableName, obj))
-                {
-                    results = new object[]
-                    {
-                        obj
-                    };
-                    nextNode = OutProcessNode;
-                    return true;
-                }
-            }
+                return ProcessCallResult.Fail();
 
-            results = null;
-            nextNode = null;
-            return false;   
+            var obj = parameters[0];
+            
+            //更新
+            if (!await Holder.Update(VariableName, obj))
+                return ProcessCallResult.Fail();
+
+            return ProcessCallResult.Success(new[] {obj}, OutProcessNode);
         }
 
-        protected override void OnVariableChanged()
+        protected override async void OnVariableChanged()
         {
-            if (Holder?.ContainsKey(VariableName) ?? false)
+            if (Holder == null)
+                return;
+
+            if (await Holder.ContainsKey(VariableName))
             {
-                var type = Holder.GetVariableType(VariableName);
+                var type = await Holder.GetVariableType(VariableName);
                 InItemNodes[0].SetItemType(type);
                 OutItemNodes[0].SetItemType(type);
                 
@@ -60,11 +51,14 @@ namespace GraphConnectEngine.Graph.Variable
             }
         }
 
-        protected override void OnHolderChanged()
+        protected override async void OnHolderChanged()
         {
-            if (Holder?.ContainsKey(VariableName) ?? false)
+            if (Holder == null)
+                return;
+            
+            if (await Holder.ContainsKey(VariableName))
             {
-                var type = Holder.GetVariableType(VariableName);
+                var type = await Holder.GetVariableType(VariableName);
                 InItemNodes[0].SetItemType(type);
                 OutItemNodes[0].SetItemType(type);
                 

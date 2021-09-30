@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -7,39 +8,29 @@ namespace GraphConnectEngine.Graph
     public class DebugTextGraph : GraphBase
     {
         
-        private Func<string,bool> _updateText;
+        private Func<string, UniTask<bool>> _updateText;
 
-        public DebugTextGraph(NodeConnector connector,Func<string,bool> updateText) : base(connector)
+        public DebugTextGraph(NodeConnector connector,Func<string, UniTask<bool>> updateText) : base(connector)
         {
             AddNode(new InItemNode(this, typeof(object),"Object"));
             AddNode(new OutItemNode(this, typeof(string),1,"Text"));
             _updateText = updateText;
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object obj))
-            {
-                nextNode = null;
-                results = null;
-                return false;
-            }
-
-            //実行
-            if (!_updateText(obj.ToString()))
-            {
-                nextNode = null;
-                results = null;
-                return false;
-            }
+            var obj = parameters[0];
+            var str = obj.ToString();
             
-            results = new object[]
+            //実行
+            if (!await _updateText(str))
+                return ProcessCallResult.Fail();
+
+            return ProcessCallResult.Success(new []
             {
                 obj,
-                obj.ToString()
-            };
-            nextNode = OutProcessNode;
-            return true;    
+                str
+            }, OutProcessNode);
         }
 
         public override string GetGraphName() => "Debug Text Graph";

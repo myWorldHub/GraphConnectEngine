@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -17,35 +18,29 @@ namespace GraphConnectEngine.Graph.Variable
         }
 
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
+            //Holderがない
             if (Holder == null)
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+                return ProcessCallResult.Fail();
 
-            if(!Holder?.ContainsKey(VariableName) ?? true)
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+            //取得
+            var result = await Holder.TryGet(VariableName);
+            
+            if(!result.IsSucceeded)
+                return ProcessCallResult.Fail();
 
-            results = new[]
-            {
-                Holder[VariableName]
-            };
-            nextNode = OutProcessNode;
-            return true;
+            return ProcessCallResult.Success(new [] {result.Value}, OutProcessNode);
         }
 
-        protected override void OnVariableChanged()
+        protected override async void OnVariableChanged()
         {
-            if (Holder?.ContainsKey(VariableName) ?? false)
+            if (Holder == null)
+                return;
+            
+            if (await Holder.ContainsKey(VariableName))
             {
-                OutItemNodes[0].SetItemType(Holder.GetVariableType(VariableName));
+                OutItemNodes[0].SetItemType(await Holder.GetVariableType(VariableName));
                 OnVariableFound?.Invoke(this,new EventArgs());
             }
             else
@@ -54,11 +49,14 @@ namespace GraphConnectEngine.Graph.Variable
             }
         }
 
-        protected override void OnHolderChanged()
+        protected override async void OnHolderChanged()
         {
-            if (Holder?.ContainsKey(VariableName) ?? false)
+            if (Holder == null)
+                return;
+            
+            if (await Holder.ContainsKey(VariableName))
             {
-                OutItemNodes[0].SetItemType(Holder.GetVariableType(VariableName));
+                OutItemNodes[0].SetItemType(await Holder.GetVariableType(VariableName));
                 OnVariableFound?.Invoke(this, new EventArgs());
             }
             else

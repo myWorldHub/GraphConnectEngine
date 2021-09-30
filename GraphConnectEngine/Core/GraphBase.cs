@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Core
 {
-    public abstract class GraphBase : IDisposable
+    public abstract class GraphBase : IProcessCall,IDisposable
     {
 
         public readonly NodeConnector Connector;
@@ -20,24 +21,38 @@ namespace GraphConnectEngine.Core
         public readonly List<InItemNode> InItemNodes = new List<InItemNode>();
         public readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
 
-        private Tuple<ProcessCallArgs, bool, object[]> _cache;
-
-        public string UniqueId => GetHashCode().ToString();
+        //ID
+        public string Id
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// 実行ステータスのリス名
         /// </summary>
         public event EventHandler<GraphStatusEventArgs> OnStatusChanged;
 
-        public GraphBase(NodeConnector connector)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
+        /// <param name="enableInProcess"></param>
+        /// <param name="enableOutProcess"></param>
+        public GraphBase(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
         {
+            Id = GetHashCode().ToString();
             Connector = connector;
 
-            AddNode(new InProcessNode(this));
-            AddNode(new OutProcessNode(this));
+            if(enableInProcess)
+                AddNode(new InProcessNode(this));
+            
+            if(enableOutProcess)
+                AddNode(new OutProcessNode(this));
         }
 
-        public bool Invoke(object sender,ProcessCallArgs args,out object[] results)
+        public async UniTask<InvokeResult> Invoke(object sender,ProcessCallArgs args)
         {
             string myHash = GetHashCode().ToString();
             string myName = $"{GetGraphName()}[{myHash}]";
@@ -51,18 +66,18 @@ namespace GraphConnectEngine.Core
             });
             
             //キャッシュチェック
-            if (_cache != null && args.CanGetItemOf(_cache.Item1))
+            var cache = args.TryGetResultOf(this);
+            if (cache != null)
             {
                 //イベント
-                Logger.Debug($"{myName} is Returning Cache\n{_cache.Item1} : {_cache.Item2} : {_cache.Item3}");
+                Logger.Debug($"{myName} is Returning Cache : {cache.Results} > Next[{cache.NextNode}]");
                 OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                 {
                     Type = GraphStatusEventArgs.EventType.CacheUsed,
                     Args = args
                 });
-                
-                results = _cache.Item3;
-                return _cache.Item2;
+
+                return cache.ToInvokeResult();
             }
 
             ProcessCallArgs nargs;
@@ -79,9 +94,8 @@ namespace GraphConnectEngine.Core
                         Type = GraphStatusEventArgs.EventType.CacheError,
                         Args = args
                     });
-                    
-                    results = Array.Empty<object>();
-                    return false;
+
+                    return InvokeResult.Fail();
                 }
 
                 //ループ検知
@@ -95,8 +109,7 @@ namespace GraphConnectEngine.Core
                         Args = args
                     });
                     
-                    results = Array.Empty<object>();
-                    return false;
+                    return InvokeResult.Fail();
                 }
             }
             else
@@ -111,9 +124,8 @@ namespace GraphConnectEngine.Core
                         Type = GraphStatusEventArgs.EventType.UnknownError,
                         Args = args
                     });
-                    
-                    results = Array.Empty<object>();
-                    return false;
+
+                    return InvokeResult.Fail();
                 }
                 
                 //ループ検知
@@ -127,10 +139,37 @@ namespace GraphConnectEngine.Core
                         Args = args
                     });
                     
-                    results = Array.Empty<object>();
-                    return false;
+                    return InvokeResult.Fail();
                 }
             }
+
+            //パラメータを取得する
+            object[] parameters = new object[InItemNodes.Count];
+
+            for (int i=0;i<InItemNodes.Count;i++)
+            {
+                Logger.Debug($"{myName} Getting Parameters [{i}]");
+                
+                //取得
+                var res = await InItemNodes[i].GetItemFromConnectedNode(nargs);
+                
+                //失敗
+                if (!res.IsSucceeded)
+                {
+                    Logger.Debug($"{myName} Result Fail : on Getting Parameters [{i}] : {res}");
+                    OnStatusChanged?.Invoke(this,new GraphStatusEventArgs()
+                    {
+                        Type = GraphStatusEventArgs.EventType.ParamError,
+                        Args = nargs
+                    });
+                    nargs.SetResult(this,ProcessCallResult.Fail());
+                    return InvokeResult.Fail();
+                }
+                    
+                parameters[i] = res.Value;
+            }
+
+            Logger.Debug($"{myName} Got all Parameters from InItemNode");
             
             //イベント
             Logger.Debug($"{myName} Invoke OnProcessCall in GraphBase with\n{nargs}");
@@ -141,38 +180,30 @@ namespace GraphConnectEngine.Core
             });
 
             //Invoke
-            bool procResult = OnProcessCall(nargs, out results, out var nextNode);
+            ProcessCallResult procResult = await OnProcessCall(nargs, parameters);
+            Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
 
             //キャッシュする
-            _cache = new Tuple<ProcessCallArgs, bool, object[]>(nargs, procResult, results ?? Array.Empty<object>());
+            nargs.SetResult(this, procResult);
 
             //イベント
-            Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
-                Type = procResult ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,
+                Type = procResult.IsSucceeded ? GraphStatusEventArgs.EventType.ProcessSuccess : GraphStatusEventArgs.EventType.ProcessFail,
                 Args = nargs
             });
             
             //OutProcessなら実行する
-            if (procResult && sender is OutProcessNode)
+            if (procResult.IsSucceeded && sender is OutProcessNode)
             {
-                nextNode?.CallProcess(args);
+                await procResult.NextNode.CallProcess(args);
             }
 
-            return procResult;
+            return procResult.ToInvokeResult();
         }
 
-        /// <summary>
-        /// ProcessCallで呼ばれる
-        /// 実装では必ずOutItemをキャッシュさせる
-        /// </summary>
-        /// <param name="args"></param>
-        /// <param name="results"></param>
-        /// <param name="nextNode"></param>
-        /// <returns></returns>
-        protected abstract bool OnProcessCall(ProcessCallArgs args,out object[] results,out OutProcessNode nextNode);
-
+        public abstract UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
+        
         /// <summary>
         /// グラフ名を取得する
         /// </summary>
@@ -219,6 +250,36 @@ namespace GraphConnectEngine.Core
             foreach (var n in OutItemNodes)
                 n.Dispose();
         }
+
+        public class InvokeResult
+        {
+            public bool IsSucceeded;
+            public object[] Results;
+
+            private InvokeResult()
+            {
+                
+            }
+            
+            public static InvokeResult Create(bool isSucceeded,object[] results)
+            {
+                return new InvokeResult()
+                {
+                    IsSucceeded = isSucceeded,
+                    Results = results
+                };
+            }
+
+            public static InvokeResult Fail() => Create(false,null);
+
+            public static InvokeResult Success(object[] results) => Create(true, results);
+
+            public override string ToString()
+            {
+                var a = IsSucceeded ? "Success" : "Fail";
+                return $"InvokeResult<{a}>";
+            }
+        }
     }
 
     public class GraphStatusEventArgs : EventArgs
@@ -226,6 +287,7 @@ namespace GraphConnectEngine.Core
         public enum EventType
         {
             InvokeCalled,
+            ParamError,
             ProcessStart,
             ProcessSuccess,
             ProcessFail,

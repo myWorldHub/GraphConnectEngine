@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -60,40 +61,21 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        protected override bool OnProcessCall(ProcessCallArgs args, out object[] results, out OutProcessNode nextNode)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            if (!InItemNodes[0].GetItemFromConnectedNode(args, out object a))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
-            if (!InItemNodes[1].GetItemFromConnectedNode(args, out object b))
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
-
             if (_computeFunc == null)
-            {
-                results = null;
-                nextNode = null;
-                return false;
-            }
+                return UniTask.FromResult(ProcessCallResult.Fail());
 
+            object a = parameters[0];
+            object b = parameters[1];
             object r = _computeFunc(a, b);
 
-            results = new object[]
+            return UniTask.FromResult(ProcessCallResult.Success(new[]
             {
                 a,
                 b,
                 r
-            };
-
-            nextNode = OutProcessNode;
-            return true;
+            },OutProcessNode));
         }
 
         private bool TypeChecker(int sender, Type myType, Type anotherType)
