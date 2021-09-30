@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -11,7 +11,7 @@ namespace GraphConnectEngine.Node
         {
         }
 
-        public async Task<bool> CallProcess(ProcessCallArgs args)
+        public async UniTask<bool> CallProcess(ProcessCallArgs args)
         {
             string myHash = ParentGraph.GetHashCode().ToString();
             string myName =  $"{ParentGraph.GetGraphName()}[{myHash}]";

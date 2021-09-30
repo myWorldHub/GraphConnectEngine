@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -17,7 +18,7 @@ namespace GraphConnectEngine.Graph
             _updateText = updateText;
         }
 
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             var obj = parameters[0];
             var str = obj.ToString();

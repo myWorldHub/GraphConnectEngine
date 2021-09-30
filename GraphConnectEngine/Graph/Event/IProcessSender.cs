@@ -1,10 +1,10 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Event
 {
     public interface IProcessSender
-    { 
-        Task Fire(OutProcessNode node);
+    {
+        UniTask Fire(OutProcessNode node);
     }
 }

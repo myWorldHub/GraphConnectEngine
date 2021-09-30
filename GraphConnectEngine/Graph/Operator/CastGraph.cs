@@ -1,7 +1,7 @@
 using System;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
-using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Operator
 {
@@ -59,7 +59,7 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             object value = parameters[0];
 
@@ -87,9 +87,9 @@ namespace GraphConnectEngine.Graph.Operator
 
             //失敗
             if (!isSuccess)
-                return Task.FromResult(ProcessCallResult.Fail());
+                return UniTask.FromResult(ProcessCallResult.Fail());
 
-            return Task.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNode));
+            return UniTask.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNode));
         }
 
         public override string GetGraphName() => "CastGraph<"+typeof(T).Name+">";

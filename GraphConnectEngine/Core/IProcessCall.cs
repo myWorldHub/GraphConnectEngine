@@ -1,11 +1,11 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Core
 {
     public interface IProcessCall
     {
-        Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
+        UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
     }
 
     public class ProcessCallResult
