@@ -46,14 +46,14 @@ namespace GraphConnectEngine.Graph.Event
             _time = IntervalTime;
         }
 
-        public bool Update(float deltaTime)
+        public async Task<bool> Update(float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
             
             if (IntervalType == Type.Update)
             {
-                _processSender.Fire(OutProcessNode);
+                await _processSender.Fire(OutProcessNode);
                 return true;
             }
             else
@@ -65,7 +65,7 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    _processSender.Fire(OutProcessNode);
+                    await _processSender.Fire(OutProcessNode);
                     return true;
                 }
             }

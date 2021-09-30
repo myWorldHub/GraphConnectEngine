@@ -82,11 +82,11 @@ namespace GraphConnectEngine.Core
         public ProcessCallResult TryGetResultOf(GraphBase graph)
         {
 
-            Logger.Debug($"[CanGetItem]Start\nFrom  : {GetValue()}");
+            Logger.Debug($"[ProcArgs]Trying to get cache \nFrom  : {GetValue()}");
 
             if (!_args.ContainsKey(graph.Id))
             {
-                Logger.Debug("[CanGetItem] Fail : No Cache is registered fot this graph.");
+                Logger.Debug("[ProcArgs] Fail : No Cache is registered fot this graph.");
                 return null;
             }
 
@@ -95,7 +95,7 @@ namespace GraphConnectEngine.Core
             //発火元が違う
             if (GetSender() != targetArgs.GetSender())
             {
-                Logger.Debug("[CanGetItem] Fail : Sender is not match.");
+                Logger.Debug("[ProcArgs] Fail : Sender is not match.");
                 return null;
             }
 
@@ -104,25 +104,25 @@ namespace GraphConnectEngine.Core
 
             if (my == you)
             {
-                Logger.Debug("[CanGetItem] Success : Same Args.");
+                Logger.Debug("[ProcArgs] Success : Same Args.");
                 return _cache[graph.Id];
             }
 
             //TODO callのid振りが2桁以上になったらおかしくなるかも？
             if (my.Length < you.Length)
             {
-                Logger.Debug("[CanGetItem] Fail : Target is longer than FromArgs.");
+                Logger.Debug("[ProcArgs] Fail : Target is longer than FromArgs.");
                 return null;
             }
 
             if (my.StartsWith(you))
             {
-                Logger.Debug("[CanGetItem] Success");
+                Logger.Debug("[ProcArgs] Success");
                 return _cache[graph.Id];
             }
             else
             {
-                Logger.Debug($"[CanGetItem] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
+                Logger.Debug($"[ProcArgs] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
                 return null;
             }
         }
