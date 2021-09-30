@@ -24,7 +24,7 @@ namespace GraphConnectEngine.Graph.Event
 
         public override string GetGraphName()
         {
-            return "Instantiate GameObject Graph";
+            return "Delay Graph";
         }
     }
 }
