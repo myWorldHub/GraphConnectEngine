@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -89,7 +89,7 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
-        public async Task<ValueResult<T>> TryGetValue<T>(ProcessCallArgs args)
+        public async UniTask<ValueResult<T>> TryGetValue<T>(ProcessCallArgs args)
         {
             var procResult = await ParentGraph.Invoke(this, args);
 

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Core
@@ -52,7 +52,7 @@ namespace GraphConnectEngine.Core
                 AddNode(new OutProcessNode(this));
         }
 
-        public async Task<InvokeResult> Invoke(object sender,ProcessCallArgs args)
+        public async UniTask<InvokeResult> Invoke(object sender,ProcessCallArgs args)
         {
             string myHash = GetHashCode().ToString();
             string myName = $"{GetGraphName()}[{myHash}]";
@@ -202,7 +202,7 @@ namespace GraphConnectEngine.Core
             return procResult.ToInvokeResult();
         }
 
-        public abstract Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
+        public abstract UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
         
         /// <summary>
         /// グラフ名を取得する

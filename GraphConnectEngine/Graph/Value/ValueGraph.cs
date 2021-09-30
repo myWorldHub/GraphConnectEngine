@@ -1,6 +1,6 @@
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
-using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Value
 {
@@ -14,9 +14,9 @@ namespace GraphConnectEngine.Graph.Value
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNode));
+            return UniTask.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNode));
         }
 
         public override string GetGraphName() => "Value<" + typeof(T).Name + "> Graph";

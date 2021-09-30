@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -115,7 +115,7 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
-        public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
+        public async UniTask<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
         {
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
@@ -132,7 +132,7 @@ namespace GraphConnectEngine.Node
             return ValueResult<T>.Fail();
         }
 
-        public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
+        public async UniTask<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
         {
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
             {

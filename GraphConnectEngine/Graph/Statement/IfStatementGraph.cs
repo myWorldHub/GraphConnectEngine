@@ -1,6 +1,6 @@
+using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
-using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Statement
 {
@@ -15,10 +15,10 @@ namespace GraphConnectEngine.Graph.Statement
             AddNode(new OutProcessNode(this));
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             bool result = (bool)parameters[0];
-            return Task.FromResult(ProcessCallResult.Success(
+            return UniTask.FromResult(ProcessCallResult.Success(
                 new object[]
                 {
                     result
