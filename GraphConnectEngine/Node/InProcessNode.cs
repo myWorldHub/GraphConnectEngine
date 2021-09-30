@@ -1,5 +1,5 @@
 using System;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Node
         {
         }
 
-        public async UniTask<GraphBase.InvokeResult> OnCalled(object sender, ProcessCallArgs args)
+        public async Task<GraphBase.InvokeResult> OnCalled(object sender, ProcessCallArgs args)
         {
             return await ParentGraph.Invoke(sender, args);
         }

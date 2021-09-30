@@ -1,5 +1,5 @@
 using System;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -61,16 +61,16 @@ namespace GraphConnectEngine.Graph.Operator
             }
         }
 
-        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (_computeFunc == null)
-                return UniTask.FromResult(ProcessCallResult.Fail());
+                return Task.FromResult(ProcessCallResult.Fail());
 
             object a = parameters[0];
             object b = parameters[1];
             object r = _computeFunc(a, b);
 
-            return UniTask.FromResult(ProcessCallResult.Success(new[]
+            return Task.FromResult(ProcessCallResult.Success(new[]
             {
                 a,
                 b,

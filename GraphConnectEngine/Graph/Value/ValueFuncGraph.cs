@@ -1,5 +1,5 @@
 using System;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -11,16 +11,16 @@ namespace GraphConnectEngine.Graph.Value
     public class ValueFuncGraph<T> : GraphBase
     {
         
-        private Func<UniTask<ValueResult<T>>> _valueFunc;
+        private Func<Task<ValueResult<T>>> _valueFunc;
 
-        public ValueFuncGraph(NodeConnector connector, Func<UniTask<ValueResult<T>>> valueFunc) : base(connector)
+        public ValueFuncGraph(NodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
         }
 
         
-        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             //実行
             var result = await _valueFunc();

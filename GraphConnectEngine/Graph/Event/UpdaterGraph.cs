@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -46,7 +46,7 @@ namespace GraphConnectEngine.Graph.Event
             _time = IntervalTime;
         }
 
-        public async UniTask<bool> Update(float deltaTime)
+        public async Task<bool> Update(float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
@@ -73,9 +73,9 @@ namespace GraphConnectEngine.Graph.Event
             return false;
         }
 
-        public override UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            return UniTask.FromResult(ProcessCallResult.Fail());
+            return Task.FromResult(ProcessCallResult.Fail());
         }
 
         public override string GetGraphName() =>  "Updater Graph";

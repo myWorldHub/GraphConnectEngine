@@ -1,5 +1,5 @@
 using System;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
@@ -18,7 +18,7 @@ namespace GraphConnectEngine.Graph.Variable
         }
 
 
-        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             //Holderがない
             if (Holder == null)

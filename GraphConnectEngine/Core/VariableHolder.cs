@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Core
 {
@@ -26,9 +26,9 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public virtual UniTask<bool> ContainsKey(string key)
+        public virtual Task<bool> ContainsKey(string key)
         {
-            return UniTask.FromResult(_items.ContainsKey(key));
+            return Task.FromResult(_items.ContainsKey(key));
         }
         
         /// <summary>
@@ -37,7 +37,7 @@ namespace GraphConnectEngine.Core
         /// <param name="key"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public virtual async UniTask<ValueResult<T>> TryGet<T>(string key)
+        public virtual async Task<ValueResult<T>> TryGet<T>(string key)
         {
             if (await ContainsKey(key))
             {
@@ -55,7 +55,7 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public virtual async UniTask<ValueResult<object>> TryGet(string key)
+        public virtual async Task<ValueResult<object>> TryGet(string key)
         {
             if (await ContainsKey(key))
             {
@@ -74,9 +74,9 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public virtual UniTask<Type> GetVariableType(string key)
+        public virtual Task<Type> GetVariableType(string key)
         {
-            return UniTask.FromResult(_types.ContainsKey(key) ? _types[key] : null);
+            return Task.FromResult(_types.ContainsKey(key) ? _types[key] : null);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public virtual async UniTask<ValueResult<Type>> TryGetVariableType(string key)
+        public virtual async Task<ValueResult<Type>> TryGetVariableType(string key)
         {
             var type = await GetVariableType(key);
             return ValueResult<Type>.Create(type != null,type);
@@ -96,7 +96,7 @@ namespace GraphConnectEngine.Core
         /// <param name="key"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public virtual async UniTask<bool> TryCreate(string key, object obj)
+        public virtual async Task<bool> TryCreate(string key, object obj)
         {
             if (await TryCreate(key,obj.GetType()))
             {
@@ -112,7 +112,7 @@ namespace GraphConnectEngine.Core
         /// <param name="key"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public virtual async UniTask<bool> TryCreate(string key, Type type)
+        public virtual async Task<bool> TryCreate(string key, Type type)
         {
             if (!await ContainsKey(key))
             {
@@ -135,7 +135,7 @@ namespace GraphConnectEngine.Core
         /// <param name="key"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public virtual async UniTask<bool> Update(string key, object obj)
+        public virtual async Task<bool> Update(string key, object obj)
         {
             if (await ContainsKey(key))
             {
@@ -161,7 +161,7 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public virtual async UniTask<bool> Remove(string name)
+        public virtual async Task<bool> Remove(string name)
         {
             if (await ContainsKey(name))
             {
@@ -182,9 +182,9 @@ namespace GraphConnectEngine.Core
         /// 変数名たちを取得
         /// </summary>
         /// <returns></returns>
-        public virtual UniTask<string[]> Keys()
+        public virtual Task<string[]> Keys()
         {
-            return UniTask.FromResult(_items.Keys.ToArray());
+            return Task.FromResult(_items.Keys.ToArray());
         }
 
         ~VariableHolder()

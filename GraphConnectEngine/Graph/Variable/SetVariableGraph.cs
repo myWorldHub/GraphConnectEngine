@@ -1,7 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
-using Cysharp.Threading.Tasks;
 
 namespace GraphConnectEngine.Graph.Variable
 {
@@ -18,7 +18,7 @@ namespace GraphConnectEngine.Graph.Variable
             AddNode(new OutItemNode(this,typeof(void),0,"Value"));
         }
 
-        public override async UniTask<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (Holder == null)
                 return ProcessCallResult.Fail();

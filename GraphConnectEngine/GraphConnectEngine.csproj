@@ -45,10 +45,6 @@
           <Private>True</Private>
         </Reference>
         <Reference Include="System.Xml" />
-        <Reference Include="UniTask, Version=2.2.5.0, Culture=neutral, PublicKeyToken=7a576c6e8fde454a">
-          <HintPath>..\packages\UniTask.2.2.5\lib\netstandard2.0\UniTask.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core\GraphBase.cs" />
