@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
@@ -9,9 +8,9 @@ namespace GraphConnectEngine.Graph
     public class DebugTextGraph : GraphBase
     {
         
-        private Func<string,Task<bool>> _updateText;
+        private Func<string, UniTask<bool>> _updateText;
 
-        public DebugTextGraph(NodeConnector connector,Func<string, Task<bool>> updateText) : base(connector)
+        public DebugTextGraph(NodeConnector connector,Func<string, UniTask<bool>> updateText) : base(connector)
         {
             AddNode(new InItemNode(this, typeof(object),"Object"));
             AddNode(new OutItemNode(this, typeof(string),1,"Text"));
