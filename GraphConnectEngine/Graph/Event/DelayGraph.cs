@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
@@ -17,7 +16,9 @@ namespace GraphConnectEngine.Graph.Event
         {
             int time = (int) parameters[0];
             
-            await Task.Delay(TimeSpan.FromSeconds(time));
+            Logger.Debug(time*1000+"mil秒待つ");
+            await Task.Delay(time * 1000);
+            Logger.Debug(time + "秒待った");
             
             return ProcessCallResult.Success(new object[] {time},OutProcessNode);
         }

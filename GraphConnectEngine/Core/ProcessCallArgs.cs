@@ -82,11 +82,20 @@ namespace GraphConnectEngine.Core
         public ProcessCallResult TryGetResultOf(GraphBase graph)
         {
 
-            Logger.Debug($"[ProcArgs]Trying to get cache \nFrom  : {GetValue()}");
+            Logger.Debug($"[ProcArgs]Trying to get cache of {graph.Id}\nFrom : {GetValue()}");
+
+            /*
+            Logger.Debug("Dump Start");
+            foreach (var key in _cache.Keys)
+            {
+                Logger.Debug(key + " : " + _cache[key]);
+            }
+            Logger.Debug("Dump End");
+            */
 
             if (!_args.ContainsKey(graph.Id))
             {
-                Logger.Debug("[ProcArgs] Fail : No Cache is registered fot this graph.");
+                Logger.Debug("[ProcArgs] Fail : No Cache is registered for this graph.");
                 return null;
             }
 
@@ -135,6 +144,8 @@ namespace GraphConnectEngine.Core
         public void SetResult(GraphBase graph, ProcessCallResult result)
         {
             _cache[graph.Id] = result;
+            _args[graph.Id] = this;
+            Logger.Debug($"[ProcArgs] Registered Result cache of Graph<{graph.Id}>\nwith : {GetValue()}");
         }
 
         public string GetSender()

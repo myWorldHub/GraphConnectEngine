@@ -196,7 +196,7 @@ namespace GraphConnectEngine.Core
             //OutProcessなら実行する
             if (procResult.IsSucceeded && sender is OutProcessNode)
             {
-                await procResult.NextNode.CallProcess(args);
+                await procResult.NextNode.CallProcess(nargs);
             }
 
             return procResult.ToInvokeResult();

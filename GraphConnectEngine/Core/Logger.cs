@@ -9,7 +9,7 @@ namespace GraphConnectEngine.Core
         private const int LevelDebug = 0;
         private const int LevelError = 1;
 
-        public static int LogLevel = -1;
+        public static int LogLevel = 9999;
 
         public static void SetLogMethod(Action<string> action)
         {
@@ -18,17 +18,19 @@ namespace GraphConnectEngine.Core
 
         public static void Debug(string msg)
         {
-            WriteLine(LevelDebug, msg);
+            if(LogLevel <= LevelDebug)
+                WriteLine(LevelDebug, msg);
         }
 
         public static void Error(string msg)
         {
-            WriteLine(LevelError,msg);
+            if (LogLevel <= LevelError)
+                WriteLine(LevelError,msg);
         }
 
         public static void WriteLine(int level,string message)
         {
-            if (level >= LogLevel && _writeLine != null)
+            if (_writeLine != null)
             {
                 _writeLine(Prefix(level) + message);
             }
@@ -36,7 +38,7 @@ namespace GraphConnectEngine.Core
 
         public static string Prefix(int level)
         {
-            var time = "[" + DateTime.Now.Millisecond.ToString() + "]";
+            var time = "[" + DateTime.Now.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds + "]";
             
             if (level == LevelDebug)
             {
