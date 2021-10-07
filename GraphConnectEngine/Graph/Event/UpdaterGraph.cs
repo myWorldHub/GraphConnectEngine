@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
@@ -53,7 +54,7 @@ namespace GraphConnectEngine.Graph.Event
             
             if (IntervalType == Type.Update)
             {
-                await _processSender.Fire(OutProcessNode);
+                await _processSender.Fire(this,null);
                 return true;
             }
             else
@@ -65,7 +66,7 @@ namespace GraphConnectEngine.Graph.Event
                 
                 if (isZeroTime)
                 {
-                    await _processSender.Fire(OutProcessNode);
+                    await _processSender.Fire(this,null);
                     return true;
                 }
             }
@@ -75,7 +76,7 @@ namespace GraphConnectEngine.Graph.Event
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            return Task.FromResult(ProcessCallResult.Fail());
+            return Task.FromResult(ProcessCallResult.Success(Array.Empty<object>(), OutProcessNode));
         }
 
         public override string GetGraphName() =>  "Updater Graph";

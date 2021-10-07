@@ -52,6 +52,47 @@ namespace GraphConnectEngine.Core
                 AddNode(new OutProcessNode(this));
         }
 
+        //TODO パラメーター
+        public async Task<InvokeResult> InvokeWithoutArgs(bool callOutProcess,object[] parameters)
+        {
+            string myHash = GetHashCode().ToString();
+            string myName = $"{GetGraphName()}[{myHash}]";
+            
+            var nargs = ProcessCallArgs.Fire(this);
+            
+            //イベント
+            Logger.Debug($"{myName} Invoke OnProcessCall in GraphBase without Args");
+            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+            {
+                Type = GraphStatusEventArgs.EventType.ProcessStart,
+                Args = nargs
+            });
+
+            //Invoke
+            ProcessCallResult procResult = await OnProcessCall(nargs, parameters);
+            Logger.Debug($"{myName} Invoked OnProcessCall with result {procResult}");
+
+            //キャッシュする
+            nargs.SetResult(this, procResult);
+
+            //イベント
+            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+            {
+                Type = procResult.IsSucceeded
+                    ? GraphStatusEventArgs.EventType.ProcessSuccess
+                    : GraphStatusEventArgs.EventType.ProcessFail,
+                Args = nargs
+            });
+
+            //OutProcessなら実行する
+            if (procResult.IsSucceeded && callOutProcess)
+            {
+                await procResult.NextNode.CallProcess(nargs);
+            }
+
+            return procResult.ToInvokeResult();
+        }
+
         public async Task<InvokeResult> Invoke(object sender,ProcessCallArgs args)
         {
             string myHash = GetHashCode().ToString();
