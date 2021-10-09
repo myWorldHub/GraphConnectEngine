@@ -118,12 +118,8 @@ namespace GraphConnectEngine.Core
             {
                 _items.Add(key,null);
                 _types.Add(key,type);
-                
-                OnVariableCreated?.Invoke(this,new VariableCreatedEventArgs()
-                {
-                    Name = key,
-                    Type = type
-                });
+
+                OnVariableCreated?.Invoke(this, new VariableCreatedEventArgs(key,type));
                 return true;
             }
             return false;
@@ -143,13 +139,8 @@ namespace GraphConnectEngine.Core
                     return false;
 
                 _items[key] = obj;
-                
-                OnVariableUpdated?.Invoke(this,new VariableUpdatedEventArgs()
-                {
-                    Name = key,
-                    Type = _types[key],
-                    Value = obj
-                });
+
+                OnVariableUpdated?.Invoke(this, new VariableUpdatedEventArgs(key,_types[key],obj));
 
                 return true;
             }
@@ -168,11 +159,7 @@ namespace GraphConnectEngine.Core
                 _items.Remove(name);
                 _types.Remove(name);
 
-                OnVariableRemoved?.Invoke(this,new VariableRemovedEventArgs()
-                {
-                    Name = name
-                });
-                
+                OnVariableRemoved?.Invoke(this, new VariableRemovedEventArgs(name));
                 return true;
             }
             return false;
@@ -209,19 +196,40 @@ namespace GraphConnectEngine.Core
 
     public class VariableCreatedEventArgs : EventArgs
     {
-        public string Name;
-        public Type Type;
+
+        public VariableCreatedEventArgs(string name, Type type)
+        {
+            Name = name;
+            Type = type;
+        }
+        
+        public readonly string Name;
+        public readonly Type Type;
     }
 
     public class VariableUpdatedEventArgs : EventArgs
     {
-        public string Name;
-        public Type Type;
-        public Object Value;
+
+        public VariableUpdatedEventArgs(string name, Type type,Object value)
+        {
+            Name = name;
+            Type = type;
+            Value = value;
+        }
+        
+        public readonly string Name;
+        public readonly Type Type;
+        public readonly Object Value;
     }
 
     public class VariableRemovedEventArgs : EventArgs
     {
-        public string Name;
+
+        public VariableRemovedEventArgs(string name)
+        {
+            Name = name;
+        }
+        
+        public readonly string Name;
     }
 }
