@@ -134,6 +134,8 @@ namespace GraphConnectEngine.Node
 
         public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
         {
+            Logger.Debug("InItemNode.GerItemFromConnectedNode().Invoked");
+            
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
                 var value = await node.TryGetValue<object>(args);
@@ -141,33 +143,33 @@ namespace GraphConnectEngine.Node
                 {
                     var vtype = value.Value.GetType();
                     var mytype = GetItemType();
+                    
                     if (vtype == mytype || vtype.IsSubclassOf(mytype))
                     {
-                        Logger.Debug("[InItemNode] Successful : Got item from OutItemNode.");
+                        Logger.Debug("InItemNode.GerItemFromConnectedNode().ReturnProcessResult");
                         return value;
                     }
                     else
                     {
-                        Logger.Debug($"[InItemNode] Fail : item from OutItemNode[{value.Value}] is neither {GetItemType().Name} nor subclass of mine.");
-                        return ValueResult<object>.Fail();
+                        Logger.Error($"Error : item from OutItemNode[{value.Value}] is neither {GetItemType().Name} nor subclass of mine");
+                        Logger.Debug("InItemNode.GerItemFromConnectedNode().ReturnFail");
                     }
                 }
                 else
                 {
-                    Logger.Debug("[InItemNode] Fail : OutItemNode returned value with Fail flag.");
-                    return ValueResult<object>.Fail();
+                    Logger.Debug("InItemNode.GerItemFromConnectedNode().ReturnFail > OutItemNode.FailFlag");
                 }
             }
             else
             {
                 if (_defaultItemGetter != null && _defaultItemGetter(out var r) && r is object rt)
                 {
-                    Logger.Debug("[InItemNode] Successful : used DefaultItemGetter.");
+                    Logger.Debug("InItemNode.GerItemFromConnectedNode().ReturnDefaultItemGetterResult");
                     return ValueResult<object>.Success(rt);
                 }
                 else
                 {
-                    Logger.Debug("[InItemNode] Fail : No OutItemNode is connected.");
+                    Logger.Debug("InItemNode.GerItemFromConnectedNode().ReturnFail > NoItemResult");
                 }
             }
 

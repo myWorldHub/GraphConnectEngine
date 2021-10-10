@@ -48,6 +48,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Core\GraphBase.cs" />
+        <Compile Include="Core\GraphStatusEventArgs.cs" />
+        <Compile Include="Core\InvokeResult.cs" />
         <Compile Include="Core\IProcessCall.cs" />
         <Compile Include="Core\Logger.cs" />
         <Compile Include="Core\INodeStatusListener.cs" />

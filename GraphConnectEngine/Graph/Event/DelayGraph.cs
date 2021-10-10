@@ -15,11 +15,7 @@ namespace GraphConnectEngine.Graph.Event
         public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             int time = (int) parameters[0];
-            
-            Logger.Debug(time*1000+"mil秒待つ");
             await Task.Delay(time * 1000);
-            Logger.Debug(time + "秒待った");
-            
             return ProcessCallResult.Success(new object[] {time},OutProcessNode);
         }
 

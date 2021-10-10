@@ -167,34 +167,39 @@ namespace GraphConnectEngine.Node
         /// <returns></returns>
         public bool ConnectNode(NodeBase node1, NodeBase node2)
         {
-            Logger.Debug("[NodeConnector] Connected Node Info-------------------------");
+            Logger.Debug("NodeConnector.ConnectNode().StartLog-------------------------");
+            
             DumpNode(node1);
             DumpNode(node2);
 
             if (node1.Connector != this || node2.Connector != this)
             {
-                Logger.Debug("[NodeConnector] Connector is not current Connector.");
+                Logger.Error("Error : Connector is not current Connector.");
+                Logger.Debug("NodeConnector.ConnectNode().Fail");
                 return false;
             }
             
             //接続チェック
             if (IsConnected(node1, node2) || IsConnected(node2,node1))
             {
-                Logger.Debug("[NodeConnector] Already connected.");
+                Logger.Error("Error : Already connected.");
+                Logger.Debug("NodeConnector.ConnectNode().Fail");
                 return false;
             }
 
             //つなげるResolverか確認する
             if (!node1.IsAttachableGraphType(node2.GetType()) || !node2.IsAttachableGraphType(node1.GetType()))
             {
-                Logger.Debug("[NodeConnector] Node is not attachable Graph type.");
+                Logger.Error("Error : Node is not attachable Graph type.");
+                Logger.Debug("NodeConnector.ConnectNode().Fail");
                 return false;
             }
 
             //つながるかどうか確認
             if (!node1.CanAttach(node2) || !node2.CanAttach(node1))
             {
-                Logger.Debug("[NodeConnector] Node is not attachable.");
+                Logger.Error("Error : Node is not attachable.");
+                Logger.Debug("NodeConnector.ConnectNode().Fail");
                 return false;
             }
             
@@ -202,7 +207,7 @@ namespace GraphConnectEngine.Node
             Register(node1,node2);
             Register(node2,node1);
             
-            Logger.Debug("[NodeConnector] Registered.");
+            Logger.Debug("NodeConnector.ConnectNode().Registered");
             
             //TODO 下のイベントたちもsenderをつける
             OnConnect?.Invoke(node1,new NodeConnectEventArgs()
@@ -223,8 +228,7 @@ namespace GraphConnectEngine.Node
                 SenderNode = node2,
                 OtherNode = node1
             });
-
-            Logger.Debug("[NodeConnector] Called Connected Events.");
+            
             return true;
         }
 

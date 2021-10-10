@@ -13,21 +13,20 @@ namespace GraphConnectEngine.Node
 
         public async Task<bool> CallProcess(ProcessCallArgs args)
         {
-            string myHash = ParentGraph.GetHashCode().ToString();
-            string myName =  $"{ParentGraph.GetGraphName()}[{myHash}]";
-            string preset = $"{myName} Calls Process > ";
-
-            Logger.Debug($"{myName} Started to Calling Process with\n{args}");
+            Logger.Debug($"OutProcessNode.CallProcess() Start > {ParentGraph.Id} > {args}");
 
             if (!Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
+            {
+                Logger.Debug($"OutProcessNode.CallProcess().Success > No node is Connected");
                 return true;
+            }
             
             for (int i = 0; i < resolvers.Length; i++)
             {
                 var inProcessNode = resolvers[i];
-                if (args.TryAdd(myHash + "_" + i, true, out var nargs))
+                if (args.TryAdd(ParentGraph.Id + "_" + i, true, out var nargs))
                 {
-                    Logger.Debug(preset + $"{inProcessNode.ParentGraph.GetGraphName()}[{inProcessNode.ParentGraph.GetHashCode()}] with\n{nargs}");
+                    Logger.Debug($"OutProcessNode.CallProcess().Call InProcessNode {i} / {resolvers.Length}");
                     await inProcessNode.OnCalled(this,nargs);
                 }
             }

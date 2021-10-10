@@ -91,30 +91,34 @@ namespace GraphConnectEngine.Node
 
         public async Task<ValueResult<T>> TryGetValue<T>(ProcessCallArgs args)
         {
+            Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().InvokeParentGraph");
+                        
             var procResult = await ParentGraph.Invoke(this, args);
 
             if (procResult.IsSucceeded)
             {
                 if (procResult.Results.Length >= _resultIndex + 1)
                 {
-                    if (procResult.Results[_resultIndex] is T t)
+                    var value = procResult.Results[_resultIndex];
+                    if (value is T t)
                     {
-                        Logger.Debug($"[OutItemNode] Returning Item => {t}.");
+                        Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().ReturnResult<{t}>");
                         return ValueResult<T>.Success(t);
                     }
                     else
                     {
-                        Logger.Debug($"[OutItemNode] Result is not {typeof(T).Name}");
+                        Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().ReturnTypeIsNotMatch<{value}>");
                     }
                 }
                 else
                 {
-                    Logger.Error("[OutItemNode] TryGetValue Unexpected Index");
+                    Logger.Error("IndexOutOfRangeError");
+                    Logger.Error($"OutItemNode.TryGetValue<{typeof(T).FullName}>().CheckIndex");
                 }
             }
             else
             {
-                Logger.Debug("[OutItemNode] Process Failed.");
+                Logger.Error($"OutItemNode.TryGetValue<{typeof(T).FullName}>().ProcessFailed");
             }
 
             return ValueResult<T>.Fail();

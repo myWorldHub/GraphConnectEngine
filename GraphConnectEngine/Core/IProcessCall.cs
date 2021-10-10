@@ -32,14 +32,14 @@ namespace GraphConnectEngine.Core
             };
         }
 
-        public GraphBase.InvokeResult ToInvokeResult()
+        public InvokeResult ToInvokeResult()
         {
-            return (GraphBase.InvokeResult) this;
+            return (InvokeResult) this;
         }
 
-        public static explicit operator GraphBase.InvokeResult(ProcessCallResult result)
+        public static explicit operator InvokeResult(ProcessCallResult result)
         {
-            return GraphBase.InvokeResult.Create(result.IsSucceeded,result.Results);
+            return InvokeResult.Create(result.IsSucceeded,result.Results);
         }
         
         public override string ToString()

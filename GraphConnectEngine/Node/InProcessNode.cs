@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Node
         {
         }
 
-        public async Task<GraphBase.InvokeResult> OnCalled(object sender, ProcessCallArgs args)
+        public async Task<InvokeResult> OnCalled(object sender, ProcessCallArgs args)
         {
             return await ParentGraph.Invoke(sender, args);
         }

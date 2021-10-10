@@ -82,20 +82,11 @@ namespace GraphConnectEngine.Core
         public ProcessCallResult TryGetResultOf(GraphBase graph)
         {
 
-            Logger.Debug($"[ProcArgs]Trying to get cache of {graph.Id}\nFrom : {GetValue()}");
-
-            /*
-            Logger.Debug("Dump Start");
-            foreach (var key in _cache.Keys)
-            {
-                Logger.Debug(key + " : " + _cache[key]);
-            }
-            Logger.Debug("Dump End");
-            */
+            Logger.Debug($"ProcessCallArgs.TryGetResultOf() > Trying to get cache of {graph.Id} \n From : {GetValue()}");
 
             if (!_args.ContainsKey(graph.Id))
             {
-                Logger.Debug("[ProcArgs] Fail : No Cache is registered for this graph.");
+                Logger.Debug("ProcessCallArgs.TryGetResultOf() >  Fail : No Cache is registered for this graph.");
                 return null;
             }
 
@@ -104,7 +95,7 @@ namespace GraphConnectEngine.Core
             //発火元が違う
             if (GetSender() != targetArgs.GetSender())
             {
-                Logger.Debug("[ProcArgs] Fail : Sender is not match.");
+                Logger.Debug("ProcessCallArgs.TryGetResultOf() >  Fail : Sender is not match.");
                 return null;
             }
 
@@ -113,25 +104,25 @@ namespace GraphConnectEngine.Core
 
             if (my == you)
             {
-                Logger.Debug("[ProcArgs] Success : Same Args.");
+                Logger.Debug("ProcessCallArgs.TryGetResultOf() >  Success : Same Args.");
                 return _cache[graph.Id];
             }
 
             //TODO callのid振りが2桁以上になったらおかしくなるかも？
             if (my.Length < you.Length)
             {
-                Logger.Debug("[ProcArgs] Fail : Target is longer than FromArgs.");
+                Logger.Debug("ProcessCallArgs.TryGetResultOf() >  Fail : Target is longer than FromArgs.");
                 return null;
             }
 
             if (my.StartsWith(you))
             {
-                Logger.Debug("[ProcArgs] Success");
+                Logger.Debug("ProcessCallArgs.TryGetResultOf() >  Success");
                 return _cache[graph.Id];
             }
             else
             {
-                Logger.Debug($"[ProcArgs] Fail : Target is not same chain.\nFrom  : {my}\nTarget: {you}");
+                Logger.Debug($"ProcessCallArgs.TryGetResultOf() >  Fail : Target is not same chain. \n From  : {my}\nTarget: {you}");
                 return null;
             }
         }
@@ -145,7 +136,7 @@ namespace GraphConnectEngine.Core
         {
             _cache[graph.Id] = result;
             _args[graph.Id] = this;
-            Logger.Debug($"[ProcArgs] Registered Result cache of Graph<{graph.Id}>\nwith : {GetValue()}");
+            Logger.Debug($"ProcessCallArgs.SetResult() >  Registered Result cache of Graph<{graph.Id}> \n with : {GetValue()}");
         }
 
         public string GetSender()
