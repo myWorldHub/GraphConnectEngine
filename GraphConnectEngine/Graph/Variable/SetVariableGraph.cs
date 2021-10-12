@@ -1,6 +1,6 @@
-using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Core;
+using GraphConnectEngine.Core.Variable;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Variable
@@ -8,73 +8,52 @@ namespace GraphConnectEngine.Graph.Variable
     public class SetVariableGraph : VariableGraph
     {
 
-        public event EventHandler OnVariableFound;
-
-        public event EventHandler OnVariableNotFound;
-
-        public SetVariableGraph(NodeConnector connector,VariableHolder holder) : base(connector,holder)
+        public SetVariableGraph(NodeConnector connector, IVariableHolder holder) : base(connector,holder)
         {
             AddNode(new InItemNode(this, typeof(void),"Value"));
             AddNode(new OutItemNode(this,typeof(void),0,"Value"));
         }
 
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
             if (Holder == null)
-                return ProcessCallResult.Fail();
+                return Task.FromResult(ProcessCallResult.Fail());
 
             var obj = parameters[0];
             
             //更新
-            if (!await Holder.Update(VariableName, obj))
-                return ProcessCallResult.Fail();
+            if (!Holder.Update(VariableName, obj))
+                return Task.FromResult(ProcessCallResult.Fail());
 
-            return ProcessCallResult.Success(new[] {obj}, OutProcessNode);
+            return Task.FromResult(ProcessCallResult.Success(new[] {obj}, OutProcessNode));
         }
 
-        protected override async void OnVariableChanged()
+        protected override void OnVariableChanged()
         {
             if (Holder == null)
                 return;
 
-            if (await Holder.ContainsKey(VariableName))
+            if (Holder.ContainsKey(VariableName))
             {
-                var type = await Holder.GetVariableType(VariableName);
-                InItemNodes[0].SetItemType(type);
-                OutItemNodes[0].SetItemType(type);
-                
-                OnVariableFound?.Invoke(this, new EventArgs());
-            }
-            else
-            {
-                OnVariableNotFound?.Invoke(this, new EventArgs());
+                var rs = Holder.TryGetVariableType(VariableName);
+                InItemNodes[0].SetItemType(rs.Value);
+                OutItemNodes[0].SetItemType(rs.Value);
             }
         }
 
-        protected override async void OnHolderChanged()
+        protected override void OnHolderChanged()
         {
             if (Holder == null)
                 return;
             
-            if (await Holder.ContainsKey(VariableName))
+            if (Holder.ContainsKey(VariableName))
             {
-                var type = await Holder.GetVariableType(VariableName);
-                InItemNodes[0].SetItemType(type);
-                OutItemNodes[0].SetItemType(type);
-                
-                OnVariableFound?.Invoke(this, EventArgs.Empty);
-            }
-            else
-            {
-                OnVariableNotFound?.Invoke(this, EventArgs.Empty);
+                var rs = Holder.TryGetVariableType(VariableName);
+                InItemNodes[0].SetItemType(rs.Value);
+                OutItemNodes[0].SetItemType(rs.Value);
             }
         }
-
-        protected override void OnVariableRemoved()
-        {
-            OnVariableNotFound?.Invoke(this, EventArgs.Empty);
-        }
-
+        
         public override string GetGraphName() => "Set Variable Graph";
         
     }
