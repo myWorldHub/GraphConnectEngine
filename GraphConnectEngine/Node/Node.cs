@@ -79,7 +79,7 @@ namespace GraphConnectEngine.Node
                 _isDisposed = true;
                 Connector.DisconnectAllNode(this);
 
-                OnDispose?.Invoke(this,new EventArgs());
+                OnDispose?.Invoke(this,EventArgs.Empty);
             }
         }
     }
