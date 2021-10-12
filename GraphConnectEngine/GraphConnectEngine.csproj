@@ -56,8 +56,14 @@
         <Compile Include="Core\OperatorChecker.cs" />
         <Compile Include="Core\PrimitiveOperatorChecker.cs" />
         <Compile Include="Core\ProcessCallArgs.cs" />
-        <Compile Include="Core\VariableHolder.cs" />
         <Compile Include="Core\ValueResult.cs" />
+        <Compile Include="Core\Variable\IVariableHolder.cs" />
+        <Compile Include="Core\Variable\IVariableHolderAsync.cs" />
+        <Compile Include="Core\Variable\IVariableHolderEvent.cs" />
+        <Compile Include="Core\Variable\VariableCreatedEventArgs.cs" />
+        <Compile Include="Core\Variable\VariableHolder.cs" />
+        <Compile Include="Core\Variable\VariableRemovedEventArgs.cs" />
+        <Compile Include="Core\Variable\VariableUpdatedEventArgs.cs" />
         <Compile Include="Graph\DebugTextGraph.cs" />
         <Compile Include="Graph\Event\DelayGraph.cs" />
         <Compile Include="Graph\Event\IProcessSender.cs" />
