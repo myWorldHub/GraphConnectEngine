@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Event
+namespace GraphConnectEngine.Graphs.Event
 {
     public class DelayGraph : Core.Graph
     {

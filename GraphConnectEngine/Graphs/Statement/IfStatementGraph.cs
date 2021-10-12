@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Statement
+namespace GraphConnectEngine.Graphs.Statement
 {
     public class IfStatementGraph : Core.Graph
     {

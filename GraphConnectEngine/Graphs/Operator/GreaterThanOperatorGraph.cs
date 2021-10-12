@@ -1,7 +1,7 @@
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Operator
+namespace GraphConnectEngine.Graphs.Operator
 {
     public class GreaterThanOperatorGraph : MidOperatorGraph
     {

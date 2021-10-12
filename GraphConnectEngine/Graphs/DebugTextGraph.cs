@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph
+namespace GraphConnectEngine.Graphs
 {
     public class DebugTextGraph : Core.Graph
     {

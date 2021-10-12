@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Operator
+namespace GraphConnectEngine.Graphs.Operator
 {
     public abstract class MidOperatorGraph : Core.Graph
     {
