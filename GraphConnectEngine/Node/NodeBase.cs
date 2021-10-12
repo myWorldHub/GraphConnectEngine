@@ -15,7 +15,7 @@ namespace GraphConnectEngine.Node
             }
         }
 
-        public readonly GraphBase ParentGraph;
+        public readonly Core.Graph ParentGraph;
         
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
@@ -28,7 +28,7 @@ namespace GraphConnectEngine.Node
         /// </summary>
         public readonly Dictionary<string, object> Args = new Dictionary<string, object>();
 
-        public NodeBase(GraphBase parentGraph)
+        public NodeBase(Core.Graph parentGraph)
         {
             ParentGraph = parentGraph;
         }

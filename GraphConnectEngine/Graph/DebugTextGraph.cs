@@ -5,7 +5,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph
 {
-    public class DebugTextGraph : GraphBase
+    public class DebugTextGraph : Core.Graph
     {
         
         private Func<string, Task<bool>> _updateText;

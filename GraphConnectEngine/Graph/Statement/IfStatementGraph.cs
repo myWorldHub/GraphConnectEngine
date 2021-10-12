@@ -4,7 +4,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Statement
 {
-    public class IfStatementGraph : GraphBase
+    public class IfStatementGraph : Core.Graph
     {
         
         public IfStatementGraph(NodeConnector connector) : base(connector)

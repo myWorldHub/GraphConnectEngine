@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Node
     public class OutProcessNode : NodeBase
     {
 
-        public OutProcessNode(GraphBase parentGraph) : base(parentGraph)
+        public OutProcessNode(Core.Graph parentGraph) : base(parentGraph)
         {
         }
 

@@ -5,7 +5,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Operator
 {
-    public class CastGraph<T> : GraphBase
+    public class CastGraph<T> : Core.Graph
     {
 
         private Func<object, object> _lambda;

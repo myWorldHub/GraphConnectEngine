@@ -79,7 +79,7 @@ namespace GraphConnectEngine.Core
             return result;
         }
 
-        public ProcessCallResult TryGetResultOf(GraphBase graph)
+        public ProcessCallResult TryGetResultOf(Graph graph)
         {
 
             Logger.Debug($"ProcessCallArgs.TryGetResultOf() > Trying to get cache of {graph.Id} \n From : {GetValue()}");
@@ -132,7 +132,7 @@ namespace GraphConnectEngine.Core
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="result"></param>
-        public void SetResult(GraphBase graph, ProcessCallResult result)
+        public void SetResult(Graph graph, ProcessCallResult result)
         {
             _cache[graph.Id] = result;
             _args[graph.Id] = this;

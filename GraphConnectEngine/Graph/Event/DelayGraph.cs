@@ -4,7 +4,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Event
 {
-    public class DelayGraph : GraphBase
+    public class DelayGraph : Core.Graph
     {
         public DelayGraph(NodeConnector connector) : base(connector)
         {

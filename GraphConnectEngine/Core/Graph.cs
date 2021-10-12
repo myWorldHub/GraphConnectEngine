@@ -5,7 +5,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Core
 {
-    public abstract class GraphBase : IProcessCall,IDisposable
+    public abstract class Graph : IProcessCall,IDisposable
     {
 
         public readonly NodeConnector Connector;
@@ -40,7 +40,7 @@ namespace GraphConnectEngine.Core
         /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
         /// <param name="enableInProcess"></param>
         /// <param name="enableOutProcess"></param>
-        public GraphBase(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
+        public Graph(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
         {
             Id = GetHashCode().ToString();
             Connector = connector;

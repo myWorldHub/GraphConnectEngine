@@ -5,7 +5,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Event
 {
-    public class UpdaterGraph : GraphBase
+    public class UpdaterGraph : Core.Graph
     {
 
         public enum Type

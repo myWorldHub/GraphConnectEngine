@@ -5,7 +5,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Operator
 {
-    public abstract class MidOperatorGraph : GraphBase
+    public abstract class MidOperatorGraph : Core.Graph
     {
 
         private Func<object, object, object> _computeFunc;

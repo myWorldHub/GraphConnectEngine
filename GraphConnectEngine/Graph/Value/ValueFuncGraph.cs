@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Graph.Value
     /// <summary>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ValueFuncGraph<T> : GraphBase
+    public class ValueFuncGraph<T> : Core.Graph
     {
         
         private Func<Task<ValueResult<T>>> _valueFunc;

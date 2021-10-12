@@ -4,7 +4,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Value
 {
-    public class ValueGraph<T> : GraphBase
+    public class ValueGraph<T> : Core.Graph
     {
         public T Value;
 

@@ -5,7 +5,7 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graph.Variable
 {
-    public abstract class VariableGraph : GraphBase
+    public abstract class VariableGraph : Core.Graph
     {
 
         private IVariableHolder _holder;
