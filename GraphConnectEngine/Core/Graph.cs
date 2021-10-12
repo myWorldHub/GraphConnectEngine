@@ -288,7 +288,7 @@ namespace GraphConnectEngine.Core
         /// InProcessNodeが繋がれているかどうかを確認する
         /// </summary>
         /// <returns></returns>
-        public virtual bool IsConnectedInProcessNode()
+        public bool IsConnectedInProcessNode()
         {
             return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out var _);
         }
