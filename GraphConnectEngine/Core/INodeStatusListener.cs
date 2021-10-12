@@ -18,7 +18,7 @@ namespace GraphConnectEngine.Core
 
     public class NodeConnectEventArgs : EventArgs
     {
-        public NodeBase SenderNode;
-        public NodeBase OtherNode;
+        public Node.Node SenderNode;
+        public Node.Node OtherNode;
     }
 }

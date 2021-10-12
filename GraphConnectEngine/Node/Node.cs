@@ -4,7 +4,7 @@ using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
-    public abstract class NodeBase : INodeStatusListener,IDisposable
+    public abstract class Node : INodeStatusListener,IDisposable
     {
 
         public NodeConnector Connector
@@ -28,7 +28,7 @@ namespace GraphConnectEngine.Node
         /// </summary>
         public readonly Dictionary<string, object> Args = new Dictionary<string, object>();
 
-        public NodeBase(Core.Graph parentGraph)
+        public Node(Core.Graph parentGraph)
         {
             ParentGraph = parentGraph;
         }
@@ -56,9 +56,9 @@ namespace GraphConnectEngine.Node
         /// </summary>
         /// <param name="resolver"></param>
         /// <returns></returns>
-        public abstract bool CanAttach(NodeBase resolver);
+        public abstract bool CanAttach(Node resolver);
 
-        ~NodeBase()
+        ~Node()
         {
             Dispose(false);
         }

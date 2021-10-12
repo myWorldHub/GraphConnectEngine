@@ -4,7 +4,7 @@ using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
-    public class OutProcessNode : NodeBase
+    public class OutProcessNode : Node
     {
 
         public OutProcessNode(Core.Graph parentGraph) : base(parentGraph)
@@ -40,7 +40,7 @@ namespace GraphConnectEngine.Node
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(NodeBase resolver)
+        public override bool CanAttach(Node resolver)
         {
             if (resolver is InProcessNode outNode)
             {

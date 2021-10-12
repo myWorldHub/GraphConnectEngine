@@ -80,7 +80,7 @@
         <Compile Include="Graph\Variable\GetVariableGraph.cs" />
         <Compile Include="Graph\Variable\SetVariableGraph.cs" />
         <Compile Include="Graph\Variable\VariableGraph.cs" />
-        <Compile Include="Node\NodeBase.cs" />
+        <Compile Include="Node\Node.cs" />
         <Compile Include="Node\IItemTypeResolver.cs" />
         <Compile Include="Node\InItemNode.cs" />
         <Compile Include="Node\InProcessNode.cs" />

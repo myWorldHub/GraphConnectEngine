@@ -4,7 +4,7 @@ using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
-    public class OutItemNode : NodeBase,IItemTypeResolver
+    public class OutItemNode : Node,IItemTypeResolver
     {
         
         private Type _itemType;
@@ -69,7 +69,7 @@ namespace GraphConnectEngine.Node
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(NodeBase resolver)
+        public override bool CanAttach(Node resolver)
         {
             if (resolver is InItemNode inItemNode)
             {
