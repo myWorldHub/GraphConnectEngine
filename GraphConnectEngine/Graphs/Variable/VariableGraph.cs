@@ -1,9 +1,7 @@
-using System;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Core.Variable;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Graph.Variable
+namespace GraphConnectEngine.Graphs.Variable
 {
     public abstract class VariableGraph : Core.Graph
     {
