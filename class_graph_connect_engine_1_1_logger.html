@@ -73,17 +73,20 @@ $(function() {
 <div class="title">GraphConnectEngine.Logger Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>ログ出力のためのクラス  
+ <a href="class_graph_connect_engine_1_1_logger.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab297119db2aafd7700f9589752a8480f"><td class="memItemLeft" align="right" valign="top"><a id="ab297119db2aafd7700f9589752a8480f"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>SetLogMethod</b> (Action&lt; string &gt; action)</td></tr>
+<tr class="memitem:ab297119db2aafd7700f9589752a8480f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_logger.html#ab297119db2aafd7700f9589752a8480f">SetLogMethod</a> (Action&lt; string &gt; action)</td></tr>
+<tr class="memdesc:ab297119db2aafd7700f9589752a8480f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログ出力に使う関数を設定する  <a href="class_graph_connect_engine_1_1_logger.html#ab297119db2aafd7700f9589752a8480f">More...</a><br /></td></tr>
 <tr class="separator:ab297119db2aafd7700f9589752a8480f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82638f21b35496212d8b35acd85ee67f"><td class="memItemLeft" align="right" valign="top"><a id="a82638f21b35496212d8b35acd85ee67f"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Debug</b> (string msg)</td></tr>
+<tr class="memitem:a82638f21b35496212d8b35acd85ee67f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_logger.html#a82638f21b35496212d8b35acd85ee67f">Debug</a> (string msg)</td></tr>
+<tr class="memdesc:a82638f21b35496212d8b35acd85ee67f"><td class="mdescLeft">&#160;</td><td class="mdescRight">デバッグ  <a href="class_graph_connect_engine_1_1_logger.html#a82638f21b35496212d8b35acd85ee67f">More...</a><br /></td></tr>
 <tr class="separator:a82638f21b35496212d8b35acd85ee67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af594dd6225f4e4b075f715d3db6cdee4"><td class="memItemLeft" align="right" valign="top"><a id="af594dd6225f4e4b075f715d3db6cdee4"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Error</b> (string msg)</td></tr>
+<tr class="memitem:af594dd6225f4e4b075f715d3db6cdee4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_logger.html#af594dd6225f4e4b075f715d3db6cdee4">Error</a> (string msg)</td></tr>
+<tr class="memdesc:af594dd6225f4e4b075f715d3db6cdee4"><td class="mdescLeft">&#160;</td><td class="mdescRight">エラー  <a href="class_graph_connect_engine_1_1_logger.html#af594dd6225f4e4b075f715d3db6cdee4">More...</a><br /></td></tr>
 <tr class="separator:af594dd6225f4e4b075f715d3db6cdee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab25fe0e4718c1a437e2aee3dc0e352a7"><td class="memItemLeft" align="right" valign="top"><a id="ab25fe0e4718c1a437e2aee3dc0e352a7"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteLine</b> (int level, string message)</td></tr>
@@ -94,10 +97,147 @@ static string&#160;</td><td class="memItemRight" valign="bottom"><b>Prefix</b> (
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a513ae85e55f830d974e2085d402a8053"><td class="memItemLeft" align="right" valign="top"><a id="a513ae85e55f830d974e2085d402a8053"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>LogLevel</b> = 9999</td></tr>
+<tr class="memitem:ae7f2c7db867881ab6e5abbc1f7ec9da3"><td class="memItemLeft" align="right" valign="top"><a id="ae7f2c7db867881ab6e5abbc1f7ec9da3"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>LevelDebug</b> = 0</td></tr>
+<tr class="separator:ae7f2c7db867881ab6e5abbc1f7ec9da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfb9fb00b1fa5ae08d11f73c920f85f0"><td class="memItemLeft" align="right" valign="top"><a id="acfb9fb00b1fa5ae08d11f73c920f85f0"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>LevelError</b> = 1</td></tr>
+<tr class="separator:acfb9fb00b1fa5ae08d11f73c920f85f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513ae85e55f830d974e2085d402a8053"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_logger.html#a513ae85e55f830d974e2085d402a8053">LogLevel</a> = 9999</td></tr>
+<tr class="memdesc:a513ae85e55f830d974e2085d402a8053"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログレベル  <a href="class_graph_connect_engine_1_1_logger.html#a513ae85e55f830d974e2085d402a8053">More...</a><br /></td></tr>
 <tr class="separator:a513ae85e55f830d974e2085d402a8053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>ログ出力のためのクラス </p>
+<p>TODO ILogger作る</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a82638f21b35496212d8b35acd85ee67f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82638f21b35496212d8b35acd85ee67f">&#9670;&nbsp;</a></span>Debug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void GraphConnectEngine.Logger.Debug </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>デバッグ </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af594dd6225f4e4b075f715d3db6cdee4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af594dd6225f4e4b075f715d3db6cdee4">&#9670;&nbsp;</a></span>Error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void GraphConnectEngine.Logger.Error </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>エラー </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab297119db2aafd7700f9589752a8480f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab297119db2aafd7700f9589752a8480f">&#9670;&nbsp;</a></span>SetLogMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void GraphConnectEngine.Logger.SetLogMethod </td>
+          <td>(</td>
+          <td class="paramtype">Action&lt; string &gt;&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログ出力に使う関数を設定する </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a513ae85e55f830d974e2085d402a8053"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513ae85e55f830d974e2085d402a8053">&#9670;&nbsp;</a></span>LogLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GraphConnectEngine.Logger.LogLevel = 9999</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ログレベル </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>GraphConnectEngine/Logger.cs</li>
 </ul>

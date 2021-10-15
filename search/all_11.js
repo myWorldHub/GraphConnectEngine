@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['valuefuncgraph_70',['ValueFuncGraph',['../class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html',1,'GraphConnectEngine::Graphs::Value']]],
-  ['valuegraph_71',['ValueGraph',['../class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_graph.html',1,'GraphConnectEngine::Graphs::Value']]],
-  ['valueresult_72',['ValueResult',['../class_graph_connect_engine_1_1_value_result.html',1,'GraphConnectEngine']]],
-  ['variablecreatedeventargs_73',['VariableCreatedEventArgs',['../class_graph_connect_engine_1_1_variable_1_1_variable_created_event_args.html',1,'GraphConnectEngine::Variable']]],
-  ['variablegraph_74',['VariableGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_graph.html',1,'GraphConnectEngine::Graphs::Variable']]],
-  ['variableholder_75',['VariableHolder',['../class_graph_connect_engine_1_1_variable_1_1_variable_holder.html',1,'GraphConnectEngine::Variable']]],
-  ['variableremovedeventargs_76',['VariableRemovedEventArgs',['../class_graph_connect_engine_1_1_variable_1_1_variable_removed_event_args.html',1,'GraphConnectEngine::Variable']]],
-  ['variableupdatedeventargs_77',['VariableUpdatedEventArgs',['../class_graph_connect_engine_1_1_variable_1_1_variable_updated_event_args.html',1,'GraphConnectEngine::Variable']]]
+  ['update_119',['Update',['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a1ec760b06db53a7ffc4173d6e0d6d340',1,'GraphConnectEngine.Graphs.Event.UpdaterGraph.Update()'],['../interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#acfa901613ebcc35b909b7d4c2aaa072c',1,'GraphConnectEngine.Variable.IVariableHolder.Update()'],['../class_graph_connect_engine_1_1_variable_1_1_variable_holder.html#a63d3065fee47cbf39e1cad9b364725ce',1,'GraphConnectEngine.Variable.VariableHolder.Update()']]],
+  ['updatergraph_120',['UpdaterGraph',['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html',1,'GraphConnectEngine.Graphs.Event.UpdaterGraph'],['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a6556e75a7277906a32bf753e7abd1bc4',1,'GraphConnectEngine.Graphs.Event.UpdaterGraph.UpdaterGraph()']]]
 ];

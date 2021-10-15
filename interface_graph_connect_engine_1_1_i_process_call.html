@@ -72,31 +72,164 @@ $(function() {
 <div class="title">GraphConnectEngine.IProcessCall Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>プロセスを実行するためのインターフェース  
+ <a href="interface_graph_connect_engine_1_1_i_process_call.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GraphConnectEngine.IProcessCall:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="interface_graph_connect_engine_1_1_i_process_call.png" usemap="#GraphConnectEngine.IProcessCall_map" alt=""/>
   <map id="GraphConnectEngine.IProcessCall_map" name="GraphConnectEngine.IProcessCall_map">
-<area href="class_graph_connect_engine_1_1_graph.html" alt="GraphConnectEngine.Graph" shape="rect" coords="0,56,347,80"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html" alt="GraphConnectEngine.Graphs.DebugTextGraph" shape="rect" coords="357,112,704,136"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_event_1_1_delay_graph.html" alt="GraphConnectEngine.Graphs.Event.DelayGraph" shape="rect" coords="357,168,704,192"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html" alt="GraphConnectEngine.Graphs.Event.UpdaterGraph" shape="rect" coords="357,224,704,248"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_cast_graph.html" alt="GraphConnectEngine.Graphs.Operator.CastGraph&lt; T &gt;" shape="rect" coords="357,280,704,304"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_mid_operator_graph.html" alt="GraphConnectEngine.Graphs.Operator.MidOperatorGraph" shape="rect" coords="357,336,704,360"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_statement_1_1_if_statement_graph.html" alt="GraphConnectEngine.Graphs.Statement.IfStatementGraph" shape="rect" coords="357,392,704,416"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html" alt="GraphConnectEngine.Graphs.Value.ValueFuncGraph&lt; T &gt;" shape="rect" coords="357,448,704,472"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_graph.html" alt="GraphConnectEngine.Graphs.Value.ValueGraph&lt; T &gt;" shape="rect" coords="357,504,704,528"/>
-<area href="class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_graph.html" alt="GraphConnectEngine.Graphs.Variable.VariableGraph" shape="rect" coords="357,560,704,584"/>
+<area href="class_graph_connect_engine_1_1_graph.html" title="グラフ" alt="GraphConnectEngine.Graph" shape="rect" coords="0,56,347,80"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html" title="InItemNode[0] : Objectの値をコンストラクタで指定した関数に渡す関数" alt="GraphConnectEngine.Graphs.DebugTextGraph" shape="rect" coords="357,112,704,136"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_event_1_1_delay_graph.html" title="プロセスを遅延させるグラフ" alt="GraphConnectEngine.Graphs.Event.DelayGraph" shape="rect" coords="357,168,704,192"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html" title="プロセスを発生させるグラフ" alt="GraphConnectEngine.Graphs.Event.UpdaterGraph" shape="rect" coords="357,224,704,248"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_cast_graph.html" title="指定した型(T)にオブジェクトをキャストするグラフ" alt="GraphConnectEngine.Graphs.Operator.CastGraph&lt; T &gt;" shape="rect" coords="357,280,704,304"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_mid_operator_graph.html" title="二項演算を行うグラフ" alt="GraphConnectEngine.Graphs.Operator.MidOperatorGraph" shape="rect" coords="357,336,704,360"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_statement_1_1_if_statement_graph.html" title="ブール型の変数によってプロセスの分岐を行うグラフ" alt="GraphConnectEngine.Graphs.Statement.IfStatementGraph" shape="rect" coords="357,392,704,416"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html" title="OutItemNode[T]が1つあるグラフ コンストラクタでValueResult[T]を返す関数を渡し、実行時に利用される" alt="GraphConnectEngine.Graphs.Value.ValueFuncGraph&lt; T &gt;" shape="rect" coords="357,448,704,472"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_graph.html" title="OutItemNode[T]が1つあるグラフ コンストラクタで値のデフォルト値を設定できる。 実行時はValueをOutItemNode[0]に渡す" alt="GraphConnectEngine.Graphs.Value.ValueGraph&lt; T &gt;" shape="rect" coords="357,504,704,528"/>
+<area href="class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_graph.html" title="IVariableHolderを使うグラフ 抽象クラス" alt="GraphConnectEngine.Graphs.Variable.VariableGraph" shape="rect" coords="357,560,704,584"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a06ebc8b7b3d76ddb57c9550e93a5f346"><td class="memItemLeft" align="right" valign="top"><a id="a06ebc8b7b3d76ddb57c9550e93a5f346"></a>
-Task&lt; <a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnProcessCall</b> (<a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a> args, object[] parameters)</td></tr>
+<tr class="memitem:a97c2c5f0a7488e2702fc92e9df8f7252"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_graph_connect_engine_1_1_invoke_result.html">InvokeResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_i_process_call.html#a97c2c5f0a7488e2702fc92e9df8f7252">Invoke</a> (object sender, <a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a> args)</td></tr>
+<tr class="memdesc:a97c2c5f0a7488e2702fc92e9df8f7252"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフを実行する  <a href="interface_graph_connect_engine_1_1_i_process_call.html#a97c2c5f0a7488e2702fc92e9df8f7252">More...</a><br /></td></tr>
+<tr class="separator:a97c2c5f0a7488e2702fc92e9df8f7252"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6523aa92fc44e2b4bf26d800455eb4"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_graph_connect_engine_1_1_invoke_result.html">InvokeResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_i_process_call.html#adf6523aa92fc44e2b4bf26d800455eb4">InvokeWithoutArgs</a> (bool callOutProcess, object[] parameters)</td></tr>
+<tr class="memdesc:adf6523aa92fc44e2b4bf26d800455eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">実行データなしにグラフを実行する  <a href="interface_graph_connect_engine_1_1_i_process_call.html#adf6523aa92fc44e2b4bf26d800455eb4">More...</a><br /></td></tr>
+<tr class="separator:adf6523aa92fc44e2b4bf26d800455eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06ebc8b7b3d76ddb57c9550e93a5f346"><td class="memItemLeft" align="right" valign="top">Task&lt; <a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_i_process_call.html#a06ebc8b7b3d76ddb57c9550e93a5f346">OnProcessCall</a> (<a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a> args, object[] parameters)</td></tr>
+<tr class="memdesc:a06ebc8b7b3d76ddb57c9550e93a5f346"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフの実行の実装  <a href="interface_graph_connect_engine_1_1_i_process_call.html#a06ebc8b7b3d76ddb57c9550e93a5f346">More...</a><br /></td></tr>
 <tr class="separator:a06ebc8b7b3d76ddb57c9550e93a5f346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>プロセスを実行するためのインターフェース </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a97c2c5f0a7488e2702fc92e9df8f7252"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97c2c5f0a7488e2702fc92e9df8f7252">&#9670;&nbsp;</a></span>Invoke()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt;<a class="el" href="class_graph_connect_engine_1_1_invoke_result.html">InvokeResult</a>&gt; GraphConnectEngine.IProcessCall.Invoke </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a>&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>グラフを実行する </p>
+<p>OutItemNodeかOutProcessNode、またはそのサブクラスをsenderに指定する必要がある</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sender</td><td>呼び出し元</td></tr>
+    <tr><td class="paramname">args</td><td>実行データ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_graph.html#ad1a05c88999ddde1182df64c2d63e800">GraphConnectEngine.Graph</a>.</p>
+
+</div>
+</div>
+<a id="adf6523aa92fc44e2b4bf26d800455eb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf6523aa92fc44e2b4bf26d800455eb4">&#9670;&nbsp;</a></span>InvokeWithoutArgs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt;<a class="el" href="class_graph_connect_engine_1_1_invoke_result.html">InvokeResult</a>&gt; GraphConnectEngine.IProcessCall.InvokeWithoutArgs </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>callOutProcess</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object[]&#160;</td>
+          <td class="paramname"><em>parameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>実行データなしにグラフを実行する </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callOutProcess</td><td>OutProcessCallを起動するか</td></tr>
+    <tr><td class="paramname">parameters</td><td>OnProcessCallに渡すパラメーター</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_graph.html#ab3c09fae644f1aed034db7d359c8d4dd">GraphConnectEngine.Graph</a>.</p>
+
+</div>
+</div>
+<a id="a06ebc8b7b3d76ddb57c9550e93a5f346"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06ebc8b7b3d76ddb57c9550e93a5f346">&#9670;&nbsp;</a></span>OnProcessCall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt;<a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a>&gt; GraphConnectEngine.IProcessCall.OnProcessCall </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a>&#160;</td>
+          <td class="paramname"><em>args</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">object[]&#160;</td>
+          <td class="paramname"><em>parameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>グラフの実行の実装 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>実行データ</td></tr>
+    <tr><td class="paramname">parameters</td><td>InItemNodeから取得した値の配列</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_set_variable_graph.html#ae6a9128cc12a798307e7ee0ebc1c91a2">GraphConnectEngine.Graphs.Variable.SetVariableGraph</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_get_variable_graph.html#a7c2baa5aeb9d7e37c3955a5346d2cc1c">GraphConnectEngine.Graphs.Variable.GetVariableGraph</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_graph.html#ab5dd86c14ec57a41284a6ea2b840b775">GraphConnectEngine.Graphs.Value.ValueGraph&lt; T &gt;</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#a5cab179d088fa2765983cadde87365da">GraphConnectEngine.Graphs.Value.ValueFuncGraph&lt; T &gt;</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_statement_1_1_if_statement_graph.html#a0d902fe7c31b62031416f0642b38f656">GraphConnectEngine.Graphs.Statement.IfStatementGraph</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_mid_operator_graph.html#a99b727a18a49208271581b4de716d78b">GraphConnectEngine.Graphs.Operator.MidOperatorGraph</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_cast_graph.html#a60bdd9acdc213b57727f6581b21200a3">GraphConnectEngine.Graphs.Operator.CastGraph&lt; T &gt;</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a15c987b84a1e4f636a781371a94e7133">GraphConnectEngine.Graphs.Event.UpdaterGraph</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_event_1_1_delay_graph.html#abf358b40fa6338c9adca31bc56c6402b">GraphConnectEngine.Graphs.Event.DelayGraph</a>, <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a778931a4cf3cf48d53fbb61f7a21fd21">GraphConnectEngine.Graphs.DebugTextGraph</a>, and <a class="el" href="class_graph_connect_engine_1_1_graph.html#ada4499849c87ed010349a34aa0fac19c">GraphConnectEngine.Graph</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
 <li>GraphConnectEngine/IProcessCall.cs</li>
 </ul>

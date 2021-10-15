@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inprocessnode_156',['InProcessNode',['../class_graph_connect_engine_1_1_graph.html#a91af3fd6fc80008a9cbe073d96e31f6e',1,'GraphConnectEngine::Graph']]]
+  ['connector_259',['Connector',['../class_graph_connect_engine_1_1_node_1_1_node.html#aaeaef085eb8a9d47962a51c8690814ef',1,'GraphConnectEngine::Node::Node']]]
 ];

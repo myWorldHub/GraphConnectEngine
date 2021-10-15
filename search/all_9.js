@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['midoperatorgraph_44',['MidOperatorGraph',['../class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_mid_operator_graph.html',1,'GraphConnectEngine::Graphs::Operator']]],
-  ['modulusoperatorgraph_45',['ModulusOperatorGraph',['../class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_modulus_operator_graph.html',1,'GraphConnectEngine::Graphs::Operator']]]
+  ['logger_71',['Logger',['../class_graph_connect_engine_1_1_logger.html',1,'GraphConnectEngine']]],
+  ['loglevel_72',['LogLevel',['../class_graph_connect_engine_1_1_logger.html#a513ae85e55f830d974e2085d402a8053',1,'GraphConnectEngine::Logger']]]
 ];
