@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
@@ -18,7 +17,7 @@ namespace GraphConnectEngine.Node
 
         public string Name => (string)Args["Name"];
 
-        public InItemNode(Core.Graph parentGraph, Type itemType,string name, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
+        public InItemNode(Graph parentGraph, Type itemType,string name, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
         {
             Args["Name"] = name;
             _itemType = itemType;

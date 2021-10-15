@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine
 {
     public interface IProcessCall
     {

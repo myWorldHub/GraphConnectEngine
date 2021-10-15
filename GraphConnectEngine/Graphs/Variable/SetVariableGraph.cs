@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
-using GraphConnectEngine.Core.Variable;
 using GraphConnectEngine.Node;
+using GraphConnectEngine.Variable;
 
 namespace GraphConnectEngine.Graphs.Variable
 {

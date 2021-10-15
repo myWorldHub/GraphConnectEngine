@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
@@ -15,7 +14,7 @@ namespace GraphConnectEngine.Node
             }
         }
 
-        public readonly Core.Graph ParentGraph;
+        public readonly Graph ParentGraph;
         
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
@@ -28,7 +27,7 @@ namespace GraphConnectEngine.Node
         /// </summary>
         public readonly Dictionary<string, object> Args = new Dictionary<string, object>();
 
-        public Node(Core.Graph parentGraph)
+        public Node(Graph parentGraph)
         {
             ParentGraph = parentGraph;
         }

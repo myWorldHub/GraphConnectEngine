@@ -1,4 +1,4 @@
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine
 {
     public class InvokeResult
     {

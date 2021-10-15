@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
@@ -15,7 +14,7 @@ namespace GraphConnectEngine.Node
 
         public string Name => (string) Args["Name"];
 
-        public OutItemNode(Core.Graph parentGraph, Type itemType, int resultIndex,string name) : base(parentGraph)
+        public OutItemNode(Graph parentGraph, Type itemType, int resultIndex,string name) : base(parentGraph)
         {
             Args["Name"] = name;
             _resultIndex = resultIndex;

@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
@@ -8,7 +7,7 @@ namespace GraphConnectEngine.Node
     {
 
 
-        public InProcessNode(Core.Graph parentGraph) : base(parentGraph) 
+        public InProcessNode(Graph parentGraph) : base(parentGraph) 
         {
         }
 

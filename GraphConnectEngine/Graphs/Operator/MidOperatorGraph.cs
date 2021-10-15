@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Operator
 {
-    public abstract class MidOperatorGraph : Core.Graph
+    public abstract class MidOperatorGraph : Graph
     {
 
         private Func<object, object, object> _computeFunc;

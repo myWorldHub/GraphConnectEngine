@@ -1,6 +1,6 @@
 using System;
 
-namespace GraphConnectEngine.Core.Variable
+namespace GraphConnectEngine.Variable
 {
     public class VariableCreatedEventArgs : EventArgs
     {

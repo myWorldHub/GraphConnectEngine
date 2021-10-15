@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs
 {
-    public class DebugTextGraph : Core.Graph
+    public class DebugTextGraph : Graph
     {
         
         private Func<string, Task<bool>> _updateText;

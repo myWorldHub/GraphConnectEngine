@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GraphConnectEngine.Core.Variable
+namespace GraphConnectEngine.Variable
 {
     public interface IVariableHolderAsync
     {

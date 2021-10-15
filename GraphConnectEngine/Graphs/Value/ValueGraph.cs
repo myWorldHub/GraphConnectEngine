@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Value
 {
-    public class ValueGraph<T> : Core.Graph
+    public class ValueGraph<T> : Graph
     {
         public T Value;
 

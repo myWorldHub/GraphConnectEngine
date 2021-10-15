@@ -4,6 +4,6 @@ namespace GraphConnectEngine.Graphs.Event
 {
     public interface IProcessSender
     {
-        Task Fire(Core.Graph graph,object[] parameters);
+        Task Fire(Graph graph,object[] parameters);
     }
 }

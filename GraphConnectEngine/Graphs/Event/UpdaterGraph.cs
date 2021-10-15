@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Event
 {
-    public class UpdaterGraph : Core.Graph
+    public class UpdaterGraph : Graph
     {
 
         public enum Type

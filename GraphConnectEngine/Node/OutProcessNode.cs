@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {
     public class OutProcessNode : Node
     {
 
-        public OutProcessNode(Core.Graph parentGraph) : base(parentGraph)
+        public OutProcessNode(Graph parentGraph) : base(parentGraph)
         {
         }
 

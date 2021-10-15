@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Value
@@ -8,7 +7,7 @@ namespace GraphConnectEngine.Graphs.Value
     /// <summary>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ValueFuncGraph<T> : Core.Graph
+    public class ValueFuncGraph<T> : Graph
     {
         
         private Func<Task<ValueResult<T>>> _valueFunc;

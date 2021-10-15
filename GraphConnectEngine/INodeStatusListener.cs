@@ -1,7 +1,6 @@
 using System;
-using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine
 {
     /// <summary>
     ///

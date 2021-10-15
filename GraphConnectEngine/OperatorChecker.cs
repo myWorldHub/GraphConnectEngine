@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine
 {
     /// <summary>
     /// TODO op_で解決するようにする

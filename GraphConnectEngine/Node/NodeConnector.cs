@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using GraphConnectEngine.Core;
 
 namespace GraphConnectEngine.Node
 {

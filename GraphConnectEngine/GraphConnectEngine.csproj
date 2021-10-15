@@ -47,23 +47,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Core\Graph.cs" />
-        <Compile Include="Core\GraphStatusEventArgs.cs" />
-        <Compile Include="Core\InvokeResult.cs" />
-        <Compile Include="Core\IProcessCall.cs" />
-        <Compile Include="Core\Logger.cs" />
-        <Compile Include="Core\INodeStatusListener.cs" />
-        <Compile Include="Core\OperatorChecker.cs" />
-        <Compile Include="Core\PrimitiveOperatorChecker.cs" />
-        <Compile Include="Core\ProcessCallArgs.cs" />
-        <Compile Include="Core\ValueResult.cs" />
-        <Compile Include="Core\Variable\IVariableHolder.cs" />
-        <Compile Include="Core\Variable\IVariableHolderAsync.cs" />
-        <Compile Include="Core\Variable\IVariableHolderEvent.cs" />
-        <Compile Include="Core\Variable\VariableCreatedEventArgs.cs" />
-        <Compile Include="Core\Variable\VariableHolder.cs" />
-        <Compile Include="Core\Variable\VariableRemovedEventArgs.cs" />
-        <Compile Include="Core\Variable\VariableUpdatedEventArgs.cs" />
+        <Compile Include="Graph.cs" />
+        <Compile Include="GraphStatusEventArgs.cs" />
         <Compile Include="Graphs\DebugTextGraph.cs" />
         <Compile Include="Graphs\Event\DelayGraph.cs" />
         <Compile Include="Graphs\Event\IProcessSender.cs" />
@@ -80,6 +65,10 @@
         <Compile Include="Graphs\Variable\GetVariableGraph.cs" />
         <Compile Include="Graphs\Variable\SetVariableGraph.cs" />
         <Compile Include="Graphs\Variable\VariableGraph.cs" />
+        <Compile Include="INodeStatusListener.cs" />
+        <Compile Include="InvokeResult.cs" />
+        <Compile Include="IProcessCall.cs" />
+        <Compile Include="Logger.cs" />
         <Compile Include="Node\Node.cs" />
         <Compile Include="Node\IItemTypeResolver.cs" />
         <Compile Include="Node\InItemNode.cs" />
@@ -87,7 +76,18 @@
         <Compile Include="Node\NodeConnector.cs" />
         <Compile Include="Node\OutItemNode.cs" />
         <Compile Include="Node\OutProcessNode.cs" />
+        <Compile Include="OperatorChecker.cs" />
+        <Compile Include="PrimitiveOperatorChecker.cs" />
+        <Compile Include="ProcessCallArgs.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="ValueResult.cs" />
+        <Compile Include="Variable\IVariableHolder.cs" />
+        <Compile Include="Variable\IVariableHolderAsync.cs" />
+        <Compile Include="Variable\IVariableHolderEvent.cs" />
+        <Compile Include="Variable\VariableCreatedEventArgs.cs" />
+        <Compile Include="Variable\VariableHolder.cs" />
+        <Compile Include="Variable\VariableRemovedEventArgs.cs" />
+        <Compile Include="Variable\VariableUpdatedEventArgs.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

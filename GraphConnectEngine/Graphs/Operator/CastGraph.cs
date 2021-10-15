@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Operator
 {
-    public class CastGraph<T> : Core.Graph
+    public class CastGraph<T> : Graph
     {
 
         private Func<object, object> _lambda;

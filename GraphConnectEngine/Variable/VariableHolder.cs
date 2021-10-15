@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GraphConnectEngine.Core.Variable
+namespace GraphConnectEngine.Variable
 {
     /// <summary>
     /// 値保持用のクラス

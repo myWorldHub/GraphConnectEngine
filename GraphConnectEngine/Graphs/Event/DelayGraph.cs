@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Event
 {
-    public class DelayGraph : Core.Graph
+    public class DelayGraph : Graph
     {
         public DelayGraph(NodeConnector connector) : base(connector)
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GraphConnectEngine.Node;
 
-namespace GraphConnectEngine.Core
+namespace GraphConnectEngine
 {
     public abstract class Graph : IProcessCall,IDisposable
     {

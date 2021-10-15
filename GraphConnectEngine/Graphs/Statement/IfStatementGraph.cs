@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
-using GraphConnectEngine.Core;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Statement
 {
-    public class IfStatementGraph : Core.Graph
+    public class IfStatementGraph : Graph
     {
         
         public IfStatementGraph(NodeConnector connector) : base(connector)
