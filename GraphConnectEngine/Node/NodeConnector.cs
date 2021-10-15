@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
-    /// NodeB同士がどのように繋がっているか管理する
+    /// Node同士がどのように繋がっているか管理する
     ///
     /// TODO インターフェースを作って、Async対応もする
     /// </summary>

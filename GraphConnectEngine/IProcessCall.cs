@@ -36,7 +36,7 @@ namespace GraphConnectEngine
     }
 
     /// <summary>
-    /// ぷｒセスの実行結果用
+    /// プロセスの実行結果用
     /// </summary>
     public class ProcessCallResult
     {

@@ -28,7 +28,7 @@ namespace GraphConnectEngine.Node
         /// <param name="parentGraph">親のグラフ</param>
         /// <param name="itemType">最初に設定する型</param>
         /// <param name="name">ノード名</param>
-        /// <param name="defaultItemGetter">OutItemNodeと繋がっていない場合,んこの関数の返り値を使う</param>
+        /// <param name="defaultItemGetter">OutItemNodeと繋がっていない場合,この関数の返り値を使う</param>
         /// <param name="typeCheckOnAtatchFunc">CanAttachで独自の型チェックを利用したい時に指定する</param>
         public InItemNode(Graph parentGraph, Type itemType,string name, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
         {
