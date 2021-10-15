@@ -4,11 +4,19 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs
 {
+    /// <summary>
+    /// InItemNode[0] : Objectの値をコンストラクタで指定した関数に渡す関数
+    /// </summary>
     public class DebugTextGraph : Graph
     {
         
         private Func<string, Task<bool>> _updateText;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="updateText">InItemNode[0] : Objectの値を実行時に渡される関数</param>
         public DebugTextGraph(NodeConnector connector,Func<string, Task<bool>> updateText) : base(connector)
         {
             AddNode(new InItemNode(this, typeof(object),"Object"));

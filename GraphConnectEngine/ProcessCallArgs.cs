@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace GraphConnectEngine
 {
+    /// <summary>
+    /// プロセスの実行情報を管理するクラス
+    ///
+    /// TODO 結果のデータも管理するのでメモリリーク注意
+    /// </summary>
     public class ProcessCallArgs
     {
 
@@ -12,8 +17,16 @@ namespace GraphConnectEngine
         private Dictionary<string, ProcessCallResult> _cache;
         private Dictionary<string, ProcessCallArgs> _args;
 
+
+        private ProcessCallArgs(object hash, Dictionary<string, ProcessCallResult> cache, Dictionary<string, ProcessCallArgs> args)
+        {
+            _value = hash.ToString();
+            _cache = cache;
+            _args = args;
+        }
+        
         /// <summary>
-        /// 発火用
+        /// 発火する
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
@@ -23,15 +36,8 @@ namespace GraphConnectEngine
                 new Dictionary<string, ProcessCallArgs>());
         }
 
-        private ProcessCallArgs(object hash, Dictionary<string, ProcessCallResult> cache,Dictionary<string,ProcessCallArgs> args)
-        {
-            _value = hash.ToString();
-            _cache = cache;
-            _args = args;
-        }
-
         /// <summary>
-        /// 追加する
+        /// データを追加する
         /// </summary>
         /// <param name="nextHash"></param>
         /// <param name="isProcess"></param>
@@ -49,7 +55,7 @@ namespace GraphConnectEngine
         }
 
         /// <summary>
-        /// ハッシュ値を取得
+        /// 値を取得する
         /// </summary>
         /// <returns></returns>
         public string GetValue()
@@ -57,17 +63,30 @@ namespace GraphConnectEngine
             return _value;
         }
 
+        /// <summary>
+        /// 値がstringを含むかどうか
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         public bool Contains(string v)
         {
             return _value.Contains(v);
         }
 
+        /// <summary>
+        /// プロセスによって実行された結果のリストを取得する
+        /// </summary>
+        /// <returns></returns>
         public string GetProcList()
         {
             var ienu = GetValue().Split(':').Where(s => s.StartsWith("Proc_"));
             return string.Join(":", ienu);
         }
 
+        /// <summary>
+        /// アイテムノードによって実行された結果のリストを取得する
+        /// </summary>
+        /// <returns></returns>
         public string GetItemList()
         {
             var ienu = GetValue().Split(':').Where(s => s.StartsWith("Item_"));
@@ -79,6 +98,11 @@ namespace GraphConnectEngine
             return result;
         }
 
+        /// <summary>
+        /// グラフの結果を取得できないか試す
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <returns></returns>
         public ProcessCallResult TryGetResultOf(Graph graph)
         {
 
@@ -139,6 +163,10 @@ namespace GraphConnectEngine
             Logger.Debug($"ProcessCallArgs.SetResult() >  Registered Result cache of Graph<{graph.Id}> \n with : {GetValue()}");
         }
 
+        /// <summary>
+        /// 発火したグラフを取得する
+        /// </summary>
+        /// <returns></returns>
         public string GetSender()
         {
             return _value.Split(':')[0];

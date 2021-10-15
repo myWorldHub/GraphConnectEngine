@@ -5,6 +5,8 @@ using System.Linq;
 namespace GraphConnectEngine
 {
     /// <summary>
+    /// 演算子の解決を行うクラス
+    /// 
     /// TODO op_で解決するようにする
     /// </summary>
     public static class OperatorChecker

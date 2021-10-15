@@ -4,6 +4,11 @@ using GraphConnectEngine.Variable;
 
 namespace GraphConnectEngine.Graphs.Variable
 {
+    /// <summary>
+    /// IVariableHolderの変数を取得するグラフ
+    ///
+    /// OutItemNode[0]に変数が渡される
+    /// </summary>
     public class GetVariableGraph : VariableGraph
     {
 

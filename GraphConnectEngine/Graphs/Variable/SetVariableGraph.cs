@@ -4,6 +4,9 @@ using GraphConnectEngine.Variable;
 
 namespace GraphConnectEngine.Graphs.Variable
 {
+    /// <summary>
+    /// IVariableHolderの変数の値を設定するグラフ
+    /// </summary>
     public class SetVariableGraph : VariableGraph
     {
 

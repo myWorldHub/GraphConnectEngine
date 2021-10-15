@@ -4,19 +4,32 @@ using System.Threading.Tasks;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
+    /// OutItemNodeから値を渡されるノード
     /// </summary>
     public class InItemNode : Node,IItemTypeResolver
     {
         private Type _itemType;
-
+        
         public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
         private Func<Type, Type,bool> _typeCheckOnAtatch;
 
         private DefaultItemGetter _defaultItemGetter;
 
+        /// <summary>
+        /// ノードを表す名前
+        /// 型名やパラメーター名が相応しい
+        /// </summary>
         public string Name => (string)Args["Name"];
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="parentGraph">親のグラフ</param>
+        /// <param name="itemType">最初に設定する型</param>
+        /// <param name="name">ノード名</param>
+        /// <param name="defaultItemGetter">OutItemNodeと繋がっていない場合,んこの関数の返り値を使う</param>
+        /// <param name="typeCheckOnAtatchFunc">CanAttachで独自の型チェックを利用したい時に指定する</param>
         public InItemNode(Graph parentGraph, Type itemType,string name, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
         {
             Args["Name"] = name;
@@ -24,7 +37,7 @@ namespace GraphConnectEngine.Node
             _defaultItemGetter = defaultItemGetter;
             _typeCheckOnAtatch = typeCheckOnAtatchFunc;
         }
-
+        
         public Type GetItemType()
         {
             return _itemType;
@@ -66,7 +79,7 @@ namespace GraphConnectEngine.Node
             }
         }
 
-        public override bool IsAttachableGraphType(Type type)
+        public override bool IsAttachableNodeType(Type type)
         {
             var dt = typeof(OutItemNode);
             return !(type != dt && !type.IsSubclassOf(dt));
@@ -114,6 +127,14 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
+        /// <summary>
+        /// 繋がっているOutItemNodeから値をもらってくる
+        ///
+        /// Tに任意の型を指定できて、型チェックしたうえで結果を返す
+        /// </summary>
+        /// <param name="args">プロセス情報</param>
+        /// <typeparam name="T">型</typeparam>
+        /// <returns></returns>
         public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
         {
             if (Connector.TryGetAnotherNode(this, out OutItemNode node))
@@ -131,6 +152,13 @@ namespace GraphConnectEngine.Node
             return ValueResult<T>.Fail();
         }
 
+        /// <summary>
+        /// 繋がっているOutItemNodeから値をもらってくる
+        ///
+        /// 自分に設定されている型、またはそれがSubclassになるものの場合結果を返す
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
         {
             Logger.Debug("InItemNode.GerItemFromConnectedNode().Invoked");

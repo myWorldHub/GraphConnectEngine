@@ -3,6 +3,9 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Event
 {
+    /// <summary>
+    /// プロセスを遅延させるグラフ
+    /// </summary>
     public class DelayGraph : Graph
     {
         public DelayGraph(NodeConnector connector) : base(connector)
@@ -18,9 +21,6 @@ namespace GraphConnectEngine.Graphs.Event
             return ProcessCallResult.Success(new object[] {time},OutProcessNode);
         }
 
-        public override string GetGraphName()
-        {
-            return "Delay Graph";
-        }
+        public override string GetGraphName() =>  "Delay Graph";
     }
 }

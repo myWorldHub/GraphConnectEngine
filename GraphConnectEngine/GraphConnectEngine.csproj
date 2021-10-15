@@ -65,10 +65,10 @@
         <Compile Include="Graphs\Variable\GetVariableGraph.cs" />
         <Compile Include="Graphs\Variable\SetVariableGraph.cs" />
         <Compile Include="Graphs\Variable\VariableGraph.cs" />
-        <Compile Include="INodeStatusListener.cs" />
         <Compile Include="InvokeResult.cs" />
         <Compile Include="IProcessCall.cs" />
         <Compile Include="Logger.cs" />
+        <Compile Include="Node\INodeStatusListener.cs" />
         <Compile Include="Node\Node.cs" />
         <Compile Include="Node\IItemTypeResolver.cs" />
         <Compile Include="Node\InItemNode.cs" />
@@ -84,10 +84,7 @@
         <Compile Include="Variable\IVariableHolder.cs" />
         <Compile Include="Variable\IVariableHolderAsync.cs" />
         <Compile Include="Variable\IVariableHolderEvent.cs" />
-        <Compile Include="Variable\VariableCreatedEventArgs.cs" />
         <Compile Include="Variable\VariableHolder.cs" />
-        <Compile Include="Variable\VariableRemovedEventArgs.cs" />
-        <Compile Include="Variable\VariableUpdatedEventArgs.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

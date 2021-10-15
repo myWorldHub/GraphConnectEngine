@@ -4,6 +4,10 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Operator
 {
+    /// <summary>
+    /// 指定した型(T)にオブジェクトをキャストするグラフ
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CastGraph<T> : Graph
     {
 

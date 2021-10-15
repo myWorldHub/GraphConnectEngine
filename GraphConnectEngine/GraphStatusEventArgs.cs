@@ -2,6 +2,9 @@ using System;
 
 namespace GraphConnectEngine
 {
+    /// <summary>
+    /// グラフの状態に関わるイベント用
+    /// </summary>
     public class GraphStatusEventArgs : EventArgs
     {
         public enum EventType

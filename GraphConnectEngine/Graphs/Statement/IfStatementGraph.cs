@@ -3,6 +3,13 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Statement
 {
+    /// <summary>
+    /// ブール型の変数によってプロセスの分岐を行うグラフ
+    ///
+    /// OutProcessNodeが2つある
+    /// OutProcessNodes[0]はTrueのとき
+    /// OutProcessNodes[1]はFalseのとき呼ばれる
+    /// </summary>
     public class IfStatementGraph : Graph
     {
         

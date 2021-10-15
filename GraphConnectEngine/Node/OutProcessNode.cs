@@ -3,6 +3,12 @@ using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Node
 {
+    /// <summary>
+    /// InProcessNodeを呼んでプロセスを伝播するノード
+    ///
+    /// CallProcessでプロセスを呼ぶ
+    /// InProcessNodeとは複数繋ぐことができるが、実行順は保証されない
+    /// </summary>
     public class OutProcessNode : Node
     {
 
@@ -10,6 +16,11 @@ namespace GraphConnectEngine.Node
         {
         }
 
+        /// <summary>
+        /// InProcessNodeのOnCalledを呼び、プロセスを伝播する
+        /// </summary>
+        /// <param name="args">プロセス情報</param>
+        /// <returns></returns>
         public async Task<bool> CallProcess(ProcessCallArgs args)
         {
             Logger.Debug($"OutProcessNode.CallProcess() Start > {ParentGraph.Id} > {args}");
@@ -33,7 +44,7 @@ namespace GraphConnectEngine.Node
             return true;
         }
         
-        public override bool IsAttachableGraphType(Type type)
+        public override bool IsAttachableNodeType(Type type)
         {
             var dt = typeof(InProcessNode);
             return !(type != dt && !type.IsSubclassOf(dt));

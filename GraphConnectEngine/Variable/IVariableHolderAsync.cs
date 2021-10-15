@@ -3,6 +3,11 @@ using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Variable
 {
+    /// <summary>
+    /// IVariableHolderのAsync版
+    ///
+    /// 関数の説明はVariableHolderを参照してください
+    /// </summary>
     public interface IVariableHolderAsync
     {
         Task<bool> ContainsKeyAsync(string key);

@@ -5,23 +5,56 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine
 {
+    /// <summary>
+    /// グラフ
+    ///
+    /// フローベースプログラミングの実行の一単位となるもの
+    /// グラフにはノードが存在していて、違うグラフとノードを繋いで値を加工する
+    ///
+    /// TODO InProcessNodesとかをプロパティにする
+    /// </summary>
     public abstract class Graph : IProcessCall,IDisposable
     {
+        /// <summary>
+        /// ノードのコネクター
+        /// </summary>
 
         public readonly NodeConnector Connector;
 
         /// <summary>
-        /// Nodes
+        /// InProcessNodeのリスト
         /// </summary>
-        public InProcessNode InProcessNode => InProcessNodes[0];
-        public OutProcessNode OutProcessNode => OutProcessNodes[0];
-
         public readonly List<InProcessNode> InProcessNodes = new List<InProcessNode>();
+        
+        /// <summary>
+        /// OutProcessNodeのリスト
+        /// </summary>
         public readonly List<OutProcessNode> OutProcessNodes = new List<OutProcessNode>();
+
+        /// <summary>
+        /// InItemNodeのリスト
+        /// </summary>
         public readonly List<InItemNode> InItemNodes = new List<InItemNode>();
+
+        /// <summary>
+        /// OutItemNodeのリスト
+        /// </summary>
         public readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
 
-        //ID
+        /// <summary>
+        /// InProcessNode[0]
+        /// </summary>
+        public InProcessNode InProcessNode => InProcessNodes[0];
+
+        /// <summary>
+        /// OutProcessNode[0]
+        /// </summary>
+        public OutProcessNode OutProcessNode => OutProcessNodes[0];
+
+        /// <summary>
+        /// グラフを識別するための一意なID
+        /// ProcessCallArgsなどで利用される
+        /// </summary>
         public string Id
         {
             get;
@@ -29,17 +62,20 @@ namespace GraphConnectEngine
         }
 
         /// <summary>
-        /// 実行ステータスのリス名
+        /// 実行ステータスのリスナ
         /// </summary>
         public event EventHandler<GraphStatusEventArgs> OnStatusChanged;
 
         /// <summary>
-        /// 
+        /// コンストラクタ
+        /// IdはコンストラクタでHashCodeで割り当てられる
+        ///
+        /// TODO IDを引数に入れる
         /// </summary>
-        /// <param name="connector"></param>
+        /// <param name="connector">コネクター</param>
         /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
-        /// <param name="enableInProcess"></param>
-        /// <param name="enableOutProcess"></param>
+        /// <param name="enableInProcess">InProcessNodeを自動生成する</param>
+        /// <param name="enableOutProcess">OutProcessNodeを自動生成する</param>
         public Graph(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
         {
             Id = GetHashCode().ToString();
@@ -50,49 +86,6 @@ namespace GraphConnectEngine
             
             if(enableOutProcess)
                 AddNode(new OutProcessNode(this));
-        }
-
-        //TODO パラメーター
-        public async Task<InvokeResult> InvokeWithoutArgs(bool callOutProcess,object[] parameters)
-        {
-            string myName = $"{GetGraphName()}[{Id}]";
-            
-            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs()");
-            
-            var nargs = ProcessCallArgs.Fire(this);
-            
-            //イベント
-            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
-            {
-                Type = GraphStatusEventArgs.EventType.ProcessStart,
-                Args = nargs
-            });
-
-            //Invoke
-            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().InvokeOnProcessCall");
-            ProcessCallResult procResult = await OnProcessCall(nargs, parameters);
-            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().InvokedOnProcessCall<{procResult}>");
-
-            //キャッシュする
-            nargs.SetResult(this, procResult);
-
-            //イベント
-            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
-            {
-                Type = procResult.IsSucceeded
-                    ? GraphStatusEventArgs.EventType.ProcessSuccess
-                    : GraphStatusEventArgs.EventType.ProcessFail,
-                Args = nargs
-            });
-
-            //OutProcessなら実行する
-            if (procResult.IsSucceeded && callOutProcess)
-            {
-                Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().OutProcessNode.CallProcess()");
-                await procResult.NextNode.CallProcess(nargs);
-            }
-
-            return procResult.ToInvokeResult();
         }
 
         public async Task<InvokeResult> Invoke(object sender,ProcessCallArgs args)
@@ -255,6 +248,48 @@ namespace GraphConnectEngine
 
             return procResult.ToInvokeResult();
         }
+        
+        public async Task<InvokeResult> InvokeWithoutArgs(bool callOutProcess, object[] parameters)
+        {
+            string myName = $"{GetGraphName()}[{Id}]";
+
+            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs()");
+
+            var nargs = ProcessCallArgs.Fire(this);
+
+            //イベント
+            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+            {
+                Type = GraphStatusEventArgs.EventType.ProcessStart,
+                Args = nargs
+            });
+
+            //Invoke
+            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().InvokeOnProcessCall");
+            ProcessCallResult procResult = await OnProcessCall(nargs, parameters);
+            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().InvokedOnProcessCall<{procResult}>");
+
+            //キャッシュする
+            nargs.SetResult(this, procResult);
+
+            //イベント
+            OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
+            {
+                Type = procResult.IsSucceeded
+                    ? GraphStatusEventArgs.EventType.ProcessSuccess
+                    : GraphStatusEventArgs.EventType.ProcessFail,
+                Args = nargs
+            });
+
+            //OutProcessなら実行する
+            if (procResult.IsSucceeded && callOutProcess)
+            {
+                Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().OutProcessNode.CallProcess()");
+                await procResult.NextNode.CallProcess(nargs);
+            }
+
+            return procResult.ToInvokeResult();
+        }
 
         public abstract Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
         
@@ -264,28 +299,47 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public abstract string GetGraphName();
 
+        /// <summary>
+        /// ノードをグラフに追加する
+        /// </summary>
+        /// <param name="node">ノード</param>
         protected void AddNode(InItemNode node)
         {
             InItemNodes.Add(node);
         }
 
+
+        /// <summary>
+        /// ノードをグラフに追加する
+        /// </summary>
+        /// <param name="node">ノード</param>
         protected void AddNode(OutItemNode node)
         {
             OutItemNodes.Add(node);
         }
 
+
+        /// <summary>
+        /// ノードをグラフに追加する
+        /// </summary>
+        /// <param name="node">ノード</param>
         protected void AddNode(InProcessNode node)
         {
             InProcessNodes.Add(node);
         }
 
+
+        /// <summary>
+        /// ノードをグラフに追加する
+        /// </summary>
+        /// <param name="node">ノード</param>
         protected void AddNode(OutProcessNode node)
         {
             OutProcessNodes.Add(node);
         }
 
         /// <summary>
-        /// InProcessNodeが繋がれているかどうかを確認する
+        /// このグラフはInProcessNodeと繋がれているかどうかを確認する
         /// </summary>
         /// <returns></returns>
         public bool IsConnectedInProcessNode()
@@ -293,6 +347,10 @@ namespace GraphConnectEngine
             return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out var _);
         }
 
+        /// <summary>
+        /// 破棄する
+        /// 所属しているノードも消す
+        /// </summary>
         public void Dispose()
         {
             foreach (var n in InProcessNodes)

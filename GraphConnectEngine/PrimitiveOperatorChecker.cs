@@ -2,6 +2,9 @@ using System;
 
 namespace GraphConnectEngine
 {
+    /// <summary>
+    /// プリミティブ型の演算の結果を元に自動生成したクラス
+    /// </summary>
     public class PrimitiveOperatorChecker
     {
         

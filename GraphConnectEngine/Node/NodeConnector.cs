@@ -4,18 +4,23 @@ using System.Collections.Generic;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
-    /// NodeBase同士がどのように繋がっているか管理するためのもの
-    /// 
-    /// ConnectNode => IsAttachableGraphType => CanAttach => Register => OnConnect
+    /// NodeB同士がどのように繋がっているか管理する
+    ///
+    /// TODO インターフェースを作って、Async対応もする
     /// </summary>
     public class NodeConnector
     {
 
+        /// <summary>
+        /// ノードとノードが接続された時に呼ばれるイベント
+        /// </summary>
         public EventHandler<NodeConnectEventArgs> OnConnect;
         
+        /// <summary>
+        /// ノードとノードが切断された時に呼ばれるイベント
+        /// </summary>
         public EventHandler<NodeConnectEventArgs> OnDisonnect;
 
-        ///
         private readonly Dictionary<Node, List<Node>> _dict = new Dictionary<Node, List<Node>>();
 
         /// <summary>
@@ -160,6 +165,13 @@ namespace GraphConnectEngine.Node
 
         /// <summary>
         /// ノードとノードを繋ぐ
+        /// 
+        /// メモ : 接続する時に呼ぶ順
+        /// ConnectNode
+        /// IsAttachableGraphType
+        /// CanAttach
+        /// Register
+        /// OnConnect
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
@@ -186,8 +198,8 @@ namespace GraphConnectEngine.Node
                 return false;
             }
 
-            //つなげるResolverか確認する
-            if (!node1.IsAttachableGraphType(node2.GetType()) || !node2.IsAttachableGraphType(node1.GetType()))
+            //つなげるNodeか確認する
+            if (!node1.IsAttachableNodeType(node2.GetType()) || !node2.IsAttachableNodeType(node1.GetType()))
             {
                 Logger.Error("Error : Node is not attachable Graph type.");
                 Logger.Debug("NodeConnector.ConnectNode().Fail");
@@ -277,6 +289,11 @@ namespace GraphConnectEngine.Node
             return true;
         }
 
+        /// <summary>
+        /// 指定されたノードの接続情報を消す
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool DisconnectAllNode(Node node)
         {
             if (node == null)
@@ -302,6 +319,10 @@ namespace GraphConnectEngine.Node
             return true;
         }
 
+        /// <summary>
+        /// ノードの情報をLoggerにダンプする
+        /// </summary>
+        /// <param name="node"></param>
         public void DumpNode(Node node)
         {
             Logger.Debug($"[NodeConnector] Dump of {node}");

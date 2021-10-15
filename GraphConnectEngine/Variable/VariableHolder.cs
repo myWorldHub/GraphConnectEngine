@@ -6,6 +6,7 @@ namespace GraphConnectEngine.Variable
 {
     /// <summary>
     /// 値保持用のクラス
+    /// IVariableHolder,IVariableHolderEventを実装している
     /// </summary>
     public class VariableHolder : IVariableHolder,IVariableHolderEvent,IDisposable
     {

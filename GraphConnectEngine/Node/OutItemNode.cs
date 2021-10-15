@@ -3,6 +3,11 @@ using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Node
 {
+    /// <summary>
+    /// InItemNodeにアイテムを渡すNode
+    ///
+    /// グラフの結果(配列)のインデックスを指定してアイテムを取得する
+    /// </summary>
     public class OutItemNode : Node,IItemTypeResolver
     {
         
@@ -12,8 +17,19 @@ namespace GraphConnectEngine.Node
 
         private int _resultIndex;
 
+        /// <summary>
+        /// ノードを表す名前
+        /// 型名やパラメーター名が相応しい
+        /// </summary>
         public string Name => (string) Args["Name"];
 
+        /// <summary>
+        /// コンストラクター
+        /// </summary>
+        /// <param name="parentGraph">所属しているグラフ</param>
+        /// <param name="itemType">型</param>
+        /// <param name="resultIndex">グラフの結果のインデックス</param>
+        /// <param name="name">名前</param>
         public OutItemNode(Graph parentGraph, Type itemType, int resultIndex,string name) : base(parentGraph)
         {
             Args["Name"] = name;
@@ -62,7 +78,7 @@ namespace GraphConnectEngine.Node
             }
         }
 
-        public override bool IsAttachableGraphType(Type type)
+        public override bool IsAttachableNodeType(Type type)
         {
             var dt = typeof(InItemNode);
             return !(type != dt && !type.IsSubclassOf(dt));
@@ -88,6 +104,12 @@ namespace GraphConnectEngine.Node
             return false;
         }
 
+        /// <summary>
+        /// グラフから値を取得する
+        /// </summary>
+        /// <param name="args">実行情報</param>
+        /// <typeparam name="T">型</typeparam>
+        /// <returns></returns>
         public async Task<ValueResult<T>> TryGetValue<T>(ProcessCallArgs args)
         {
             Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().InvokeParentGraph");

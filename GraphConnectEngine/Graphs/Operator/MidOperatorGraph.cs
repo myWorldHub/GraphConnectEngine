@@ -4,6 +4,9 @@ using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine.Graphs.Operator
 {
+    /// <summary>
+    /// 二項演算を行うグラフ
+    /// </summary>
     public abstract class MidOperatorGraph : Graph
     {
 
@@ -11,6 +14,11 @@ namespace GraphConnectEngine.Graphs.Operator
         
         private OperatorChecker.MidOperator _operator;
         
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="midOperator">演算子</param>
         public MidOperatorGraph(NodeConnector connector,OperatorChecker.MidOperator midOperator) : base(connector)
         {
             _operator = midOperator;
@@ -26,7 +34,7 @@ namespace GraphConnectEngine.Graphs.Operator
             InItemNodes[1].OnConnect += OnConnected;
         }
 
-        public void OnConnected(object _, NodeConnectEventArgs args)
+        private void OnConnected(object _, NodeConnectEventArgs args)
         {
             //初期化
             _computeFunc = null;
