@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['id_268',['Id',['../class_graph_connect_engine_1_1_graph.html#ade103a735f47d27d4dafc096214ef38c',1,'GraphConnectEngine::Graph']]],
-  ['inprocessnode_269',['InProcessNode',['../class_graph_connect_engine_1_1_graph.html#a91af3fd6fc80008a9cbe073d96e31f6e',1,'GraphConnectEngine::Graph']]],
-  ['intervaltime_270',['IntervalTime',['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a968600bdff9fc008fac940b7ae599363',1,'GraphConnectEngine::Graphs::Event::UpdaterGraph']]],
-  ['intervaltype_271',['IntervalType',['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a7320117e31ee04bc2c831427d39052bf',1,'GraphConnectEngine::Graphs::Event::UpdaterGraph']]]
+  ['holder_294',['Holder',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_async_graph.html#afc1a8bb48e0bae989505c21d105a374e',1,'GraphConnectEngine.Graphs.Variable.VariableAsyncGraph.Holder()'],['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_graph.html#a60d45fa6144b51d6a962d8e68658a269',1,'GraphConnectEngine.Graphs.Variable.VariableGraph.Holder()']]]
 ];

@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['name_272',['Name',['../class_graph_connect_engine_1_1_node_1_1_in_item_node.html#ad5ab1b3c4ca488f3a930409b1f7a985f',1,'GraphConnectEngine.Node.InItemNode.Name()'],['../class_graph_connect_engine_1_1_node_1_1_out_item_node.html#ac1fdceef3ccf8c0892bda23690c75bd1',1,'GraphConnectEngine.Node.OutItemNode.Name()']]]
+  ['id_295',['Id',['../interface_graph_connect_engine_1_1_i_graph.html#a9ec6477144b67d83b2ca16f6cc3197e1',1,'GraphConnectEngine::IGraph']]],
+  ['initemnodes_296',['InItemNodes',['../interface_graph_connect_engine_1_1_i_graph.html#a66ff6038c8427b405ea2db0203293bfd',1,'GraphConnectEngine::IGraph']]],
+  ['inprocessnodes_297',['InProcessNodes',['../interface_graph_connect_engine_1_1_i_graph.html#a453993ceac696e66e390961ed86fc341',1,'GraphConnectEngine::IGraph']]],
+  ['intervaltime_298',['IntervalTime',['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a968600bdff9fc008fac940b7ae599363',1,'GraphConnectEngine::Graphs::Event::UpdaterGraph']]],
+  ['intervaltype_299',['IntervalType',['../class_graph_connect_engine_1_1_graphs_1_1_event_1_1_updater_graph.html#a7320117e31ee04bc2c831427d39052bf',1,'GraphConnectEngine::Graphs::Event::UpdaterGraph']]],
+  ['itemname_300',['ItemName',['../interface_graph_connect_engine_1_1_node_1_1_i_item_type_resolver.html#a1f688036b46a7ecfa20a5ee0c9181dcc',1,'GraphConnectEngine::Node::IItemTypeResolver']]]
 ];

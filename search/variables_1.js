@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['connector_254',['Connector',['../class_graph_connect_engine_1_1_graph.html#a7f45a5d511bd15af0ef4486b562b02e2',1,'GraphConnectEngine::Graph']]]
+  ['loglevel_287',['LogLevel',['../class_graph_connect_engine_1_1_logger.html#a513ae85e55f830d974e2085d402a8053',1,'GraphConnectEngine::Logger']]]
 ];
