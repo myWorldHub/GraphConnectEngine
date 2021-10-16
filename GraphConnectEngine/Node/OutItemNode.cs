@@ -30,7 +30,7 @@ namespace GraphConnectEngine.Node
         /// <param name="itemType">型</param>
         /// <param name="resultIndex">グラフの結果のインデックス</param>
         /// <param name="name">名前</param>
-        public OutItemNode(Graph parentGraph, Type itemType, int resultIndex,string name)
+        public OutItemNode(IGraph parentGraph, Type itemType, int resultIndex,string name)
         {
             Graph = parentGraph;
             _resultIndex = resultIndex;

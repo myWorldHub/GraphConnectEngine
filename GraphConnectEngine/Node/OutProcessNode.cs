@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Node
     public class OutProcessNode : Node
     {
 
-        public OutProcessNode(Graph parentGraph)
+        public OutProcessNode(IGraph parentGraph)
         {
             Graph = parentGraph;
         }

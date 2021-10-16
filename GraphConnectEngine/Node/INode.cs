@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Node
         /// <summary>
         /// グラフ
         /// </summary>
-        Graph Graph { get; set; }
+        IGraph Graph { get; set; }
         
         /// <summary>
         /// 引数に指定されたノードの型が接続可能なものか確認する

@@ -11,7 +11,7 @@ namespace GraphConnectEngine.Node
     /// </summary>
     public class InProcessNode : Node
     {
-        public InProcessNode(Graph parentGraph)
+        public InProcessNode(IGraph parentGraph)
         {
             Graph = parentGraph;
         }

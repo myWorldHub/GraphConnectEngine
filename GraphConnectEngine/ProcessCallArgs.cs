@@ -103,7 +103,7 @@ namespace GraphConnectEngine
         /// </summary>
         /// <param name="graph"></param>
         /// <returns></returns>
-        public ProcessCallResult TryGetResultOf(Graph graph)
+        public ProcessCallResult TryGetResultOf(IGraph graph)
         {
 
             Logger.Debug($"ProcessCallArgs.TryGetResultOf() > Trying to get cache of {graph.Id} \n From : {GetValue()}");
@@ -156,7 +156,7 @@ namespace GraphConnectEngine
         /// </summary>
         /// <param name="graph"></param>
         /// <param name="result"></param>
-        public void SetResult(Graph graph, ProcessCallResult result)
+        public void SetResult(IGraph graph, ProcessCallResult result)
         {
             _cache[graph.Id] = result;
             _args[graph.Id] = this;

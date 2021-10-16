@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Node
     public abstract class Node : INode
     {
         
-        public Graph Graph { get; set; }
+        public IGraph Graph { get; set; }
 
         private Dictionary<string, object> _data = new Dictionary<string, object>();
 
