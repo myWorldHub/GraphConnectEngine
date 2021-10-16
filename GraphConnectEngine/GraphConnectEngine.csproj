@@ -62,8 +62,11 @@
         <Compile Include="Graphs\Statement\IfStatementGraph.cs" />
         <Compile Include="Graphs\Value\ValueFuncGraph.cs" />
         <Compile Include="Graphs\Value\ValueGraph.cs" />
+        <Compile Include="Graphs\Variable\GetVariableAsyncGraph.cs" />
         <Compile Include="Graphs\Variable\GetVariableGraph.cs" />
+        <Compile Include="Graphs\Variable\SetVariableAsyncGraph.cs" />
         <Compile Include="Graphs\Variable\SetVariableGraph.cs" />
+        <Compile Include="Graphs\Variable\VariableAsyncGraph.cs" />
         <Compile Include="Graphs\Variable\VariableGraph.cs" />
         <Compile Include="InvokeResult.cs" />
         <Compile Include="IProcessCall.cs" />
