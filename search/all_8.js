@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keys_70',['Keys',['../interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a18573a7d7c7032d1896901d7e99193f0',1,'GraphConnectEngine.Variable.IVariableHolder.Keys()'],['../class_graph_connect_engine_1_1_variable_1_1_variable_holder.html#ac7dd14244758846207937b2df528d937',1,'GraphConnectEngine.Variable.VariableHolder.Keys()']]]
+  ['logger_71',['Logger',['../class_graph_connect_engine_1_1_logger.html',1,'GraphConnectEngine']]],
+  ['loglevel_72',['LogLevel',['../class_graph_connect_engine_1_1_logger.html#a513ae85e55f830d974e2085d402a8053',1,'GraphConnectEngine::Logger']]]
 ];

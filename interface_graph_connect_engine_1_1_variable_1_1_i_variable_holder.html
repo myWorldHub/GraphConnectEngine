@@ -81,7 +81,8 @@ Inheritance diagram for GraphConnectEngine.Variable.IVariableHolder:</div>
  <div class="center">
   <img src="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.png" usemap="#GraphConnectEngine.Variable.IVariableHolder_map" alt=""/>
   <map id="GraphConnectEngine.Variable.IVariableHolder_map" name="GraphConnectEngine.Variable.IVariableHolder_map">
-<area href="class_graph_connect_engine_1_1_variable_1_1_variable_holder.html" title="値保持用のクラス IVariableHolder,IVariableHolderEventを実装している" alt="GraphConnectEngine.Variable.VariableHolder" shape="rect" coords="0,56,278,80"/>
+<area href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html" title="VariableHolderが実装すべきイベントのインターフェース" alt="GraphConnectEngine.Variable.IVariableHolderEvent" shape="rect" coords="0,0,310,24"/>
+<area href="class_graph_connect_engine_1_1_variable_1_1_variable_holder.html" title="値保持用のクラス IVariableHolder,IVariableHolderEventを実装している" alt="GraphConnectEngine.Variable.VariableHolder" shape="rect" coords="0,112,310,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -111,9 +112,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a19f4327cff4f7c714398f7d11813b52c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a19f4327cff4f7c714398f7d11813b52c">Remove</a> (string name)</td></tr>
 <tr class="memdesc:a19f4327cff4f7c714398f7d11813b52c"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数を削除する  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a19f4327cff4f7c714398f7d11813b52c">More...</a><br /></td></tr>
 <tr class="separator:a19f4327cff4f7c714398f7d11813b52c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18573a7d7c7032d1896901d7e99193f0"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a18573a7d7c7032d1896901d7e99193f0">Keys</a> ()</td></tr>
-<tr class="memdesc:a18573a7d7c7032d1896901d7e99193f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数名たちを取得する  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a18573a7d7c7032d1896901d7e99193f0">More...</a><br /></td></tr>
-<tr class="separator:a18573a7d7c7032d1896901d7e99193f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10f70c70c6e1bd2585adc42ac686c330"><td class="memItemLeft" align="right" valign="top">string[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a10f70c70c6e1bd2585adc42ac686c330">GetKeys</a> ()</td></tr>
+<tr class="memdesc:a10f70c70c6e1bd2585adc42ac686c330"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数名たちを取得する  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder.html#a10f70c70c6e1bd2585adc42ac686c330">More...</a><br /></td></tr>
+<tr class="separator:a10f70c70c6e1bd2585adc42ac686c330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td colspan="2" onclick="javascript:toggleInherit('events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html">GraphConnectEngine.Variable.IVariableHolderEvent</a></td></tr>
+<tr class="memitem:a61e4a2a099176a09d697c790abb25d77 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_created_event_args.html">VariableCreatedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a61e4a2a099176a09d697c790abb25d77">OnVariableCreated</a></td></tr>
+<tr class="memdesc:a61e4a2a099176a09d697c790abb25d77 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数が作成された時に呼ばれるイベント  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a61e4a2a099176a09d697c790abb25d77">More...</a><br /></td></tr>
+<tr class="separator:a61e4a2a099176a09d697c790abb25d77 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fec11a00ac136a68e6c99eb5ca2d6af inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_updated_event_args.html">VariableUpdatedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9fec11a00ac136a68e6c99eb5ca2d6af">OnVariableUpdated</a></td></tr>
+<tr class="memdesc:a9fec11a00ac136a68e6c99eb5ca2d6af inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数が更新された時に呼ばれるイベント  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9fec11a00ac136a68e6c99eb5ca2d6af">More...</a><br /></td></tr>
+<tr class="separator:a9fec11a00ac136a68e6c99eb5ca2d6af inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9addd90aacd818b87c6ea5771b7a77dd inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_removed_event_args.html">VariableRemovedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9addd90aacd818b87c6ea5771b7a77dd">OnVariableRemoved</a></td></tr>
+<tr class="memdesc:a9addd90aacd818b87c6ea5771b7a77dd inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数が削除された時に呼ばれるイベント  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9addd90aacd818b87c6ea5771b7a77dd">More...</a><br /></td></tr>
+<tr class="separator:a9addd90aacd818b87c6ea5771b7a77dd inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4b48375adc5ad0d4a260d9f19f30196 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top"><a id="ae4b48375adc5ad0d4a260d9f19f30196"></a>
+EventHandler&lt; EventArgs &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnDisposed</b></td></tr>
+<tr class="separator:ae4b48375adc5ad0d4a260d9f19f30196 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>変数を管理するためのインターフェース </p>
@@ -147,14 +164,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a18573a7d7c7032d1896901d7e99193f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18573a7d7c7032d1896901d7e99193f0">&#9670;&nbsp;</a></span>Keys()</h2>
+<a id="a10f70c70c6e1bd2585adc42ac686c330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10f70c70c6e1bd2585adc42ac686c330">&#9670;&nbsp;</a></span>GetKeys()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string [] GraphConnectEngine.Variable.IVariableHolder.Keys </td>
+          <td class="memname">string [] GraphConnectEngine.Variable.IVariableHolder.GetKeys </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -165,7 +182,7 @@ Public Member Functions</h2></td></tr>
 <p>変数名たちを取得する </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_holder.html#ac7dd14244758846207937b2df528d937">GraphConnectEngine.Variable.VariableHolder</a>.</p>
+<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_holder.html#ad743f9511ff516e9a068074be5325907">GraphConnectEngine.Variable.VariableHolder</a>.</p>
 
 </div>
 </div>

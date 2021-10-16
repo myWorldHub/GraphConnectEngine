@@ -75,6 +75,15 @@ $(function() {
 
 <p>IVariableHolderのAsync版  
  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_async.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for GraphConnectEngine.Variable.IVariableHolderAsync:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_async.png" usemap="#GraphConnectEngine.Variable.IVariableHolderAsync_map" alt=""/>
+  <map id="GraphConnectEngine.Variable.IVariableHolderAsync_map" name="GraphConnectEngine.Variable.IVariableHolderAsync_map">
+<area href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html" title="VariableHolderが実装すべきイベントのインターフェース" alt="GraphConnectEngine.Variable.IVariableHolderEvent" shape="rect" coords="0,0,314,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -87,24 +96,40 @@ Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">V
 <tr class="memitem:a76fe6681b47b352f8c4e4162a6cf311e"><td class="memItemLeft" align="right" valign="top"><a id="a76fe6681b47b352f8c4e4162a6cf311e"></a>
 Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryGetAsync</b> (string key)</td></tr>
 <tr class="separator:a76fe6681b47b352f8c4e4162a6cf311e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07538275b7f46e8a7dbe52ebe000be1d"><td class="memItemLeft" align="right" valign="top"><a id="a07538275b7f46e8a7dbe52ebe000be1d"></a>
-Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; Type &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryGetVariableType</b> (string key)</td></tr>
-<tr class="separator:a07538275b7f46e8a7dbe52ebe000be1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a705c01b99470217cfb76f8d73f4ccc9a"><td class="memItemLeft" align="right" valign="top"><a id="a705c01b99470217cfb76f8d73f4ccc9a"></a>
-Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryCreate</b> (string key, object obj)</td></tr>
-<tr class="separator:a705c01b99470217cfb76f8d73f4ccc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6e49266e12e5d5b4b3aa349f6c3208b"><td class="memItemLeft" align="right" valign="top"><a id="ad6e49266e12e5d5b4b3aa349f6c3208b"></a>
-Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryCreate</b> (string key, Type type)</td></tr>
-<tr class="separator:ad6e49266e12e5d5b4b3aa349f6c3208b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1b39f31872c3a11b21a45ff788939aa"><td class="memItemLeft" align="right" valign="top"><a id="ab1b39f31872c3a11b21a45ff788939aa"></a>
-Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> (string key, object obj)</td></tr>
-<tr class="separator:ab1b39f31872c3a11b21a45ff788939aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f0cb1e8c30d75762b45b508388de116"><td class="memItemLeft" align="right" valign="top"><a id="a4f0cb1e8c30d75762b45b508388de116"></a>
-Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Remove</b> (string name)</td></tr>
-<tr class="separator:a4f0cb1e8c30d75762b45b508388de116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8662b0756149597d37b7f3db03e5bc79"><td class="memItemLeft" align="right" valign="top"><a id="a8662b0756149597d37b7f3db03e5bc79"></a>
-Task&lt; string[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Keys</b> ()</td></tr>
-<tr class="separator:a8662b0756149597d37b7f3db03e5bc79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2088d44a247f2971f38aa264cfa3436"><td class="memItemLeft" align="right" valign="top"><a id="ab2088d44a247f2971f38aa264cfa3436"></a>
+Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; Type &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryGetVariableTypeAsync</b> (string key)</td></tr>
+<tr class="separator:ab2088d44a247f2971f38aa264cfa3436"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d8230dcda783c8e6bb3812735f945fb"><td class="memItemLeft" align="right" valign="top"><a id="a0d8230dcda783c8e6bb3812735f945fb"></a>
+Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryCreateAsync</b> (string key, object obj)</td></tr>
+<tr class="separator:a0d8230dcda783c8e6bb3812735f945fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafcc6016a9e7b7a984e9b26d22ca8e2c"><td class="memItemLeft" align="right" valign="top"><a id="aafcc6016a9e7b7a984e9b26d22ca8e2c"></a>
+Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TryCreateAsync</b> (string key, Type type)</td></tr>
+<tr class="separator:aafcc6016a9e7b7a984e9b26d22ca8e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e497484ce8e129d93d8f5b1d946894a"><td class="memItemLeft" align="right" valign="top"><a id="a6e497484ce8e129d93d8f5b1d946894a"></a>
+Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateAsync</b> (string key, object obj)</td></tr>
+<tr class="separator:a6e497484ce8e129d93d8f5b1d946894a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395240b1cc77942fc8b13026bb566b6c"><td class="memItemLeft" align="right" valign="top"><a id="a395240b1cc77942fc8b13026bb566b6c"></a>
+Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveAsync</b> (string name)</td></tr>
+<tr class="separator:a395240b1cc77942fc8b13026bb566b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a216687d75467eb4179e62e8d8cb44ef6"><td class="memItemLeft" align="right" valign="top"><a id="a216687d75467eb4179e62e8d8cb44ef6"></a>
+Task&lt; string[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetKeysAsync</b> ()</td></tr>
+<tr class="separator:a216687d75467eb4179e62e8d8cb44ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td colspan="2" onclick="javascript:toggleInherit('events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html">GraphConnectEngine.Variable.IVariableHolderEvent</a></td></tr>
+<tr class="memitem:a61e4a2a099176a09d697c790abb25d77 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_created_event_args.html">VariableCreatedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a61e4a2a099176a09d697c790abb25d77">OnVariableCreated</a></td></tr>
+<tr class="memdesc:a61e4a2a099176a09d697c790abb25d77 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数が作成された時に呼ばれるイベント  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a61e4a2a099176a09d697c790abb25d77">More...</a><br /></td></tr>
+<tr class="separator:a61e4a2a099176a09d697c790abb25d77 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fec11a00ac136a68e6c99eb5ca2d6af inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_updated_event_args.html">VariableUpdatedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9fec11a00ac136a68e6c99eb5ca2d6af">OnVariableUpdated</a></td></tr>
+<tr class="memdesc:a9fec11a00ac136a68e6c99eb5ca2d6af inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数が更新された時に呼ばれるイベント  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9fec11a00ac136a68e6c99eb5ca2d6af">More...</a><br /></td></tr>
+<tr class="separator:a9fec11a00ac136a68e6c99eb5ca2d6af inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9addd90aacd818b87c6ea5771b7a77dd inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top">EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_variable_1_1_variable_removed_event_args.html">VariableRemovedEventArgs</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9addd90aacd818b87c6ea5771b7a77dd">OnVariableRemoved</a></td></tr>
+<tr class="memdesc:a9addd90aacd818b87c6ea5771b7a77dd inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="mdescLeft">&#160;</td><td class="mdescRight">変数が削除された時に呼ばれるイベント  <a href="interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event.html#a9addd90aacd818b87c6ea5771b7a77dd">More...</a><br /></td></tr>
+<tr class="separator:a9addd90aacd818b87c6ea5771b7a77dd inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4b48375adc5ad0d4a260d9f19f30196 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memItemLeft" align="right" valign="top"><a id="ae4b48375adc5ad0d4a260d9f19f30196"></a>
+EventHandler&lt; EventArgs &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>OnDisposed</b></td></tr>
+<tr class="separator:ae4b48375adc5ad0d4a260d9f19f30196 inherit events_interface_graph_connect_engine_1_1_variable_1_1_i_variable_holder_event"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>IVariableHolderのAsync版 </p>
