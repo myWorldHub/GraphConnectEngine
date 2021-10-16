@@ -73,10 +73,12 @@
         <Compile Include="InvokeResult.cs" />
         <Compile Include="IProcessCall.cs" />
         <Compile Include="Logger.cs" />
+        <Compile Include="Node\IItemNode.cs" />
         <Compile Include="Node\INode.cs" />
         <Compile Include="Node\INodeConnector.cs" />
         <Compile Include="Node\INodeConnectorAsync.cs" />
         <Compile Include="Node\INodeStatusListener.cs" />
+        <Compile Include="Node\ItemTypeResolver.cs" />
         <Compile Include="Node\Node.cs" />
         <Compile Include="Node\IItemTypeResolver.cs" />
         <Compile Include="Node\InItemNode.cs" />
