@@ -18,13 +18,14 @@ var searchData=
   ['getvariablegraph_40',['GetVariableGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_get_variable_graph.html',1,'GraphConnectEngine::Graphs::Variable']]],
   ['graph_41',['Graph',['../interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a2ae0dc28cd8ca2d2ae23846640466f83',1,'GraphConnectEngine.Nodes.INode.Graph()'],['../class_graph_connect_engine_1_1_graph.html#abf9795e94af62886ecb165bbd2f73228',1,'GraphConnectEngine.Graph.Graph()'],['../class_graph_connect_engine_1_1_graph.html',1,'GraphConnectEngine.Graph']]],
   ['graphconnectengine_42',['GraphConnectEngine',['../namespace_graph_connect_engine.html',1,'']]],
-  ['graphname_43',['GraphName',['../interface_graph_connect_engine_1_1_i_graph.html#a423c38de5728db5031cb8a9b9dd453e8',1,'GraphConnectEngine::IGraph']]],
-  ['graphs_44',['Graphs',['../namespace_graph_connect_engine_1_1_graphs.html',1,'GraphConnectEngine']]],
-  ['graphstatuseventargs_45',['GraphStatusEventArgs',['../class_graph_connect_engine_1_1_graph_status_event_args.html',1,'GraphConnectEngine']]],
-  ['greaterthanoperatorgraph_46',['GreaterThanOperatorGraph',['../class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_greater_than_operator_graph.html',1,'GraphConnectEngine::Graphs::Operator']]],
-  ['nodes_47',['Nodes',['../namespace_graph_connect_engine_1_1_nodes.html',1,'GraphConnectEngine']]],
-  ['operator_48',['Operator',['../namespace_graph_connect_engine_1_1_graphs_1_1_operator.html',1,'GraphConnectEngine::Graphs']]],
-  ['statement_49',['Statement',['../namespace_graph_connect_engine_1_1_graphs_1_1_statement.html',1,'GraphConnectEngine::Graphs']]],
-  ['value_50',['Value',['../namespace_graph_connect_engine_1_1_graphs_1_1_value.html',1,'GraphConnectEngine::Graphs']]],
-  ['variable_51',['Variable',['../namespace_graph_connect_engine_1_1_graphs_1_1_variable.html',1,'GraphConnectEngine.Graphs.Variable'],['../namespace_graph_connect_engine_1_1_variable.html',1,'GraphConnectEngine.Variable']]]
+  ['graphconnectengine_20_2d_20csharp_43',['GraphConnectEngine - csharp',['../md__r_e_a_d_m_e.html',1,'']]],
+  ['graphname_44',['GraphName',['../interface_graph_connect_engine_1_1_i_graph.html#a423c38de5728db5031cb8a9b9dd453e8',1,'GraphConnectEngine::IGraph']]],
+  ['graphs_45',['Graphs',['../namespace_graph_connect_engine_1_1_graphs.html',1,'GraphConnectEngine']]],
+  ['graphstatuseventargs_46',['GraphStatusEventArgs',['../class_graph_connect_engine_1_1_graph_status_event_args.html',1,'GraphConnectEngine']]],
+  ['greaterthanoperatorgraph_47',['GreaterThanOperatorGraph',['../class_graph_connect_engine_1_1_graphs_1_1_operator_1_1_greater_than_operator_graph.html',1,'GraphConnectEngine::Graphs::Operator']]],
+  ['nodes_48',['Nodes',['../namespace_graph_connect_engine_1_1_nodes.html',1,'GraphConnectEngine']]],
+  ['operator_49',['Operator',['../namespace_graph_connect_engine_1_1_graphs_1_1_operator.html',1,'GraphConnectEngine::Graphs']]],
+  ['statement_50',['Statement',['../namespace_graph_connect_engine_1_1_graphs_1_1_statement.html',1,'GraphConnectEngine::Graphs']]],
+  ['value_51',['Value',['../namespace_graph_connect_engine_1_1_graphs_1_1_value.html',1,'GraphConnectEngine::Graphs']]],
+  ['variable_52',['Variable',['../namespace_graph_connect_engine_1_1_graphs_1_1_variable.html',1,'GraphConnectEngine.Graphs.Variable'],['../namespace_graph_connect_engine_1_1_variable.html',1,'GraphConnectEngine.Variable']]]
 ];
