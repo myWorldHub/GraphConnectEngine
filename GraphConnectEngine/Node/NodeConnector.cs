@@ -8,20 +8,30 @@ namespace GraphConnectEngine.Node
     ///
     /// TODO インターフェースを作って、Async対応もする
     /// </summary>
-    public class NodeConnector
+    public class NodeConnector : INodeStatusListener
     {
+
+        private readonly Dictionary<Node, List<Node>> _dict = new Dictionary<Node, List<Node>>();
 
         /// <summary>
         /// ノードとノードが接続された時に呼ばれるイベント
         /// </summary>
-        public EventHandler<NodeConnectEventArgs> OnConnect;
+        public event EventHandler<NodeConnectEventArgs> OnConnect;
         
         /// <summary>
         /// ノードとノードが切断された時に呼ばれるイベント
         /// </summary>
-        public EventHandler<NodeConnectEventArgs> OnDisonnect;
+        public event EventHandler<NodeConnectEventArgs> OnDisconnect;
 
-        private readonly Dictionary<Node, List<Node>> _dict = new Dictionary<Node, List<Node>>();
+        public void InvokeConnectEvent(NodeConnectEventArgs args)
+        {
+            OnConnect?.Invoke(this,args);
+        }
+
+        public void InvokeDisconnectEvent(NodeConnectEventArgs args)
+        {
+            OnDisconnect?.Invoke(this, args);
+        }
 
         /// <summary>
         /// 繋がれているノードをキャストして取得する
@@ -220,25 +230,11 @@ namespace GraphConnectEngine.Node
             
             Logger.Debug("NodeConnector.ConnectNode().Registered");
             
-            //TODO 下のイベントたちもsenderをつける
-            OnConnect?.Invoke(node1,new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
+            InvokeConnectEvent(new NodeConnectEventArgs(node1, node2));
             
             //イベント発火
-            node1.InvokeConnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
-            
-            node2.InvokeConnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node2,
-                OtherNode = node1
-            });
+            node1.InvokeConnectEvent(new NodeConnectEventArgs(node1, node2));
+            node2.InvokeConnectEvent(new NodeConnectEventArgs(node2, node1));
             
             return true;
         }
@@ -267,24 +263,11 @@ namespace GraphConnectEngine.Node
             Remove(node1,node2);
             Remove(node2,node1);
             
-            OnDisonnect?.Invoke(node1, new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
+            InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
             
             //イベント発火
-            node1.InvokeDisconnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
-            
-            node2.InvokeDisconnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node2,
-                OtherNode = node1
-            });
+            node1.InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
+            node2.InvokeDisconnectEvent(new NodeConnectEventArgs(node2,node1));
             
             return true;
         }
