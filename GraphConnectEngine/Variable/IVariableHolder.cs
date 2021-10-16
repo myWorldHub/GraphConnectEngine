@@ -5,7 +5,7 @@ namespace GraphConnectEngine.Variable
     /// <summary>
     /// 変数を管理するためのインターフェース
     /// </summary>
-    public interface IVariableHolder
+    public interface IVariableHolder : IVariableHolderEvent
     {
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace GraphConnectEngine.Variable
         /// 変数名たちを取得する
         /// </summary>
         /// <returns></returns>
-        string[] Keys();
+        string[] GetKeys();
     }
 
 

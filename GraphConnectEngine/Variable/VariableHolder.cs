@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Variable
     /// 値保持用のクラス
     /// IVariableHolder,IVariableHolderEventを実装している
     /// </summary>
-    public class VariableHolder : IVariableHolder,IVariableHolderEvent,IDisposable
+    public class VariableHolder : IVariableHolder,IDisposable
     {
         
         private readonly Dictionary<string, object> _items = new Dictionary<string, object>();
@@ -112,7 +112,7 @@ namespace GraphConnectEngine.Variable
             return false;
         }
 
-        public string[] Keys()
+        public string[] GetKeys()
         {
             return _items.Keys.ToArray();
         }
