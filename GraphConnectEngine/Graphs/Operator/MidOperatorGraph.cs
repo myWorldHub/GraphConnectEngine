@@ -19,7 +19,7 @@ namespace GraphConnectEngine.Graphs.Operator
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="midOperator">演算子</param>
-        public MidOperatorGraph(NodeConnector connector,OperatorChecker.MidOperator midOperator) : base(connector)
+        public MidOperatorGraph(INodeConnector connector,OperatorChecker.MidOperator midOperator) : base(connector)
         {
             _operator = midOperator;
             

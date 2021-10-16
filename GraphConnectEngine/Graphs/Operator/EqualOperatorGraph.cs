@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Graphs.Operator
     /// </summary>
     public class EqualOperatorGraph : MidOperatorGraph
     {
-        public EqualOperatorGraph(NodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Equality)
+        public EqualOperatorGraph(INodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Equality)
         {
         }
 

@@ -33,7 +33,6 @@ namespace GraphConnectEngine
         /// コンストラクタ
         /// IdはコンストラクタでHashCodeで割り当てられる
         ///
-        /// TODO IDを引数に入れる
         /// ID : 識別用のID(全てのグラフのインスタンスでユニークである必要がある)
         /// </summary>
         /// <param name="connector">コネクター</param>

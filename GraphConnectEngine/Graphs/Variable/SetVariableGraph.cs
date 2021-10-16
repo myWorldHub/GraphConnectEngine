@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graphs.Variable
     public class SetVariableGraph : VariableGraph
     {
 
-        public SetVariableGraph(NodeConnector connector, IVariableHolder holder) : base(connector,holder)
+        public SetVariableGraph(INodeConnector connector, IVariableHolder holder) : base(connector,holder)
         {
             AddNode(new InItemNode(this, typeof(void),"Value"));
             AddNode(new OutItemNode(this,typeof(void),0,"Value"));

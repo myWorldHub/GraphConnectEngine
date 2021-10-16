@@ -19,7 +19,7 @@ namespace GraphConnectEngine.Graphs.Value
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="valueFunc">ValueResult[T]を返す関数</param>
-        public ValueFuncGraph(NodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
+        public ValueFuncGraph(INodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));

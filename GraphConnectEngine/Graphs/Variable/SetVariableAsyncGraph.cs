@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graphs.Variable
     public class SetVariableAsyncGraph : VariableAsyncGraph
     {
 
-        public SetVariableAsyncGraph(NodeConnector connector, IVariableHolderAsync holder) : base(connector,holder)
+        public SetVariableAsyncGraph(INodeConnector connector, IVariableHolderAsync holder) : base(connector,holder)
         {
             AddNode(new InItemNode(this, typeof(void),"Value"));
             AddNode(new OutItemNode(this,typeof(void),0,"Value"));

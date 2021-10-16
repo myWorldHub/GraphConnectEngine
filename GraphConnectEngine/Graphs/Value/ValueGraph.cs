@@ -21,7 +21,7 @@ namespace GraphConnectEngine.Graphs.Value
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="defaultValue">Tのデフォルト値</param>
-        public ValueGraph(NodeConnector connector,T defaultValue) : base(connector)
+        public ValueGraph(INodeConnector connector,T defaultValue) : base(connector)
         {
             Value = defaultValue;
             AddNode(new OutItemNode(this, typeof(T), 0,"Value"));

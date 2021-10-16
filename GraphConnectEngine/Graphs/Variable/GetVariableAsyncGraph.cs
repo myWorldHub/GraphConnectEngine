@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Graphs.Variable
     public class GetVariableAsyncGraph : VariableAsyncGraph
     {
 
-        public GetVariableAsyncGraph(NodeConnector connector,IVariableHolderAsync holder) : base(connector,holder)
+        public GetVariableAsyncGraph(INodeConnector connector,IVariableHolderAsync holder) : base(connector,holder)
         {
             AddNode(new OutItemNode(this, typeof(void), 0,"Value"));
         }

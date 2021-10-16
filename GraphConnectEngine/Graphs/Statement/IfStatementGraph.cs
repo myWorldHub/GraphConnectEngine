@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graphs.Statement
     public class IfStatementGraph : Graph
     {
         
-        public IfStatementGraph(NodeConnector connector) : base(connector)
+        public IfStatementGraph(INodeConnector connector) : base(connector)
         {
             AddNode(new InItemNode(this,typeof(bool),"expression"));
             AddNode(new OutItemNode(this,typeof(bool),0,"expression"));

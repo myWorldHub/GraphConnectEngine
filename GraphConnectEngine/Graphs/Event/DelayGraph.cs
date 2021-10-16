@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Graphs.Event
     /// </summary>
     public class DelayGraph : Graph
     {
-        public DelayGraph(NodeConnector connector) : base(connector)
+        public DelayGraph(INodeConnector connector) : base(connector)
         {
             AddNode(new InItemNode(this,typeof(int),"Time"));
             AddNode(new OutItemNode(this, typeof(int), 0, "Time"));

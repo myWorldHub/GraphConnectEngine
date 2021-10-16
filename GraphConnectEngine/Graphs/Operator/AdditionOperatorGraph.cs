@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Graphs.Operator
     /// </summary>
     public class AdditionOperatorGraph : MidOperatorGraph
     {
-        public AdditionOperatorGraph(NodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Addition)
+        public AdditionOperatorGraph(INodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Addition)
         {
         }
 
