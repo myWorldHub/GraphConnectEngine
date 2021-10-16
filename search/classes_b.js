@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['setvariablegraph_162',['SetVariableGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_set_variable_graph.html',1,'GraphConnectEngine::Graphs::Variable']]]
+  ['setvariableasyncgraph_166',['SetVariableAsyncGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_set_variable_async_graph.html',1,'GraphConnectEngine::Graphs::Variable']]],
+  ['setvariablegraph_167',['SetVariableGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_set_variable_graph.html',1,'GraphConnectEngine::Graphs::Variable']]]
 ];
