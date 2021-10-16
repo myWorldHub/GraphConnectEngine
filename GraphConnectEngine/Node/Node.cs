@@ -13,15 +13,9 @@ namespace GraphConnectEngine.Node
     {
 
         /// <summary>
-        /// コネクターをグラフから取得する
+        /// グラフのコネクター
         /// </summary>
-        public NodeConnector Connector
-        {
-            get
-            {
-                return ParentGraph.Connector;
-            }
-        }
+        public INodeConnector Connector => ParentGraph.Connector;
 
         //グラフを取得する
         public readonly Graph ParentGraph;

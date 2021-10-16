@@ -1,6 +1,6 @@
 using System;
 
-namespace GraphConnectEngine
+namespace GraphConnectEngine.Node
 {
     /// <summary>
     /// ノードの状態のリスナーのインターフェース
@@ -34,10 +34,10 @@ namespace GraphConnectEngine
 
     public class NodeConnectEventArgs : EventArgs
     {
-        public readonly Node.Node SenderNode;
-        public readonly Node.Node OtherNode;
+        public readonly GraphConnectEngine.Node.Node SenderNode;
+        public readonly GraphConnectEngine.Node.Node OtherNode;
 
-        public NodeConnectEventArgs(Node.Node node1, Node.Node node2)
+        public NodeConnectEventArgs(GraphConnectEngine.Node.Node node1, GraphConnectEngine.Node.Node node2)
         {
             SenderNode = node1;
             OtherNode = node2;

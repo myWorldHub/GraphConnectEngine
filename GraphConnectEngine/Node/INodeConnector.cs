@@ -4,7 +4,7 @@ namespace GraphConnectEngine.Node
     /// Node同士がどのように繋がっているか管理する
     ///
     /// </summary>
-    interface INodeConnector : INodeStatusListener
+    public interface INodeConnector : INodeStatusListener
     {
 
         /// <summary>
