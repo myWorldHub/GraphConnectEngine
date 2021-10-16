@@ -10,56 +10,17 @@ namespace GraphConnectEngine
     ///
     /// フローベースプログラミングの実行の一単位となるもの
     /// グラフにはノードが存在していて、違うグラフとノードを繋いで値を加工する
-    ///
-    /// TODO InProcessNodesとかをプロパティにする
     /// </summary>
-    public abstract class Graph : IProcessCall,IDisposable
+    public abstract class Graph : IGraph,IDisposable
     {
-        /// <summary>
-        /// ノードのコネクター
-        /// </summary>
-
-        public readonly NodeConnector Connector;
-
-        /// <summary>
-        /// InProcessNodeのリスト
-        /// </summary>
-        public readonly List<InProcessNode> InProcessNodes = new List<InProcessNode>();
+        public string Id { get; set; }
         
-        /// <summary>
-        /// OutProcessNodeのリスト
-        /// </summary>
-        public readonly List<OutProcessNode> OutProcessNodes = new List<OutProcessNode>();
-
-        /// <summary>
-        /// InItemNodeのリスト
-        /// </summary>
-        public readonly List<InItemNode> InItemNodes = new List<InItemNode>();
-
-        /// <summary>
-        /// OutItemNodeのリスト
-        /// </summary>
-        public readonly List<OutItemNode> OutItemNodes = new List<OutItemNode>();
-
-        /// <summary>
-        /// InProcessNode[0]
-        /// </summary>
-        public InProcessNode InProcessNode => InProcessNodes[0];
-
-        /// <summary>
-        /// OutProcessNode[0]
-        /// </summary>
-        public OutProcessNode OutProcessNode => OutProcessNodes[0];
-
-        /// <summary>
-        /// グラフを識別するための一意なID
-        /// ProcessCallArgsなどで利用される
-        /// </summary>
-        public string Id
-        {
-            get;
-            set;
-        }
+        public INodeConnector Connector { get; }
+        
+        public IList<InProcessNode> InProcessNodes { get; }
+        public IList<OutProcessNode> OutProcessNodes { get; }
+        public IList<InItemNode> InItemNodes { get; }
+        public IList<OutItemNode> OutItemNodes { get; }
 
         /// <summary>
         /// 実行ステータスのリスナ
@@ -74,17 +35,23 @@ namespace GraphConnectEngine
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
-        /// <param name="enableInProcess">InProcessNodeを自動生成する</param>
-        /// <param name="enableOutProcess">OutProcessNodeを自動生成する</param>
-        public Graph(NodeConnector connector,bool enableInProcess = true,bool enableOutProcess = true)
+        /// <param name="createInProcessNode">InProcessNodeを自動生成する</param>
+        /// <param name="createOutProcessNode">OutProcessNodeを自動生成する</param>
+        public Graph(INodeConnector connector,bool createInProcessNode = true,bool createOutProcessNode = true)
         {
             Id = GetHashCode().ToString();
+            
             Connector = connector;
+            
+            InProcessNodes = new List<InProcessNode>();
+            OutProcessNodes = new List<OutProcessNode>();
+            InItemNodes = new List<InItemNode>();
+            OutItemNodes = new List<OutItemNode>();
 
-            if(enableInProcess)
+            if(createInProcessNode)
                 AddNode(new InProcessNode(this));
             
-            if(enableOutProcess)
+            if(createOutProcessNode)
                 AddNode(new OutProcessNode(this));
         }
 
@@ -344,7 +311,14 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public bool IsConnectedInProcessNode()
         {
-            return Connector.TryGetAnotherNode(InProcessNode, out var _);
+            if (InProcessNodes.Count > 0)
+            {
+                return Connector.TryGetAnotherNode(InProcessNodes[0], out var _);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
