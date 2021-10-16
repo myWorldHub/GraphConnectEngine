@@ -262,9 +262,13 @@ namespace GraphConnectEngine.Nodes
                 Logger.Debug($"Connector : Null");
             }
 
-            if (node is InItemNode || node is OutItemNode)
+            if (node is InItemNode iin)
             {
-                Logger.Debug($"ItemType : ${((IItemTypeResolver)node).GetItemType().FullName}");
+                Logger.Debug($"ItemType : ${iin.TypeResolver.GetItemType().FullName}");
+            }
+            else if (node is OutItemNode oin)
+            {
+                Logger.Debug($"ItemType : ${oin.TypeResolver.GetItemType().FullName}");
             }
         }
     }
