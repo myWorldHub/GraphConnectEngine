@@ -29,7 +29,7 @@ namespace GraphConnectEngine.Graphs.Value
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNodes[0]));
         }
 
         public override string GetGraphName() => "Value<" + typeof(T).Name + "> Graph";

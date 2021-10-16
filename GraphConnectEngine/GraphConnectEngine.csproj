@@ -69,6 +69,7 @@
         <Compile Include="Graphs\Variable\SetVariableGraph.cs" />
         <Compile Include="Graphs\Variable\VariableAsyncGraph.cs" />
         <Compile Include="Graphs\Variable\VariableGraph.cs" />
+        <Compile Include="IGraph.cs" />
         <Compile Include="InvokeResult.cs" />
         <Compile Include="IProcessCall.cs" />
         <Compile Include="Logger.cs" />

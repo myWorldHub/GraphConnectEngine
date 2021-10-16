@@ -27,7 +27,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (!await Holder.UpdateAsync(VariableName, obj))
                 return ProcessCallResult.Fail();
 
-            return ProcessCallResult.Success(new[] {obj}, OutProcessNode);
+            return ProcessCallResult.Success(new[] {obj}, OutProcessNodes[0]);
         }
 
         protected override async void OnVariableChanged()

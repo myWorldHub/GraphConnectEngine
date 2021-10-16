@@ -82,7 +82,7 @@ namespace GraphConnectEngine.Graphs.Operator
                 a,
                 b,
                 r
-            },OutProcessNode));
+            },OutProcessNodes[0]));
         }
 
         private bool TypeChecker(int sender, Type myType, Type anotherType)

@@ -34,7 +34,7 @@ namespace GraphConnectEngine.Graphs.Value
             if (!result.IsSucceeded)
                 return ProcessCallResult.Fail();
 
-            return ProcessCallResult.Success(new object[]{result.Value},OutProcessNode);
+            return ProcessCallResult.Success(new object[]{result.Value},OutProcessNodes[0]);
         }
 
         public override string GetGraphName() => "ValueFunc<" + typeof(T).Name + "> Graph";

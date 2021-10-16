@@ -29,7 +29,7 @@ namespace GraphConnectEngine.Graphs.Statement
                 {
                     result
                 },
-                result ? OutProcessNode : OutProcessNodes[1]));
+                result ? OutProcessNodes[0] : OutProcessNodes[1]));
         }
 
         public override string GetGraphName() => "If Statement Graph";

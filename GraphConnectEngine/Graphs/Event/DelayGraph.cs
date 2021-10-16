@@ -18,7 +18,7 @@ namespace GraphConnectEngine.Graphs.Event
         {
             int time = (int) parameters[0];
             await Task.Delay(time * 1000);
-            return ProcessCallResult.Success(new object[] {time},OutProcessNode);
+            return ProcessCallResult.Success(new object[] {time},OutProcessNodes[0]);
         }
 
         public override string GetGraphName() =>  "Delay Graph";

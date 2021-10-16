@@ -37,7 +37,7 @@ namespace GraphConnectEngine.Graphs
             {
                 obj,
                 str
-            }, OutProcessNode);
+            }, OutProcessNodes[0]);
         }
 
         public override string GetGraphName() => "Debug Text Graph";

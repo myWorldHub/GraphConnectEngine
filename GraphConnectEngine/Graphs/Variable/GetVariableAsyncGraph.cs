@@ -30,7 +30,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if(!result.IsSucceeded)
                 return ProcessCallResult.Fail();
 
-            return ProcessCallResult.Success(new [] {result.Value}, OutProcessNode);
+            return ProcessCallResult.Success(new [] {result.Value}, OutProcessNodes[0]);
         }
 
         protected override async void OnVariableChanged()

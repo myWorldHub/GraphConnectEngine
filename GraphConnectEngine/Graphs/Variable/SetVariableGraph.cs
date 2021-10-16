@@ -27,7 +27,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (!Holder.Update(VariableName, obj))
                 return Task.FromResult(ProcessCallResult.Fail());
 
-            return Task.FromResult(ProcessCallResult.Success(new[] {obj}, OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(new[] {obj}, OutProcessNodes[0]));
         }
 
         protected override void OnVariableChanged()
