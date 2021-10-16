@@ -12,9 +12,10 @@ namespace GraphConnectEngine.Graphs.Variable
     public class GetVariableGraph : VariableGraph
     {
 
-        public GetVariableGraph(NodeConnector connector,IVariableHolder holder) : base(connector,holder)
+        public GetVariableGraph(INodeConnector connector,IVariableHolder holder) : base(connector,holder)
         {
-            AddNode(new OutItemNode(this, typeof(void), 0,"Value"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
+            AddNode(new OutItemNode(this, resolver,0));
         }
 
 
@@ -30,7 +31,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if(!result.IsSucceeded)
                 return Task.FromResult(ProcessCallResult.Fail());
 
-            return Task.FromResult(ProcessCallResult.Success(new [] {result.Value}, OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(new [] {result.Value}, OutProcessNodes[0]));
         }
 
         protected override void OnVariableChanged()
@@ -41,7 +42,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (Holder.ContainsKey(VariableName))
             {
                 var rs = Holder.TryGetVariableType(VariableName);
-                OutItemNodes[0].SetItemType(rs.Value);
+                OutItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 
@@ -53,10 +54,10 @@ namespace GraphConnectEngine.Graphs.Variable
             if (Holder.ContainsKey(VariableName))
             {
                 var rs = Holder.TryGetVariableType(VariableName);
-                OutItemNodes[0].SetItemType(rs.Value);
+                OutItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 
-        public override string GetGraphName() => "Get Variable Graph";
+        public override string GraphName => "Get Variable Graph";
     }
 }

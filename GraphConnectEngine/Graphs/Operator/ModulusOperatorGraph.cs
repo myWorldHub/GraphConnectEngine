@@ -7,10 +7,10 @@ namespace GraphConnectEngine.Graphs.Operator
     /// </summary>
     public class ModulusOperatorGraph : MidOperatorGraph
     {
-        public ModulusOperatorGraph(NodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Modulus)
+        public ModulusOperatorGraph(INodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Modulus)
         {
         }
 
-        public override string GetGraphName() => "Modulus Operator Graph";
+        public override string GraphName => "Modulus Operator Graph";
     }
 }

@@ -21,17 +21,17 @@ namespace GraphConnectEngine.Graphs.Value
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="defaultValue">Tのデフォルト値</param>
-        public ValueGraph(NodeConnector connector,T defaultValue) : base(connector)
+        public ValueGraph(INodeConnector connector,T defaultValue) : base(connector)
         {
             Value = defaultValue;
-            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
+            AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"),0));
         }
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNodes[0]));
         }
 
-        public override string GetGraphName() => "Value<" + typeof(T).Name + "> Graph";
+        public override string GraphName => "Value<" + typeof(T).Name + "> Graph";
     }
 }

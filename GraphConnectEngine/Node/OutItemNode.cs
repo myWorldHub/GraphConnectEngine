@@ -8,74 +8,26 @@ namespace GraphConnectEngine.Node
     ///
     /// グラフの結果(配列)のインデックスを指定してアイテムを取得する
     /// </summary>
-    public class OutItemNode : Node,IItemTypeResolver
+    public class OutItemNode : Node, IItemNode
     {
-        
-        private Type _itemType;
-        
-        public event EventHandler<TypeChangeEventArgs> OnTypeChanged;
 
         private int _resultIndex;
 
-        /// <summary>
-        /// ノードを表す名前
-        /// 型名やパラメーター名が相応しい
-        /// </summary>
-        public string Name => (string) Args["Name"];
+        public IItemTypeResolver TypeResolver { get; }
 
         /// <summary>
         /// コンストラクター
         /// </summary>
         /// <param name="parentGraph">所属しているグラフ</param>
-        /// <param name="itemType">型</param>
+        /// <param name="typeResolver">型の定義クラス</param>
         /// <param name="resultIndex">グラフの結果のインデックス</param>
-        /// <param name="name">名前</param>
-        public OutItemNode(Graph parentGraph, Type itemType, int resultIndex,string name) : base(parentGraph)
+        public OutItemNode(IGraph parentGraph, IItemTypeResolver typeResolver,int resultIndex)
         {
-            Args["Name"] = name;
+            Graph = parentGraph;
             _resultIndex = resultIndex;
-            _itemType = itemType;
-        }
+            TypeResolver = typeResolver;
 
-        public Type GetItemType()
-        {
-            return _itemType;
-        }
-
-        public void SetItemType(Type type,bool tryReconnect = true)
-        {
-            
-            if (_itemType == type)
-                return;
-            
-            //接続確認
-            if (Connector.TryGetOtherNodes(this, out var otherNodes))
-            {
-                //接続切る
-                foreach (var onode in otherNodes)
-                {
-                    Connector.DisconnectNode(this, onode);
-                }
-
-                //event
-                var from = _itemType;
-                _itemType = type;
-                OnTypeChanged?.Invoke(this, new TypeChangeEventArgs()
-                {
-                    From = from,
-                    To = _itemType
-                });
-
-                //再接続
-                foreach (var onode in otherNodes)
-                {
-                    Connector.ConnectNode(this, onode);
-                }
-            }
-            else
-            {
-                _itemType = type;
-            }
+            TypeResolver.Init(this);
         }
 
         public override bool IsAttachableNodeType(Type type)
@@ -84,13 +36,13 @@ namespace GraphConnectEngine.Node
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(Node resolver)
+        public override bool CanAttach(INode anotherNode)
         {
-            if (resolver is InItemNode inItemNode)
+            if (anotherNode is InItemNode inItemNode)
             {
                 //ItemType Check
-                Type otherItemType = inItemNode.GetItemType();
-                Type myItemType = GetItemType();
+                Type otherItemType = inItemNode.TypeResolver.GetItemType();
+                Type myItemType = TypeResolver.GetItemType();
                 
                 //void制限
                 if (myItemType == typeof(void))
@@ -114,7 +66,7 @@ namespace GraphConnectEngine.Node
         {
             Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().InvokeParentGraph");
                         
-            var procResult = await ParentGraph.Invoke(this, args);
+            var procResult = await Graph.Invoke(this, args);
 
             if (procResult.IsSucceeded)
             {
@@ -144,7 +96,5 @@ namespace GraphConnectEngine.Node
 
             return ValueResult<T>.Fail();
         }
-
-        
     }
 }

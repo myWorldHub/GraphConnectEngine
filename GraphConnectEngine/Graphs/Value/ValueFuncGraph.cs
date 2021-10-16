@@ -19,10 +19,10 @@ namespace GraphConnectEngine.Graphs.Value
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="valueFunc">ValueResult[T]を返す関数</param>
-        public ValueFuncGraph(NodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
+        public ValueFuncGraph(INodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
-            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
+            AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"), 0));
         }
 
         
@@ -34,9 +34,9 @@ namespace GraphConnectEngine.Graphs.Value
             if (!result.IsSucceeded)
                 return ProcessCallResult.Fail();
 
-            return ProcessCallResult.Success(new object[]{result.Value},OutProcessNode);
+            return ProcessCallResult.Success(new object[]{result.Value},OutProcessNodes[0]);
         }
 
-        public override string GetGraphName() => "ValueFunc<" + typeof(T).Name + "> Graph";
+        public override string GraphName => "ValueFunc<" + typeof(T).Name + "> Graph";
     }
 }

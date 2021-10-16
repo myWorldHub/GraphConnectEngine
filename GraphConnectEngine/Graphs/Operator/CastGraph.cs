@@ -13,10 +13,10 @@ namespace GraphConnectEngine.Graphs.Operator
 
         private Func<object, object> _lambda;
         
-        public CastGraph(NodeConnector connector) : base(connector)
+        public CastGraph(INodeConnector connector) : base(connector)
         {
-            AddNode(new InItemNode(this,typeof(object),"Object"));
-            AddNode(new OutItemNode(this,typeof(T),0,"Object"));
+            AddNode(new InItemNode(this,new ItemTypeResolver(typeof(object),"Object")));
+            AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Object"),0));
 
             var t = typeof(T);
             if (t == typeof(bool))
@@ -92,9 +92,9 @@ namespace GraphConnectEngine.Graphs.Operator
             if (!isSuccess)
                 return Task.FromResult(ProcessCallResult.Fail());
 
-            return Task.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNodes[0]));
         }
 
-        public override string GetGraphName() => "CastGraph<"+typeof(T).Name+">";
+        public override string GraphName => "CastGraph<"+typeof(T).Name+">";
     }
 }

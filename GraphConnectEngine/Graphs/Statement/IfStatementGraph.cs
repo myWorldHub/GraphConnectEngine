@@ -13,10 +13,12 @@ namespace GraphConnectEngine.Graphs.Statement
     public class IfStatementGraph : Graph
     {
         
-        public IfStatementGraph(NodeConnector connector) : base(connector)
+        public IfStatementGraph(INodeConnector connector) : base(connector)
         {
-            AddNode(new InItemNode(this,typeof(bool),"expression"));
-            AddNode(new OutItemNode(this,typeof(bool),0,"expression"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(bool), "expression");
+            
+            AddNode(new InItemNode(this,resolver));
+            AddNode(new OutItemNode(this, resolver,0));
 
             AddNode(new OutProcessNode(this));
         }
@@ -29,9 +31,9 @@ namespace GraphConnectEngine.Graphs.Statement
                 {
                     result
                 },
-                result ? OutProcessNode : OutProcessNodes[1]));
+                result ? OutProcessNodes[0] : OutProcessNodes[1]));
         }
 
-        public override string GetGraphName() => "If Statement Graph";
+        public override string GraphName => "If Statement Graph";
     }
 }

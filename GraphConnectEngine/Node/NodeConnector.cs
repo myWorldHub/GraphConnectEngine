@@ -4,32 +4,28 @@ using System.Collections.Generic;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
-    /// Node同士がどのように繋がっているか管理する
-    ///
-    /// TODO インターフェースを作って、Async対応もする
+    /// INodeConnectorのサンプル実装
     /// </summary>
-    public class NodeConnector
+    public class NodeConnector : INodeConnector
     {
 
-        /// <summary>
-        /// ノードとノードが接続された時に呼ばれるイベント
-        /// </summary>
-        public EventHandler<NodeConnectEventArgs> OnConnect;
+        private readonly Dictionary<INode, List<INode>> _dict = new Dictionary<INode, List<INode>>();
+
+        public event EventHandler<NodeConnectEventArgs> OnConnect;
         
-        /// <summary>
-        /// ノードとノードが切断された時に呼ばれるイベント
-        /// </summary>
-        public EventHandler<NodeConnectEventArgs> OnDisonnect;
+        public event EventHandler<NodeConnectEventArgs> OnDisconnect;
 
-        private readonly Dictionary<Node, List<Node>> _dict = new Dictionary<Node, List<Node>>();
+        public void InvokeConnectEvent(NodeConnectEventArgs args)
+        {
+            OnConnect?.Invoke(this,args);
+        }
 
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// </summary>
-        /// <param name="key"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public T[] GetOtherNodes<T>(Node key)
+        public void InvokeDisconnectEvent(NodeConnectEventArgs args)
+        {
+            OnDisconnect?.Invoke(this, args);
+        }
+
+        public T[] GetOtherNodes<T>(INode key)
         {
             if (!_dict.ContainsKey(key))
                 return Array.Empty<T>();
@@ -41,25 +37,13 @@ namespace GraphConnectEngine.Node
 
             return  list.ToArray();
         }
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public Node[] GetOtherNodes(Node key)
+        
+        public INode[] GetOtherNodes(INode key)
         {
-            return _dict.ContainsKey(key) ? _dict[key].ToArray() : new Node[0];
+            return _dict.ContainsKey(key) ? _dict[key].ToArray() : new INode[0];
         }
-
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public bool TryGetOtherNodes<T>(Node key, out T[] result)
+        
+        public bool TryGetOtherNodes<T>(INode key, out T[] result)
         {
             result = null;
             
@@ -75,85 +59,33 @@ namespace GraphConnectEngine.Node
             return list.Count != 0;
         }
         
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public bool TryGetOtherNodes(Node key, out Node[] result)
+        public bool TryGetOtherNodes(INode key, out INode[] result)
         {
             result = _dict.ContainsKey(key) ? _dict[key].ToArray() : null;
             return result != null;
         }
-
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public bool TryGetAnotherNode<T>(Node key, out T result) where T : Node
+        
+        public bool TryGetAnotherNode<T>(INode key, out T result) where T : class
         {
-            result = _dict.ContainsKey(key) ? _dict[key][0] as T: null;
-            return result != null;
+            if (_dict.ContainsKey(key))
+            {
+                if (_dict[key][0] is T t)
+                {
+                    result = t;
+                    return true;
+                }
+            }
+            result = null;
+            return false;
         }
         
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public bool TryGetAnotherNode(Node key, out Node result)
+        public bool TryGetAnotherNode(INode key, out INode result)
         {
             result = _dict.ContainsKey(key) ? _dict[key][0] : null;
             return result != null;
         }
 
-        /// <summary>
-        /// node1にnode2を繋ぐ(node1のみ)
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        private void Register(Node node1, Node node2)
-        {
-            if (!_dict.ContainsKey(node1))
-            {
-                _dict[node1] = new List<Node>();
-            }
-
-            _dict[node1].Add(node2);
-        }
-
-        /// <summary>
-        /// node1からnode2を切り離す(node1のみ)
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        private void Remove(Node node1, Node node2)
-        {
-            if (_dict.ContainsKey(node1))
-            {
-                _dict[node1].Remove(node2);
-                if (_dict[node1].Count == 0)
-                {
-                    _dict.Remove(node1);
-                }
-            }
-        }
-
-        /// <summary>
-        /// node1がnode2と繋がっているかチェック(node1のみ)
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns></returns>
-        public bool IsConnected(Node node1, Node node2)
+        public bool IsConnected(INode node1, INode node2)
         {
             if (_dict.ContainsKey(node1))
             {
@@ -162,30 +94,17 @@ namespace GraphConnectEngine.Node
             
             return false;
         }
-
-        /// <summary>
-        /// ノードとノードを繋ぐ
-        /// 
-        /// メモ : 接続する時に呼ぶ順
-        /// ConnectNode
-        /// IsAttachableGraphType
-        /// CanAttach
-        /// Register
-        /// OnConnect
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns></returns>
-        public bool ConnectNode(Node node1, Node node2)
+        
+        public bool ConnectNode(INode node1, INode node2)
         {
             Logger.Debug("NodeConnector.ConnectNode().StartLog-------------------------");
             
             DumpNode(node1);
             DumpNode(node2);
 
-            if (node1.Connector != this || node2.Connector != this)
+            if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
-                Logger.Error("Error : Connector is not current Connector.");
+                Logger.Error("Error : Connector is not this Connector.");
                 Logger.Debug("NodeConnector.ConnectNode().Fail");
                 return false;
             }
@@ -220,88 +139,61 @@ namespace GraphConnectEngine.Node
             
             Logger.Debug("NodeConnector.ConnectNode().Registered");
             
-            //TODO 下のイベントたちもsenderをつける
-            OnConnect?.Invoke(node1,new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
+            InvokeConnectEvent(new NodeConnectEventArgs(node1, node2));
             
             //イベント発火
-            node1.InvokeConnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
-            
-            node2.InvokeConnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node2,
-                OtherNode = node1
-            });
+            node1.InvokeConnectEvent(new NodeConnectEventArgs(node1, node2));
+            node2.InvokeConnectEvent(new NodeConnectEventArgs(node2, node1));
             
             return true;
         }
-
-        /// <summary>
-        /// ノードを切断する
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns></returns>
-        public bool DisconnectNode(Node node1, Node node2)
+        
+        public bool DisconnectNode(INode node1, INode node2)
         {
 
-            if (node1.Connector != this || node2.Connector != this)
+            Logger.Debug("NodeConnector.DisconnectNode().StartLog-------------------------");
+
+            DumpNode(node1);
+            DumpNode(node2);
+            
+            if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
+                Logger.Error("Error : Connector is not this Connector.");
+                Logger.Debug("NodeConnector.DisconnectNode().Fail");
                 return false;
             }
             
             //接続確認
             if (!IsConnected(node1, node2) && !IsConnected(node2, node1))
             {
+                Logger.Error("Error : not connected.");
+                Logger.Debug("NodeConnector.DisconnectNode().Fail");
                 return false;
             }
             
             //接続を切る
             Remove(node1,node2);
             Remove(node2,node1);
+
+            Logger.Debug("NodeConnector.DisconnectNode().Removed");
             
-            OnDisonnect?.Invoke(node1, new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
+            InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
             
             //イベント発火
-            node1.InvokeDisconnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node1,
-                OtherNode = node2
-            });
-            
-            node2.InvokeDisconnectEvent(new NodeConnectEventArgs()
-            {
-                SenderNode = node2,
-                OtherNode = node1
-            });
+            node1.InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
+            node2.InvokeDisconnectEvent(new NodeConnectEventArgs(node2,node1));
             
             return true;
         }
-
-        /// <summary>
-        /// 指定されたノードの接続情報を消す
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        public bool DisconnectAllNode(Node node)
+        
+        public bool DisconnectAllNode(INode node)
         {
             if (node == null)
             {
                 return false;
             }
             
-            if (node.Connector != this)
+            if (node.Graph.Connector != this)
             {
                 return false;
             }
@@ -320,18 +212,50 @@ namespace GraphConnectEngine.Node
         }
 
         /// <summary>
+        /// node1にnode2を繋ぐ(node1のみ)
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        private void Register(INode node1, INode node2)
+        {
+            if (!_dict.ContainsKey(node1))
+            {
+                _dict[node1] = new List<INode>();
+            }
+
+            _dict[node1].Add(node2);
+        }
+
+        /// <summary>
+        /// node1からnode2を切り離す(node1のみ)
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        private void Remove(INode node1, INode node2)
+        {
+            if (_dict.ContainsKey(node1))
+            {
+                _dict[node1].Remove(node2);
+                if (_dict[node1].Count == 0)
+                {
+                    _dict.Remove(node1);
+                }
+            }
+        }
+
+        /// <summary>
         /// ノードの情報をLoggerにダンプする
         /// </summary>
         /// <param name="node"></param>
-        public void DumpNode(Node node)
+        public void DumpNode(INode node)
         {
             Logger.Debug($"[NodeConnector] Dump of {node}");
             Logger.Debug($"Type : {node.GetType().FullName}");
-            Logger.Debug($"Graph : {node.ParentGraph}");
+            Logger.Debug($"Graph : {node.Graph}");
 
-            if (node.ParentGraph != null)
+            if (node.Graph != null)
             {
-                Logger.Debug($"Connector : {node.Connector}");
+                Logger.Debug($"Connector : {node.Graph.Connector}");
             }
             else
             {

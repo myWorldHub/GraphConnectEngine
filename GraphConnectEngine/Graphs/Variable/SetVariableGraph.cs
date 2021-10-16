@@ -10,10 +10,11 @@ namespace GraphConnectEngine.Graphs.Variable
     public class SetVariableGraph : VariableGraph
     {
 
-        public SetVariableGraph(NodeConnector connector, IVariableHolder holder) : base(connector,holder)
+        public SetVariableGraph(INodeConnector connector, IVariableHolder holder) : base(connector,holder)
         {
-            AddNode(new InItemNode(this, typeof(void),"Value"));
-            AddNode(new OutItemNode(this,typeof(void),0,"Value"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
+            AddNode(new InItemNode(this, resolver));
+            AddNode(new OutItemNode(this, resolver,0));
         }
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
@@ -27,7 +28,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (!Holder.Update(VariableName, obj))
                 return Task.FromResult(ProcessCallResult.Fail());
 
-            return Task.FromResult(ProcessCallResult.Success(new[] {obj}, OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(new[] {obj}, OutProcessNodes[0]));
         }
 
         protected override void OnVariableChanged()
@@ -38,8 +39,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (Holder.ContainsKey(VariableName))
             {
                 var rs = Holder.TryGetVariableType(VariableName);
-                InItemNodes[0].SetItemType(rs.Value);
-                OutItemNodes[0].SetItemType(rs.Value);
+                InItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 
@@ -51,12 +51,11 @@ namespace GraphConnectEngine.Graphs.Variable
             if (Holder.ContainsKey(VariableName))
             {
                 var rs = Holder.TryGetVariableType(VariableName);
-                InItemNodes[0].SetItemType(rs.Value);
-                OutItemNodes[0].SetItemType(rs.Value);
+                InItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
-        
-        public override string GetGraphName() => "Set Variable Graph";
+
+        public override string GraphName => "Set Variable Graph";
         
     }
 }

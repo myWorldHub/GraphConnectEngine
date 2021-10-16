@@ -56,7 +56,7 @@ namespace GraphConnectEngine.Graphs.Event
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="processSender">プロセスを呼ぶためのインターフェース</param>
-        public UpdaterGraph(NodeConnector connector, IProcessSender processSender) : base(connector)
+        public UpdaterGraph(INodeConnector connector, IProcessSender processSender) : base(connector)
         {
             _time = 0;
             _processSender = processSender;
@@ -107,9 +107,9 @@ namespace GraphConnectEngine.Graphs.Event
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
         {
-            return Task.FromResult(ProcessCallResult.Success(Array.Empty<object>(), OutProcessNode));
+            return Task.FromResult(ProcessCallResult.Success(Array.Empty<object>(), OutProcessNodes[0]));
         }
 
-        public override string GetGraphName() =>  "Updater Graph";
+        public override string GraphName =>  "Updater Graph";
     }
 }

@@ -9,12 +9,19 @@ namespace GraphConnectEngine.Node
     /// 型が変わる時は再接続する
     /// ItemTypeがvoidの場合、接続を許可しない
     /// </summary>
-    public interface IItemTypeResolver : INodeStatusListener
+    public interface IItemTypeResolver
     {
         /// <summary>
         /// 型が変わった時に呼ばれるリスナー
         /// </summary>
         event EventHandler<TypeChangeEventArgs> OnTypeChanged;
+
+        /// <summary>
+        /// アイテム名
+        /// </summary>
+        string ItemName { get; }
+
+        void Init(INode node);
         
         /// <summary>
         /// 型を取得する

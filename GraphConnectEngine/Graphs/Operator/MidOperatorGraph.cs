@@ -19,16 +19,20 @@ namespace GraphConnectEngine.Graphs.Operator
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="midOperator">演算子</param>
-        public MidOperatorGraph(NodeConnector connector,OperatorChecker.MidOperator midOperator) : base(connector)
+        public MidOperatorGraph(INodeConnector connector,OperatorChecker.MidOperator midOperator) : base(connector)
         {
             _operator = midOperator;
-            
-            AddNode(new InItemNode(this, typeof(object), "A",typeCheckOnAtatchFunc:(t1, t2) => TypeChecker(0, t1, t2)));
-            AddNode(new InItemNode(this, typeof(object), "B",typeCheckOnAtatchFunc: (t1, t2) => TypeChecker(1, t1, t2)));
 
-            AddNode(new OutItemNode(this, typeof(void), 0,"A"));
-            AddNode(new OutItemNode(this, typeof(void), 1,"B"));
-            AddNode(new OutItemNode(this, typeof(void), 2,"Result"));
+            IItemTypeResolver resolver1 = new ItemTypeResolver(typeof(object), "A");
+            IItemTypeResolver resolver2 = new ItemTypeResolver(typeof(object), "B");
+            IItemTypeResolver resolver3 = new ItemTypeResolver(typeof(void), "Result");
+            
+            AddNode(new InItemNode(this, resolver1,typeCheckOnAtatchFunc:(t1, t2) => TypeChecker(0, t1, t2)));
+            AddNode(new InItemNode(this, resolver2,typeCheckOnAtatchFunc: (t1, t2) => TypeChecker(1, t1, t2)));
+
+            AddNode(new OutItemNode(this, resolver1,0));
+            AddNode(new OutItemNode(this, resolver2,1));
+            AddNode(new OutItemNode(this, resolver3, 2));
 
             InItemNodes[0].OnConnect += OnConnected;
             InItemNodes[1].OnConnect += OnConnected;
@@ -52,18 +56,18 @@ namespace GraphConnectEngine.Graphs.Operator
             var otherInNode = senderNode == i1 ? i2 : i1;
 
             //確認
-            (senderNode == i1 ? o1 : o2).SetItemType(connectedNode.GetItemType());
+            (senderNode == i1 ? o1 : o2).TypeResolver.SetItemType(connectedNode.TypeResolver.GetItemType());
             if (Connector.TryGetAnotherNode(otherInNode, out OutItemNode oi))
             {
-                if (OperatorChecker.CheckOperator(_operator, o1.GetItemType(), o2.GetItemType(),
+                if (OperatorChecker.CheckOperator(_operator, o1.TypeResolver.GetItemType(), o2.TypeResolver.GetItemType(),
                     out Type resultType, out _computeFunc))
                 {
-                    resultNode.SetItemType(resultType);
+                    resultNode.TypeResolver.SetItemType(resultType);
                 }
                 else
                 {
                     _computeFunc = null;
-                    resultNode.SetItemType(typeof(void));
+                    resultNode.TypeResolver.SetItemType(typeof(void));
                 }
             }
         }
@@ -82,7 +86,7 @@ namespace GraphConnectEngine.Graphs.Operator
                 a,
                 b,
                 r
-            },OutProcessNode));
+            },OutProcessNodes[0]));
         }
 
         private bool TypeChecker(int sender, Type myType, Type anotherType)
@@ -97,7 +101,7 @@ namespace GraphConnectEngine.Graphs.Operator
 
             //片方繋がってる
             var b = OperatorChecker.CheckOperator(_operator,
-                onode2.GetItemType(), anotherType, out Type _, out var __);
+                onode2.TypeResolver.GetItemType(), anotherType, out Type _, out var __);
 
             return b;
         }
