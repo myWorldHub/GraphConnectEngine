@@ -1,4 +1,4 @@
-using GraphConnectEngine.Node;
+using GraphConnectEngine.Nodes;
 using GraphConnectEngine.Variable;
 
 namespace GraphConnectEngine.Graphs.Variable

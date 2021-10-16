@@ -1,4 +1,4 @@
-namespace GraphConnectEngine.Node
+namespace GraphConnectEngine.Nodes
 {
     public interface IItemNode
     {

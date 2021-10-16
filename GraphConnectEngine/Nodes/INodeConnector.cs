@@ -1,11 +1,9 @@
-using System.Threading.Tasks;
-
-namespace GraphConnectEngine.Node
+namespace GraphConnectEngine.Nodes
 {
     /// <summary>
     /// Node同士がどのように繋がっているか管理する
     /// </summary>
-    public interface INodeConnectorAsync : INodeConnector
+    public interface INodeConnector : INodeStatusListener
     {
 
         /// <summary>
@@ -14,32 +12,15 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        Task<T[]> GetOtherNodesAsync<T>(INode key);
+        T[] GetOtherNodes<T>(INode key);
 
         /// <summary>
         /// 繋がれているノードを取得する
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Task<INode[]> GetOtherNodesAsync(INode key);
+        INode[] GetOtherNodes(INode key);
 
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        Task<ValueResult<T[]>> TryGetOtherNodesAsync<T>(INode key);
-
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        Task<ValueResult<INode[]>> TryGetOtherNodesAsync(INode key);
-        
         /// <summary>
         /// 繋がれているノードをキャストして取得する
         /// 繋がれていない場合はfalseを返す
@@ -48,14 +29,34 @@ namespace GraphConnectEngine.Node
         /// <param name="result"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        Task<ValueResult<T>> TryGetAnotherNodeAsync<T>(INode key) where T : class;
+        bool TryGetOtherNodes<T>(INode key, out T[] result);
+
         /// <summary>
         /// 繋がれているノードを取得する
         /// 繋がれていない場合はfalseを返す
         /// </summary>
         /// <param name="key"></param>
+        /// <param name="result"></param>
         /// <returns></returns>
-        Task<ValueResult<INode>> TryGetAnotherNodeAsync(INode key);
+        bool TryGetOtherNodes(INode key, out INode[] result);
+
+        /// <summary>
+        /// 繋がれているノードをキャストして取得する
+        /// 繋がれていない場合はfalseを返す
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="result"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        bool TryGetAnotherNode<T>(INode key, out T result) where T : class;
+        /// <summary>
+        /// 繋がれているノードを取得する
+        /// 繋がれていない場合はfalseを返す
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryGetAnotherNode(INode key, out INode result);
 
         /// <summary>
         /// node1がnode2と繋がっているかチェック(node1のみ)
@@ -63,7 +64,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        Task<bool> IsConnectedAsync(INode node1, INode node2);
+        bool IsConnected(INode node1, INode node2);
 
         /// <summary>
         /// ノードとノードを繋ぐ
@@ -71,7 +72,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        Task<bool> ConnectNodeAsync(INode node1, INode node2);
+        bool ConnectNode(INode node1, INode node2);
 
         /// <summary>
         /// ノードを切断する
@@ -79,13 +80,13 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        Task<bool> DisconnectNodeAsync(INode node1, INode node2);
+        bool DisconnectNode(INode node1, INode node2);
 
         /// <summary>
         /// 指定されたノードの接続情報を消す
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        Task<bool> DisconnectAllNodeAsync(INode node);
+        bool DisconnectAllNode(INode node);
     }
 }

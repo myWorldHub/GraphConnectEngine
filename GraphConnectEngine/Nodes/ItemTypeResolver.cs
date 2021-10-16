@@ -1,6 +1,6 @@
 using System;
 
-namespace GraphConnectEngine.Node
+namespace GraphConnectEngine.Nodes
 {
     public class ItemTypeResolver : IItemTypeResolver
     {

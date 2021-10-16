@@ -1,6 +1,6 @@
 using System;
 
-namespace GraphConnectEngine.Node
+namespace GraphConnectEngine.Nodes
 {
     /// <summary>
     /// ノードのインターフェース

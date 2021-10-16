@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GraphConnectEngine.Node
+namespace GraphConnectEngine.Nodes
 {
     /// <summary>
     /// OutItemNodeから値を渡されるノード

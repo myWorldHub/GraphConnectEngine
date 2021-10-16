@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using GraphConnectEngine.Node;
+using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GraphConnectEngine.Node
+namespace GraphConnectEngine.Nodes
 {
     /// <summary>
     /// ノード

@@ -1,4 +1,4 @@
-using GraphConnectEngine.Node;
+using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine.Graphs.Operator
 {
