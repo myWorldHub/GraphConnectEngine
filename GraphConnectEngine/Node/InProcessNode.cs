@@ -11,13 +11,14 @@ namespace GraphConnectEngine.Node
     /// </summary>
     public class InProcessNode : Node
     {
-        public InProcessNode(Graph parentGraph) : base(parentGraph) 
+        public InProcessNode(Graph parentGraph)
         {
+            Graph = parentGraph;
         }
 
         public async Task<InvokeResult> OnCalled(object sender, ProcessCallArgs args)
         {
-            return await ParentGraph.Invoke(sender, args);
+            return await Graph.Invoke(sender, args);
         }
 
         public override bool IsAttachableNodeType(Type type)
@@ -30,7 +31,7 @@ namespace GraphConnectEngine.Node
         {
             if (resolver is OutProcessNode outNode)
             {
-                return Connector.GetOtherNodes(this).Length == 0;
+                return Graph.Connector.GetOtherNodes(this).Length == 0;
             }
             return false;
         }

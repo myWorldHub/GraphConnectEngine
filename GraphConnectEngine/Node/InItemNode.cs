@@ -20,7 +20,7 @@ namespace GraphConnectEngine.Node
         /// ノードを表す名前
         /// 型名やパラメーター名が相応しい
         /// </summary>
-        public string Name => (string)Args["Name"];
+        public string Name => (string)GetData("Name");
 
         /// <summary>
         /// コンストラクタ
@@ -30,12 +30,14 @@ namespace GraphConnectEngine.Node
         /// <param name="name">ノード名</param>
         /// <param name="defaultItemGetter">OutItemNodeと繋がっていない場合,この関数の返り値を使う</param>
         /// <param name="typeCheckOnAtatchFunc">CanAttachで独自の型チェックを利用したい時に指定する</param>
-        public InItemNode(Graph parentGraph, Type itemType,string name, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null) : base(parentGraph)
+        public InItemNode(Graph parentGraph, Type itemType,string name, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null)
         {
-            Args["Name"] = name;
+            Graph = parentGraph;
             _itemType = itemType;
             _defaultItemGetter = defaultItemGetter;
             _typeCheckOnAtatch = typeCheckOnAtatchFunc;
+
+            SetData("Name", name);
         }
         
         public Type GetItemType()
@@ -50,12 +52,12 @@ namespace GraphConnectEngine.Node
                 return;
             
             //接続確認
-            if (Connector.TryGetOtherNodes(this, out var otherNodes))
+            if (Graph.Connector.TryGetOtherNodes(this, out var otherNodes))
             {
                 //接続を切る
                 foreach (var onode in otherNodes)
                 {
-                    Connector.DisconnectNode(this, onode);
+                    Graph.Connector.DisconnectNode(this, onode);
                 }
 
                 //event
@@ -70,7 +72,7 @@ namespace GraphConnectEngine.Node
                 //再接続
                 foreach (var onode in otherNodes)
                 {
-                    Connector.ConnectNode(this, onode);
+                    Graph.Connector.ConnectNode(this, onode);
                 }
             }
             else
@@ -100,7 +102,7 @@ namespace GraphConnectEngine.Node
                 }
 
                 //1対1関係
-                if (Connector.GetOtherNodes(this).Length != 0)
+                if (Graph.Connector.GetOtherNodes(this).Length != 0)
                 {
                     return false;
                 }
@@ -137,7 +139,7 @@ namespace GraphConnectEngine.Node
         /// <returns></returns>
         public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
         {
-            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            if (Graph.Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
                 return await node.TryGetValue<T>(args);
             }
@@ -163,7 +165,7 @@ namespace GraphConnectEngine.Node
         {
             Logger.Debug("InItemNode.GerItemFromConnectedNode().Invoked");
             
-            if (Connector.TryGetAnotherNode(this, out OutItemNode node))
+            if (Graph.Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
                 var value = await node.TryGetValue<object>(args);
                 if (value.IsSucceeded)

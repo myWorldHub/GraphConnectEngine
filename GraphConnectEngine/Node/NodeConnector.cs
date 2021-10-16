@@ -94,7 +94,7 @@ namespace GraphConnectEngine.Node
             DumpNode(node1);
             DumpNode(node2);
 
-            if (node1.Connector != this || node2.Connector != this)
+            if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
                 Logger.Error("Error : Connector is not current Connector.");
                 Logger.Debug("NodeConnector.ConnectNode().Fail");
@@ -143,7 +143,7 @@ namespace GraphConnectEngine.Node
         public bool DisconnectNode(Node node1, Node node2)
         {
 
-            if (node1.Connector != this || node2.Connector != this)
+            if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
                 return false;
             }
@@ -174,7 +174,7 @@ namespace GraphConnectEngine.Node
                 return false;
             }
             
-            if (node.Connector != this)
+            if (node.Graph.Connector != this)
             {
                 return false;
             }
@@ -232,11 +232,11 @@ namespace GraphConnectEngine.Node
         {
             Logger.Debug($"[NodeConnector] Dump of {node}");
             Logger.Debug($"Type : {node.GetType().FullName}");
-            Logger.Debug($"Graph : {node.ParentGraph}");
+            Logger.Debug($"Graph : {node.Graph}");
 
-            if (node.ParentGraph != null)
+            if (node.Graph != null)
             {
-                Logger.Debug($"Connector : {node.Connector}");
+                Logger.Debug($"Connector : {node.Graph.Connector}");
             }
             else
             {

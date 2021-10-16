@@ -9,34 +9,33 @@ namespace GraphConnectEngine.Node
     /// ノードはグラフに所属する
     /// InItemNode,OutItemNode,InProcessNode,OutProcessNodeがある
     /// </summary>
-    public abstract class Node : INodeStatusListener,IDisposable
+    public abstract class Node : INode
     {
-
-        /// <summary>
-        /// グラフのコネクター
-        /// </summary>
-        public INodeConnector Connector => ParentGraph.Connector;
-
-        //グラフを取得する
-        public readonly Graph ParentGraph;
         
+        public Graph Graph { get; set; }
+
+        private Dictionary<string, object> _data = new Dictionary<string, object>();
+
+        private bool _isDisposed;
+
         public event EventHandler<NodeConnectEventArgs> OnConnect;
 
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
         
+        public abstract bool IsAttachableNodeType(Type type);
 
-        private bool _isDisposed;
-
-        /// <summary>
-        /// 何を入れてもいいデータ
-        /// </summary>
-        public IDictionary<string, object> Args = new Dictionary<string, object>();
-
-        public Node(Graph parentGraph)
-        {
-            ParentGraph = parentGraph;
-        }
+        public abstract bool CanAttach(Node node);
         
+        public object GetData(string key)
+        {
+            return _data.ContainsKey(key) ? _data[key] : null;
+        }
+
+        public void SetData(string key, object value)
+        {
+            _data[key] = value;
+        }
+
         public void InvokeConnectEvent(NodeConnectEventArgs args)
         {
             OnConnect?.Invoke(this, args);
@@ -44,26 +43,8 @@ namespace GraphConnectEngine.Node
 
         public void InvokeDisconnectEvent(NodeConnectEventArgs args)
         {
-            OnDisconnect?.Invoke(this,args);
+            OnDisconnect?.Invoke(this, args);
         }
-
-        /// <summary>
-        /// 引数に指定されたノードの型が接続可能なものか確認する
-        ///
-        /// 例えば
-        /// InItemNodeはOutItemNodeとしかつなげないし、
-        /// OutProcessNodeはInProcessNodeとしかつなげない
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public abstract bool IsAttachableNodeType(Type type);
-
-        /// <summary>
-        /// 指定されたノードと接続できる状態かどうかを確認する
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        public abstract bool CanAttach(Node node);
 
         ~Node()
         {
@@ -84,7 +65,7 @@ namespace GraphConnectEngine.Node
             if (!_isDisposed)
             {
                 _isDisposed = true;
-                Connector.DisconnectAllNode(this);
+                Graph.Connector.DisconnectAllNode(this);
             }
         }
     }

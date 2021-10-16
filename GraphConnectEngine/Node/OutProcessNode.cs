@@ -12,8 +12,9 @@ namespace GraphConnectEngine.Node
     public class OutProcessNode : Node
     {
 
-        public OutProcessNode(Graph parentGraph) : base(parentGraph)
+        public OutProcessNode(Graph parentGraph)
         {
+            Graph = parentGraph;
         }
 
         /// <summary>
@@ -23,9 +24,9 @@ namespace GraphConnectEngine.Node
         /// <returns></returns>
         public async Task<bool> CallProcess(ProcessCallArgs args)
         {
-            Logger.Debug($"OutProcessNode.CallProcess() Start > {ParentGraph.Id} > {args}");
+            Logger.Debug($"OutProcessNode.CallProcess() Start > {Graph.Id} > {args}");
 
-            if (!Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
+            if (!Graph.Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
             {
                 Logger.Debug($"OutProcessNode.CallProcess().Success > No node is Connected");
                 return true;
@@ -34,7 +35,7 @@ namespace GraphConnectEngine.Node
             for (int i = 0; i < resolvers.Length; i++)
             {
                 var inProcessNode = resolvers[i];
-                if (args.TryAdd(ParentGraph.Id + "_" + i, true, out var nargs))
+                if (args.TryAdd(Graph.Id + "_" + i, true, out var nargs))
                 {
                     Logger.Debug($"OutProcessNode.CallProcess().Call InProcessNode {i} / {resolvers.Length}");
                     await inProcessNode.OnCalled(this,nargs);

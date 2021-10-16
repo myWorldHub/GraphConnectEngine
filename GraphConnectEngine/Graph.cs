@@ -344,7 +344,7 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public bool IsConnectedInProcessNode()
         {
-            return InProcessNode.Connector.TryGetAnotherNode(InProcessNode, out var _);
+            return Connector.TryGetAnotherNode(InProcessNode, out var _);
         }
 
         /// <summary>

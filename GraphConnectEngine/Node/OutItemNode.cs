@@ -21,7 +21,7 @@ namespace GraphConnectEngine.Node
         /// ノードを表す名前
         /// 型名やパラメーター名が相応しい
         /// </summary>
-        public string Name => (string) Args["Name"];
+        public string Name => (string) GetData("Name");
 
         /// <summary>
         /// コンストラクター
@@ -30,11 +30,13 @@ namespace GraphConnectEngine.Node
         /// <param name="itemType">型</param>
         /// <param name="resultIndex">グラフの結果のインデックス</param>
         /// <param name="name">名前</param>
-        public OutItemNode(Graph parentGraph, Type itemType, int resultIndex,string name) : base(parentGraph)
+        public OutItemNode(Graph parentGraph, Type itemType, int resultIndex,string name)
         {
-            Args["Name"] = name;
+            Graph = parentGraph;
             _resultIndex = resultIndex;
             _itemType = itemType;
+
+            SetData("Name", name);
         }
 
         public Type GetItemType()
@@ -49,12 +51,12 @@ namespace GraphConnectEngine.Node
                 return;
             
             //接続確認
-            if (Connector.TryGetOtherNodes(this, out var otherNodes))
+            if (Graph.Connector.TryGetOtherNodes(this, out var otherNodes))
             {
                 //接続切る
                 foreach (var onode in otherNodes)
                 {
-                    Connector.DisconnectNode(this, onode);
+                    Graph.Connector.DisconnectNode(this, onode);
                 }
 
                 //event
@@ -69,7 +71,7 @@ namespace GraphConnectEngine.Node
                 //再接続
                 foreach (var onode in otherNodes)
                 {
-                    Connector.ConnectNode(this, onode);
+                    Graph.Connector.ConnectNode(this, onode);
                 }
             }
             else
@@ -114,7 +116,7 @@ namespace GraphConnectEngine.Node
         {
             Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().InvokeParentGraph");
                         
-            var procResult = await ParentGraph.Invoke(this, args);
+            var procResult = await Graph.Invoke(this, args);
 
             if (procResult.IsSucceeded)
             {
