@@ -9,7 +9,7 @@ namespace GraphConnectEngine.Node
     public class NodeConnector : INodeConnector
     {
 
-        private readonly Dictionary<Node, List<Node>> _dict = new Dictionary<Node, List<Node>>();
+        private readonly Dictionary<INode, List<INode>> _dict = new Dictionary<INode, List<INode>>();
 
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         
@@ -25,7 +25,7 @@ namespace GraphConnectEngine.Node
             OnDisconnect?.Invoke(this, args);
         }
 
-        public T[] GetOtherNodes<T>(Node key)
+        public T[] GetOtherNodes<T>(INode key)
         {
             if (!_dict.ContainsKey(key))
                 return Array.Empty<T>();
@@ -38,12 +38,12 @@ namespace GraphConnectEngine.Node
             return  list.ToArray();
         }
         
-        public Node[] GetOtherNodes(Node key)
+        public INode[] GetOtherNodes(INode key)
         {
-            return _dict.ContainsKey(key) ? _dict[key].ToArray() : new Node[0];
+            return _dict.ContainsKey(key) ? _dict[key].ToArray() : new INode[0];
         }
         
-        public bool TryGetOtherNodes<T>(Node key, out T[] result)
+        public bool TryGetOtherNodes<T>(INode key, out T[] result)
         {
             result = null;
             
@@ -59,25 +59,33 @@ namespace GraphConnectEngine.Node
             return list.Count != 0;
         }
         
-        public bool TryGetOtherNodes(Node key, out Node[] result)
+        public bool TryGetOtherNodes(INode key, out INode[] result)
         {
             result = _dict.ContainsKey(key) ? _dict[key].ToArray() : null;
             return result != null;
         }
         
-        public bool TryGetAnotherNode<T>(Node key, out T result) where T : Node
+        public bool TryGetAnotherNode<T>(INode key, out T result) where T : class
         {
-            result = _dict.ContainsKey(key) ? _dict[key][0] as T: null;
-            return result != null;
+            if (_dict.ContainsKey(key))
+            {
+                if (_dict[key][0] is T t)
+                {
+                    result = t;
+                    return true;
+                }
+            }
+            result = null;
+            return false;
         }
         
-        public bool TryGetAnotherNode(Node key, out Node result)
+        public bool TryGetAnotherNode(INode key, out INode result)
         {
             result = _dict.ContainsKey(key) ? _dict[key][0] : null;
             return result != null;
         }
 
-        public bool IsConnected(Node node1, Node node2)
+        public bool IsConnected(INode node1, INode node2)
         {
             if (_dict.ContainsKey(node1))
             {
@@ -87,7 +95,7 @@ namespace GraphConnectEngine.Node
             return false;
         }
         
-        public bool ConnectNode(Node node1, Node node2)
+        public bool ConnectNode(INode node1, INode node2)
         {
             Logger.Debug("NodeConnector.ConnectNode().StartLog-------------------------");
             
@@ -140,7 +148,7 @@ namespace GraphConnectEngine.Node
             return true;
         }
         
-        public bool DisconnectNode(Node node1, Node node2)
+        public bool DisconnectNode(INode node1, INode node2)
         {
 
             if (node1.Graph.Connector != this || node2.Graph.Connector != this)
@@ -167,7 +175,7 @@ namespace GraphConnectEngine.Node
             return true;
         }
         
-        public bool DisconnectAllNode(Node node)
+        public bool DisconnectAllNode(INode node)
         {
             if (node == null)
             {
@@ -197,11 +205,11 @@ namespace GraphConnectEngine.Node
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
-        private void Register(Node node1, Node node2)
+        private void Register(INode node1, INode node2)
         {
             if (!_dict.ContainsKey(node1))
             {
-                _dict[node1] = new List<Node>();
+                _dict[node1] = new List<INode>();
             }
 
             _dict[node1].Add(node2);
@@ -212,7 +220,7 @@ namespace GraphConnectEngine.Node
         /// </summary>
         /// <param name="node1"></param>
         /// <param name="node2"></param>
-        private void Remove(Node node1, Node node2)
+        private void Remove(INode node1, INode node2)
         {
             if (_dict.ContainsKey(node1))
             {
@@ -228,7 +236,7 @@ namespace GraphConnectEngine.Node
         /// ノードの情報をLoggerにダンプする
         /// </summary>
         /// <param name="node"></param>
-        public void DumpNode(Node node)
+        public void DumpNode(INode node)
         {
             Logger.Debug($"[NodeConnector] Dump of {node}");
             Logger.Debug($"Type : {node.GetType().FullName}");

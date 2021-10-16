@@ -27,9 +27,9 @@ namespace GraphConnectEngine.Node
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(Node resolver)
+        public override bool CanAttach(INode anotherNode)
         {
-            if (resolver is OutProcessNode outNode)
+            if (anotherNode is OutProcessNode outNode)
             {
                 return Graph.Connector.GetOtherNodes(this).Length == 0;
             }

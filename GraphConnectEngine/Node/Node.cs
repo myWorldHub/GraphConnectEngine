@@ -24,7 +24,7 @@ namespace GraphConnectEngine.Node
         
         public abstract bool IsAttachableNodeType(Type type);
 
-        public abstract bool CanAttach(Node node);
+        public abstract bool CanAttach(INode node);
         
         public object GetData(string key)
         {

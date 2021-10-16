@@ -34,10 +34,10 @@ namespace GraphConnectEngine.Node
 
     public class NodeConnectEventArgs : EventArgs
     {
-        public readonly GraphConnectEngine.Node.Node SenderNode;
-        public readonly GraphConnectEngine.Node.Node OtherNode;
+        public readonly INode SenderNode;
+        public readonly INode OtherNode;
 
-        public NodeConnectEventArgs(GraphConnectEngine.Node.Node node1, GraphConnectEngine.Node.Node node2)
+        public NodeConnectEventArgs(INode node1, INode node2)
         {
             SenderNode = node1;
             OtherNode = node2;

@@ -29,9 +29,9 @@ namespace GraphConnectEngine.Node
         /// <summary>
         /// 指定されたノードと接続できる状態かどうかを確認する
         /// </summary>
-        /// <param name="node">ノード</param>
+        /// <param name="anotherNode">ノード</param>
         /// <returns></returns>
-        bool CanAttach(Node node);
+        bool CanAttach(INode anotherNode);
 
         /// <summary>
         /// データを取得する
