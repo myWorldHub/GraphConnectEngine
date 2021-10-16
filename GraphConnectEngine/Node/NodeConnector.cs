@@ -104,7 +104,7 @@ namespace GraphConnectEngine.Node
 
             if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
-                Logger.Error("Error : Connector is not current Connector.");
+                Logger.Error("Error : Connector is not this Connector.");
                 Logger.Debug("NodeConnector.ConnectNode().Fail");
                 return false;
             }
@@ -151,20 +151,31 @@ namespace GraphConnectEngine.Node
         public bool DisconnectNode(INode node1, INode node2)
         {
 
+            Logger.Debug("NodeConnector.DisconnectNode().StartLog-------------------------");
+
+            DumpNode(node1);
+            DumpNode(node2);
+            
             if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
+                Logger.Error("Error : Connector is not this Connector.");
+                Logger.Debug("NodeConnector.DisconnectNode().Fail");
                 return false;
             }
             
             //接続確認
             if (!IsConnected(node1, node2) && !IsConnected(node2, node1))
             {
+                Logger.Error("Error : not connected.");
+                Logger.Debug("NodeConnector.DisconnectNode().Fail");
                 return false;
             }
             
             //接続を切る
             Remove(node1,node2);
             Remove(node2,node1);
+
+            Logger.Debug("NodeConnector.DisconnectNode().Removed");
             
             InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
             
