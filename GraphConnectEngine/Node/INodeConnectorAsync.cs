@@ -1,10 +1,12 @@
+using System.Threading.Tasks;
+
 namespace GraphConnectEngine.Node
 {
     /// <summary>
     /// Node同士がどのように繋がっているか管理する
     ///
     /// </summary>
-    interface INodeConnector : INodeStatusListener
+    interface INodeConnectorAsync : INodeStatusListener
     {
 
         /// <summary>
@@ -13,14 +15,14 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T[] GetOtherNodes<T>(Node key);
+        Task<T[]> GetOtherNodesAsync<T>(Node key);
 
         /// <summary>
         /// 繋がれているノードを取得する
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        Node[] GetOtherNodes(Node key);
+        Task<Node[]> GetOtherNodesAsync(Node key);
 
         /// <summary>
         /// 繋がれているノードをキャストして取得する
@@ -30,7 +32,7 @@ namespace GraphConnectEngine.Node
         /// <param name="result"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        bool TryGetOtherNodes<T>(Node key, out T[] result);
+        Task<bool> TryGetOtherNodesAsync<T>(Node key, out T[] result);
 
         /// <summary>
         /// 繋がれているノードを取得する
@@ -39,7 +41,7 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryGetOtherNodes(Node key, out Node[] result);
+        Task<bool> TryGetOtherNodesAsync(Node key, out Node[] result);
         
         /// <summary>
         /// 繋がれているノードをキャストして取得する
@@ -49,7 +51,7 @@ namespace GraphConnectEngine.Node
         /// <param name="result"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        bool TryGetAnotherNode<T>(Node key, out T result) where T : Node;
+        Task<bool> TryGetAnotherNodeAsync<T>(Node key, out T result) where T : Node;
         /// <summary>
         /// 繋がれているノードを取得する
         /// 繋がれていない場合はfalseを返す
@@ -57,7 +59,7 @@ namespace GraphConnectEngine.Node
         /// <param name="key"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryGetAnotherNode(Node key, out Node result);
+        Task<bool> TryGetAnotherNodeAsync(Node key, out Node result);
 
         /// <summary>
         /// node1がnode2と繋がっているかチェック(node1のみ)
@@ -65,7 +67,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        bool IsConnected(Node node1, Node node2);
+        Task<bool> IsConnectedAsync(Node node1, Node node2);
 
         /// <summary>
         /// ノードとノードを繋ぐ
@@ -73,7 +75,7 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        bool ConnectNode(Node node1, Node node2);
+        Task<bool> ConnectNodeAsync(Node node1, Node node2);
 
         /// <summary>
         /// ノードを切断する
@@ -81,13 +83,13 @@ namespace GraphConnectEngine.Node
         /// <param name="node1"></param>
         /// <param name="node2"></param>
         /// <returns></returns>
-        bool DisconnectNode(Node node1, Node node2);
+        Task<bool> DisconnectNodeAsync(Node node1, Node node2);
 
         /// <summary>
         /// 指定されたノードの接続情報を消す
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        bool DisconnectAllNode(Node node);
+        Task<bool> DisconnectAllNodeAsync(Node node);
     }
 }
