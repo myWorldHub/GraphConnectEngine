@@ -4,23 +4,15 @@ using System.Collections.Generic;
 namespace GraphConnectEngine.Node
 {
     /// <summary>
-    /// Node同士がどのように繋がっているか管理する
-    ///
-    /// TODO インターフェースを作って、Async対応もする
+    /// INodeConnectorのサンプル実装
     /// </summary>
-    public class NodeConnector : INodeStatusListener
+    public class NodeConnector : INodeConnector
     {
 
         private readonly Dictionary<Node, List<Node>> _dict = new Dictionary<Node, List<Node>>();
 
-        /// <summary>
-        /// ノードとノードが接続された時に呼ばれるイベント
-        /// </summary>
         public event EventHandler<NodeConnectEventArgs> OnConnect;
         
-        /// <summary>
-        /// ノードとノードが切断された時に呼ばれるイベント
-        /// </summary>
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
 
         public void InvokeConnectEvent(NodeConnectEventArgs args)
@@ -33,12 +25,6 @@ namespace GraphConnectEngine.Node
             OnDisconnect?.Invoke(this, args);
         }
 
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// </summary>
-        /// <param name="key"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
         public T[] GetOtherNodes<T>(Node key)
         {
             if (!_dict.ContainsKey(key))
@@ -51,24 +37,12 @@ namespace GraphConnectEngine.Node
 
             return  list.ToArray();
         }
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        
         public Node[] GetOtherNodes(Node key)
         {
             return _dict.ContainsKey(key) ? _dict[key].ToArray() : new Node[0];
         }
-
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        
         public bool TryGetOtherNodes<T>(Node key, out T[] result)
         {
             result = null;
@@ -85,84 +59,24 @@ namespace GraphConnectEngine.Node
             return list.Count != 0;
         }
         
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
         public bool TryGetOtherNodes(Node key, out Node[] result)
         {
             result = _dict.ContainsKey(key) ? _dict[key].ToArray() : null;
             return result != null;
         }
-
-        /// <summary>
-        /// 繋がれているノードをキャストして取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        
         public bool TryGetAnotherNode<T>(Node key, out T result) where T : Node
         {
             result = _dict.ContainsKey(key) ? _dict[key][0] as T: null;
             return result != null;
         }
         
-        /// <summary>
-        /// 繋がれているノードを取得する
-        /// 繋がれていない場合はfalseを返す
-        /// </summary>
-        /// <param name="key"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
         public bool TryGetAnotherNode(Node key, out Node result)
         {
             result = _dict.ContainsKey(key) ? _dict[key][0] : null;
             return result != null;
         }
 
-        /// <summary>
-        /// node1にnode2を繋ぐ(node1のみ)
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        private void Register(Node node1, Node node2)
-        {
-            if (!_dict.ContainsKey(node1))
-            {
-                _dict[node1] = new List<Node>();
-            }
-
-            _dict[node1].Add(node2);
-        }
-
-        /// <summary>
-        /// node1からnode2を切り離す(node1のみ)
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        private void Remove(Node node1, Node node2)
-        {
-            if (_dict.ContainsKey(node1))
-            {
-                _dict[node1].Remove(node2);
-                if (_dict[node1].Count == 0)
-                {
-                    _dict.Remove(node1);
-                }
-            }
-        }
-
-        /// <summary>
-        /// node1がnode2と繋がっているかチェック(node1のみ)
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns></returns>
         public bool IsConnected(Node node1, Node node2)
         {
             if (_dict.ContainsKey(node1))
@@ -172,20 +86,7 @@ namespace GraphConnectEngine.Node
             
             return false;
         }
-
-        /// <summary>
-        /// ノードとノードを繋ぐ
-        /// 
-        /// メモ : 接続する時に呼ぶ順
-        /// ConnectNode
-        /// IsAttachableGraphType
-        /// CanAttach
-        /// Register
-        /// OnConnect
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns></returns>
+        
         public bool ConnectNode(Node node1, Node node2)
         {
             Logger.Debug("NodeConnector.ConnectNode().StartLog-------------------------");
@@ -238,13 +139,7 @@ namespace GraphConnectEngine.Node
             
             return true;
         }
-
-        /// <summary>
-        /// ノードを切断する
-        /// </summary>
-        /// <param name="node1"></param>
-        /// <param name="node2"></param>
-        /// <returns></returns>
+        
         public bool DisconnectNode(Node node1, Node node2)
         {
 
@@ -271,12 +166,7 @@ namespace GraphConnectEngine.Node
             
             return true;
         }
-
-        /// <summary>
-        /// 指定されたノードの接続情報を消す
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
+        
         public bool DisconnectAllNode(Node node)
         {
             if (node == null)
@@ -300,6 +190,38 @@ namespace GraphConnectEngine.Node
             _dict.Remove(node);
 
             return true;
+        }
+
+        /// <summary>
+        /// node1にnode2を繋ぐ(node1のみ)
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        private void Register(Node node1, Node node2)
+        {
+            if (!_dict.ContainsKey(node1))
+            {
+                _dict[node1] = new List<Node>();
+            }
+
+            _dict[node1].Add(node2);
+        }
+
+        /// <summary>
+        /// node1からnode2を切り離す(node1のみ)
+        /// </summary>
+        /// <param name="node1"></param>
+        /// <param name="node2"></param>
+        private void Remove(Node node1, Node node2)
+        {
+            if (_dict.ContainsKey(node1))
+            {
+                _dict[node1].Remove(node2);
+                if (_dict[node1].Count == 0)
+                {
+                    _dict.Remove(node1);
+                }
+            }
         }
 
         /// <summary>
