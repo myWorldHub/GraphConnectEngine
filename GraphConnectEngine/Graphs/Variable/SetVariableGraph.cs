@@ -55,8 +55,8 @@ namespace GraphConnectEngine.Graphs.Variable
                 OutItemNodes[0].SetItemType(rs.Value);
             }
         }
-        
-        public override string GetGraphName() => "Set Variable Graph";
+
+        public override string GraphName => "Set Variable Graph";
         
     }
 }

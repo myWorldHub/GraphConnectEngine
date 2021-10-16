@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using GraphConnectEngine.Node;
 
 namespace GraphConnectEngine
@@ -13,6 +14,12 @@ namespace GraphConnectEngine
         /// ProcessCallArgsなどで利用される
         /// </summary>
         string Id { get; set; }
+
+        /// <summary>
+        /// グラフ名を取得する
+        /// </summary>
+        /// <returns></returns>
+        string GraphName { get; }
         
         /// <summary>
         /// ノードのコネクター

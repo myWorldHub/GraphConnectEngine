@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graphs.Operator
         public GreaterThanOperatorGraph(NodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_GreaterThan)
         {
         }
-        
-        public override string GetGraphName() => "Greater Than Graph";
+
+        public override string GraphName => "Greater Than Graph";
     }
 }

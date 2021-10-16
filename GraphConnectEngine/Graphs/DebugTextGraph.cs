@@ -40,6 +40,6 @@ namespace GraphConnectEngine.Graphs
             }, OutProcessNodes[0]);
         }
 
-        public override string GetGraphName() => "Debug Text Graph";
+        public override string GraphName => "Debug Text Graph";
     }
 }

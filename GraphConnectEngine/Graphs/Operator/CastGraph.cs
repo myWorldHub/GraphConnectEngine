@@ -95,6 +95,6 @@ namespace GraphConnectEngine.Graphs.Operator
             return Task.FromResult(ProcessCallResult.Success(new object[] {a}, OutProcessNodes[0]));
         }
 
-        public override string GetGraphName() => "CastGraph<"+typeof(T).Name+">";
+        public override string GraphName => "CastGraph<"+typeof(T).Name+">";
     }
 }

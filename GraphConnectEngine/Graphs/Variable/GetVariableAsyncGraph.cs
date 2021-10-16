@@ -57,6 +57,6 @@ namespace GraphConnectEngine.Graphs.Variable
             }
         }
 
-        public override string GetGraphName() => "Get Variable Graph";
+        public override string GraphName => "Get Variable Graph";
     }
 }

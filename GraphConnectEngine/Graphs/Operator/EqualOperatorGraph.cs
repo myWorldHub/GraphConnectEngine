@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graphs.Operator
         public EqualOperatorGraph(NodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Equality)
         {
         }
-        
-        public override string GetGraphName()=> "Equal Operator Graph";
+
+        public override string GraphName  => "Equal Operator Graph";
     }
 }

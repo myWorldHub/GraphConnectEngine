@@ -32,6 +32,6 @@ namespace GraphConnectEngine.Graphs.Value
             return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNodes[0]));
         }
 
-        public override string GetGraphName() => "Value<" + typeof(T).Name + "> Graph";
+        public override string GraphName => "Value<" + typeof(T).Name + "> Graph";
     }
 }

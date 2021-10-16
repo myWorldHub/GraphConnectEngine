@@ -14,6 +14,8 @@ namespace GraphConnectEngine
     public abstract class Graph : IGraph,IDisposable
     {
         public string Id { get; set; }
+
+        public abstract string GraphName { get; }
         
         public INodeConnector Connector { get; }
         
@@ -32,9 +34,9 @@ namespace GraphConnectEngine
         /// IdはコンストラクタでHashCodeで割り当てられる
         ///
         /// TODO IDを引数に入れる
+        /// ID : 識別用のID(全てのグラフのインスタンスでユニークである必要がある)
         /// </summary>
         /// <param name="connector">コネクター</param>
-        /// <param name="id">識別用のID(全てのグラフのインスタンスでユニークである必要がある)</param>
         /// <param name="createInProcessNode">InProcessNodeを自動生成する</param>
         /// <param name="createOutProcessNode">OutProcessNodeを自動生成する</param>
         public Graph(INodeConnector connector,bool createInProcessNode = true,bool createOutProcessNode = true)
@@ -57,7 +59,7 @@ namespace GraphConnectEngine
 
         public async Task<InvokeResult> Invoke(object sender,ProcessCallArgs args)
         {
-            string myName = $"{GetGraphName()}[{Id}]";
+            string myName = $"{GraphName}[{Id}]";
 
             //イベント
             Logger.Debug($"GraphBase<{myName}>.Invoke()");
@@ -218,7 +220,7 @@ namespace GraphConnectEngine
         
         public async Task<InvokeResult> InvokeWithoutArgs(bool callOutProcess, object[] parameters)
         {
-            string myName = $"{GetGraphName()}[{Id}]";
+            string myName = $"{GraphName}[{Id}]";
 
             Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs()");
 
@@ -259,12 +261,6 @@ namespace GraphConnectEngine
         }
 
         public abstract Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
-        
-        /// <summary>
-        /// グラフ名を取得する
-        /// </summary>
-        /// <returns></returns>
-        public abstract string GetGraphName();
 
         /// <summary>
         /// ノードをグラフに追加する
