@@ -15,8 +15,10 @@ namespace GraphConnectEngine.Graphs.Statement
         
         public IfStatementGraph(INodeConnector connector) : base(connector)
         {
-            AddNode(new InItemNode(this,typeof(bool),"expression"));
-            AddNode(new OutItemNode(this,typeof(bool),0,"expression"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(bool), "expression");
+            
+            AddNode(new InItemNode(this,resolver));
+            AddNode(new OutItemNode(this, resolver,0));
 
             AddNode(new OutProcessNode(this));
         }

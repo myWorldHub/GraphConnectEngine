@@ -12,8 +12,9 @@ namespace GraphConnectEngine.Node
 
         public string ItemName { get; }
 
-        public ItemTypeResolver(string itemName)
+        public ItemTypeResolver(Type type,string itemName)
         {
+            _itemType = type;
             ItemName = itemName;
         }
 

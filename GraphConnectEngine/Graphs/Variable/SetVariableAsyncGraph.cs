@@ -12,8 +12,9 @@ namespace GraphConnectEngine.Graphs.Variable
 
         public SetVariableAsyncGraph(INodeConnector connector, IVariableHolderAsync holder) : base(connector,holder)
         {
-            AddNode(new InItemNode(this, typeof(void),"Value"));
-            AddNode(new OutItemNode(this,typeof(void),0,"Value"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
+            AddNode(new InItemNode(this, resolver));
+            AddNode(new OutItemNode(this, resolver,0));
         }
 
         public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
@@ -38,8 +39,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (await Holder.ContainsKeyAsync(VariableName))
             {
                 var rs = await Holder.TryGetVariableTypeAsync(VariableName);
-                InItemNodes[0].SetItemType(rs.Value);
-                OutItemNodes[0].SetItemType(rs.Value);
+                InItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 
@@ -51,8 +51,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (await Holder.ContainsKeyAsync(VariableName))
             {
                 var rs = await Holder.TryGetVariableTypeAsync(VariableName);
-                InItemNodes[0].SetItemType(rs.Value);
-                OutItemNodes[0].SetItemType(rs.Value);
+                InItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 

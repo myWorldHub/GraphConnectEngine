@@ -24,7 +24,7 @@ namespace GraphConnectEngine.Graphs.Value
         public ValueGraph(INodeConnector connector,T defaultValue) : base(connector)
         {
             Value = defaultValue;
-            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
+            AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"),0));
         }
 
         public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)

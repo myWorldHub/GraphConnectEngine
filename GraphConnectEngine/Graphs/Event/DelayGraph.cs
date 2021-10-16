@@ -10,8 +10,9 @@ namespace GraphConnectEngine.Graphs.Event
     {
         public DelayGraph(INodeConnector connector) : base(connector)
         {
-            AddNode(new InItemNode(this,typeof(int),"Time"));
-            AddNode(new OutItemNode(this, typeof(int), 0, "Time"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(int), "Time");
+            AddNode(new InItemNode(this, resolver));
+            AddNode(new OutItemNode(this, resolver,0));
         }
 
         public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)

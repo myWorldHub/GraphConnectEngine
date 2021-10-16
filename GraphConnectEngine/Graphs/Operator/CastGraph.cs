@@ -15,8 +15,8 @@ namespace GraphConnectEngine.Graphs.Operator
         
         public CastGraph(INodeConnector connector) : base(connector)
         {
-            AddNode(new InItemNode(this,typeof(object),"Object"));
-            AddNode(new OutItemNode(this,typeof(T),0,"Object"));
+            AddNode(new InItemNode(this,new ItemTypeResolver(typeof(object),"Object")));
+            AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Object"),0));
 
             var t = typeof(T);
             if (t == typeof(bool))

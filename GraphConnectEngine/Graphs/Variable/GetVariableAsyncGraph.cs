@@ -14,7 +14,8 @@ namespace GraphConnectEngine.Graphs.Variable
 
         public GetVariableAsyncGraph(INodeConnector connector,IVariableHolderAsync holder) : base(connector,holder)
         {
-            AddNode(new OutItemNode(this, typeof(void), 0,"Value"));
+            IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
+            AddNode(new OutItemNode(this, resolver,0));
         }
 
 
@@ -41,7 +42,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (await Holder.ContainsKeyAsync(VariableName))
             {
                 var rs = await Holder.TryGetVariableTypeAsync(VariableName);
-                OutItemNodes[0].SetItemType(rs.Value);
+                OutItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 
@@ -53,7 +54,7 @@ namespace GraphConnectEngine.Graphs.Variable
             if (await Holder.ContainsKeyAsync(VariableName))
             {
                 var rs = await Holder.TryGetVariableTypeAsync(VariableName);
-                OutItemNodes[0].SetItemType(rs.Value);
+                OutItemNodes[0].TypeResolver.SetItemType(rs.Value);
             }
         }
 

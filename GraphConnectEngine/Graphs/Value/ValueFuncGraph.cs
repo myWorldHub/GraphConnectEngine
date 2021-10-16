@@ -22,7 +22,7 @@ namespace GraphConnectEngine.Graphs.Value
         public ValueFuncGraph(INodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
         {
             _valueFunc = valueFunc;
-            AddNode(new OutItemNode(this, typeof(T), 0,"Value"));
+            AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"), 0));
         }
 
         
