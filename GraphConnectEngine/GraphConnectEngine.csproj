@@ -71,6 +71,7 @@
         <Compile Include="InvokeResult.cs" />
         <Compile Include="IProcessCall.cs" />
         <Compile Include="Logger.cs" />
+        <Compile Include="Node\INodeConnector.cs" />
         <Compile Include="Node\INodeStatusListener.cs" />
         <Compile Include="Node\Node.cs" />
         <Compile Include="Node\IItemTypeResolver.cs" />
