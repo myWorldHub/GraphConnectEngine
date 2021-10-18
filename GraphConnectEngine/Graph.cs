@@ -23,11 +23,9 @@ namespace GraphConnectEngine
         public IList<OutProcessNode> OutProcessNodes { get; }
         public IList<InItemNode> InItemNodes { get; }
         public IList<OutItemNode> OutItemNodes { get; }
-
-        /// <summary>
-        /// 実行ステータスのリスナ
-        /// </summary>
+        
         public event EventHandler<GraphStatusEventArgs> OnStatusChanged;
+
 
         /// <summary>
         /// コンストラクタ

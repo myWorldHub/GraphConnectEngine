@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine
@@ -11,7 +11,7 @@ namespace GraphConnectEngine
     {
         /// <summary>
         /// グラフを識別するための一意なID
-        /// ProcessCallArgsなどで利用される
+        /// ProcessCallArgsで利用される
         /// </summary>
         string Id { get; set; }
 
@@ -45,5 +45,32 @@ namespace GraphConnectEngine
         /// OutItemNodeのリスト
         /// </summary>
         IList<OutItemNode> OutItemNodes { get; }
+
+        /// <summary>
+        /// 実行ステータスのリスナ
+        /// </summary>
+        public event EventHandler<GraphStatusEventArgs> OnStatusChanged;
+    }
+
+    /// <summary>
+    /// グラフの状態に関わるイベント用
+    /// </summary>
+    public class GraphStatusEventArgs : EventArgs
+    {
+        public enum EventType
+        {
+            InvokeCalled,
+            ParamError,
+            ProcessStart,
+            ProcessSuccess,
+            ProcessFail,
+            CacheUsed,
+            CacheError,
+            LoopDetected,
+            UnknownError
+        }
+
+        public EventType Type;
+        public ProcessCallArgs Args;
     }
 }
