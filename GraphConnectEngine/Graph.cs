@@ -36,7 +36,7 @@ namespace GraphConnectEngine
         /// <param name="connector">コネクター</param>
         /// <param name="createInProcessNode">InProcessNodeを自動生成する</param>
         /// <param name="createOutProcessNode">OutProcessNodeを自動生成する</param>
-        public Graph(INodeConnector connector,bool createInProcessNode = true,bool createOutProcessNode = true)
+        protected Graph(INodeConnector connector,bool createInProcessNode = true,bool createOutProcessNode = true)
         {
             Id = GetHashCode().ToString();
             
