@@ -30,9 +30,7 @@ namespace GraphConnectEngine.Graphs.Operator
             AddNode(new InItemNode(this, resolver1,typeCheckOnAtatchFunc:(t1, t2) => TypeChecker(0, t1, t2)));
             AddNode(new InItemNode(this, resolver2,typeCheckOnAtatchFunc: (t1, t2) => TypeChecker(1, t1, t2)));
 
-            AddNode(new OutItemNode(this, resolver1,0));
-            AddNode(new OutItemNode(this, resolver2,1));
-            AddNode(new OutItemNode(this, resolver3, 2));
+            AddNode(new OutItemNode(this, resolver3,0));
 
             InItemNodes[0].OnConnect += OnConnected;
             InItemNodes[1].OnConnect += OnConnected;
@@ -44,31 +42,25 @@ namespace GraphConnectEngine.Graphs.Operator
             _computeFunc = null;
 
             //getしておく
-            var i1 = InItemNodes[0];
-            var i2 = InItemNodes[1];
-            var o1 = OutItemNodes[0];
-            var o2 = OutItemNodes[1];
-            var resultNode = OutItemNodes[2];
+            var resultNode = OutItemNodes[0];
 
-            //取得
-            var senderNode = (InItemNode) args.SenderNode;
-            var connectedNode = (OutItemNode) args.OtherNode;
-            var otherInNode = senderNode == i1 ? i2 : i1;
-
-            //確認
-            (senderNode == i1 ? o1 : o2).TypeResolver.SetItemType(connectedNode.TypeResolver.GetItemType());
-            if (Connector.TryGetAnotherNode(otherInNode, out OutItemNode oi))
+            //取得 完全評価
+            if (!Connector.TryGetAnotherNode(InItemNodes[0], out OutItemNode o1) |
+                !Connector.TryGetAnotherNode(InItemNodes[1], out OutItemNode o2))
             {
-                if (OperatorChecker.CheckOperator(_operator, o1.TypeResolver.GetItemType(), o2.TypeResolver.GetItemType(),
-                    out Type resultType, out _computeFunc))
-                {
-                    resultNode.TypeResolver.SetItemType(resultType);
-                }
-                else
-                {
-                    _computeFunc = null;
-                    resultNode.TypeResolver.SetItemType(typeof(void));
-                }
+                _computeFunc = null;
+                return;
+            }
+
+            if (OperatorChecker.CheckOperator(_operator, o1.TypeResolver.GetItemType(), o2.TypeResolver.GetItemType(),
+                out Type resultType, out _computeFunc))
+            {
+                resultNode.TypeResolver.SetItemType(resultType);
+            }
+            else
+            {
+                _computeFunc = null;
+                resultNode.TypeResolver.SetItemType(typeof(void));
             }
         }
 
@@ -77,16 +69,8 @@ namespace GraphConnectEngine.Graphs.Operator
             if (_computeFunc == null)
                 return Task.FromResult(ProcessCallResult.Fail());
 
-            object a = parameters[0];
-            object b = parameters[1];
-            object r = _computeFunc(a, b);
-
-            return Task.FromResult(ProcessCallResult.Success(new[]
-            {
-                a,
-                b,
-                r
-            },OutProcessNodes[0]));
+            object r = _computeFunc(parameters[0], parameters[1]);
+            return Task.FromResult(ProcessCallResult.Success(new[] {r}, OutProcessNodes[0]));
         }
 
         private bool TypeChecker(int sender, Type myType, Type anotherType)
