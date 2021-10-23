@@ -5,7 +5,7 @@ namespace GraphConnectEngine.Variable
     /// <summary>
     /// VariableHolderが実装すべきイベントのインターフェース
     /// </summary>
-    public interface IVariableHolderEvent
+    public interface IVariableHolderEvent : IDisposable
     {
         /// <summary>
         /// 変数が作成された時に呼ばれるイベント
