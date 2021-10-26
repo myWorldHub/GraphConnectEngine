@@ -94,9 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a06bd5eab7615243827d9ee5c6803cd9d"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html#a06bd5eab7615243827d9ee5c6803cd9d">GetItemList</a> ()</td></tr>
 <tr class="memdesc:a06bd5eab7615243827d9ee5c6803cd9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムノードによって実行された結果のリストを取得する  <a href="class_graph_connect_engine_1_1_process_call_args.html#a06bd5eab7615243827d9ee5c6803cd9d">More...</a><br /></td></tr>
 <tr class="separator:a06bd5eab7615243827d9ee5c6803cd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49db22d59aa7b28b68b5a53b87c43355"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html#a49db22d59aa7b28b68b5a53b87c43355">TryGetResultOf</a> (<a class="el" href="interface_graph_connect_engine_1_1_i_graph.html">IGraph</a> graph)</td></tr>
-<tr class="memdesc:a49db22d59aa7b28b68b5a53b87c43355"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフの結果を取得できないか試す  <a href="class_graph_connect_engine_1_1_process_call_args.html#a49db22d59aa7b28b68b5a53b87c43355">More...</a><br /></td></tr>
-<tr class="separator:a49db22d59aa7b28b68b5a53b87c43355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad94de7608e1c402e80299e239102a9b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html#ad94de7608e1c402e80299e239102a9b4">TryGetResultOf</a> (<a class="el" href="interface_graph_connect_engine_1_1_i_graph.html">IGraph</a> graph, bool force=false)</td></tr>
+<tr class="memdesc:ad94de7608e1c402e80299e239102a9b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフの結果を取得できないか試す  <a href="class_graph_connect_engine_1_1_process_call_args.html#ad94de7608e1c402e80299e239102a9b4">More...</a><br /></td></tr>
+<tr class="separator:ad94de7608e1c402e80299e239102a9b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7c627e0385b29791fbaca25a2eba6a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html#ab7c627e0385b29791fbaca25a2eba6a1">SetResult</a> (<a class="el" href="interface_graph_connect_engine_1_1_i_graph.html">IGraph</a> graph, <a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a> result)</td></tr>
 <tr class="memdesc:ab7c627e0385b29791fbaca25a2eba6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">キャッシュを設定  <a href="class_graph_connect_engine_1_1_process_call_args.html#ab7c627e0385b29791fbaca25a2eba6a1">More...</a><br /></td></tr>
 <tr class="separator:ab7c627e0385b29791fbaca25a2eba6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -397,8 +397,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a49db22d59aa7b28b68b5a53b87c43355"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49db22d59aa7b28b68b5a53b87c43355">&#9670;&nbsp;</a></span>TryGetResultOf()</h2>
+<a id="ad94de7608e1c402e80299e239102a9b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad94de7608e1c402e80299e239102a9b4">&#9670;&nbsp;</a></span>TryGetResultOf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -410,8 +410,18 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a> GraphConnectEngine.ProcessCallArgs.TryGetResultOf </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_i_graph.html">IGraph</a>&#160;</td>
-          <td class="paramname"><em>graph</em></td><td>)</td>
+          <td class="paramname"><em>graph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>force</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -425,6 +435,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">graph</td><td></td></tr>
+    <tr><td class="paramname">force</td><td></td></tr>
   </table>
   </dd>
 </dl>
