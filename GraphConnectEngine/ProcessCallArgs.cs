@@ -14,15 +14,17 @@ namespace GraphConnectEngine
 
         private string _value;
 
-        private Dictionary<string, ProcessCallResult> _cache;
-        private Dictionary<string, ProcessCallArgs> _args;
+        private IDictionary<string, ProcessCallResult> _cache;
+        private IDictionary<string, ProcessCallArgs> _args;
+        private IDictionary<string, object> _dummyData;
 
 
-        private ProcessCallArgs(object hash, Dictionary<string, ProcessCallResult> cache, Dictionary<string, ProcessCallArgs> args)
+        private ProcessCallArgs(object hash, IDictionary<string, ProcessCallResult> cache, IDictionary<string, ProcessCallArgs> args, IDictionary<string,object> dummyData)
         {
             _value = hash.ToString();
             _cache = cache;
             _args = args;
+            _dummyData = dummyData;
         }
         
         /// <summary>
@@ -33,7 +35,7 @@ namespace GraphConnectEngine
         public static ProcessCallArgs Fire(object sender)
         {
             return new ProcessCallArgs($"{sender}_{Guid.NewGuid()}", new Dictionary<string, ProcessCallResult>(),
-                new Dictionary<string, ProcessCallArgs>());
+                new Dictionary<string, ProcessCallArgs>(),new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace GraphConnectEngine
                 result = null;
                 return false;
             }
-            result = new ProcessCallArgs(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash,_cache,_args);
+            result = new ProcessCallArgs(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash,_cache,_args,_dummyData);
             return true;
         }
 
@@ -167,6 +169,26 @@ namespace GraphConnectEngine
             _cache[graph.Id] = result;
             _args[graph.Id] = this;
             Logger.Debug($"ProcessCallArgs.SetResult() >  Registered Result cache of Graph<{graph.Id}> \n with : {GetValue()}");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public object GetDummyData(string key)
+        {
+            return _dummyData.ContainsKey(key) ? _dummyData[key] : null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void SetDummyData(string key, object value)
+        {
+            _dummyData[key] = value;
         }
 
         /// <summary>
