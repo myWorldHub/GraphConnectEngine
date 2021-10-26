@@ -102,8 +102,9 @@ namespace GraphConnectEngine
         /// グラフの結果を取得できないか試す
         /// </summary>
         /// <param name="graph"></param>
+        /// <param name="force"></param>
         /// <returns></returns>
-        public ProcessCallResult TryGetResultOf(IGraph graph)
+        public ProcessCallResult TryGetResultOf(IGraph graph,bool force = false)
         {
 
             Logger.Debug($"ProcessCallArgs.TryGetResultOf() > Trying to get cache of {graph.Id} \n From : {GetValue()}");
@@ -112,6 +113,11 @@ namespace GraphConnectEngine
             {
                 Logger.Debug("ProcessCallArgs.TryGetResultOf() >  Fail : No Cache is registered for this graph.");
                 return null;
+            }
+
+            if (force)
+            {
+                return _cache[graph.Id];
             }
 
             var targetArgs = _args[graph.Id];
