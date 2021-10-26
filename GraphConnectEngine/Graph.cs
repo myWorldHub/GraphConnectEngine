@@ -11,7 +11,7 @@ namespace GraphConnectEngine
     /// フローベースプログラミングの実行の一単位となるもの
     /// グラフにはノードが存在していて、違うグラフとノードを繋いで値を加工する
     /// </summary>
-    public abstract class Graph : IGraph,IDisposable
+    public abstract class Graph : IGraph
     {
         public string Id { get; set; }
 

@@ -7,7 +7,7 @@ namespace GraphConnectEngine
     /// <summary>
     /// グラフのインターフェース
     /// </summary>
-    public interface IGraph : IProcessCall
+    public interface IGraph : IProcessCall, IDisposable
     {
         /// <summary>
         /// グラフを識別するための一意なID
