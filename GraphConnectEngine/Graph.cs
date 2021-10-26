@@ -215,28 +215,31 @@ namespace GraphConnectEngine
             return procResult.ToInvokeResult();
         }
         
-        public async Task<InvokeResult> InvokeWithoutArgs(bool callOutProcess, object[] parameters)
+        public async Task<InvokeResult> InvokeWithoutCheck(ProcessCallArgs args,bool callOutProcess, object[] parameters)
         {
             string myName = $"{GraphName}[{Id}]";
 
-            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs()");
+            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck()");
 
-            var nargs = ProcessCallArgs.Fire(this);
+            if (args == null)
+            {
+                args = ProcessCallArgs.Fire(this);
+            }
 
             //イベント
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
                 Type = GraphStatusEventArgs.EventType.ProcessStart,
-                Args = nargs
+                Args = args
             });
 
             //Invoke
-            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().InvokeOnProcessCall");
-            ProcessCallResult procResult = await OnProcessCall(nargs, parameters);
-            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().InvokedOnProcessCall<{procResult}>");
+            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck().InvokeOnProcessCall");
+            ProcessCallResult procResult = await OnProcessCall(args, parameters);
+            Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck().InvokedOnProcessCall<{procResult}>");
 
             //キャッシュする
-            nargs.SetResult(this, procResult);
+            args.SetResult(this, procResult);
 
             //イベント
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
@@ -244,14 +247,14 @@ namespace GraphConnectEngine
                 Type = procResult.IsSucceeded
                     ? GraphStatusEventArgs.EventType.ProcessSuccess
                     : GraphStatusEventArgs.EventType.ProcessFail,
-                Args = nargs
+                Args = args
             });
 
             //OutProcessなら実行する
             if (procResult.IsSucceeded && callOutProcess)
             {
-                Logger.Debug($"GraphBase<{myName}>.InvokeWithoutArgs().OutProcessNode.CallProcess()");
-                await procResult.NextNode.CallProcess(nargs);
+                Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck().OutProcessNode.CallProcess()");
+                await procResult.NextNode.CallProcess(args);
             }
 
             return procResult.ToInvokeResult();

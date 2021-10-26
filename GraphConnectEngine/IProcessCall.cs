@@ -21,10 +21,11 @@ namespace GraphConnectEngine
         /// <summary>
         /// 実行データなしにグラフを実行する
         /// </summary>
+        /// <param name="args">実行データ</param>
         /// <param name="callOutProcess">OutProcessCallを起動するか</param>
         /// <param name="parameters">OnProcessCallに渡すパラメーター</param>
         /// <returns></returns>
-        Task<InvokeResult> InvokeWithoutArgs(bool callOutProcess, object[] parameters);
+        Task<InvokeResult> InvokeWithoutCheck(ProcessCallArgs args,bool callOutProcess, object[] parameters);
 
         /// <summary>
         /// グラフの実行の実装
