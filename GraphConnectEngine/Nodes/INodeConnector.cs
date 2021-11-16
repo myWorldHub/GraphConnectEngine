@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace GraphConnectEngine.Nodes
 {
     /// <summary>
@@ -49,6 +51,7 @@ namespace GraphConnectEngine.Nodes
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         bool TryGetAnotherNode<T>(INode key, out T result) where T : class;
+
         /// <summary>
         /// 繋がれているノードを取得する
         /// 繋がれていない場合はfalseを返す
@@ -88,5 +91,12 @@ namespace GraphConnectEngine.Nodes
         /// <param name="node"></param>
         /// <returns></returns>
         bool DisconnectAllNode(INode node);
+
+        
+        /// <summary>
+        /// すべての接続されているノードのペアを取得する
+        /// </summary>
+        /// <returns></returns>
+        ISet<(INode,INode)> GetAllNodePairs();
     }
 }

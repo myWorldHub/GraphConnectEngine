@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GraphConnectEngine.Nodes
 {
@@ -266,6 +267,21 @@ namespace GraphConnectEngine.Nodes
             {
                 Logger.Debug($"ItemType : ${iin.TypeResolver.GetItemType().FullName}");
             }
+        }
+
+        public ISet<(INode,INode)> GetAllNodePairs()
+        {
+            var set = new HashSet<(INode, INode)>();
+            var done = new HashSet<INode>();
+            foreach (INode key in _dict.Keys)
+            {
+                foreach (INode pair in _dict[key].Where(a => !done.Contains(a)))
+                {
+                    set.Add((key,pair));
+                }
+                done.Add(key);
+            }
+            return set;
         }
     }
 }

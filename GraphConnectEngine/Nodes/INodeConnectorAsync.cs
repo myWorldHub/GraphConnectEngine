@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Nodes
@@ -87,5 +88,12 @@ namespace GraphConnectEngine.Nodes
         /// <param name="node"></param>
         /// <returns></returns>
         Task<bool> DisconnectAllNodeAsync(INode node);
+
+        
+        /// <summary>
+        /// すべての接続されているノードのペアを取得する
+        /// </summary>
+        /// <returns></returns>
+        Task<ISet<(INode,INode)>> GetAllNodePairsAsync();
     }
 }
