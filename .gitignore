@@ -1,8 +1,13 @@
 bin/
 obj/
+*.dll
 /packages/
+
 riderModule.iml
 /_ReSharper.Caches/
-*.dll
+
+# Editor
 .idea/
+.vs/
+
 .DS_Store
