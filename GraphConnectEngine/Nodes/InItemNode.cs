@@ -155,5 +155,14 @@ namespace GraphConnectEngine.Nodes
 
             return ValueResult<object>.Fail();
         }
+
+        /// <summary>
+        /// ノードがデフォルト値を取得するための関数を持っているか確認する
+        /// </summary>
+        /// <returns></returns>
+        public bool HasDefaultItemGetter()
+        {
+            return _defaultItemGetter != null;
+        }
     }
 }
