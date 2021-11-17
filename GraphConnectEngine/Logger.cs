@@ -1,3 +1,4 @@
+using GraphConnectEngine.Nodes;
 using System;
 
 namespace GraphConnectEngine
@@ -57,7 +58,7 @@ namespace GraphConnectEngine
             }
         }
 
-        public static string Prefix(int level)
+        internal static string Prefix(int level)
         {
             var time = "[" + DateTime.Now.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds + "]";
             
@@ -71,6 +72,36 @@ namespace GraphConnectEngine
             }
 
             return time + "[Unknown]";
+        }
+
+
+
+        /// <summary>
+        /// ノードの情報をLoggerにダンプする
+        /// </summary>
+        /// <param name="node"></param>
+        public static void DumpNode(INode node)
+        {
+            if (LogLevel > LevelDebug)
+                return;
+            
+            Debug($"Dump of Node:{node}");
+            Debug($"Type : {node.GetType().FullName}");
+            Debug($"Graph : {node.Graph}");
+
+            if (node.Graph != null)
+            {
+                Debug($"Connector : {node.Graph.Connector}");
+            }
+            else
+            {
+                Debug($"Connector : Null");
+            }
+
+            if (node is IItemNode iin)
+            {
+                Debug($"ItemType : ${iin.TypeResolver.GetItemType().FullName}");
+            }
         }
     }
 }

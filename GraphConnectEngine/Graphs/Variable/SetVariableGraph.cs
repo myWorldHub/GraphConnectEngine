@@ -55,7 +55,7 @@ namespace GraphConnectEngine.Graphs.Variable
             }
         }
 
-        public override string GraphName => "Set Variable Graph";
+        public override string GraphName => "SetVariable";
         
     }
 }

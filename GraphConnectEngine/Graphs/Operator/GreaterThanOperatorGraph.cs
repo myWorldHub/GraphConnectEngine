@@ -11,6 +11,6 @@ namespace GraphConnectEngine.Graphs.Operator
         {
         }
 
-        public override string GraphName => "Greater Than Graph";
+        public override string GraphName => "GreaterThan";
     }
 }

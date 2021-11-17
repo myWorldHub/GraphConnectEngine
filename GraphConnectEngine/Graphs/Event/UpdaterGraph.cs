@@ -110,6 +110,6 @@ namespace GraphConnectEngine.Graphs.Event
             return Task.FromResult(ProcessCallResult.Success(Array.Empty<object>(), OutProcessNodes[0]));
         }
 
-        public override string GraphName =>  "Updater Graph";
+        public override string GraphName =>  "Updater";
     }
 }

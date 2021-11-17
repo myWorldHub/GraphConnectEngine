@@ -37,6 +37,6 @@ namespace GraphConnectEngine.Graphs.Value
             return ProcessCallResult.Success(new object[]{result.Value},OutProcessNodes[0]);
         }
 
-        public override string GraphName => "ValueFunc<" + typeof(T).Name + "> Graph";
+        public override string GraphName => "ValueFunc<" + typeof(T).Name + ">";
     }
 }

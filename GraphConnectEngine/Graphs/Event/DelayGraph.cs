@@ -22,6 +22,6 @@ namespace GraphConnectEngine.Graphs.Event
             return ProcessCallResult.Success(new object[] {time},OutProcessNodes[0]);
         }
 
-        public override string GraphName =>  "Delay Graph";
+        public override string GraphName =>  "Delay";
     }
 }

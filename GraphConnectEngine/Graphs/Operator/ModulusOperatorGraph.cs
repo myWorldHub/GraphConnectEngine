@@ -11,6 +11,6 @@ namespace GraphConnectEngine.Graphs.Operator
         {
         }
 
-        public override string GraphName => "Modulus Operator Graph";
+        public override string GraphName => "ModulusOperator";
     }
 }

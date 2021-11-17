@@ -98,10 +98,10 @@ namespace GraphConnectEngine.Nodes
         
         public bool ConnectNode(INode node1, INode node2)
         {
-            Logger.Debug("NodeConnector.ConnectNode().StartLog-------------------------");
-            
-            DumpNode(node1);
-            DumpNode(node2);
+            Logger.Debug("NodeConnector.ConnectNode().Start");
+
+            Logger.DumpNode(node1);
+            Logger.DumpNode(node2);
 
             if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
@@ -152,10 +152,10 @@ namespace GraphConnectEngine.Nodes
         public bool DisconnectNode(INode node1, INode node2)
         {
 
-            Logger.Debug("NodeConnector.DisconnectNode().StartLog-------------------------");
+            Logger.Debug("NodeConnector.DisconnectNode().Start");
 
-            DumpNode(node1);
-            DumpNode(node2);
+            Logger.DumpNode(node1);
+            Logger.DumpNode(node2);
             
             if (node1.Graph.Connector != this || node2.Graph.Connector != this)
             {
@@ -241,31 +241,6 @@ namespace GraphConnectEngine.Nodes
                 {
                     _dict.Remove(node1);
                 }
-            }
-        }
-
-        /// <summary>
-        /// ノードの情報をLoggerにダンプする
-        /// </summary>
-        /// <param name="node"></param>
-        public void DumpNode(INode node)
-        {
-            Logger.Debug($"[NodeConnector] Dump of {node}");
-            Logger.Debug($"Type : {node.GetType().FullName}");
-            Logger.Debug($"Graph : {node.Graph}");
-
-            if (node.Graph != null)
-            {
-                Logger.Debug($"Connector : {node.Graph.Connector}");
-            }
-            else
-            {
-                Logger.Debug($"Connector : Null");
-            }
-
-            if (node is IItemNode iin)
-            {
-                Logger.Debug($"ItemType : ${iin.TypeResolver.GetItemType().FullName}");
             }
         }
 

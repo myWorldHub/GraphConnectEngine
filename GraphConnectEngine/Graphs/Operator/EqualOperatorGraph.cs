@@ -11,6 +11,6 @@ namespace GraphConnectEngine.Graphs.Operator
         {
         }
 
-        public override string GraphName  => "Equal Operator Graph";
+        public override string GraphName  => "EqualOperator";
     }
 }
