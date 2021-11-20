@@ -26,7 +26,7 @@ namespace GraphConnectEngine.Graphs.Value
         }
 
         
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             //実行
             var result = await _valueFunc();

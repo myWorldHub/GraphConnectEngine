@@ -9,17 +9,17 @@ namespace GraphConnectEngine
     ///
     /// TODO 結果のデータも管理するのでメモリリーク注意
     /// </summary>
-    public class ProcessCallArgs
+    public class ProcessData
     {
 
         private string _value;
 
         private IDictionary<string, ProcessCallResult> _cache;
-        private IDictionary<string, ProcessCallArgs> _args;
+        private IDictionary<string, ProcessData> _args;
         private IDictionary<string, object> _dummyData;
 
 
-        private ProcessCallArgs(object hash, IDictionary<string, ProcessCallResult> cache, IDictionary<string, ProcessCallArgs> args, IDictionary<string,object> dummyData)
+        private ProcessData(object hash, IDictionary<string, ProcessCallResult> cache, IDictionary<string, ProcessData> args, IDictionary<string,object> dummyData)
         {
             _value = hash.ToString();
             _cache = cache;
@@ -32,10 +32,10 @@ namespace GraphConnectEngine
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
-        public static ProcessCallArgs Fire(object sender)
+        public static ProcessData Fire(object sender)
         {
-            return new ProcessCallArgs($"{sender}_{Guid.NewGuid()}", new Dictionary<string, ProcessCallResult>(),
-                new Dictionary<string, ProcessCallArgs>(),new Dictionary<string, object>());
+            return new ProcessData($"{sender}_{Guid.NewGuid()}", new Dictionary<string, ProcessCallResult>(),
+                new Dictionary<string, ProcessData>(),new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -45,14 +45,14 @@ namespace GraphConnectEngine
         /// <param name="isProcess"></param>
         /// <param name="result"></param>
         /// <returns></returns>
-        public bool TryAdd(string nextHash,bool isProcess, out ProcessCallArgs result)
+        public bool TryAdd(string nextHash,bool isProcess, out ProcessData result)
         {
             if (_value.Contains(nextHash))
             {
                 result = null;
                 return false;
             }
-            result = new ProcessCallArgs(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash,_cache,_args,_dummyData);
+            result = new ProcessData(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash,_cache,_args,_dummyData);
             return true;
         }
 

@@ -105,7 +105,7 @@ namespace GraphConnectEngine.Graphs.Event
             return false;
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             return Task.FromResult(ProcessCallResult.Success(Array.Empty<object>(), OutProcessNodes[0]));
         }

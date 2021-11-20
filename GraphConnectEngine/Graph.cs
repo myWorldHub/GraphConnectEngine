@@ -54,7 +54,7 @@ namespace GraphConnectEngine
                 AddNode(new OutProcessNode(this));
         }
 
-        public async Task<InvokeResult> Invoke(object sender,ProcessCallArgs args)
+        public async Task<InvokeResult> Invoke(object sender,ProcessData args)
         {
             string myName = $"{GraphName}[{Id}]";
 
@@ -83,7 +83,7 @@ namespace GraphConnectEngine
                 return cache.ToInvokeResult();
             }
 
-            ProcessCallArgs nargs;
+            ProcessData nargs;
 
             if (IsConnectedInProcessNode())
             {
@@ -215,7 +215,7 @@ namespace GraphConnectEngine
             return procResult.ToInvokeResult();
         }
         
-        public async Task<InvokeResult> InvokeWithoutCheck(ProcessCallArgs args,bool callOutProcess, object[] parameters)
+        public async Task<InvokeResult> InvokeWithoutCheck(ProcessData args,bool callOutProcess, object[] parameters)
         {
             string myName = $"{GraphName}[{Id}]";
 
@@ -223,7 +223,7 @@ namespace GraphConnectEngine
 
             if (args == null)
             {
-                args = ProcessCallArgs.Fire(this);
+                args = ProcessData.Fire(this);
             }
 
             //イベント
@@ -260,7 +260,7 @@ namespace GraphConnectEngine
             return procResult.ToInvokeResult();
         }
 
-        public abstract Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
+        public abstract Task<ProcessCallResult> OnProcessCall(ProcessData args,object[] parameters);
 
         /// <summary>
         /// ノードをグラフに追加する

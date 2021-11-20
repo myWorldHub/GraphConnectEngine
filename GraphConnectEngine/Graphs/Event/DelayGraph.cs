@@ -15,7 +15,7 @@ namespace GraphConnectEngine.Graphs.Event
             AddNode(new OutItemNode(this, resolver,0));
         }
 
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             int time = (int) parameters[0];
             await Task.Delay(time * 1000);

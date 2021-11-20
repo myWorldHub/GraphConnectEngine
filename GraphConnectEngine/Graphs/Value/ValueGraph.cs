@@ -27,7 +27,7 @@ namespace GraphConnectEngine.Graphs.Value
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"),0));
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             return Task.FromResult(ProcessCallResult.Success(new object[]{Value},OutProcessNodes[0]));
         }

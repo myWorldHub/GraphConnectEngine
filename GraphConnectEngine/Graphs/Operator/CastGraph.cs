@@ -62,7 +62,7 @@ namespace GraphConnectEngine.Graphs.Operator
             }
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             object value = parameters[0];
 

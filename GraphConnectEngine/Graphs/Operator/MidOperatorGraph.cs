@@ -64,7 +64,7 @@ namespace GraphConnectEngine.Graphs.Operator
             }
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             if (_computeFunc == null)
                 return Task.FromResult(ProcessCallResult.Fail());

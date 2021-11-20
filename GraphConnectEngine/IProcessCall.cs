@@ -16,7 +16,7 @@ namespace GraphConnectEngine
         /// <param name="sender">呼び出し元</param>
         /// <param name="args">実行データ</param>
         /// <returns></returns>
-        Task<InvokeResult> Invoke(object sender, ProcessCallArgs args);
+        Task<InvokeResult> Invoke(object sender, ProcessData args);
 
         /// <summary>
         /// 実行データなしにグラフを実行する
@@ -25,7 +25,7 @@ namespace GraphConnectEngine
         /// <param name="callOutProcess">OutProcessCallを起動するか</param>
         /// <param name="parameters">OnProcessCallに渡すパラメーター</param>
         /// <returns></returns>
-        Task<InvokeResult> InvokeWithoutCheck(ProcessCallArgs args,bool callOutProcess, object[] parameters);
+        Task<InvokeResult> InvokeWithoutCheck(ProcessData args,bool callOutProcess, object[] parameters);
 
         /// <summary>
         /// グラフの実行の実装
@@ -33,7 +33,7 @@ namespace GraphConnectEngine
         /// <param name="args">実行データ</param>
         /// <param name="parameters">InItemNodeから取得した値の配列</param>
         /// <returns></returns>
-        Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args,object[] parameters);
+        Task<ProcessCallResult> OnProcessCall(ProcessData args,object[] parameters);
     }
 
     /// <summary>
