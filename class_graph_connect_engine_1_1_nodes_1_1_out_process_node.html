@@ -92,9 +92,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab3c256d3686ccff1037e4b203ca470af"><td class="memItemLeft" align="right" valign="top"><a id="ab3c256d3686ccff1037e4b203ca470af"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>OutProcessNode</b> (<a class="el" href="interface_graph_connect_engine_1_1_i_graph.html">IGraph</a> parentGraph)</td></tr>
 <tr class="separator:ab3c256d3686ccff1037e4b203ca470af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f05c197ddbe6956c36e745444870bab"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#a8f05c197ddbe6956c36e745444870bab">CallProcess</a> (<a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a> args)</td></tr>
-<tr class="memdesc:a8f05c197ddbe6956c36e745444870bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">InProcessNodeのOnCalledを呼び、プロセスを伝播する  <a href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#a8f05c197ddbe6956c36e745444870bab">More...</a><br /></td></tr>
-<tr class="separator:a8f05c197ddbe6956c36e745444870bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79d129e5e1584cfdf59202e1aafca8df"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#a79d129e5e1584cfdf59202e1aafca8df">CallProcess</a> (ProcessData args)</td></tr>
+<tr class="memdesc:a79d129e5e1584cfdf59202e1aafca8df"><td class="mdescLeft">&#160;</td><td class="mdescRight">InProcessNodeのOnCalledを呼び、プロセスを伝播する  <a href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#a79d129e5e1584cfdf59202e1aafca8df">More...</a><br /></td></tr>
+<tr class="separator:a79d129e5e1584cfdf59202e1aafca8df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add991fed9ba61843413de2788b630efb"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#add991fed9ba61843413de2788b630efb">IsAttachableNodeType</a> (Type type)</td></tr>
 <tr class="memdesc:add991fed9ba61843413de2788b630efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数に指定されたノードの型が接続可能なものか確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#add991fed9ba61843413de2788b630efb">More...</a><br /></td></tr>
 <tr class="separator:add991fed9ba61843413de2788b630efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,8 +150,8 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
 <div class="textblock"><p>InProcessNodeを呼んでプロセスを伝播するノード </p>
 <p>CallProcessでプロセスを呼ぶ InProcessNodeとは複数繋ぐことができるが、実行順は保証されない</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a8f05c197ddbe6956c36e745444870bab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f05c197ddbe6956c36e745444870bab">&#9670;&nbsp;</a></span>CallProcess()</h2>
+<a id="a79d129e5e1584cfdf59202e1aafca8df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79d129e5e1584cfdf59202e1aafca8df">&#9670;&nbsp;</a></span>CallProcess()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +162,7 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
         <tr>
           <td class="memname">async Task&lt;bool&gt; GraphConnectEngine.Nodes.OutProcessNode.CallProcess </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_graph_connect_engine_1_1_process_call_args.html">ProcessCallArgs</a>&#160;</td>
+          <td class="paramtype">ProcessData&#160;</td>
           <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
         </tr>
