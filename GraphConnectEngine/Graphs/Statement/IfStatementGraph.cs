@@ -23,7 +23,7 @@ namespace GraphConnectEngine.Graphs.Statement
             AddNode(new OutProcessNode(this));
         }
 
-        public override Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             bool result = (bool)parameters[0];
             return Task.FromResult(ProcessCallResult.Success(

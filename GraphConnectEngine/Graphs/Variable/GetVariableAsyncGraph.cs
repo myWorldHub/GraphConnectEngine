@@ -19,7 +19,7 @@ namespace GraphConnectEngine.Graphs.Variable
         }
 
 
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             //Holderがない
             if (Holder == null)

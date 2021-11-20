@@ -62,7 +62,7 @@ namespace GraphConnectEngine.Nodes
         /// <param name="args">実行情報</param>
         /// <typeparam name="T">型</typeparam>
         /// <returns></returns>
-        public async Task<ValueResult<T>> TryGetValue<T>(ProcessCallArgs args)
+        public async Task<ValueResult<T>> TryGetValue<T>(ProcessData args)
         {
             Logger.Debug($"OutItemNode.TryGetValue<{typeof(T).FullName}>().InvokeParentGraph");
                         

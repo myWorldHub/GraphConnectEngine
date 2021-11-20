@@ -88,7 +88,7 @@ namespace GraphConnectEngine.Nodes
         /// <param name="args">プロセス情報</param>
         /// <typeparam name="T">型</typeparam>
         /// <returns></returns>
-        public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessCallArgs args)
+        public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessData args)
         {
             if (Graph.Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
@@ -112,7 +112,7 @@ namespace GraphConnectEngine.Nodes
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessCallArgs args)
+        public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessData args)
         {
             Logger.Debug("InItemNode.GerItemFromConnectedNode().Invoked");
             

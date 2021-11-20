@@ -24,7 +24,7 @@ namespace GraphConnectEngine.Graphs
             _updateText = updateText;
         }
 
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             var obj = parameters[0];
             var str = obj.ToString();

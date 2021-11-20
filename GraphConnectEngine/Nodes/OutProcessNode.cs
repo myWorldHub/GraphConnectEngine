@@ -22,7 +22,7 @@ namespace GraphConnectEngine.Nodes
         /// </summary>
         /// <param name="args">プロセス情報</param>
         /// <returns></returns>
-        public async Task<bool> CallProcess(ProcessCallArgs args)
+        public async Task<bool> CallProcess(ProcessData args)
         {
             Logger.Debug($"OutProcessNode.CallProcess() Start > {Graph.Id} > {args}");
 

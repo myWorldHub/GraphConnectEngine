@@ -17,7 +17,7 @@ namespace GraphConnectEngine.Graphs.Variable
             AddNode(new OutItemNode(this, resolver,0));
         }
 
-        public override async Task<ProcessCallResult> OnProcessCall(ProcessCallArgs args, object[] parameters)
+        public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             if (Holder == null)
                 return ProcessCallResult.Fail();

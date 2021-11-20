@@ -16,7 +16,7 @@ namespace GraphConnectEngine.Nodes
             Graph = parentGraph;
         }
 
-        public async Task<InvokeResult> OnCalled(object sender, ProcessCallArgs args)
+        public async Task<InvokeResult> OnCalled(object sender, ProcessData args)
         {
             return await Graph.Invoke(sender, args);
         }
