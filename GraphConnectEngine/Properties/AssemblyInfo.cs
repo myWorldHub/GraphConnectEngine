@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GraphConnectEngine")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Flow programming sdk")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("nananapo")]
 [assembly: AssemblyProduct("GraphConnectEngine")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]

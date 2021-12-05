@@ -18,13 +18,19 @@ namespace GraphConnectEngine.Variable
 
         Task<ValueResult<Type>> TryGetVariableTypeAsync(string key);
 
+        void CreateWithoutNotify(string key, object obj);
+
         Task<bool> TryCreateAsync(string key, object obj);
 
         Task<bool> TryCreateAsync(string key, Type type);
 
         Task<bool> UpdateAsync(string key, object obj);
 
+        void UpdateWithoutNotify(string key, object obj);
+
         Task<bool> RemoveAsync(string name);
+
+        void RemoveWithoutNotify(string name);
 
         Task<string[]> GetKeysAsync();
     }

@@ -38,6 +38,12 @@ namespace GraphConnectEngine.Variable
         /// <returns></returns>
         ValueResult<Type> TryGetVariableType(string key);
 
+        /// <summary>
+        /// 通知なしで作成
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        void CreateWithoutNotify(string key,object obj);
 
         /// <summary>
         /// 変数を作成する
@@ -65,11 +71,25 @@ namespace GraphConnectEngine.Variable
         bool Update(string key, object obj);
 
         /// <summary>
+        /// 通知なしで更新
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        void UpdateWithoutNotify(string key, object obj);
+
+        /// <summary>
         /// 変数を削除する
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         bool Remove(string name);
+
+        /// <summary>
+        /// 通知なしで削除
+        /// </summary>
+        /// <param name="name"></param>
+        void RemoveWithoutNotify(string name); 
 
         /// <summary>
         /// 変数名たちを取得する

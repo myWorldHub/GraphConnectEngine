@@ -59,7 +59,13 @@ namespace GraphConnectEngine.Variable
             var type = _types.ContainsKey(key) ? _types[key] : null;
             return ValueResult<Type>.Create(type != null,type);
         }
-        
+
+        public void CreateWithoutNotify(string key, object obj)
+        {
+            _items[key] = obj;
+            _types[key] = obj.GetType();
+        }
+
         public bool TryCreate(string key, object obj)
         {
             if (TryCreate(key,obj.GetType()))
@@ -87,7 +93,7 @@ namespace GraphConnectEngine.Variable
         {
             if (ContainsKey(key))
             {
-                if (obj != null && obj.GetType() != _types[key])
+                if (obj != null || obj.GetType() != _types[key])
                     return false;
 
                 _items[key] = obj;
@@ -97,6 +103,17 @@ namespace GraphConnectEngine.Variable
                 return true;
             }
             return false;
+        }
+
+        public void UpdateWithoutNotify(string key, object obj)
+        {
+            if (ContainsKey(key))
+            {
+                if (obj != null || obj.GetType() != _types[key])
+                    return;
+
+                _items[key] = obj;
+            }
         }
 
         public bool Remove(string name)
@@ -110,6 +127,15 @@ namespace GraphConnectEngine.Variable
                 return true;
             }
             return false;
+        }
+
+        public void RemoveWithoutNotify(string name)
+        {
+            if (ContainsKey(name))
+            {
+                _items.Remove(name);
+                _types.Remove(name);
+            }
         }
 
         public string[] GetKeys()

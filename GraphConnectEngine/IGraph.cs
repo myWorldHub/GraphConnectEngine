@@ -71,6 +71,6 @@ namespace GraphConnectEngine
         }
 
         public EventType Type;
-        public ProcessCallArgs Args;
+        public ProcessData Args;
     }
 }
