@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine.Graphs.Event
@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Graphs.Event
     /// </summary>
     public class DelayGraph : Graph
     {
-        public DelayGraph(INodeConnector connector) : base(connector)
+        public DelayGraph() : base()
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(int), "Time");
             AddNode(new InItemNode(this, resolver));

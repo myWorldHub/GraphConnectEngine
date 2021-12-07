@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graphs.Operator
 
         private Func<object, object> _lambda;
         
-        public CastGraph(INodeConnector connector) : base(connector)
+        public CastGraph() : base()
         {
             AddNode(new InItemNode(this,new ItemTypeResolver(typeof(object),"Object")));
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Object"),0));

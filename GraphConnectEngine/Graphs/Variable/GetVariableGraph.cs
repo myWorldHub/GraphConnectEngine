@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 using GraphConnectEngine.Variable;
 
@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Graphs.Variable
     public class GetVariableGraph : VariableGraph
     {
 
-        public GetVariableGraph(INodeConnector connector,IVariableHolder holder) : base(connector,holder)
+        public GetVariableGraph(INodeConnector connector,IVariableHolder holder) : base(holder)
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
             AddNode(new OutItemNode(this, resolver,0));

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
@@ -17,7 +17,7 @@ namespace GraphConnectEngine.Graphs
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="updateText">InItemNode[0] : Objectの値を実行時に渡される関数</param>
-        public DebugTextGraph(INodeConnector connector,Func<string, Task<bool>> updateText) : base(connector)
+        public DebugTextGraph(Func<string, Task<bool>> updateText) : base()
         {
             AddNode(new InItemNode(this, new ItemTypeResolver(typeof(object),"Object")));
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(string),"Text"),1));

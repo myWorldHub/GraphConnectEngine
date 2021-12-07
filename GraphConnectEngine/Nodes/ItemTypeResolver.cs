@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GraphConnectEngine.Nodes
 {
@@ -28,43 +28,19 @@ namespace GraphConnectEngine.Nodes
             return _itemType;
         }
 
-        public void SetItemType(Type type, bool tryReconnect = true)
+        public void SetItemType(Type type)
         {
-
             if (_itemType == type)
                 return;
 
-            //接続確認
-            if (_node.Graph.Connector.TryGetOtherNodes(_node, out var otherNodes))
+            //event
+            var from = _itemType;
+            _itemType = type;
+            OnTypeChanged?.Invoke(this, new TypeChangeEventArgs()
             {
-                //接続を切る
-                foreach (var onode in otherNodes)
-                {
-                    _node.Graph.Connector.DisconnectNode(_node, onode);
-                }
-
-                //event
-                var from = _itemType;
-                _itemType = type;
-                OnTypeChanged?.Invoke(this, new TypeChangeEventArgs()
-                {
-                    From = from,
-                    To = _itemType
-                });
-                
-                //再接続
-                if (tryReconnect)
-                {
-                    foreach (var onode in otherNodes)
-                    {
-                        _node.Graph.Connector.ConnectNode(_node, onode);
-                    }
-                }
-            }
-            else
-            {
-                _itemType = type;
-            }
+                From = from,
+                To = _itemType
+            });
         }
     }
 }

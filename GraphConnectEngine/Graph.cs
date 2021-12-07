@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
@@ -17,8 +17,6 @@ namespace GraphConnectEngine
 
         public abstract string GraphName { get; }
         
-        public INodeConnector Connector { get; }
-        
         public IList<InProcessNode> InProcessNodes { get; }
         public IList<OutProcessNode> OutProcessNodes { get; }
         public IList<InItemNode> InItemNodes { get; }
@@ -32,15 +30,13 @@ namespace GraphConnectEngine
         /// IdはコンストラクタでHashCodeで割り当てられる
         ///
         /// ID : 識別用のID(全てのグラフのインスタンスでユニークである必要がある)
+        /// TODO ID
         /// </summary>
-        /// <param name="connector">コネクター</param>
         /// <param name="createInProcessNode">InProcessNodeを自動生成する</param>
         /// <param name="createOutProcessNode">OutProcessNodeを自動生成する</param>
-        protected Graph(INodeConnector connector,bool createInProcessNode = true,bool createOutProcessNode = true)
+        protected Graph(bool createInProcessNode = true,bool createOutProcessNode = true)
         {
             Id = GetHashCode().ToString();
-            
-            Connector = connector;
             
             InProcessNodes = new List<InProcessNode>();
             OutProcessNodes = new List<OutProcessNode>();
@@ -54,7 +50,7 @@ namespace GraphConnectEngine
                 AddNode(new OutProcessNode(this));
         }
 
-        public async Task<InvokeResult> Invoke(object sender,ProcessData args)
+        public async Task<InvokeResult> Invoke(object sender,ProcessData proc)
         {
             string myName = $"{GraphName}[{Id}]";
 
@@ -64,11 +60,11 @@ namespace GraphConnectEngine
             OnStatusChanged?.Invoke(this,new GraphStatusEventArgs()
             {
                 Type = GraphStatusEventArgs.EventType.InvokeCalled,
-                Args = args
+                Args = proc
             });
             
             //キャッシュチェック
-            var cache = args.TryGetResultOf(this);
+            var cache = proc.TryGetResultOf(this);
             if (cache != null)
             {
                 //イベント
@@ -77,15 +73,14 @@ namespace GraphConnectEngine
                 OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                 {
                     Type = GraphStatusEventArgs.EventType.CacheUsed,
-                    Args = args
+                    Args = proc
                 });
 
                 return cache.ToInvokeResult();
             }
 
             ProcessData nargs;
-
-            if (IsConnectedInProcessNode())
+            if (InProcessNodes.Count > 0 && proc.Connector.TryGetAnotherNode(InProcessNodes[0], out var _))
             {
                 if (sender is OutItemNode)
                 {
@@ -97,14 +92,14 @@ namespace GraphConnectEngine
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.CacheError,
-                        Args = args
+                        Args = proc
                     });
 
                     return InvokeResult.Fail();
                 }
 
                 //ループ検知
-                if (!args.TryAdd(Id, true, out nargs))
+                if (!proc.TryAdd(Id, true, out nargs))
                 {
                     //イベント
                     Logger.Error("LoopException");
@@ -113,7 +108,7 @@ namespace GraphConnectEngine
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.LoopDetected,
-                        Args = args
+                        Args = proc
                     });
                     
                     return InvokeResult.Fail();
@@ -131,14 +126,14 @@ namespace GraphConnectEngine
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.UnknownError,
-                        Args = args
+                        Args = proc
                     });
 
                     return InvokeResult.Fail();
                 }
                 
                 //ループ検知
-                if (!args.TryAdd(Id, false, out nargs))
+                if (!proc.TryAdd(Id, false, out nargs))
                 {
                     //イベント
                     Logger.Error("LoopException");
@@ -147,7 +142,7 @@ namespace GraphConnectEngine
                     OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
                     {
                         Type = GraphStatusEventArgs.EventType.LoopDetected,
-                        Args = args
+                        Args = proc
                     });
                     
                     return InvokeResult.Fail();
@@ -215,31 +210,31 @@ namespace GraphConnectEngine
             return procResult.ToInvokeResult();
         }
         
-        public async Task<InvokeResult> InvokeWithoutCheck(ProcessData args,bool callOutProcess, object[] parameters)
+        public async Task<InvokeResult> InvokeWithoutCheck(ProcessData proc,bool callOutProcess, object[] parameters)
         {
             string myName = $"{GraphName}[{Id}]";
 
             Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck()");
 
-            if (args == null)
+            if (proc == null)
             {
-                args = ProcessData.Fire(this);
+                throw new ArgumentNullException(nameof(proc));
             }
 
             //イベント
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
             {
                 Type = GraphStatusEventArgs.EventType.ProcessStart,
-                Args = args
+                Args = proc
             });
 
             //Invoke
             Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck().InvokeOnProcessCall");
-            ProcessCallResult procResult = await OnProcessCall(args, parameters);
+            ProcessCallResult procResult = await OnProcessCall(proc, parameters);
             Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck().InvokedOnProcessCall<{procResult}>");
 
             //キャッシュする
-            args.SetResult(this, procResult);
+            proc.SetResult(this, procResult);
 
             //イベント
             OnStatusChanged?.Invoke(this, new GraphStatusEventArgs()
@@ -247,14 +242,14 @@ namespace GraphConnectEngine
                 Type = procResult.IsSucceeded
                     ? GraphStatusEventArgs.EventType.ProcessSuccess
                     : GraphStatusEventArgs.EventType.ProcessFail,
-                Args = args
+                Args = proc
             });
 
             //OutProcessなら実行する
             if (procResult.IsSucceeded && callOutProcess)
             {
                 Logger.Debug($"GraphBase<{myName}>.InvokeWithoutCheck().OutProcessNode.CallProcess()");
-                await procResult.NextNode.CallProcess(args);
+                await procResult.NextNode.CallProcess(proc);
             }
 
             return procResult.ToInvokeResult();
@@ -299,22 +294,6 @@ namespace GraphConnectEngine
         protected void AddNode(OutProcessNode node)
         {
             OutProcessNodes.Add(node);
-        }
-
-        /// <summary>
-        /// このグラフはInProcessNodeと繋がれているかどうかを確認する
-        /// </summary>
-        /// <returns></returns>
-        public bool IsConnectedInProcessNode()
-        {
-            if (InProcessNodes.Count > 0)
-            {
-                return Connector.TryGetAnotherNode(InProcessNodes[0], out var _);
-            }
-            else
-            {
-                return false;
-            }
         }
 
         /// <summary>

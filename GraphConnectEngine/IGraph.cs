@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using GraphConnectEngine.Nodes;
 
@@ -20,11 +20,6 @@ namespace GraphConnectEngine
         /// </summary>
         /// <returns></returns>
         string GraphName { get; }
-        
-        /// <summary>
-        /// ノードのコネクター
-        /// </summary>
-        INodeConnector Connector { get; }
 
         /// <summary>
         /// InProcessNodeのリスト

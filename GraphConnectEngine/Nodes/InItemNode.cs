@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Nodes
@@ -9,11 +9,11 @@ namespace GraphConnectEngine.Nodes
     public class InItemNode : Node, IItemNode
     {
 
-        private Func<Type, Type,bool> _typeCheckOnAtatch;
-
         private DefaultItemGetter _defaultItemGetter;
 
         public IItemTypeResolver TypeResolver { get; }
+
+        private bool _enableTypeCheck;
 
         /// <summary>
         /// コンストラクタ
@@ -21,13 +21,12 @@ namespace GraphConnectEngine.Nodes
         /// <param name="parentGraph">親のグラフ</param>
         /// <param name="typeResolver">型の定義クラス</param>
         /// <param name="defaultItemGetter">OutItemNodeと繋がっていない場合,この関数の返り値を使う</param>
-        /// <param name="typeCheckOnAtatchFunc">CanAttachで独自の型チェックを利用したい時に指定する</param>
-        public InItemNode(IGraph parentGraph,IItemTypeResolver typeResolver, DefaultItemGetter defaultItemGetter = null,Func<Type,Type,bool> typeCheckOnAtatchFunc = null)
+        public InItemNode(IGraph parentGraph,IItemTypeResolver typeResolver, DefaultItemGetter defaultItemGetter = null,bool enableTypeCheck = true)
         {
             Graph = parentGraph;
             TypeResolver = typeResolver;
             _defaultItemGetter = defaultItemGetter;
-            _typeCheckOnAtatch = typeCheckOnAtatchFunc;
+            _enableTypeCheck = enableTypeCheck;
 
             TypeResolver.Init(this);
         }
@@ -38,7 +37,7 @@ namespace GraphConnectEngine.Nodes
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(INode anotherNode)
+        public override bool CanAttach(INodeConnector connector,INode anotherNode)
         {
             if (anotherNode is OutItemNode outItemNode)
             {
@@ -53,21 +52,13 @@ namespace GraphConnectEngine.Nodes
                 }
 
                 //1対1関係
-                if (Graph.Connector.GetOtherNodes(this).Length != 0)
+                if (connector.GetOtherNodes(this).Length != 0)
                 {
                     return false;
                 }
 
                 //型チェック
-                if (_typeCheckOnAtatch != null)
-                {
-                    if (!_typeCheckOnAtatch(myItemType, otherItemType))
-                    {
-                        return false;
-                    }
-                }
-                else
-                {
+                if (_enableTypeCheck) {
                     if (otherItemType != myItemType && !otherItemType.IsSubclassOf(myItemType))
                     {
                         return false;
@@ -88,11 +79,11 @@ namespace GraphConnectEngine.Nodes
         /// <param name="args">プロセス情報</param>
         /// <typeparam name="T">型</typeparam>
         /// <returns></returns>
-        public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessData args)
+        public async Task<ValueResult<T>> GetItemFromConnectedNode<T>(ProcessData proc)
         {
-            if (Graph.Connector.TryGetAnotherNode(this, out OutItemNode node))
+            if (proc.Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
-                return await node.TryGetValue<T>(args);
+                return await node.TryGetValue<T>(proc);
             }
             else
             {
@@ -112,13 +103,13 @@ namespace GraphConnectEngine.Nodes
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessData args)
+        public async Task<ValueResult<object>> GetItemFromConnectedNode(ProcessData proc)
         {
             Logger.Debug("InItemNode.GerItemFromConnectedNode().Invoked");
             
-            if (Graph.Connector.TryGetAnotherNode(this, out OutItemNode node))
+            if (proc.Connector.TryGetAnotherNode(this, out OutItemNode node))
             {
-                var value = await node.TryGetValue<object>(args);
+                var value = await node.TryGetValue<object>(proc);
                 if (value.IsSucceeded)
                 {
                     var vtype = value.Value.GetType();

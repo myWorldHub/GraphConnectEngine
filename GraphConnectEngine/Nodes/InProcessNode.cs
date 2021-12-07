@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Nodes
@@ -27,11 +27,11 @@ namespace GraphConnectEngine.Nodes
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(INode anotherNode)
+        public override bool CanAttach(INodeConnector connector,INode anotherNode)
         {
             if (anotherNode is OutProcessNode outNode)
             {
-                return Graph.Connector.GetOtherNodes(this).Length == 0;
+                return connector.GetOtherNodes(this).Length == 0;
             }
             return false;
         }

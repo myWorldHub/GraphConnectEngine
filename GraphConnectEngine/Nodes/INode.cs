@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GraphConnectEngine.Nodes
 {
@@ -31,7 +31,7 @@ namespace GraphConnectEngine.Nodes
         /// </summary>
         /// <param name="anotherNode">ノード</param>
         /// <returns></returns>
-        bool CanAttach(INode anotherNode);
+        bool CanAttach(INodeConnector connector,INode anotherNode);
 
         /// <summary>
         /// データを取得する

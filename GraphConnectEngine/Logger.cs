@@ -1,4 +1,4 @@
-using GraphConnectEngine.Nodes;
+﻿using GraphConnectEngine.Nodes;
 using System;
 
 namespace GraphConnectEngine
@@ -88,16 +88,6 @@ namespace GraphConnectEngine
             Debug($"Dump of Node:{node}");
             Debug($"Type : {node.GetType().FullName}");
             Debug($"Graph : {node.Graph}");
-
-            if (node.Graph != null)
-            {
-                Debug($"Connector : {node.Graph.Connector}");
-            }
-            else
-            {
-                Debug($"Connector : Null");
-            }
-
             if (node is IItemNode iin)
             {
                 Debug($"ItemType : ${iin.TypeResolver.GetItemType().FullName}");

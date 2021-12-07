@@ -1,4 +1,4 @@
-using GraphConnectEngine.Nodes;
+﻿using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine.Graphs.Operator
 {
@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Graphs.Operator
     /// </summary>
     public class ModulusOperatorGraph : MidOperatorGraph
     {
-        public ModulusOperatorGraph(INodeConnector connector) : base(connector,OperatorChecker.MidOperator.op_Modulus)
+        public ModulusOperatorGraph() : base(OperatorChecker.MidOperator.op_Modulus)
         {
         }
 

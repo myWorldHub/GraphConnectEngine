@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace GraphConnectEngine.Nodes
@@ -24,7 +24,7 @@ namespace GraphConnectEngine.Nodes
         
         public abstract bool IsAttachableNodeType(Type type);
 
-        public abstract bool CanAttach(INode node);
+        public abstract bool CanAttach(INodeConnector connector, INode node);
         
         public object GetData(string key)
         {
@@ -65,7 +65,6 @@ namespace GraphConnectEngine.Nodes
             if (!_isDisposed)
             {
                 _isDisposed = true;
-                Graph.Connector.DisconnectAllNode(this);
             }
         }
     }

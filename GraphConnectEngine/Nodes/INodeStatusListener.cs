@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GraphConnectEngine.Nodes
 {
@@ -34,10 +34,10 @@ namespace GraphConnectEngine.Nodes
 
     public class NodeConnectEventArgs : EventArgs
     {
+        public readonly INodeConnector Connector;
         public readonly INode SenderNode;
         public readonly INode OtherNode;
-
-        public NodeConnectEventArgs(INode node1, INode node2)
+        public NodeConnectEventArgs(INodeConnector connector,INode node1, INode node2)
         {
             SenderNode = node1;
             OtherNode = node2;

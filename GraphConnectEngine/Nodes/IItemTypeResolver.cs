@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace GraphConnectEngine.Nodes
 {
@@ -30,11 +30,10 @@ namespace GraphConnectEngine.Nodes
         Type GetItemType();
 
         /// <summary>
-        /// 型を設定する
+        /// 型を設定する 
         /// </summary>
         /// <param name="type">型</param>
-        /// <param name="tryReconnect">再接続するかどうか</param>
-        void SetItemType(Type type,bool tryReconnect = true);
+        void SetItemType(Type type);
     }
     
     /// <summary>

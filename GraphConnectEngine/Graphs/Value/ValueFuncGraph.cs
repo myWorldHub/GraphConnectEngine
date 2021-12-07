@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
@@ -19,7 +19,7 @@ namespace GraphConnectEngine.Graphs.Value
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="valueFunc">ValueResult[T]を返す関数</param>
-        public ValueFuncGraph(INodeConnector connector, Func<Task<ValueResult<T>>> valueFunc) : base(connector)
+        public ValueFuncGraph(Func<Task<ValueResult<T>>> valueFunc) : base()
         {
             _valueFunc = valueFunc;
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"), 0));

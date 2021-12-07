@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
@@ -56,7 +56,7 @@ namespace GraphConnectEngine.Graphs.Event
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="processSender">プロセスを呼ぶためのインターフェース</param>
-        public UpdaterGraph(INodeConnector connector, IProcessSender processSender) : base(connector)
+        public UpdaterGraph(IProcessSender processSender) : base()
         {
             _time = 0;
             _processSender = processSender;

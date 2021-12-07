@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine
 {
@@ -12,19 +13,22 @@ namespace GraphConnectEngine
     public class ProcessData
     {
 
-        private string _value;
+        private string _chain;
 
         private IDictionary<string, ProcessCallResult> _cache;
         private IDictionary<string, ProcessData> _args;
         private IDictionary<string, object> _dummyData;
 
+        public readonly INodeConnector Connector;
 
-        private ProcessData(object hash, IDictionary<string, ProcessCallResult> cache, IDictionary<string, ProcessData> args, IDictionary<string,object> dummyData)
+
+        private ProcessData(object hash,in INodeConnector connector,IDictionary<string, ProcessCallResult> cache, IDictionary<string, ProcessData> args, IDictionary<string,object> dummyData)
         {
-            _value = hash.ToString();
+            _chain = hash.ToString();
             _cache = cache;
             _args = args;
             _dummyData = dummyData;
+            Connector = connector;
         }
         
         /// <summary>
@@ -32,9 +36,9 @@ namespace GraphConnectEngine
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
-        public static ProcessData Fire(object sender)
+        public static ProcessData Fire(object sender,in INodeConnector connector)
         {
-            return new ProcessData($"{sender}_{Guid.NewGuid()}", new Dictionary<string, ProcessCallResult>(),
+            return new ProcessData($"{sender}_{Guid.NewGuid()}", connector,new Dictionary<string, ProcessCallResult>(),
                 new Dictionary<string, ProcessData>(),new Dictionary<string, object>());
         }
 
@@ -47,22 +51,13 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public bool TryAdd(string nextHash,bool isProcess, out ProcessData result)
         {
-            if (_value.Contains(nextHash))
+            if (_chain.Contains(nextHash))
             {
                 result = null;
                 return false;
             }
-            result = new ProcessData(_value + ":" + (isProcess ? "Proc_" : "Item_") + nextHash,_cache,_args,_dummyData);
+            result = new ProcessData(_chain + ":" + (isProcess ? "Proc_" : "Item_") + nextHash, Connector, _cache,_args,_dummyData);
             return true;
-        }
-
-        /// <summary>
-        /// 値を取得する
-        /// </summary>
-        /// <returns></returns>
-        public string GetValue()
-        {
-            return _value;
         }
 
         /// <summary>
@@ -72,7 +67,7 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public bool Contains(string v)
         {
-            return _value.Contains(v);
+            return _chain.Contains(v);
         }
 
         /// <summary>
@@ -81,7 +76,7 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public string GetProcList()
         {
-            var ienu = GetValue().Split(':').Where(s => s.StartsWith("Proc_"));
+            var ienu = _chain.Split(':').Where(s => s.StartsWith("Proc_"));
             return string.Join(":", ienu);
         }
 
@@ -91,7 +86,7 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public string GetItemList()
         {
-            var ienu = GetValue().Split(':').Where(s => s.StartsWith("Item_"));
+            var ienu = _chain.Split(':').Where(s => s.StartsWith("Item_"));
 
             string result = "";
             foreach (string s in ienu)
@@ -109,7 +104,7 @@ namespace GraphConnectEngine
         public ProcessCallResult TryGetResultOf(IGraph graph,bool force = false)
         {
 
-            Logger.Debug($"ProcessCallArgs.TryGetResultOf() > Trying to get cache of {graph.Id} \n From : {GetValue()}");
+            Logger.Debug($"ProcessCallArgs.TryGetResultOf() > Trying to get cache of {graph.Id} \n From : {_chain}");
 
             if (!_args.ContainsKey(graph.Id))
             {
@@ -168,7 +163,7 @@ namespace GraphConnectEngine
         {
             _cache[graph.Id] = result;
             _args[graph.Id] = this;
-            Logger.Debug($"ProcessCallArgs.SetResult() >  Registered Result cache of Graph<{graph.Id}> \n with : {GetValue()}");
+            Logger.Debug($"ProcessCallArgs.SetResult() >  Registered Result cache of Graph<{graph.Id}> \n with : {_chain}");
         }
 
         /// <summary>
@@ -197,12 +192,12 @@ namespace GraphConnectEngine
         /// <returns></returns>
         public string GetSender()
         {
-            return _value.Split(':')[0];
+            return _chain.Split(':')[0];
         }
 
         public override string ToString()
         {
-            return "Args : "+ GetValue();
+            return "Args : "+ _chain;
         }
     }
 }

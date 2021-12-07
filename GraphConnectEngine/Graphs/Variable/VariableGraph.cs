@@ -1,4 +1,4 @@
-using GraphConnectEngine.Nodes;
+﻿using GraphConnectEngine.Nodes;
 using GraphConnectEngine.Variable;
 
 namespace GraphConnectEngine.Graphs.Variable
@@ -45,7 +45,7 @@ namespace GraphConnectEngine.Graphs.Variable
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="holder">IVariableHolder</param>
-        protected VariableGraph(INodeConnector connector, IVariableHolder holder) : base(connector)
+        protected VariableGraph(IVariableHolder holder) : base()
         {
             _holder = holder;
         }

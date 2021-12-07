@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Nodes
@@ -22,11 +22,11 @@ namespace GraphConnectEngine.Nodes
         /// </summary>
         /// <param name="args">プロセス情報</param>
         /// <returns></returns>
-        public async Task<bool> CallProcess(ProcessData args)
+        public async Task<bool> CallProcess(ProcessData proc)
         {
-            Logger.Debug($"OutProcessNode.CallProcess() Start > {Graph.Id} > {args}");
+            Logger.Debug($"OutProcessNode.CallProcess() Start > {Graph.Id} > {proc}");
 
-            if (!Graph.Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
+            if (!proc.Connector.TryGetOtherNodes(this, out InProcessNode[] resolvers))
             {
                 Logger.Debug($"OutProcessNode.CallProcess().Success > No node is Connected");
                 return true;
@@ -35,7 +35,7 @@ namespace GraphConnectEngine.Nodes
             for (int i = 0; i < resolvers.Length; i++)
             {
                 var inProcessNode = resolvers[i];
-                if (args.TryAdd(Graph.Id + "_" + i, true, out var nargs))
+                if (proc.TryAdd(Graph.Id + "_" + i, true, out var nargs))
                 {
                     Logger.Debug($"OutProcessNode.CallProcess().Call InProcessNode {i} / {resolvers.Length}");
                     await inProcessNode.OnCalled(this,nargs);
@@ -51,7 +51,7 @@ namespace GraphConnectEngine.Nodes
             return !(type != dt && !type.IsSubclassOf(dt));
         }
 
-        public override bool CanAttach(INode anotherNode)
+        public override bool CanAttach(INodeConnector connector,INode anotherNode)
         {
             if (anotherNode is InProcessNode outNode)
             {

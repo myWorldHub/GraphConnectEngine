@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine.Graphs.Value
@@ -19,9 +19,8 @@ namespace GraphConnectEngine.Graphs.Value
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="connector"></param>
         /// <param name="defaultValue">Tのデフォルト値</param>
-        public ValueGraph(INodeConnector connector,T defaultValue) : base(connector)
+        public ValueGraph(T defaultValue) : base()
         {
             Value = defaultValue;
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"),0));

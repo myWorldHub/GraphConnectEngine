@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -102,13 +102,6 @@ namespace GraphConnectEngine.Nodes
 
             Logger.DumpNode(node1);
             Logger.DumpNode(node2);
-
-            if (node1.Graph.Connector != this || node2.Graph.Connector != this)
-            {
-                Logger.Error("Error : Connector is not this Connector.");
-                Logger.Debug("NodeConnector.ConnectNode().Fail");
-                return false;
-            }
             
             //接続チェック
             if (IsConnected(node1, node2) || IsConnected(node2,node1))
@@ -127,7 +120,7 @@ namespace GraphConnectEngine.Nodes
             }
 
             //つながるかどうか確認
-            if (!node1.CanAttach(node2) || !node2.CanAttach(node1))
+            if (!node1.CanAttach(this,node2) || !node2.CanAttach(this, node1))
             {
                 Logger.Error("Error : Node is not attachable.");
                 Logger.Debug("NodeConnector.ConnectNode().Fail");
@@ -140,11 +133,11 @@ namespace GraphConnectEngine.Nodes
             
             Logger.Debug("NodeConnector.ConnectNode().Registered");
             
-            InvokeConnectEvent(new NodeConnectEventArgs(node1, node2));
+            InvokeConnectEvent(new NodeConnectEventArgs(this,node1, node2));
             
             //イベント発火
-            node1.InvokeConnectEvent(new NodeConnectEventArgs(node1, node2));
-            node2.InvokeConnectEvent(new NodeConnectEventArgs(node2, node1));
+            node1.InvokeConnectEvent(new NodeConnectEventArgs(this, node1, node2));
+            node2.InvokeConnectEvent(new NodeConnectEventArgs(this, node2, node1));
             
             return true;
         }
@@ -156,13 +149,6 @@ namespace GraphConnectEngine.Nodes
 
             Logger.DumpNode(node1);
             Logger.DumpNode(node2);
-            
-            if (node1.Graph.Connector != this || node2.Graph.Connector != this)
-            {
-                Logger.Error("Error : Connector is not this Connector.");
-                Logger.Debug("NodeConnector.DisconnectNode().Fail");
-                return false;
-            }
             
             //接続確認
             if (!IsConnected(node1, node2) && !IsConnected(node2, node1))
@@ -178,11 +164,11 @@ namespace GraphConnectEngine.Nodes
 
             Logger.Debug("NodeConnector.DisconnectNode().Removed");
             
-            InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
+            InvokeDisconnectEvent(new NodeConnectEventArgs(this, node1,node2));
             
             //イベント発火
-            node1.InvokeDisconnectEvent(new NodeConnectEventArgs(node1,node2));
-            node2.InvokeDisconnectEvent(new NodeConnectEventArgs(node2,node1));
+            node1.InvokeDisconnectEvent(new NodeConnectEventArgs(this, node1,node2));
+            node2.InvokeDisconnectEvent(new NodeConnectEventArgs(this, node2,node1));
             
             return true;
         }
@@ -190,11 +176,6 @@ namespace GraphConnectEngine.Nodes
         public bool DisconnectAllNode(INode node)
         {
             if (node == null)
-            {
-                return false;
-            }
-            
-            if (node.Graph.Connector != this)
             {
                 return false;
             }

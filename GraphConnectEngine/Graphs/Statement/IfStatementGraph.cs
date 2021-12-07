@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 
 namespace GraphConnectEngine.Graphs.Statement
@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graphs.Statement
     public class IfStatementGraph : Graph
     {
         
-        public IfStatementGraph(INodeConnector connector) : base(connector)
+        public IfStatementGraph() : base()
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(bool), "expression");
             
