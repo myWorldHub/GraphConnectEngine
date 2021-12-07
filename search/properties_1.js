@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['graph_310',['Graph',['../interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a2ae0dc28cd8ca2d2ae23846640466f83',1,'GraphConnectEngine::Nodes::INode']]],
-  ['graphname_311',['GraphName',['../interface_graph_connect_engine_1_1_i_graph.html#a423c38de5728db5031cb8a9b9dd453e8',1,'GraphConnectEngine::IGraph']]]
+  ['holder_306',['Holder',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_async_graph.html#afc1a8bb48e0bae989505c21d105a374e',1,'GraphConnectEngine.Graphs.Variable.VariableAsyncGraph.Holder()'],['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_graph.html#a60d45fa6144b51d6a962d8e68658a269',1,'GraphConnectEngine.Graphs.Variable.VariableGraph.Holder()']]]
 ];

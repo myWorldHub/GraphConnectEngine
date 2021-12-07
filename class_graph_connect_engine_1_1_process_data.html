@@ -68,6 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_graph_connect_engine_1_1_process_data-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GraphConnectEngine.ProcessData Class Reference</div>  </div>
@@ -82,9 +83,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6361eb51ce9b687fdb886f77593e635c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_data.html#a6361eb51ce9b687fdb886f77593e635c">TryAdd</a> (string nextHash, bool isProcess, out <a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a> result)</td></tr>
 <tr class="memdesc:a6361eb51ce9b687fdb886f77593e635c"><td class="mdescLeft">&#160;</td><td class="mdescRight">データを追加する  <a href="class_graph_connect_engine_1_1_process_data.html#a6361eb51ce9b687fdb886f77593e635c">More...</a><br /></td></tr>
 <tr class="separator:a6361eb51ce9b687fdb886f77593e635c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef781070cc8509e89c3fd3ad27c07a7"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_data.html#a5ef781070cc8509e89c3fd3ad27c07a7">GetValue</a> ()</td></tr>
-<tr class="memdesc:a5ef781070cc8509e89c3fd3ad27c07a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">値を取得する  <a href="class_graph_connect_engine_1_1_process_data.html#a5ef781070cc8509e89c3fd3ad27c07a7">More...</a><br /></td></tr>
-<tr class="separator:a5ef781070cc8509e89c3fd3ad27c07a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19298b1bc4f4a7a6f9b1674b82af6a8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_data.html#a19298b1bc4f4a7a6f9b1674b82af6a8b">Contains</a> (string v)</td></tr>
 <tr class="memdesc:a19298b1bc4f4a7a6f9b1674b82af6a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">値がstringを含むかどうか  <a href="class_graph_connect_engine_1_1_process_data.html#a19298b1bc4f4a7a6f9b1674b82af6a8b">More...</a><br /></td></tr>
 <tr class="separator:a19298b1bc4f4a7a6f9b1674b82af6a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +111,15 @@ override string&#160;</td><td class="memItemRight" valign="bottom"><b>ToString</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a389d208867f9301cdfa771574363c10e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_data.html#a389d208867f9301cdfa771574363c10e">Fire</a> (object sender)</td></tr>
-<tr class="memdesc:a389d208867f9301cdfa771574363c10e"><td class="mdescLeft">&#160;</td><td class="mdescRight">発火する  <a href="class_graph_connect_engine_1_1_process_data.html#a389d208867f9301cdfa771574363c10e">More...</a><br /></td></tr>
-<tr class="separator:a389d208867f9301cdfa771574363c10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb1babbe061011e4ab8f9b8803ae0b24"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_process_data.html#acb1babbe061011e4ab8f9b8803ae0b24">Fire</a> (object sender, in <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a> connector)</td></tr>
+<tr class="memdesc:acb1babbe061011e4ab8f9b8803ae0b24"><td class="mdescLeft">&#160;</td><td class="mdescRight">発火する  <a href="class_graph_connect_engine_1_1_process_data.html#acb1babbe061011e4ab8f9b8803ae0b24">More...</a><br /></td></tr>
+<tr class="separator:acb1babbe061011e4ab8f9b8803ae0b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a9199ed09c1276ccf78686ea70fcd6363"><td class="memItemLeft" align="right" valign="top"><a id="a9199ed09c1276ccf78686ea70fcd6363"></a>
+readonly <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Connector</b></td></tr>
+<tr class="separator:a9199ed09c1276ccf78686ea70fcd6363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>プロセスの実行情報を管理するクラス </p>
@@ -156,8 +160,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a389d208867f9301cdfa771574363c10e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a389d208867f9301cdfa771574363c10e">&#9670;&nbsp;</a></span>Fire()</h2>
+<a id="acb1babbe061011e4ab8f9b8803ae0b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb1babbe061011e4ab8f9b8803ae0b24">&#9670;&nbsp;</a></span>Fire()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,8 +173,18 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">static <a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a> GraphConnectEngine.ProcessData.Fire </td>
           <td>(</td>
           <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>sender</em></td><td>)</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">in <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a>&#160;</td>
+          <td class="paramname"><em>connector</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -306,34 +320,6 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>発火したグラフを取得する </p>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a5ef781070cc8509e89c3fd3ad27c07a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ef781070cc8509e89c3fd3ad27c07a7">&#9670;&nbsp;</a></span>GetValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string GraphConnectEngine.ProcessData.GetValue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>値を取得する </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>

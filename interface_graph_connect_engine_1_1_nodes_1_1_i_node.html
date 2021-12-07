@@ -96,9 +96,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5057fdabd71fa80a352eb8ee146ecbe2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a5057fdabd71fa80a352eb8ee146ecbe2">IsAttachableNodeType</a> (Type type)</td></tr>
 <tr class="memdesc:a5057fdabd71fa80a352eb8ee146ecbe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数に指定されたノードの型が接続可能なものか確認する  <a href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a5057fdabd71fa80a352eb8ee146ecbe2">More...</a><br /></td></tr>
 <tr class="separator:a5057fdabd71fa80a352eb8ee146ecbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5167cca4aabbe232fb4b231aa2cc1c67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a5167cca4aabbe232fb4b231aa2cc1c67">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> anotherNode)</td></tr>
-<tr class="memdesc:a5167cca4aabbe232fb4b231aa2cc1c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a5167cca4aabbe232fb4b231aa2cc1c67">More...</a><br /></td></tr>
-<tr class="separator:a5167cca4aabbe232fb4b231aa2cc1c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4817fde5ba8b74a4c6d17350569af247"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a4817fde5ba8b74a4c6d17350569af247">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a> connector, <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> anotherNode)</td></tr>
+<tr class="memdesc:a4817fde5ba8b74a4c6d17350569af247"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a4817fde5ba8b74a4c6d17350569af247">More...</a><br /></td></tr>
+<tr class="separator:a4817fde5ba8b74a4c6d17350569af247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d3f79e211ec55fcf8430cd7f51dce44"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a1d3f79e211ec55fcf8430cd7f51dce44">GetData</a> (string key)</td></tr>
 <tr class="memdesc:a1d3f79e211ec55fcf8430cd7f51dce44"><td class="mdescLeft">&#160;</td><td class="mdescRight">データを取得する  <a href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a1d3f79e211ec55fcf8430cd7f51dce44">More...</a><br /></td></tr>
 <tr class="separator:a1d3f79e211ec55fcf8430cd7f51dce44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,8 +133,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>ノードのインターフェース </p>
 <p>実装する時はGraphを初期化する</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5167cca4aabbe232fb4b231aa2cc1c67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5167cca4aabbe232fb4b231aa2cc1c67">&#9670;&nbsp;</a></span>CanAttach()</h2>
+<a id="a4817fde5ba8b74a4c6d17350569af247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4817fde5ba8b74a4c6d17350569af247">&#9670;&nbsp;</a></span>CanAttach()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,9 +142,19 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">bool GraphConnectEngine.Nodes.INode.CanAttach </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a>&#160;</td>
-          <td class="paramname"><em>anotherNode</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a>&#160;</td>
+          <td class="paramname"><em>connector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a>&#160;</td>
+          <td class="paramname"><em>anotherNode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -158,7 +168,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a25001e1ff1904b3809d1f96e49a6a75a">GraphConnectEngine.Nodes.Node</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#ab1e4f65194824aa90d90b6ad66526401">GraphConnectEngine.Nodes.OutProcessNode</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_item_node.html#adbb9455904b0c0340e7c467b38919d8f">GraphConnectEngine.Nodes.OutItemNode</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#a5ca6dd3a14eb52b5292987d5f857c338">GraphConnectEngine.Nodes.InProcessNode</a>, and <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a4f5cdc97d4cdcc708cc03cb108dc28b7">GraphConnectEngine.Nodes.InItemNode</a>.</p>
+<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a3264df2f5eadb17d57da6ed4265e266f">GraphConnectEngine.Nodes.Node</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#ae9e92ded97a3ff4b9ef1654a81df8138">GraphConnectEngine.Nodes.OutProcessNode</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_item_node.html#a38526cc62886d3c563b822ecb034bdf1">GraphConnectEngine.Nodes.OutItemNode</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#a8d9034784c3dff536bb3ae1c9d18ead5">GraphConnectEngine.Nodes.InProcessNode</a>, and <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a624c2acefd5524e9983646710b031be2">GraphConnectEngine.Nodes.InItemNode</a>.</p>
 
 </div>
 </div>

@@ -98,9 +98,9 @@ async Task&lt; <a class="el" href="class_graph_connect_engine_1_1_invoke_result.
 <tr class="memitem:ae4332da6c255fa6734788a181a5bfbad"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#ae4332da6c255fa6734788a181a5bfbad">IsAttachableNodeType</a> (Type type)</td></tr>
 <tr class="memdesc:ae4332da6c255fa6734788a181a5bfbad"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数に指定されたノードの型が接続可能なものか確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#ae4332da6c255fa6734788a181a5bfbad">More...</a><br /></td></tr>
 <tr class="separator:ae4332da6c255fa6734788a181a5bfbad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ca6dd3a14eb52b5292987d5f857c338"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#a5ca6dd3a14eb52b5292987d5f857c338">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> anotherNode)</td></tr>
-<tr class="memdesc:a5ca6dd3a14eb52b5292987d5f857c338"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#a5ca6dd3a14eb52b5292987d5f857c338">More...</a><br /></td></tr>
-<tr class="separator:a5ca6dd3a14eb52b5292987d5f857c338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d9034784c3dff536bb3ae1c9d18ead5"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#a8d9034784c3dff536bb3ae1c9d18ead5">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a> connector, <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> anotherNode)</td></tr>
+<tr class="memdesc:a8d9034784c3dff536bb3ae1c9d18ead5"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#a8d9034784c3dff536bb3ae1c9d18ead5">More...</a><br /></td></tr>
+<tr class="separator:a8d9034784c3dff536bb3ae1c9d18ead5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_graph_connect_engine_1_1_nodes_1_1_node"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_graph_connect_engine_1_1_nodes_1_1_node')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html">GraphConnectEngine.Nodes.Node</a></td></tr>
 <tr class="memitem:a56f0d9e5a0c48d3c71d8b30a4e4c461c inherit pub_methods_class_graph_connect_engine_1_1_nodes_1_1_node"><td class="memItemLeft" align="right" valign="top">object&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a56f0d9e5a0c48d3c71d8b30a4e4c461c">GetData</a> (string key)</td></tr>
 <tr class="memdesc:a56f0d9e5a0c48d3c71d8b30a4e4c461c inherit pub_methods_class_graph_connect_engine_1_1_nodes_1_1_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">データを取得する  <a href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a56f0d9e5a0c48d3c71d8b30a4e4c461c">More...</a><br /></td></tr>
@@ -150,8 +150,8 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
 <div class="textblock"><p>OutProcessNodeに呼ばれてプロセスを開始するノード </p>
 <p>OutProcessNodeは一つしか接続できない TODO イベント発火ノードは複数繋げるようにする</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5ca6dd3a14eb52b5292987d5f857c338"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ca6dd3a14eb52b5292987d5f857c338">&#9670;&nbsp;</a></span>CanAttach()</h2>
+<a id="a8d9034784c3dff536bb3ae1c9d18ead5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d9034784c3dff536bb3ae1c9d18ead5">&#9670;&nbsp;</a></span>CanAttach()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,9 +162,19 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
         <tr>
           <td class="memname">override bool GraphConnectEngine.Nodes.InProcessNode.CanAttach </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a>&#160;</td>
-          <td class="paramname"><em>anotherNode</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a>&#160;</td>
+          <td class="paramname"><em>connector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a>&#160;</td>
+          <td class="paramname"><em>anotherNode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -183,7 +193,7 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implements <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a25001e1ff1904b3809d1f96e49a6a75a">GraphConnectEngine.Nodes.Node</a>.</p>
+<p>Implements <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a3264df2f5eadb17d57da6ed4265e266f">GraphConnectEngine.Nodes.Node</a>.</p>
 
 </div>
 </div>

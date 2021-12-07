@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['typeresolver_321',['TypeResolver',['../interface_graph_connect_engine_1_1_nodes_1_1_i_item_node.html#a7a847daa3eeff6405892dc2a5b461c94',1,'GraphConnectEngine::Nodes::IItemNode']]]
+  ['variablename_316',['VariableName',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_async_graph.html#aa89850b252a2470dc32ada4c100877a4',1,'GraphConnectEngine.Graphs.Variable.VariableAsyncGraph.VariableName()'],['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_variable_graph.html#a794410cfce4d13f7682ba5301958c7d9',1,'GraphConnectEngine.Graphs.Variable.VariableGraph.VariableName()']]]
 ];
