@@ -13,7 +13,7 @@ namespace GraphConnectEngine
     /// </summary>
     public abstract class Graph : IGraph
     {
-        public string Id { get; set; }
+        public string Id { get; private set; }
 
         public abstract string GraphName { get; }
         
@@ -27,16 +27,12 @@ namespace GraphConnectEngine
 
         /// <summary>
         /// コンストラクタ
-        /// IdはコンストラクタでHashCodeで割り当てられる
-        ///
-        /// ID : 識別用のID(全てのグラフのインスタンスでユニークである必要がある)
-        /// TODO ID
         /// </summary>
         /// <param name="createInProcessNode">InProcessNodeを自動生成する</param>
         /// <param name="createOutProcessNode">OutProcessNodeを自動生成する</param>
-        protected Graph(bool createInProcessNode = true,bool createOutProcessNode = true)
+        protected Graph(string id = null,bool createInProcessNode = true,bool createOutProcessNode = true)
         {
-            Id = GetHashCode().ToString();
+            Id = id ?? GetHashCode().ToString();
             
             InProcessNodes = new List<InProcessNode>();
             OutProcessNodes = new List<OutProcessNode>();

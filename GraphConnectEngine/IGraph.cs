@@ -13,7 +13,7 @@ namespace GraphConnectEngine
         /// グラフを識別するための一意なID
         /// ProcessCallArgsで利用される
         /// </summary>
-        string Id { get; set; }
+        string Id { get; }
 
         /// <summary>
         /// グラフ名を取得する
