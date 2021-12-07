@@ -18,7 +18,7 @@ var searchData=
   ['getsender_40',['GetSender',['../class_graph_connect_engine_1_1_process_data.html#aadd547a26162e0bf2bdfda889ecb68d9',1,'GraphConnectEngine::ProcessData']]],
   ['getvariableasyncgraph_41',['GetVariableAsyncGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_get_variable_async_graph.html',1,'GraphConnectEngine::Graphs::Variable']]],
   ['getvariablegraph_42',['GetVariableGraph',['../class_graph_connect_engine_1_1_graphs_1_1_variable_1_1_get_variable_graph.html',1,'GraphConnectEngine::Graphs::Variable']]],
-  ['graph_43',['Graph',['../interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a2ae0dc28cd8ca2d2ae23846640466f83',1,'GraphConnectEngine.Nodes.INode.Graph()'],['../class_graph_connect_engine_1_1_graph.html#a320a538d86c5254ba898f3c388f84a67',1,'GraphConnectEngine.Graph.Graph()'],['../class_graph_connect_engine_1_1_graph.html',1,'GraphConnectEngine.Graph']]],
+  ['graph_43',['Graph',['../interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a2ae0dc28cd8ca2d2ae23846640466f83',1,'GraphConnectEngine.Nodes.INode.Graph()'],['../class_graph_connect_engine_1_1_graph.html#abeb663b3340c8b8665021d788d919bbb',1,'GraphConnectEngine.Graph.Graph()'],['../class_graph_connect_engine_1_1_graph.html',1,'GraphConnectEngine.Graph']]],
   ['graphconnectengine_44',['GraphConnectEngine',['../namespace_graph_connect_engine.html',1,'']]],
   ['graphconnectengine_20_2d_20csharp_45',['GraphConnectEngine - csharp',['../md__r_e_a_d_m_e.html',1,'']]],
   ['graphname_46',['GraphName',['../interface_graph_connect_engine_1_1_i_graph.html#a423c38de5728db5031cb8a9b9dd453e8',1,'GraphConnectEngine::IGraph']]],
