@@ -43,9 +43,8 @@ namespace GraphConnectEngine.Graphs.Variable
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="connector"></param>
         /// <param name="holder">IVariableHolder</param>
-        protected VariableAsyncGraph(INodeConnector connector, IVariableHolderAsync holder) : base()
+        protected VariableAsyncGraph(IVariableHolderAsync holder) : base()
         {
             _holder = holder;
         }

@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GraphConnectEngine.Nodes;
 using GraphConnectEngine.Variable;
 
@@ -10,7 +10,7 @@ namespace GraphConnectEngine.Graphs.Variable
     public class SetVariableAsyncGraph : VariableAsyncGraph
     {
 
-        public SetVariableAsyncGraph(INodeConnector connector, IVariableHolderAsync holder) : base(connector,holder)
+        public SetVariableAsyncGraph(IVariableHolderAsync holder) : base(holder)
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
             AddNode(new InItemNode(this, resolver));
