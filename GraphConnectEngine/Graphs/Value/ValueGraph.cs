@@ -20,7 +20,7 @@ namespace GraphConnectEngine.Graphs.Value
         /// コンストラクタ
         /// </summary>
         /// <param name="defaultValue">Tのデフォルト値</param>
-        public ValueGraph(T defaultValue) : base()
+        public ValueGraph(string id, T defaultValue) : base(id)
         {
             Value = defaultValue;
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"),0));

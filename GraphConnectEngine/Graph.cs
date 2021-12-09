@@ -28,11 +28,12 @@ namespace GraphConnectEngine
         /// <summary>
         /// コンストラクタ
         /// </summary>
+        /// <param name="id">グラフのID</param>
         /// <param name="createInProcessNode">InProcessNodeを自動生成する</param>
         /// <param name="createOutProcessNode">OutProcessNodeを自動生成する</param>
-        protected Graph(string id = null,bool createInProcessNode = true,bool createOutProcessNode = true)
+        protected Graph(string id,bool createInProcessNode = true,bool createOutProcessNode = true)
         {
-            Id = id ?? GetHashCode().ToString();
+            Id = id;
             
             InProcessNodes = new List<InProcessNode>();
             OutProcessNodes = new List<OutProcessNode>();

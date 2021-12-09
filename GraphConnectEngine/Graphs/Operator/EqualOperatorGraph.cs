@@ -5,7 +5,7 @@
     /// </summary>
     public class EqualOperatorGraph : MidOperatorGraph
     {
-        public EqualOperatorGraph() : base(OperatorChecker.MidOperator.op_Equality)
+        public EqualOperatorGraph(string id) : base(id,OperatorChecker.MidOperator.op_Equality)
         {
         }
 

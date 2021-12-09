@@ -12,7 +12,7 @@ namespace GraphConnectEngine.Graphs.Variable
     public class GetVariableGraph : VariableGraph
     {
 
-        public GetVariableGraph(VariableHolder holder) : base(holder)
+        public GetVariableGraph(string id, VariableHolder holder) : base(id,holder)
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(void), "Value");
             AddNode(new OutItemNode(this, resolver,0));

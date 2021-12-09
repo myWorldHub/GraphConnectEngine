@@ -5,7 +5,7 @@
     /// </summary>
     public class AdditionOperatorGraph : MidOperatorGraph
     {
-        public AdditionOperatorGraph() : base(OperatorChecker.MidOperator.op_Addition)
+        public AdditionOperatorGraph(string id) : base(id,OperatorChecker.MidOperator.op_Addition)
         {
         }
 

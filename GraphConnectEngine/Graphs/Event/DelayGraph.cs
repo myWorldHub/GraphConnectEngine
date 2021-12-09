@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Graphs.Event
     /// </summary>
     public class DelayGraph : Graph
     {
-        public DelayGraph() : base()
+        public DelayGraph(string id) : base(id)
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(int), "Time");
             AddNode(new InItemNode(this, resolver));

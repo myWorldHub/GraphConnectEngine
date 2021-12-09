@@ -45,7 +45,7 @@ namespace GraphConnectEngine.Graphs.Variable
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="holder">IVariableHolder</param>
-        protected VariableGraph(IVariableHolder holder) : base()
+        protected VariableGraph(string id, IVariableHolder holder) : base(id)
         {
             _holder = holder;
         }

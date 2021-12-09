@@ -17,7 +17,7 @@ namespace GraphConnectEngine.Graphs
         /// </summary>
         /// <param name="connector"></param>
         /// <param name="updateText">InItemNode[0] : Objectの値を実行時に渡される関数</param>
-        public DebugTextGraph(Func<string, Task<bool>> updateText) : base()
+        public DebugTextGraph(string id,Func<string, Task<bool>> updateText) : base(id)
         {
             AddNode(new InItemNode(this, new ItemTypeResolver(typeof(object),"Object")));
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(string),"Text"),1));

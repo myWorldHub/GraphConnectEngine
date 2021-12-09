@@ -5,7 +5,7 @@
     /// </summary>
     public class GreaterThanOperatorGraph : MidOperatorGraph
     {
-        public GreaterThanOperatorGraph() : base(OperatorChecker.MidOperator.op_GreaterThan)
+        public GreaterThanOperatorGraph(string id) : base(id,OperatorChecker.MidOperator.op_GreaterThan)
         {
         }
 

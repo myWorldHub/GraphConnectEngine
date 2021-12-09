@@ -56,7 +56,7 @@ namespace GraphConnectEngine.Graphs.Event
         /// </summary>
         /// <param name="connector">コネクター</param>
         /// <param name="processSender">プロセスを呼ぶためのインターフェース</param>
-        public UpdaterGraph(IProcessSender processSender) : base()
+        public UpdaterGraph(string id, IProcessSender processSender) : base(id)
         {
             _time = 0;
             _processSender = processSender;

@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graphs.Operator
 
         private Func<object, object> _lambda;
         
-        public CastGraph() : base()
+        public CastGraph(string id) : base(id)
         {
             AddNode(new InItemNode(this,new ItemTypeResolver(typeof(object),"Object")));
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Object"),0));

@@ -7,7 +7,7 @@ namespace GraphConnectEngine.Graphs.Operator
     /// </summary>
     public class ModulusOperatorGraph : MidOperatorGraph
     {
-        public ModulusOperatorGraph() : base(OperatorChecker.MidOperator.op_Modulus)
+        public ModulusOperatorGraph(string id) : base(id,OperatorChecker.MidOperator.op_Modulus)
         {
         }
 

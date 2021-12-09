@@ -13,7 +13,7 @@ namespace GraphConnectEngine.Graphs.Statement
     public class IfStatementGraph : Graph
     {
         
-        public IfStatementGraph() : base()
+        public IfStatementGraph(string id) : base(id)
         {
             IItemTypeResolver resolver = new ItemTypeResolver(typeof(bool), "expression");
             
