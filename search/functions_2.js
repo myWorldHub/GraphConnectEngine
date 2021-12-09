@@ -1,7 +1,7 @@
 var searchData=
 [
   ['debug_225',['Debug',['../class_graph_connect_engine_1_1_logger.html#a82638f21b35496212d8b35acd85ee67f',1,'GraphConnectEngine::Logger']]],
-  ['debugtextgraph_226',['DebugTextGraph',['../class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a678baa1649b6dba37b72aa53d17bedec',1,'GraphConnectEngine::Graphs::DebugTextGraph']]],
+  ['debugtextgraph_226',['DebugTextGraph',['../class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a17f082eb258803fbe23fa7a4b52adcdf',1,'GraphConnectEngine::Graphs::DebugTextGraph']]],
   ['defaultitemgetter_227',['DefaultItemGetter',['../namespace_graph_connect_engine_1_1_nodes.html#a93d52b054860953c018923cbd50c564a',1,'GraphConnectEngine::Nodes']]],
   ['disconnectallnode_228',['DisconnectAllNode',['../interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html#ae2092e3890bca77cd45450fe16dd8a97',1,'GraphConnectEngine.Nodes.INodeConnector.DisconnectAllNode()'],['../class_graph_connect_engine_1_1_nodes_1_1_node_connector.html#ab0f7b59d17b0e620911510ec8630b079',1,'GraphConnectEngine.Nodes.NodeConnector.DisconnectAllNode()']]],
   ['disconnectallnodeasync_229',['DisconnectAllNodeAsync',['../interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector_async.html#afd77d1b31ed0bc7960226e7446e384c1',1,'GraphConnectEngine::Nodes::INodeConnectorAsync']]],
