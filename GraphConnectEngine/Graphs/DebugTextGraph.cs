@@ -10,28 +10,37 @@ namespace GraphConnectEngine.Graphs
     public class DebugTextGraph : Graph
     {
         
-        private Func<string, Task<bool>> _updateText;
+        private Func<string,Task> PrintFunc;
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="connector"></param>
-        /// <param name="updateText">InItemNode[0] : Objectの値を実行時に渡される関数</param>
-        public DebugTextGraph(string id,Func<string, Task<bool>> updateText) : base(id)
+        /// <param name="id"></param>
+        public DebugTextGraph(string id) : base(id)
         {
             AddNode(new InItemNode(this, new ItemTypeResolver(typeof(object),"Object")));
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(string),"Text"),1));
-            _updateText = updateText;
+        }
+
+        /// <summary>
+        /// テキストを受け取る関数を設定する
+        /// </summary>
+        /// <param name="function"></param>
+        public void SetPrintFunction(Func<string,Task> function)
+        {
+            PrintFunc = function;
         }
 
         public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
             var obj = parameters[0];
             var str = obj.ToString();
-            
+
             //実行
-            if (!await _updateText(str))
-                return ProcessCallResult.Fail();
+            if(PrintFunc != null)
+            {
+                await PrintFunc(str);
+            }
 
             return ProcessCallResult.Success(new []
             {

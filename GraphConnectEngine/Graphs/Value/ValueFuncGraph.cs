@@ -6,7 +6,7 @@ namespace GraphConnectEngine.Graphs.Value
 {
     /// <summary>
     /// OutItemNode[T]が1つあるグラフ
-    /// コンストラクタでValueResult[T]を返す関数を渡し、実行時に利用される
+    /// ValueResult[T]を返す関数を渡すと、実行時に利用される
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class ValueFuncGraph<T> : Graph
@@ -15,14 +15,29 @@ namespace GraphConnectEngine.Graphs.Value
         private Func<Task<ValueResult<T>>> _valueFunc;
 
         /// <summary>
-        /// コンストラクタ
+        /// 
         /// </summary>
-        /// <param name="connector">コネクター</param>
-        /// <param name="valueFunc">ValueResult[T]を返す関数</param>
-        public ValueFuncGraph(string id, Func<Task<ValueResult<T>>> valueFunc) : base(id)
+        /// <param name="id"></param>
+        public ValueFuncGraph(string id) : this(id, null) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="func"></param>
+        public ValueFuncGraph(string id, Func<Task<ValueResult<T>>> func) : base(id)
         {
-            _valueFunc = valueFunc;
+            this._valueFunc = func;
             AddNode(new OutItemNode(this, new ItemTypeResolver(typeof(T), "Value"), 0));
+        }
+
+        /// <summary>
+        /// 値を受け取る関数を設定する
+        /// </summary>
+        /// <param name="valueFunc"></param>
+        public void SetValueFunction(Func<Task<ValueResult<T>>> valueFunc)
+        {
+            this._valueFunc = valueFunc;
         }
 
         

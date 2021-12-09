@@ -16,8 +16,9 @@ namespace GraphConnectEngine.Graphs.Value
         /// </summary>
         public T Value;
 
+        public ValueGraph(string id) : this(id,default) { }
+
         /// <summary>
-        /// コンストラクタ
         /// </summary>
         /// <param name="defaultValue">Tのデフォルト値</param>
         public ValueGraph(string id, T defaultValue) : base(id)
