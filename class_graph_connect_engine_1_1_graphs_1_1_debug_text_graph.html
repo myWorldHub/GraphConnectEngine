@@ -90,9 +90,12 @@ Inheritance diagram for GraphConnectEngine.Graphs.DebugTextGraph:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a17f082eb258803fbe23fa7a4b52adcdf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a17f082eb258803fbe23fa7a4b52adcdf">DebugTextGraph</a> (string id, Func&lt; string, Task&lt; bool &gt;&gt; updateText)</td></tr>
-<tr class="memdesc:a17f082eb258803fbe23fa7a4b52adcdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a17f082eb258803fbe23fa7a4b52adcdf">More...</a><br /></td></tr>
-<tr class="separator:a17f082eb258803fbe23fa7a4b52adcdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e8c8911a4884c87314eedc7c2f47308"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a4e8c8911a4884c87314eedc7c2f47308">DebugTextGraph</a> (string id)</td></tr>
+<tr class="memdesc:a4e8c8911a4884c87314eedc7c2f47308"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a4e8c8911a4884c87314eedc7c2f47308">More...</a><br /></td></tr>
+<tr class="separator:a4e8c8911a4884c87314eedc7c2f47308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e48c4d9269187fea6b9e188ad76da67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a2e48c4d9269187fea6b9e188ad76da67">SetPrintFunction</a> (Func&lt; string, Task &gt; function)</td></tr>
+<tr class="memdesc:a2e48c4d9269187fea6b9e188ad76da67"><td class="mdescLeft">&#160;</td><td class="mdescRight">テキストを受け取る関数を設定する  <a href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#a2e48c4d9269187fea6b9e188ad76da67">More...</a><br /></td></tr>
+<tr class="separator:a2e48c4d9269187fea6b9e188ad76da67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfa61c4cec536321c1e456e1f22bd965"><td class="memItemLeft" align="right" valign="top">override async Task&lt; <a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#adfa61c4cec536321c1e456e1f22bd965">OnProcessCall</a> (<a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a> args, object[] parameters)</td></tr>
 <tr class="memdesc:adfa61c4cec536321c1e456e1f22bd965"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフの実行の実装  <a href="class_graph_connect_engine_1_1_graphs_1_1_debug_text_graph.html#adfa61c4cec536321c1e456e1f22bd965">More...</a><br /></td></tr>
 <tr class="separator:adfa61c4cec536321c1e456e1f22bd965"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,8 +184,8 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>InItemNode[0] : Objectの値をコンストラクタで指定した関数に渡す関数 </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a17f082eb258803fbe23fa7a4b52adcdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17f082eb258803fbe23fa7a4b52adcdf">&#9670;&nbsp;</a></span>DebugTextGraph()</h2>
+<a id="a4e8c8911a4884c87314eedc7c2f47308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e8c8911a4884c87314eedc7c2f47308">&#9670;&nbsp;</a></span>DebugTextGraph()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,18 +197,8 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
           <td class="memname">GraphConnectEngine.Graphs.DebugTextGraph.DebugTextGraph </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>id</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">Func&lt; string, Task&lt; bool &gt;&gt;&#160;</td>
-          <td class="paramname"><em>updateText</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -218,8 +211,7 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
 <p>コンストラクタ </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">connector</td><td></td></tr>
-    <tr><td class="paramname">updateText</td><td>InItemNode[0] : Objectの値を実行時に渡される関数</td></tr>
+    <tr><td class="paramname">id</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -272,6 +264,40 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 <p>Implements <a class="el" href="class_graph_connect_engine_1_1_graph.html#ac90bd06dda67f2bca4e0cfd7bd86bdfc">GraphConnectEngine.Graph</a>.</p>
+
+</div>
+</div>
+<a id="a2e48c4d9269187fea6b9e188ad76da67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e48c4d9269187fea6b9e188ad76da67">&#9670;&nbsp;</a></span>SetPrintFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GraphConnectEngine.Graphs.DebugTextGraph.SetPrintFunction </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; string, Task &gt;&#160;</td>
+          <td class="paramname"><em>function</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>テキストを受け取る関数を設定する </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">function</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

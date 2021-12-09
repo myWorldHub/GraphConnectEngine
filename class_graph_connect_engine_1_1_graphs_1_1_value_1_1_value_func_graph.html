@@ -74,7 +74,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>OutItemNode[T]が1つあるグラフ コンストラクタでValueResult[T]を返す関数を渡し、実行時に利用される  
+<p>OutItemNode[T]が1つあるグラフ <a class="el" href="class_graph_connect_engine_1_1_value_result.html" title="任意の型の値を表すためのクラス">ValueResult</a>[T]を返す関数を渡すと、実行時に利用される  
  <a href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for GraphConnectEngine.Graphs.Value.ValueFuncGraph&lt; T &gt;:</div>
@@ -90,9 +90,13 @@ Inheritance diagram for GraphConnectEngine.Graphs.Value.ValueFuncGraph&lt; T &gt
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac8ccb38643953815f42b3a63f26a1d37"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#ac8ccb38643953815f42b3a63f26a1d37">ValueFuncGraph</a> (string id, Func&lt; Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; T &gt;&gt;&gt; valueFunc)</td></tr>
-<tr class="memdesc:ac8ccb38643953815f42b3a63f26a1d37"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#ac8ccb38643953815f42b3a63f26a1d37">More...</a><br /></td></tr>
-<tr class="separator:ac8ccb38643953815f42b3a63f26a1d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad394d6dfc5490e164fceb8d17c3f5912"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#ad394d6dfc5490e164fceb8d17c3f5912">ValueFuncGraph</a> (string id)</td></tr>
+<tr class="separator:ad394d6dfc5490e164fceb8d17c3f5912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a427740f7aaf9467693f4db39f8357471"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#a427740f7aaf9467693f4db39f8357471">ValueFuncGraph</a> (string id, Func&lt; Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; T &gt;&gt;&gt; func)</td></tr>
+<tr class="separator:a427740f7aaf9467693f4db39f8357471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a543ee40e4a45633114d158efc1bcfcb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#a543ee40e4a45633114d158efc1bcfcb9">SetValueFunction</a> (Func&lt; Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; T &gt;&gt;&gt; valueFunc)</td></tr>
+<tr class="memdesc:a543ee40e4a45633114d158efc1bcfcb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">値を受け取る関数を設定する  <a href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#a543ee40e4a45633114d158efc1bcfcb9">More...</a><br /></td></tr>
+<tr class="separator:a543ee40e4a45633114d158efc1bcfcb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a830effc4217160cc260d4aa72f12ea8c"><td class="memItemLeft" align="right" valign="top">override async Task&lt; <a class="el" href="class_graph_connect_engine_1_1_process_call_result.html">ProcessCallResult</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#a830effc4217160cc260d4aa72f12ea8c">OnProcessCall</a> (<a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a> args, object[] parameters)</td></tr>
 <tr class="memdesc:a830effc4217160cc260d4aa72f12ea8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフの実行の実装  <a href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html#a830effc4217160cc260d4aa72f12ea8c">More...</a><br /></td></tr>
 <tr class="separator:a830effc4217160cc260d4aa72f12ea8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,7 +183,7 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
 <tr class="separator:af8208ccdb5d07dea7580b9ff2c0effd0 inherit events_interface_graph_connect_engine_1_1_i_graph"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>OutItemNode[T]が1つあるグラフ コンストラクタでValueResult[T]を返す関数を渡し、実行時に利用される </p>
+<div class="textblock"><p>OutItemNode[T]が1つあるグラフ <a class="el" href="class_graph_connect_engine_1_1_value_result.html" title="任意の型の値を表すためのクラス">ValueResult</a>[T]を返す関数を渡すと、実行時に利用される </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td></td></tr>
@@ -187,8 +191,42 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
   </dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac8ccb38643953815f42b3a63f26a1d37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8ccb38643953815f42b3a63f26a1d37">&#9670;&nbsp;</a></span>ValueFuncGraph()</h2>
+<a id="ad394d6dfc5490e164fceb8d17c3f5912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad394d6dfc5490e164fceb8d17c3f5912">&#9670;&nbsp;</a></span>ValueFuncGraph() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html">GraphConnectEngine.Graphs.Value.ValueFuncGraph</a>&lt; T &gt;.<a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html">ValueFuncGraph</a> </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a427740f7aaf9467693f4db39f8357471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a427740f7aaf9467693f4db39f8357471">&#9670;&nbsp;</a></span>ValueFuncGraph() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -206,7 +244,7 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Func&lt; Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; T &gt;&gt;&gt;&#160;</td>
-          <td class="paramname"><em>valueFunc</em>&#160;</td>
+          <td class="paramname"><em>func</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -221,11 +259,11 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
 </table>
 </div><div class="memdoc">
 
-<p>コンストラクタ </p>
+<p></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">connector</td><td>コネクター</td></tr>
-    <tr><td class="paramname">valueFunc</td><td><a class="el" href="class_graph_connect_engine_1_1_value_result.html" title="任意の型の値を表すためのクラス">ValueResult</a>[T]を返す関数</td></tr>
+    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">func</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -278,6 +316,40 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_graph_status
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 <p>Implements <a class="el" href="class_graph_connect_engine_1_1_graph.html#ac90bd06dda67f2bca4e0cfd7bd86bdfc">GraphConnectEngine.Graph</a>.</p>
+
+</div>
+</div>
+<a id="a543ee40e4a45633114d158efc1bcfcb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a543ee40e4a45633114d158efc1bcfcb9">&#9670;&nbsp;</a></span>SetValueFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_graph_connect_engine_1_1_graphs_1_1_value_1_1_value_func_graph.html">GraphConnectEngine.Graphs.Value.ValueFuncGraph</a>&lt; T &gt;.SetValueFunction </td>
+          <td>(</td>
+          <td class="paramtype">Func&lt; Task&lt; <a class="el" href="class_graph_connect_engine_1_1_value_result.html">ValueResult</a>&lt; T &gt;&gt;&gt;&#160;</td>
+          <td class="paramname"><em>valueFunc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>値を受け取る関数を設定する </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">valueFunc</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
