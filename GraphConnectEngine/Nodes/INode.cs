@@ -14,17 +14,6 @@ namespace GraphConnectEngine.Nodes
         /// グラフ
         /// </summary>
         IGraph Graph { get; set; }
-        
-        /// <summary>
-        /// 引数に指定されたノードの型が接続可能なものか確認する
-        ///
-        /// 例えば
-        /// InItemNodeはOutItemNodeとしかつなげないし、
-        /// OutProcessNodeはInProcessNodeとしかつなげない
-        /// </summary>
-        /// <param name="type">型</param>
-        /// <returns></returns>
-        bool IsAttachableNodeType(Type type);
 
         /// <summary>
         /// 指定されたノードと接続できる状態かどうかを確認する

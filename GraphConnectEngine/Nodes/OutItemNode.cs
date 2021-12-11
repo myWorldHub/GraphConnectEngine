@@ -30,12 +30,6 @@ namespace GraphConnectEngine.Nodes
             TypeResolver.Init(this);
         }
 
-        public override bool IsAttachableNodeType(Type type)
-        {
-            var dt = typeof(InItemNode);
-            return !(type != dt && !type.IsSubclassOf(dt));
-        }
-
         public override bool CanAttach(INodeConnector connector,INode anotherNode)
         {
             if (anotherNode is InItemNode inItemNode)

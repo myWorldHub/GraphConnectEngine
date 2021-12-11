@@ -111,14 +111,6 @@ namespace GraphConnectEngine.Nodes
                 return false;
             }
 
-            //つなげるNodeか確認する
-            if (!node1.IsAttachableNodeType(node2.GetType()) || !node2.IsAttachableNodeType(node1.GetType()))
-            {
-                Logger.Error("Error : Node is not attachable Graph type.");
-                Logger.Debug("NodeConnector.ConnectNode().Fail");
-                return false;
-            }
-
             //つながるかどうか確認
             if (!node1.CanAttach(this,node2) || !node2.CanAttach(this, node1))
             {

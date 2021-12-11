@@ -21,12 +21,6 @@ namespace GraphConnectEngine.Nodes
             return await Graph.Invoke(sender, args);
         }
 
-        public override bool IsAttachableNodeType(Type type)
-        {
-            var dt = typeof(OutProcessNode);
-            return !(type != dt && !type.IsSubclassOf(dt));
-        }
-
         public override bool CanAttach(INodeConnector connector,INode anotherNode)
         {
             if (anotherNode is OutProcessNode outNode)

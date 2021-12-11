@@ -21,8 +21,6 @@ namespace GraphConnectEngine.Nodes
         public event EventHandler<NodeConnectEventArgs> OnConnect;
 
         public event EventHandler<NodeConnectEventArgs> OnDisconnect;
-        
-        public abstract bool IsAttachableNodeType(Type type);
 
         public abstract bool CanAttach(INodeConnector connector, INode node);
         

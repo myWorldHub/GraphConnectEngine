@@ -44,13 +44,7 @@ namespace GraphConnectEngine.Nodes
 
             return true;
         }
-        
-        public override bool IsAttachableNodeType(Type type)
-        {
-            var dt = typeof(InProcessNode);
-            return !(type != dt && !type.IsSubclassOf(dt));
-        }
-
+      
         public override bool CanAttach(INodeConnector connector,INode anotherNode)
         {
             if (anotherNode is InProcessNode outNode)
