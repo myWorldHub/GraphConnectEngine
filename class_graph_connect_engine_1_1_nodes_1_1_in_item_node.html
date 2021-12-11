@@ -94,9 +94,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8ff94d61942902110343a766a3e0fab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#ad8ff94d61942902110343a766a3e0fab">InItemNode</a> (<a class="el" href="interface_graph_connect_engine_1_1_i_graph.html">IGraph</a> parentGraph, <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_item_type_resolver.html">IItemTypeResolver</a> typeResolver, <a class="el" href="namespace_graph_connect_engine_1_1_nodes.html#a93d52b054860953c018923cbd50c564a">DefaultItemGetter</a> defaultItemGetter=null, bool enableTypeCheck=true)</td></tr>
 <tr class="memdesc:ad8ff94d61942902110343a766a3e0fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#ad8ff94d61942902110343a766a3e0fab">More...</a><br /></td></tr>
 <tr class="separator:ad8ff94d61942902110343a766a3e0fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01a9c467906bf765b9561c617ef58037"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a01a9c467906bf765b9561c617ef58037">IsAttachableNodeType</a> (Type type)</td></tr>
-<tr class="memdesc:a01a9c467906bf765b9561c617ef58037"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数に指定されたノードの型が接続可能なものか確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a01a9c467906bf765b9561c617ef58037">More...</a><br /></td></tr>
-<tr class="separator:a01a9c467906bf765b9561c617ef58037"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a624c2acefd5524e9983646710b031be2"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a624c2acefd5524e9983646710b031be2">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a> connector, <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> anotherNode)</td></tr>
 <tr class="memdesc:a624c2acefd5524e9983646710b031be2"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a624c2acefd5524e9983646710b031be2">More...</a><br /></td></tr>
 <tr class="separator:a624c2acefd5524e9983646710b031be2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -376,44 +373,6 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
 
 <p>ノードがデフォルト値を取得するための関数を持っているか確認する </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a01a9c467906bf765b9561c617ef58037"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01a9c467906bf765b9561c617ef58037">&#9670;&nbsp;</a></span>IsAttachableNodeType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override bool GraphConnectEngine.Nodes.InItemNode.IsAttachableNodeType </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>引数に指定されたノードの型が接続可能なものか確認する </p>
-<p>例えば InItemNodeはOutItemNodeとしかつなげないし、 OutProcessNodeはInProcessNodeとしかつなげない</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>型</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implements <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#acdae04c9aeb32ce300ac35feed81c5b9">GraphConnectEngine.Nodes.Node</a>.</p>
 
 </div>
 </div>

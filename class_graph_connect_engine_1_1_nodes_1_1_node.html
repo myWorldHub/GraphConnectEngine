@@ -95,9 +95,6 @@ Inheritance diagram for GraphConnectEngine.Nodes.Node:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acdae04c9aeb32ce300ac35feed81c5b9"><td class="memItemLeft" align="right" valign="top">abstract bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#acdae04c9aeb32ce300ac35feed81c5b9">IsAttachableNodeType</a> (Type type)</td></tr>
-<tr class="memdesc:acdae04c9aeb32ce300ac35feed81c5b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数に指定されたノードの型が接続可能なものか確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_node.html#acdae04c9aeb32ce300ac35feed81c5b9">More...</a><br /></td></tr>
-<tr class="separator:acdae04c9aeb32ce300ac35feed81c5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3264df2f5eadb17d57da6ed4265e266f"><td class="memItemLeft" align="right" valign="top">abstract bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a3264df2f5eadb17d57da6ed4265e266f">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a> connector, <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> node)</td></tr>
 <tr class="memdesc:a3264df2f5eadb17d57da6ed4265e266f"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a3264df2f5eadb17d57da6ed4265e266f">More...</a><br /></td></tr>
 <tr class="separator:a3264df2f5eadb17d57da6ed4265e266f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,46 +339,6 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
 </dl>
 
 <p>Implements <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_status_listener.html#a229667bc72109fad18a110810871f31d">GraphConnectEngine.Nodes.INodeStatusListener</a>.</p>
-
-</div>
-</div>
-<a id="acdae04c9aeb32ce300ac35feed81c5b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acdae04c9aeb32ce300ac35feed81c5b9">&#9670;&nbsp;</a></span>IsAttachableNodeType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">abstract bool GraphConnectEngine.Nodes.Node.IsAttachableNodeType </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>引数に指定されたノードの型が接続可能なものか確認する </p>
-<p>例えば InItemNodeはOutItemNodeとしかつなげないし、 OutProcessNodeはInProcessNodeとしかつなげない</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>型</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implements <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html#a5057fdabd71fa80a352eb8ee146ecbe2">GraphConnectEngine.Nodes.INode</a>.</p>
-
-<p>Implemented in <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#add991fed9ba61843413de2788b630efb">GraphConnectEngine.Nodes.OutProcessNode</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_item_node.html#ad8091207690a4c224baa42bde1d8ead0">GraphConnectEngine.Nodes.OutItemNode</a>, <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_process_node.html#ae4332da6c255fa6734788a181a5bfbad">GraphConnectEngine.Nodes.InProcessNode</a>, and <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_in_item_node.html#a01a9c467906bf765b9561c617ef58037">GraphConnectEngine.Nodes.InItemNode</a>.</p>
 
 </div>
 </div>

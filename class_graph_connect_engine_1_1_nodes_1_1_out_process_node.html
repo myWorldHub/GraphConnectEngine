@@ -95,9 +95,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2163764a6ef92719c47f0ae7d0465a39"><td class="memItemLeft" align="right" valign="top">async Task&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#a2163764a6ef92719c47f0ae7d0465a39">CallProcess</a> (<a class="el" href="class_graph_connect_engine_1_1_process_data.html">ProcessData</a> proc)</td></tr>
 <tr class="memdesc:a2163764a6ef92719c47f0ae7d0465a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">InProcessNodeのOnCalledを呼び、プロセスを伝播する  <a href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#a2163764a6ef92719c47f0ae7d0465a39">More...</a><br /></td></tr>
 <tr class="separator:a2163764a6ef92719c47f0ae7d0465a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add991fed9ba61843413de2788b630efb"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#add991fed9ba61843413de2788b630efb">IsAttachableNodeType</a> (Type type)</td></tr>
-<tr class="memdesc:add991fed9ba61843413de2788b630efb"><td class="mdescLeft">&#160;</td><td class="mdescRight">引数に指定されたノードの型が接続可能なものか確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#add991fed9ba61843413de2788b630efb">More...</a><br /></td></tr>
-<tr class="separator:add991fed9ba61843413de2788b630efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9e92ded97a3ff4b9ef1654a81df8138"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#ae9e92ded97a3ff4b9ef1654a81df8138">CanAttach</a> (<a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node_connector.html">INodeConnector</a> connector, <a class="el" href="interface_graph_connect_engine_1_1_nodes_1_1_i_node.html">INode</a> anotherNode)</td></tr>
 <tr class="memdesc:ae9e92ded97a3ff4b9ef1654a81df8138"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定されたノードと接続できる状態かどうかを確認する  <a href="class_graph_connect_engine_1_1_nodes_1_1_out_process_node.html#ae9e92ded97a3ff4b9ef1654a81df8138">More...</a><br /></td></tr>
 <tr class="separator:ae9e92ded97a3ff4b9ef1654a81df8138"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,44 +226,6 @@ EventHandler&lt; <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_no
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 <p>Implements <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#a3264df2f5eadb17d57da6ed4265e266f">GraphConnectEngine.Nodes.Node</a>.</p>
-
-</div>
-</div>
-<a id="add991fed9ba61843413de2788b630efb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add991fed9ba61843413de2788b630efb">&#9670;&nbsp;</a></span>IsAttachableNodeType()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">override bool GraphConnectEngine.Nodes.OutProcessNode.IsAttachableNodeType </td>
-          <td>(</td>
-          <td class="paramtype">Type&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>引数に指定されたノードの型が接続可能なものか確認する </p>
-<p>例えば InItemNodeはOutItemNodeとしかつなげないし、 OutProcessNodeはInProcessNodeとしかつなげない</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>型</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-<p>Implements <a class="el" href="class_graph_connect_engine_1_1_nodes_1_1_node.html#acdae04c9aeb32ce300ac35feed81c5b9">GraphConnectEngine.Nodes.Node</a>.</p>
 
 </div>
 </div>
