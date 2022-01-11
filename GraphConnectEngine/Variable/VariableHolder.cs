@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,9 +10,9 @@ namespace GraphConnectEngine.Variable
     /// </summary>
     public class VariableHolder : IVariableHolder
     {
-        
+
         private readonly Dictionary<string, object> _items = new Dictionary<string, object>();
-        
+
         private readonly Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
         public event EventHandler<VariableCreatedEventArgs> OnVariableCreated;
@@ -26,14 +26,14 @@ namespace GraphConnectEngine.Variable
         {
             return _items.ContainsKey(key);
         }
-        
+
         public ValueResult<T> TryGet<T>(string key)
         {
             if (ContainsKey(key))
             {
                 if (_items[key] == null)
                     return ValueResult<T>.Success(default);
-                
+
                 if (_items[key] is T t)
                     return ValueResult<T>.Success(t);
             }
@@ -53,11 +53,11 @@ namespace GraphConnectEngine.Variable
 
             return ValueResult<object>.Fail();
         }
-        
+
         public ValueResult<Type> TryGetVariableType(string key)
         {
             var type = _types.ContainsKey(key) ? _types[key] : null;
-            return ValueResult<Type>.Create(type != null,type);
+            return ValueResult<Type>.Create(type != null, type);
         }
 
         public void CreateWithoutNotify(string key, object obj)
@@ -68,7 +68,7 @@ namespace GraphConnectEngine.Variable
 
         public bool TryCreate(string key, object obj)
         {
-            if (TryCreate(key,obj.GetType()))
+            if (TryCreate(key, obj.GetType()))
             {
                 _items[key] = obj;
                 return true;
@@ -80,10 +80,10 @@ namespace GraphConnectEngine.Variable
         {
             if (!ContainsKey(key))
             {
-                _items.Add(key,null);
-                _types.Add(key,type);
+                _items.Add(key, null);
+                _types.Add(key, type);
 
-                OnVariableCreated?.Invoke(this, new VariableCreatedEventArgs(key,type));
+                OnVariableCreated?.Invoke(this, new VariableCreatedEventArgs(key, type));
                 return true;
             }
             return false;
@@ -91,25 +91,21 @@ namespace GraphConnectEngine.Variable
 
         public bool Update(string key, object obj)
         {
-            if (ContainsKey(key))
-            {
-                if (obj != null || obj.GetType() != _types[key])
-                    return false;
+            if (!ContainsKey(key) || (obj != null && obj.GetType() != _types[key]))
+                return false;
 
-                _items[key] = obj;
+            _items[key] = obj;
 
-                OnVariableUpdated?.Invoke(this, new VariableUpdatedEventArgs(key,_types[key],obj));
+            OnVariableUpdated?.Invoke(this, new VariableUpdatedEventArgs(key, _types[key], obj));
 
-                return true;
-            }
-            return false;
+            return true;
         }
 
         public void UpdateWithoutNotify(string key, object obj)
         {
             if (ContainsKey(key))
             {
-                if (obj != null || obj.GetType() != _types[key])
+                if (obj != null && obj.GetType() != _types[key])
                     return;
 
                 _items[key] = obj;

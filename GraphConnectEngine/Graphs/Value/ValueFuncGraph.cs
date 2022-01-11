@@ -43,6 +43,12 @@ namespace GraphConnectEngine.Graphs.Value
         
         public override async Task<ProcessCallResult> OnProcessCall(ProcessData args, object[] parameters)
         {
+            // 関数が未設定ならFail
+            if(_valueFunc == null)
+            {
+                return ProcessCallResult.Fail();
+            }
+
             //実行
             var result = await _valueFunc();
             
