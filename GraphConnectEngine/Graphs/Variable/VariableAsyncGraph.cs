@@ -10,12 +10,12 @@ namespace GraphConnectEngine.Graphs.Variable
     public abstract class VariableAsyncGraph : Graph
     {
 
-        private IVariableHolderAsync _holder;
+        private IAsyncVariableHolder _holder;
 
         /// <summary>
         /// IVariableHolderのプロパティ
         /// </summary>
-        public IVariableHolderAsync Holder
+        public IAsyncVariableHolder Holder
         {
             get => _holder;
             private set
@@ -44,7 +44,7 @@ namespace GraphConnectEngine.Graphs.Variable
         /// コンストラクタ
         /// </summary>
         /// <param name="holder">IVariableHolder</param>
-        protected VariableAsyncGraph(string id, IVariableHolderAsync holder) : base(id)
+        protected VariableAsyncGraph(string id, IAsyncVariableHolder holder) : base(id)
         {
             _holder = holder;
         }

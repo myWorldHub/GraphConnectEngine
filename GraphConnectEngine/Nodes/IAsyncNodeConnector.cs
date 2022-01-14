@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Nodes
@@ -6,7 +6,7 @@ namespace GraphConnectEngine.Nodes
     /// <summary>
     /// Node同士がどのように繋がっているか管理する
     /// </summary>
-    public interface INodeConnectorAsync : INodeConnector
+    public interface IAsyncNodeConnector : INodeConnector
     {
 
         /// <summary>

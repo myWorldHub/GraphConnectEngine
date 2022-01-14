@@ -8,6 +8,6 @@ namespace GraphConnectEngine.Graphs.Event
     /// </summary>
     public interface IProcessSender
     {
-        Task Fire(IGraph graph,object[] parameters);
+        Task Fire(object sender,IGraph graph,object[] parameters);
     }
 }

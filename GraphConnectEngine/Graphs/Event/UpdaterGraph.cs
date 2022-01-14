@@ -78,14 +78,14 @@ namespace GraphConnectEngine.Graphs.Event
         /// </summary>
         /// <param name="deltaTime"></param>
         /// <returns></returns>
-        public async Task<bool> Update(float deltaTime)
+        public async Task<bool> Update(object sender,float deltaTime)
         {
             bool isZeroTime = _time >= 0 && _time - deltaTime < 0;
             _time -= deltaTime;
             
             if (IntervalType == Type.Update)
             {
-                await _processSender.Fire(this,null);
+                await _processSender.Fire(sender,this, null);
                 return true;
             }
             else
@@ -97,7 +97,7 @@ namespace GraphConnectEngine.Graphs.Event
                 
                 if (isZeroTime)
                 {
-                    await _processSender.Fire(this,null);
+                    await _processSender.Fire(sender,this, null);
                     return true;
                 }
             }

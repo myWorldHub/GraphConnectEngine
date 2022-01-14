@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace GraphConnectEngine.Variable
@@ -8,7 +8,7 @@ namespace GraphConnectEngine.Variable
     ///
     /// 関数の説明はVariableHolderを参照してください
     /// </summary>
-    public interface IVariableHolderAsync : IVariableHolderEvent
+    public interface IAsyncVariableHolder : IVariableHolderEvent
     {
         Task<bool> ContainsKeyAsync(string key);
         
