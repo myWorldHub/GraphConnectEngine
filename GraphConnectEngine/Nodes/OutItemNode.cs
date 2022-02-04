@@ -44,7 +44,7 @@ namespace GraphConnectEngine.Nodes
                     return false;
                 }
 
-                return !(otherItemType != myItemType && !myItemType.IsSubclassOf(otherItemType));
+                return !(otherItemType != myItemType && !myItemType.IsSubclassOf(otherItemType) || otherItemType.IsAssignableFrom(myItemType));
             }
 
             return false;

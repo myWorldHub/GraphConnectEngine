@@ -53,7 +53,7 @@ namespace GraphConnectEngine.Nodes
 
                 //型チェック
                 if (_enableTypeCheck) {
-                    if (otherItemType != myItemType && !otherItemType.IsSubclassOf(myItemType))
+                    if (otherItemType != myItemType && !otherItemType.IsSubclassOf(myItemType) || myItemType.IsAssignableFrom(otherItemType))
                     {
                         return false;
                     }
@@ -109,7 +109,7 @@ namespace GraphConnectEngine.Nodes
                     var vtype = value.Value.GetType();
                     var mytype = TypeResolver.GetItemType();
                     
-                    if (vtype == mytype || vtype.IsSubclassOf(mytype))
+                    if (vtype == mytype || vtype.IsSubclassOf(mytype) || mytype.IsAssignableFrom(vtype))
                     {
                         Logger.Debug("InItemNode.GerItemFromConnectedNode().ReturnProcessResult");
                         return value;
