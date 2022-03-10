@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GraphConnectEngine: GraphConnectEngine - csharp</title>
+<title>GraphConnectEngine: GraphConnectEngine</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,12 +62,67 @@ $(function() {
 </div><!-- top -->
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title"><a class="el" href="namespace_graph_connect_engine.html">GraphConnectEngine</a> - csharp </div>  </div>
+<div class="title"><a class="el" href="namespace_graph_connect_engine.html">GraphConnectEngine</a> </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>ノードを繋いで関数を実行するためのプログラム</p>
-<p>ドキュメント (作成中) <a href="https://nana.oekaki.chat/GraphConnectEngine/index.html">https://nana.oekaki.chat/GraphConnectEngine/index.html</a> </p>
-</div></div><!-- contents -->
+<div class="textblock"><p><img src="https://user-images.githubusercontent.com/26675945/157771298-544ff4a7-9d24-4a81-8d5a-753fbdc6c2b0.png" alt="image" class="inline"/></p>
+<ul>
+<li>ドキュメント <a href="https://nana.oekaki.chat/GraphConnectEngine/namespaces.html">https://nana.oekaki.chat/GraphConnectEngine/namespaces.html</a></li>
+</ul>
+<p>GraphConnectEngineは、C::でノードベースプログラミングを実装するために使えるライブラリです。</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+定義</h1>
+<p>グラフ(Graph) : プログラムの処理の一単位</p>
+<p>ノード(Node) : グラフ同士で入出力、実行順を制御するための接続点</p>
+<p>アイテム(Item) : グラフの入出力の値のこと。ノードを使ってグラフからグラフへ渡される</p>
+<p>プロセス(Process) : グラフの実行を管理するためのアイテムのこと。これがグラフに渡るとそのグラフが実行される</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+グラフの定義の例</h1>
+<h2><a class="anchor" id="autotoc_md4"></a>
+グラフの実行を開始するグラフ</h2>
+<p><a href="https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs">https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs</a></p>
+<p>Update関数を呼ぶことでProcessNode[0]につながれているグラフが呼ばれます。</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+自由な値を一つ受け取って、それを出力するグラフ</h2>
+<div class="fragment"><div class="line">using System;</div>
+<div class="line">using System.Threading.Tasks;</div>
+<div class="line">using GraphConnectEngine;</div>
+<div class="line">using GraphConnectEngine.Nodes;</div>
+<div class="line"> </div>
+<div class="line">internal class TestGraph : Graph</div>
+<div class="line">{</div>
+<div class="line">    /// &lt;summary&gt;</div>
+<div class="line">    /// </div>
+<div class="line">    /// &lt;/summary&gt;</div>
+<div class="line">    /// &lt;param name=&quot;id&quot;&gt;ユニークなID&lt;/param&gt;</div>
+<div class="line">    public TestGraph(string id) : base(id, true, true) // プロセスを受け取るノードとプロセスを吐き出すノードを自動で作成するのでtrue,true</div>
+<div class="line">    {</div>
+<div class="line">        // アイテムを受け取るノードを追加する</div>
+<div class="line">        AddNode(new InItemNode(this, new ItemTypeResolver(typeof(object), &quot;InputObject&quot;)));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    /// &lt;summary&gt;</div>
+<div class="line">    /// グラフ名</div>
+<div class="line">    /// &lt;/summary&gt;</div>
+<div class="line">    public override string GraphName =&gt; &quot;TestGraph&quot;;</div>
+<div class="line"> </div>
+<div class="line">    /// &lt;summary&gt;</div>
+<div class="line">    /// プロセスが渡ってきたら呼ばれる関数</div>
+<div class="line">    /// &lt;/summary&gt;</div>
+<div class="line">    /// &lt;param name=&quot;proc&quot;&gt;プロセスの情報&lt;/param&gt;</div>
+<div class="line">    /// &lt;param name=&quot;parameters&quot;&gt;他のグラフから受け取ったItemが入った配列&lt;/param&gt;</div>
+<div class="line">    /// &lt;returns&gt;実行結果&lt;/returns&gt;</div>
+<div class="line">    public override Task&lt;ProcessCallResult&gt; OnProcessCall(ProcessData proc, object[] parameters)</div>
+<div class="line">    {</div>
+<div class="line">        var text = parameters[0].ToString();</div>
+<div class="line"> </div>
+<div class="line">        Console.WriteLine(text);</div>
+<div class="line"> </div>
+<div class="line">        // 実行成功で、アイテムを何も出力しないで、プロセスを吐き出すノードをOutProcessNodes[0]に指定したものを返す</div>
+<div class="line">        return Task.FromResult(ProcessCallResult.Success(Array.Empty&lt;object&gt;(), OutProcessNodes[0]));</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
