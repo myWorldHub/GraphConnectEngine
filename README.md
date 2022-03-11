@@ -17,12 +17,7 @@ GraphConnectEngineは、C#でノードベースプログラミングを実装す
 
 プロセス(Process) : グラフの実行を管理するためのアイテムのこと。これがグラフに渡るとそのグラフが実行される
 
-## グラフの定義の例
-
-### グラフの実行を開始するグラフ
-https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs
-
-Update関数を呼ぶことでProcessNode[0]につながれているグラフが呼ばれます。
+## 例
 
 ### 自由な値を一つ受け取って、それを出力するグラフ
 
@@ -65,5 +60,51 @@ internal class TestGraph : Graph
         return Task.FromResult(ProcessCallResult.Success(Array.Empty<object>(), OutProcessNodes[0]));
     }
 }
-
 ```
+
+### グラフの実行を開始するグラフ
+https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs
+
+Update関数を呼ぶことでProcessNode[0]につながれているグラフが呼ばれます。
+
+### グラフを作成してノードを繋ぐ
+
+```csharp
+class ProcessSender : IProcessSender
+{
+    private readonly INodeConnector Connector;
+
+    public ProcessSender(INodeConnector connector)
+    {
+        Connector = connector;
+    }
+
+    public Task Fire(object sender, IGraph graph, object[] parameters)
+    {
+        graph.InvokeWithoutCheck(ProcessData.Fire(graph, Connector), true,parameters);
+        return Task.CompletedTask;
+    }
+}
+```
+
+```csharp
+// グラフの接続を管理するもの
+var connector = new NodeConnector();
+
+// GraphConnectEngine.Graphs.Valueにある、値をOutItemNodes[0]に出力するグラフ
+var textGraph = new ValueGraph<string>("textGraphId","Hello");
+// 上の例で作成したグラフ
+var testGraph = new TestGraph("testGraphId");
+// GraphConnectEngine.Graphs.Eventにある、実行を開始するグラフ
+var updater = new UpdaterGraph("updater", new ProcessSender(connector));
+
+// textGraphの出力ノードと、testGraphの入力ノードを繋ぐ
+connector.ConnectNode(textGraph.OutItemNodes[0], testGraph.InItemNodes[0]);
+// updaterのプロセスを吐くノードと、testGraphのプロセスを受け取るノードを繋ぐ
+connector.ConnectNode(updater.OutProcessNodes[0], testGraph.InProcessNodes[0]);
+
+// updaterから実行を開始する
+await updater.Update(DateTime.Now,0);
+```
+
+
