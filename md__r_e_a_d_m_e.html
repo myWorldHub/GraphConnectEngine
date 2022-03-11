@@ -77,12 +77,8 @@ $(function() {
 <p>アイテム(Item) : グラフの入出力の値のこと。ノードを使ってグラフからグラフへ渡される</p>
 <p>プロセス(Process) : グラフの実行を管理するためのアイテムのこと。これがグラフに渡るとそのグラフが実行される</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
-グラフの定義の例</h1>
+例</h1>
 <h2><a class="anchor" id="autotoc_md4"></a>
-グラフの実行を開始するグラフ</h2>
-<p><a href="https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs">https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs</a></p>
-<p>Update関数を呼ぶことでProcessNode[0]につながれているグラフが呼ばれます。</p>
-<h2><a class="anchor" id="autotoc_md5"></a>
 自由な値を一つ受け取って、それを出力するグラフ</h2>
 <div class="fragment"><div class="line">using System;</div>
 <div class="line">using System.Threading.Tasks;</div>
@@ -122,6 +118,44 @@ $(function() {
 <div class="line">        return Task.FromResult(ProcessCallResult.Success(Array.Empty&lt;object&gt;(), OutProcessNodes[0]));</div>
 <div class="line">    }</div>
 <div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
+グラフの実行を開始するグラフ</h2>
+<p><a href="https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs">https://github.com/nananapo/GraphConnectEngine/blob/master/GraphConnectEngine/Graphs/Event/UpdaterGraph.cs</a></p>
+<p>Update関数を呼ぶことでProcessNode[0]につながれているグラフが呼ばれます。</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+グラフを作成してノードを繋ぐ</h2>
+<div class="fragment"><div class="line">class ProcessSender : IProcessSender</div>
+<div class="line">{</div>
+<div class="line">    private readonly INodeConnector Connector;</div>
+<div class="line"> </div>
+<div class="line">    public ProcessSender(INodeConnector connector)</div>
+<div class="line">    {</div>
+<div class="line">        Connector = connector;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    public Task Fire(object sender, IGraph graph, object[] parameters)</div>
+<div class="line">    {</div>
+<div class="line">        graph.InvokeWithoutCheck(ProcessData.Fire(graph, Connector), true,parameters);</div>
+<div class="line">        return Task.CompletedTask;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><div class="fragment"><div class="line">// グラフの接続を管理するもの</div>
+<div class="line">var connector = new NodeConnector();</div>
+<div class="line"> </div>
+<div class="line">// GraphConnectEngine.Graphs.Valueにある、値をOutItemNodes[0]に出力するグラフ</div>
+<div class="line">var textGraph = new ValueGraph&lt;string&gt;(&quot;textGraphId&quot;,&quot;Hello&quot;);</div>
+<div class="line">// 上の例で作成したグラフ</div>
+<div class="line">var testGraph = new TestGraph(&quot;testGraphId&quot;);</div>
+<div class="line">// GraphConnectEngine.Graphs.Eventにある、実行を開始するグラフ</div>
+<div class="line">var updater = new UpdaterGraph(&quot;updater&quot;, new ProcessSender(connector));</div>
+<div class="line"> </div>
+<div class="line">// textGraphの出力ノードと、testGraphの入力ノードを繋ぐ</div>
+<div class="line">connector.ConnectNode(textGraph.OutItemNodes[0], testGraph.InItemNodes[0]);</div>
+<div class="line">// updaterのプロセスを吐くノードと、testGraphのプロセスを受け取るノードを繋ぐ</div>
+<div class="line">connector.ConnectNode(updater.OutProcessNodes[0], testGraph.InProcessNodes[0]);</div>
+<div class="line"> </div>
+<div class="line">// updaterから実行を開始する</div>
+<div class="line">await updater.Update(DateTime.Now,0);</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
